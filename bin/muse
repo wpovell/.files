@@ -1,0 +1,15 @@
+#!/bin/bash
+base=
+case $1 in
+  pause) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+  ;;
+  next) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+  ;;
+  prev) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+  ;;
+  up) amixer -q sset Master 3%+
+  ;;
+  down) amixer -q sset Master 3%-
+  ;;
+  mute) amixer -q sset Master toggle
+esac

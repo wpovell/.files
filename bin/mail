@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+
+import json, imaplib
+
+with open('/home/wpovell/dotfiles/pass.json') as f:
+    p = json.load(f)
+
+l = sorted(p.keys())[::-1]
+t = 0
+for e in l:
+    obj = imaplib.IMAP4_SSL('imap.gmail.com', 993)
+    obj.login(e, p[e])
+    obj.select()
+    t += len(obj.search(None, 'UnSeen')[1][0].split())
+    obj.logout()
+print(t)

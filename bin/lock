@@ -1,0 +1,13 @@
+#!/bin/bash
+LOCK_IMAGE=~/Documents/lock.png
+i3-msg mode "default"
+scrot /tmp/screen.png
+convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
+#[[ -f $LOCK_IMAGE ]] && convert /tmp/screen.png $LOCK_IMAGE -gravity center -composite -matte /tmp/screen.png
+#i3lock -u -i /tmp/screen.png
+i3lock -i /tmp/screen.png \
+--insidevercolor=a0a0a020 --insidewrongcolor=a0000020 --insidecolor=ffffff00 \
+--ringvercolor=000000ff --ringwrongcolor=440000ff --ringcolor=000000ff \
+--textcolor=00000000 --keyhlcolor=bbbbbbbb --linecolor 00000000 \
+--clock --timecolor=aaaaaaff --datecolor aaaaaaff
+rm /tmp/screen.png
