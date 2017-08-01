@@ -1,7 +1,7 @@
-URxvt.font:             xft:Hack:pixelsize=13:antialias=true:hinting=true
-URxvt.boldFont:         xft:Hack:pixelsize=13:antialias=true:hinting=true:bold
-URxvt.italicFont:       xft:Hack:pixelsize=13:antialias=true:hinting=true:italic
-URxvt.bolditalicFont:   xft:Hack:pixelsize=13:antialias=true:hinting=true:bold:italic
+URxvt.font:             xft:Inconsolata:pixelsize=13:antialias=true:hinting=true
+URxvt.boldFont:         xft:Inconsolata:pixelsize=13:antialias=true:hinting=true:bold
+URxvt.italicFont:       xft:Inconsolata:pixelsize=13:antialias=true:hinting=true:italic
+URxvt.bolditalicFont:   xft:Inconsolata:pixelsize=13:antialias=true:hinting=true:bold:italic
 URxvt.scrollBar: false
 URxvt.internalBorder:  15
 URxvt*fading: 30
@@ -10,6 +10,13 @@ URxvt.url-launcher: /usr/bin/google-chrome
 URxvt*transparent: true
 URxvt*shading: 70
 
+! copy/paste
+URxvt*iso14755: false
+URxvt*perl-ext-common: default,matcher,clipboard
+URxvt*keysym.Shift-Control-C: perl:clipboard:copy
+URxvt*keysym.Shift-Control-V: perl:clipboard:paste
+
+! scroll
 URxvt*scrollTtyKeypress: true
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: false

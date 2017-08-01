@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import json, imaplib
+from sys import argv
+altColor = argv[1]
 
 with open('/home/wpovell/dotfiles/pass.json') as f:
     p = json.load(f)
@@ -13,4 +15,8 @@ for e in l:
     obj.select()
     t += len(obj.search(None, 'UnSeen')[1][0].split())
     obj.logout()
-print(t)
+s = ''
+if t > 0:
+    s = '%{F' + altColor + '}'
+s += '  ' + str(t)
+print(s)
