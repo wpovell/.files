@@ -8,15 +8,19 @@ with open('/home/wpovell/dotfiles/pass.json') as f:
     p = json.load(f)
 
 l = sorted(p.keys())[::-1]
-t = 0
-for e in l:
-    obj = imaplib.IMAP4_SSL('imap.gmail.com', 993)
-    obj.login(e, p[e])
-    obj.select()
-    t += len(obj.search(None, 'UnSeen')[1][0].split())
-    obj.logout()
-s = ''
-if t > 0:
-    s = '%{F' + altColor + '}'
-s += '  ' + str(t)
-print(s)
+t = []
+
+try:
+    for e in l:
+        obj = imaplib.IMAP4_SSL('imap.gmail.com', 993)
+        obj.login(e, p[e])
+        obj.select()
+        t.append(len(obj.search(None, 'UnSeen')[1][0].split()))
+        obj.logout()
+    s = ''
+    if sum(t):
+        s = '%{F' + altColor + '}'
+    s += '  ' + '/'.join(map(str, t))
+    print(s)
+except Exception:
+    pass

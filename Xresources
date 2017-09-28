@@ -1,7 +1,7 @@
-URxvt.font:             xft:Inconsolata:pixelsize=13:antialias=true:hinting=true
-URxvt.boldFont:         xft:Inconsolata:pixelsize=13:antialias=true:hinting=true:bold
-URxvt.italicFont:       xft:Inconsolata:pixelsize=13:antialias=true:hinting=true:italic
-URxvt.bolditalicFont:   xft:Inconsolata:pixelsize=13:antialias=true:hinting=true:bold:italic
+URxvt.font:             xft:Inconsolata:pixelsize=20:antialias=true:hinting=true
+URxvt.boldFont:         xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold
+URxvt.italicFont:       xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:italic
+URxvt.bolditalicFont:   xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold:italic
 URxvt.scrollBar: false
 URxvt.internalBorder:  15
 URxvt*fading: 30
@@ -56,3 +56,8 @@ URxvt.color14:      #8abeb7
 ! white
 URxvt.color7:       #707880
 URxvt.color15:      #c5c8c6
+
+
+rofi.terminal: urxvt
+rofi.lines: 5
+rofi.separator-style: solid
