@@ -1,0 +1,27 @@
+!flower
+
+*foreground:	#E8DED6
+*background:	#311f2b
+
+*color0:	#311f2b
+*color1:	#AE758D
+*color10:	#768A9A
+*color11:	#A29AA0
+*color12:	#D7A7A1
+*color13:	#E5CDB4
+*color14:	#C8B7C7
+*color15:	#E8DED6
+*color2:	#768A9A
+*color3:	#A29AA0
+*color4:	#D7A7A1
+*color5:	#E5CDB4
+*color6:	#C8B7C7
+*color66:	#311f2b
+*color7:	#E8DED6
+*color8:	#83787f
+*color9:	#AE758D
+
+rofi.color-active:	#311f2b, #E8DED6, #311f2b, #D7A7A1, #311f2b
+rofi.color-normal:	#311f2b, #E8DED6, #311f2b, #D7A7A1, #311f2b
+rofi.color-urgent:	#311f2b, #AE758D, #311f2b, #AE758D, #E8DED6
+rofi.color-window:	#311f2b, #D7A7A1, #D7A7A1

@@ -1,17 +1,14 @@
 # Custom Stuff
 set $mod Mod4
 
-exec_always --no-startup-id killall -q polybar || sleep 1 && polybar top &
-
 # Startup Apps
-exec --no-startup-id xrdb ~/.Xresources
-exec --no-startup-id feh --bg-tile ~/dotfiles/wallpapers/cartography.png
-exec --no-startup-id xautolock -time 60 -locker lock
+exec --no-startup-id xrdb -I$HOME ~/.Xresources
+exec --no-startup-id xautolock -time 10 -locker lock
 exec --no-startup-id compton -f
 exec --no-startup-id dunst
-exec --no-startup-id nm-applet
 exec --no-startup-id redshift
-exec --no-startup-id polybar top &
+exec --no-startup-id retheme
+exec --no-startup-id polybar top
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 
@@ -19,17 +16,15 @@ bindsym Print exec screenshot
 
 set $HOME /home/wpovell
 
-set_from_resource $borderF URxvt.color8
-set_from_resource $borderUF URxvt.color0
-set_from_resource $blue URxvt.color12
+set_from_resource $borderF color8
+set_from_resource $borderUF color0
+set_from_resource $blue color12
 
 client.focused $borderF $borderF $borderF
 client.focused_inactive $borderUF $borderUF $borderUF
 client.unfocused $borderUF $borderUF $borderUF
 
-for_window [class="Google-chrome"] border pixel 0
-font pango:Inconsolata 10    ##Sets title bar thickness
-for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
+for_window [class="^.*"] border pixel 3
 
 # Gaps
 gaps inner 10
@@ -37,6 +32,10 @@ gaps outer 10
 
 # Drag floating windows
 floating_modifier $mod
+
+# Ki
+bindsym ctrl+alt+f1 gksudo chvt 1
+bindsym ctrl+alt+f2 gksudo chvt 2
 
 # Start Term
 bindsym $mod+Return exec urxvt
@@ -86,11 +85,11 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
 
 bindsym Control+$mod+Left workspace prev
 bindsym Control+$mod+Right workspace next

@@ -1,0 +1,3 @@
+#include "/home/wpovell/.theme"
+#include "/home/wpovell/.Xresources.d/urxvt"
+#include "/home/wpovell/.Xresources.d/rofi"

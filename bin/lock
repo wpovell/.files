@@ -6,8 +6,8 @@ convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
 #[[ -f $LOCK_IMAGE ]] && convert /tmp/screen.png $LOCK_IMAGE -gravity center -composite -matte /tmp/screen.png
 #i3lock -u -i /tmp/screen.png
 red=$(xquery color1:)
-blue=$(xquery color4)
-black=$(xquery color8)
+blue=$(xquery color4:)
+black=$(xquery color8:)
 i3lock -i /tmp/screen.png \
 --insidevercolor=00000077 --insidewrongcolor=$red"20" --insidecolor=00000077 \
 --ringvercolor=$black"ff" --ringwrongcolor=$red"ff" --ringcolor=$black"ff" \

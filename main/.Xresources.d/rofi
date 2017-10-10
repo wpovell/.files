@@ -1,0 +1,3 @@
+rofi.terminal: urxvt
+rofi.lines: 5
+rofi.separator-style: solid

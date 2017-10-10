@@ -1,0 +1,1 @@
+themes/simple/.Xresources.d

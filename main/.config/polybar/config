@@ -1,9 +1,9 @@
 [colors]
-background		= ${xrdb:URxvt.color0:}
-foreground		= ${xrdb:URxvt.foreground:}
-barFocus		= ${xrdb:URxvt.color4:}
-barUnfocus		= ${xrdb:URxvt.color8:}
-barMode			= ${xrdb:URxvt.color1:}
+background		= ${xrdb:color0}
+foreground		= ${xrdb:*foreground}
+barFocus		= ${xrdb:color4}
+barUnfocus		= ${xrdb:color8}
+barMode			= ${xrdb:color1}
 
 [bar/top]
 width			= 100%

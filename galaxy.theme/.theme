@@ -1,0 +1,30 @@
+! galaxy
+
+URxvt*transparent: true
+URxvt*shading: 20
+
+*background:	#311f2b
+*color0:	#071935
+*color1:	#5D5464
+*color10:	#A2525A
+*color11:	#BD8A78
+*color12:	#406991
+*color13:	#669AB2
+*color14:	#B9BBB3
+*color15:	#ECECE2
+*color2:	#A2525A
+*color3:	#BD8A78
+*color4:	#A2525A
+*color5:	#669AB2
+*color6:	#B9BBB3
+*color66:	#010108
+*color7:	#ECECE2
+*color8:	#2c4966
+*color9:	#5D5464
+*cursorColor:	#c5c8c6
+*foreground:	#a4a4ad
+
+rofi.color-active:	#010108, #ECECE2, #010108, #A2525A, #010108
+rofi.color-normal:	#010108, #ECECE2, #010108, #A2525A, #010108
+rofi.color-urgent:	#010108, #5D5464, #010108, #5D5464, #ECECE2
+rofi.color-window:	#010108, #A2525A, #A2525A
