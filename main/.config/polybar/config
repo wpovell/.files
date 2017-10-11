@@ -1,54 +1,55 @@
 [colors]
 background		= ${xrdb:color0}
 foreground		= ${xrdb:*foreground}
-barFocus		= ${xrdb:color4}
+barFocus		  = ${xrdb:color4}
 barUnfocus		= ${xrdb:color8}
-barMode			= ${xrdb:color1}
+barMode			  = ${xrdb:color1}
+bright        = ${xrdb:color12}
 
 [bar/top]
-width			= 100%
-border-size		= 10
-fixed-center  		= true
-height			= 27
-background		= ${colors.background}
-foreground		= $(colors.foreground}
-radius 			= 3.0
-modules-left		= i3
-modules-center		= date
-modules-right 		= memory cpu volume mail network music
-font-0 			= FontAwesome:size=10;2
-font-1 			= Inconsolata:size=10;2
-module-margin		= 4
+width		        = 100%
+border-size		  = 0
+fixed-center  	= true
+height			    = 33
+background		  = ${colors.background}
+foreground		  = $(colors.foreground}
+radius          = 0
+modules-left		= date i3
+modules-right 	= mail network volume music
+font-0 			    = FontAwesome:size=10;2
+font-1 			    = Inconsolata:size=10;2
+module-margin		= 5
 
 [module/volume]
 type = internal/volume
 
-format-volume = <ramp-volume><label-volume>
+format-volume = <ramp-volume> <label-volume>
 
 label-volume = %percentage%%
-label-volume-foreground = ${colors.foreground}
+label-volume-foreground = ${colors.bright}
 label-volume-background = ${colors.background}
-label-muted = " MUTED "
+
+label-muted = "         "
 label-muted-foreground = ${colors.foreground}
 label-muted-background = ${colors.background}
 
-ramp-volume-0 = " VOL "
-ramp-volume-0-foreground = ${colors.foreground}
+ramp-volume-0 = "  "
+ramp-volume-0-foreground = ${colors.bright}
 ramp-volume-0-background = ${colors.background}
-ramp-volume-1 = " VOL "
-ramp-volume-1-foreground = ${colors.foreground}
+ramp-volume-1 = "  "
+ramp-volume-1-foreground = ${colors.bright}
 ramp-volume-1-background = ${colors.background}
-ramp-volume-2 = " VOL "
-ramp-volume-2-foreground = ${colors.foreground}
+ramp-volume-2 = "  "
+ramp-volume-2-foreground = ${colors.bright}
 ramp-volume-2-background = ${colors.background}
-ramp-volume-3 = " VOL "
-ramp-volume-3-foreground = ${colors.foreground}
+ramp-volume-3 = "  "
+ramp-volume-3-foreground = ${colors.bright}
 ramp-volume-3-background = ${colors.background}
 
 [module/i3]
 type			= internal/i3
 strip-wsnumbers		= true
-format			= <label-state> <label-mode>
+format			= <label-state><label-mode>
 
 label-focused-background = ${colors.barFocus}
 label-focused-foreground = ${colors.barUnfocus}
@@ -69,8 +70,10 @@ label-mode-padding = 4
 [module/network]
 type = internal/network
 interface = wlx9cefd5fedd0b
-label-connected-foreground = ${colors.foreground}
-label-connected =   %essid%: %downspeed%
+label-connected-foreground = ${colors.bright}
+label-connected = %essid% | %local_ip% | %downspeed%
+label-connected-background = ${colors.barUnfocus}
+label-connected-padding = 7
 
 [module/date]
 type			= internal/date
@@ -79,34 +82,31 @@ date			= %b %d
 time			= %I:%M%p
 label			= %date%, %time%
 label-foreground = ${colors.foreground}
-
-[module/cpu]
-type = internal/cpu
-label-foreground = ${colors.foreground}
-label = CPU %percentage%%
-
-[module/memory]
-type = internal/memory
-label-foreground = ${colors.foreground}
-label = RAM %percentage_used%%
+label-padding-left = 10
 
 [module/music]
 type = custom/script
-interval = 2
-module-margin = 10
-
+interval = 1
 label = %output:0:50:...%
+label-padding = 7
+label-background = ${colors.barUnfocus}
 label-foreground = ${colors.foreground}
 exec = ~/dotfiles/bin/music
-
 click-left = muse pause
+
+[module/skip]
+type = custom/script
+tail = false
+exec = echo ""
+label-foreground = ${colors.bright}
+click-left = muse next
 
 [module/mail]
 type = custom/script
 interval = 120
 format = <label>
 label-foreground = ${colors.foreground}
-exec = mail $(xquery color1)
+exec = mail $(xquery color12)
 click-left = chrome gmail.com
 
 [global/wm]

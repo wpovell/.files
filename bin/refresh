@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+import glob
+import re
+
+with open('/home/wpovell/.theme') as f:
+    dat = f.read().strip()
+colors = re.findall(r'\*(color[0-9]+|background|foreground):[\s]+(#[0-9A-Fa-f]+)', dat)
+toWrite = ""
+for col in colors:
+    c = col[1][1:].lower()
+    c = '/'.join(map(''.join, zip(*[iter(c)]*2)))
+    n = ''
+    fmt = lambda n, c: "\033]{};rgb:{}\007".format(n, c)
+    if col[0].startswith("color"):
+        n = col[0].replace('color','')
+        toWrite += fmt('4;'+n, c)
+    elif col[0] == 'foreground':
+        toWrite += fmt('10', c)
+    if col[0] == 'background':
+        toWrite += fmt('708', c)
+        toWrite += fmt('11', c)
+
+for term in glob.glob("/dev/pts/[0-9]*"):
+    with open(term, "w") as file:
+        file.write(toWrite)

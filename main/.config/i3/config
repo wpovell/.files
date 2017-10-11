@@ -7,12 +7,17 @@ exec --no-startup-id xautolock -time 10 -locker lock
 exec --no-startup-id compton -f
 exec --no-startup-id dunst
 exec --no-startup-id redshift
-exec --no-startup-id retheme
-exec --no-startup-id polybar top
+exec_always --no-startup-id retheme
+
+for_window [class="Spotify"] move container to workspace $workspace9
+exec --no-startup-id spotify
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 
 bindsym Print exec screenshot
+
+bindsym $mod+c exec --no-startup-id chrome
+bindsym $mod+a exec --no-startup-id atom
 
 set $HOME /home/wpovell
 
@@ -76,7 +81,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # Focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Shift-a focus parent
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -85,11 +90,16 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
-set $workspace1 "1"
-set $workspace2 "2"
-set $workspace3 "3"
-set $workspace4 "4"
-set $workspace5 "5"
+set $workspace1 "1: I"
+set $workspace2 "2: II"
+set $workspace3 "3: III"
+set $workspace4 "4: IV"
+set $workspace5 "5: V"
+set $workspace6 "6: VI"
+set $workspace7 "7: VII"
+set $workspace8 "8: IIX"
+set $workspace9 "9: IX"
+set $workspace10 "a: X"
 
 bindsym Control+$mod+Left workspace prev
 bindsym Control+$mod+Right workspace next
@@ -100,11 +110,11 @@ bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -112,17 +122,18 @@ bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
 mode "Sys" {
   # Exit
   bindsym e exec --no-startup-id i3-msg exit
@@ -133,7 +144,7 @@ mode "Sys" {
   # Shutdown
   bindsym s exec --no-startup-id systemctl poweroff
   # Hibernate
-  bindsym h exec --no-startup-id systemctl hibernate
+  bindsym h exec --no-startup-id "i3-msg mode default && systemctl hibernate"
 
   # Back to normal
   bindsym Return mode "default"

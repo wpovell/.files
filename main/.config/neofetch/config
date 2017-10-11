@@ -1,0 +1,22 @@
+print_info() {
+    info title
+    info underline
+
+    info "OS" distro
+    info "Host" model
+    info "Kernel" kernel
+    info "Shell" shell
+    info "Resolution" resolution
+    info "DE" de
+    info "WM" wm
+    info "Terminal" term
+    info "CPU" cpu
+    prin "GPU" "NVIDIA GeForce GTX 1080 Ti\n"
+
+    info line_break
+    info cols
+    info line_break
+}
+
+kernel_shorthand="off"
+shell_version="off"

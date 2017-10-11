@@ -1,14 +1,14 @@
 ! galaxy
 
-URxvt*transparent: true
-URxvt*shading: 20
+!URxvt*transparent: true
+!URxvt*shading: 20
 
-*background:	#311f2b
+*background:	#26283f
 *color0:	#071935
 *color1:	#5D5464
 *color10:	#A2525A
 *color11:	#BD8A78
-*color12:	#406991
+*color12:	#60a1e0
 *color13:	#669AB2
 *color14:	#B9BBB3
 *color15:	#ECECE2

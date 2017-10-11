@@ -12,3 +12,4 @@ xrdb -I$HOME ~/.Xresources
 killall polybar
 polybar top &
 i3-msg reload
+refresh

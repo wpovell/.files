@@ -1,33 +1,26 @@
+# Cuda Stuff
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
 export CUDA_HOME=/usr/local/cuda
+
+# Path
 export PATH=$PATH:~/bin/:~/dotfiles/bin:/sbin/:/usr/local/cuda-8.0/bin:~/.local/bin
 
+# Reload Xresources
 alias xup="xrdb -I$HOME ~/.Xresources"
+# Never open emacs in a window
 alias emacs="emacs -nw"
+# Ls, now with color!
 alias ls='ls --color=auto'
 
-PS1="\h:\w » "
+# Max num of dirs
+PROMPT_DIRTRIM=2
 
-# Set titlebar
-case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;bash: ${PWD}\007"'
-    show_command_in_title_bar()
-    {
-        case "$BASH_COMMAND" in
-            *\033]0*)
-                # The command is trying to set the title bar as well;
-                # this is most likely the execution of $PROMPT_COMMAND.
-                # In any case nested escapes confuse the terminal, so don't
-                # output them.
-                ;;
-            *)
-                echo -ne "\033]0;${BASH_COMMAND}\007"
-                ;;
-        esac
-    }
-    trap show_command_in_title_bar DEBUG
-    ;;
-*)
-    ;;
-esac
+# Prompt
+C1="\[\033[35m\]"
+END="\[\033[0m\]"
+PS1="$C1\h$END \w $C1»$END "
+
+# Ignore repeat history
+HISTCONTROL=ignoreboth
+# Size
+HISTSIZE=500

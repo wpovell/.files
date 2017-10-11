@@ -9,9 +9,11 @@ URxvt.url-launcher: /usr/bin/google-chrome
 
 ! copy/paste
 URxvt*iso14755: false
-URxvt*perl-ext-common: default,matcher,clipboard,config-reload
+URxvt*perl-ext-common: default,matcher,clipboard
 URxvt*keysym.Shift-Control-C: perl:clipboard:copy
 URxvt*keysym.Shift-Control-V: perl:clipboard:paste
+
+URxvt*dynamicColors: on
 
 ! scroll
 URxvt*scrollTtyKeypress: true

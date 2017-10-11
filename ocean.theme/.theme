@@ -1,0 +1,26 @@
+! ocean
+
+*background:	#162124
+*color0:	#162124
+*color1:	#5D8385
+*color10:	#76888C
+*color11:	#8A9297
+*color12:	#97A1A5
+*color13:	#ABB0B3
+*color14:	#BBC0C2
+*color15:	#CDCFD0
+*color2:	#76888C
+*color3:	#8A9297
+*color4:	#97A1A5
+*color5:	#ABB0B3
+*color6:	#BBC0C2
+*color66:	#162124
+*color7:	#CDCFD0
+*color8:	#4f5659
+*color9:	#5D8385
+*foreground:	#E8DED6
+
+rofi.color-active:	#162124, #CDCFD0, #162124, #76888C, #162124
+rofi.color-normal:	#162124, #CDCFD0, #162124, #76888C, #162124
+rofi.color-urgent:	#162124, #5D8385, #162124, #5D8385, #CDCFD0
+rofi.color-window:	#162124, #76888C, #76888C
