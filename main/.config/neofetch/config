@@ -2,7 +2,7 @@ print_info() {
     info title
     info underline
 
-    info "OS" distro
+    prin "OS" "Debian $(cat /etc/debian_version) (Stretch)"
     info "Host" model
     info "Kernel" kernel
     info "Shell" shell
@@ -19,4 +19,5 @@ print_info() {
 }
 
 kernel_shorthand="off"
+os_arch="off"
 shell_version="off"

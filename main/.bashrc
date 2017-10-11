@@ -16,7 +16,7 @@ alias ls='ls --color=auto'
 PROMPT_DIRTRIM=2
 
 # Prompt
-C1="\[\033[35m\]"
+C1="\[\033[34m\]"
 END="\[\033[0m\]"
 PS1="$C1\h$END \w $C1»$END "
 
@@ -24,3 +24,6 @@ PS1="$C1\h$END \w $C1»$END "
 HISTCONTROL=ignoreboth
 # Size
 HISTSIZE=500
+
+# Disable C-s
+stty -ixon

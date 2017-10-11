@@ -91,7 +91,7 @@ label = %output:0:50:...%
 label-padding = 7
 label-background = ${colors.barUnfocus}
 label-foreground = ${colors.foreground}
-exec = ~/dotfiles/bin/music
+exec = ~/dotfiles/bin/music 2> /dev/null
 click-left = muse pause
 
 [module/skip]

@@ -14,7 +14,7 @@ exec --no-startup-id spotify
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 
-bindsym Print exec screenshot
+bindsym Print exec --no-startup-id screenshot
 
 bindsym $mod+c exec --no-startup-id chrome
 bindsym $mod+a exec --no-startup-id atom
@@ -28,6 +28,7 @@ set_from_resource $blue color12
 client.focused $borderF $borderF $borderF
 client.focused_inactive $borderUF $borderUF $borderUF
 client.unfocused $borderUF $borderUF $borderUF
+client.urgent #000000 #000000 #000000
 
 for_window [class="^.*"] border pixel 3
 
