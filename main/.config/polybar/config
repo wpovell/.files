@@ -91,22 +91,16 @@ label = %output:0:50:...%
 label-padding = 7
 label-background = ${colors.barUnfocus}
 label-foreground = ${colors.foreground}
-exec = muse 2> /dev/null
-click-left = muse pause
-click-right = muse next
-[module/skip]
-type = custom/script
-tail = false
-exec = echo ""
-label-foreground = ${colors.bright}
-click-left = muse next
+exec = ~/.config/polybar/muse 2> /dev/null
+click-left = ~/.config/polybar/muse pause
+click-right = ~/.config/polybar/muse next
 
 [module/mail]
 type = custom/script
 interval = 120
 format = <label>
 label-foreground = ${colors.foreground}
-exec = mail $(xquery color12)
+exec = ~/.config/polybar/mail $(xquery color12)
 click-left = chrome gmail.com
 
 [global/wm]
