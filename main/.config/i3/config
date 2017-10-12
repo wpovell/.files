@@ -25,9 +25,9 @@ set_from_resource $borderF color8
 set_from_resource $borderUF color0
 set_from_resource $blue color12
 
-client.focused $borderF $borderF $borderF
-client.focused_inactive $borderUF $borderUF $borderUF
-client.unfocused $borderUF $borderUF $borderUF
+client.focused $borderF $borderF $borderF $blue
+client.focused_inactive $borderUF $borderUF $borderUF $borderUF
+client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
 client.urgent #000000 #000000 #000000
 
 for_window [class="^.*"] border pixel 3

@@ -1,0 +1,40 @@
+#!/bin/bash
+print_music() {
+  player_status=$(playerctl status 2> /dev/null)
+  if [[ $? -eq 0 ]]; then
+      metadata="$(playerctl metadata artist) - $(playerctl metadata title)"
+  fi
+
+  # Foreground color formatting tags are optional
+  main=$(xquery color12)
+  grey=$(xquery foreground)
+  if [[ $player_status = "Playing" ]]; then
+      out="%{F$main}$icon $metadata"       # Orange when playing
+  elif [[ $player_status = "Paused" ]]; then
+      out="%{F$foreground}$icon $metadata"       # Greyed out info when paused
+  else
+      out="%{F$foreground}$icon"                 # Greyed out icon when stopped
+  fi
+
+  echo "$out"
+}
+
+
+if [ -z "$1" ]
+then
+  print_music
+else
+  case $1 in
+    pause) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+    ;;
+    next) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+    ;;
+    prev) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+    ;;
+    up) amixer -q sset Master 3%+
+    ;;
+    down) amixer -q sset Master 3%-
+    ;;
+    mute) amixer -q sset Master toggle
+  esac
+fi
