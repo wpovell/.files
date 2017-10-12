@@ -3,3 +3,4 @@
 	name = Will Povell
 [alias]
 	s = status
+	cm = commit -am
