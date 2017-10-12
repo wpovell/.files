@@ -30,7 +30,7 @@ client.focused_inactive $borderUF $borderUF $borderUF $borderUF
 client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
 client.urgent #000000 #000000 #000000
 
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 5
 
 # Gaps
 gaps inner 10
