@@ -12,6 +12,8 @@ alias emacs="emacs -nw"
 # Ls, now with color!
 alias ls='ls --color=auto'
 alias lsa='ls -a'
+alias r='ranger'
+
 # Max num of dirs
 PROMPT_DIRTRIM=2
 
