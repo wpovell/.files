@@ -5,14 +5,19 @@ export CUDA_HOME=/usr/local/cuda
 # Path
 export PATH=$PATH:~/bin/:~/dotfiles/bin:/sbin/:/usr/local/cuda-8.0/bin:~/.local/bin
 
+# No nv
+__GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
+
 # Reload Xresources
 alias xup="xrdb -I$HOME ~/.Xresources"
-# Never open emacs in a window
-alias emacs="emacs -nw"
+alias e="emacs"
 # Ls, now with color!
 alias ls='ls --color=auto'
 alias lsa='ls -a'
 alias r='ranger'
+
+# No less history
+LESSHISTFILE=-
 
 # Max num of dirs
 PROMPT_DIRTRIM=2
@@ -26,6 +31,6 @@ PS1="$C1\h$END \w $C1»$END "
 HISTCONTROL=ignoreboth
 # Size
 HISTSIZE=500
-
+export EDITOR=emacs
 # Disable C-s
 stty -ixon

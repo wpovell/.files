@@ -91,9 +91,9 @@ label = %output:0:50:...%
 label-padding = 7
 label-background = ${colors.barUnfocus}
 label-foreground = ${colors.foreground}
-exec = ~/.config/polybar/muse 2> /dev/null
-click-left = ~/.config/polybar/muse pause
-click-right = ~/.config/polybar/muse next
+exec = muse 2> /dev/null
+click-left = muse pause
+click-right = muse next
 
 [module/mail]
 type = custom/script

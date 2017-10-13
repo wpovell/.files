@@ -4,6 +4,8 @@
 (global-linum-mode t)
 (setq inhibit-startup-message t) ;; hide the startup message
 
+(menu-bar-mode -1)
+
 (require 'package)
 
 (add-to-list 'package-archives
