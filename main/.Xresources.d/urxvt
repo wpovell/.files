@@ -1,7 +1,7 @@
-URxvt.font:             xft:Inconsolata for Powerline:pixelsize=20:antialias=true:hinting=true
-URxvt.boldFont:         xft:Inconsolata for Powerline:pixelsize=20:antialias=true:hinting=true:bold
-URxvt.italicFont:       xft:Inconsolata for Powerline:pixelsize=20:antialias=true:hinting=true:italic
-URxvt.bolditalicFont:   xft:Inconsolata for Powerline:pixelsize=20:antialias=true:hinting=true:bold:italic
+URxvt.font:             xft:Inconsolata:pixelsize=20:antialias=true:hinting=true
+URxvt.boldFont:         xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold
+URxvt.italicFont:       xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:italic
+URxvt.bolditalicFont:   xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold:italic
 URxvt.scrollBar: false
 URxvt.internalBorder:  15
 URxvt*fading: 20

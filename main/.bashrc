@@ -15,6 +15,7 @@ alias e="emacs"
 alias ls='ls --color=auto'
 alias lsa='ls -a'
 alias r='ranger'
+alias chrome="$(which google-chrome-stable)"
 
 # No less history
 LESSHISTFILE=-
