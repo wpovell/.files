@@ -8,6 +8,7 @@ bright        = ${xrdb:color12}
 
 [bar/top]
 width		        = 100%
+enable-ipc = true
 border-size		  = 0
 fixed-center  	= true
 height			    = 33
@@ -15,7 +16,7 @@ background		  = ${colors.background}
 foreground		  = $(colors.foreground}
 radius          = 0
 modules-left		= date i3
-modules-right 	= mail network volume music
+modules-right 	= mail network volume music battery
 font-0 			    = FontAwesome:size=10;2
 font-1 			    = Inconsolata:size=10;2
 module-margin		= 5
@@ -29,7 +30,7 @@ label-volume = %percentage%%
 label-volume-foreground = ${colors.bright}
 label-volume-background = ${colors.background}
 
-label-muted = "         "
+label-muted = "        "
 label-muted-foreground = ${colors.foreground}
 label-muted-background = ${colors.background}
 
@@ -69,11 +70,56 @@ label-mode-padding = 4
 
 [module/network]
 type = internal/network
-interface = wlx9cefd5fedd0b
+interface = wlp3s0
 label-connected-foreground = ${colors.bright}
-label-connected = %essid% | %local_ip% | %downspeed%
+label-connected =    %essid% | %local_ip% | %downspeed%
+
+
 label-connected-background = ${colors.barUnfocus}
 label-connected-padding = 7
+
+format-disconnected = <label-disconnected>
+label-disconnected =    Not Connected
+
+label-disconnected-foreground = ${colors.foreground}
+label-disconnected-padding = 7
+
+label-disconnected-forground = ${colors.bright}
+label-disconnected-background = ${colors.barUnfocus}
+
+[module/battery]
+type=internal/battery
+format-charging = <animation-charging>  <label-charging>
+format-discharging = <ramp-capacity>  <label-discharging>
+format-full = <ramp-capacity>  <label-full>
+label-charging-padding-right = 10
+label-discharging-padding-right = 10
+label-full-padding-right = 10
+
+full-at = 99
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+
+ramp-capacity-0-foreground=#880000
+ramp-capacity-1-foreground=${colors.foreground}
+ramp-capacity-2-foreground=${colors.foreground}
+ramp-capacity-3-foreground=${colors.foreground}
+ramp-capacity-4-foreground=${colors.foreground}
+animation-charging-foreground=${colors.bright}
+animation-charging-framerate=240
+label-charging-foreground = ${colors.bright}
+label-discharging-foreground = ${colors.foreground}
+label-full-foreground = ${colors.bright}
 
 [module/date]
 type			= internal/date
@@ -100,8 +146,8 @@ type = custom/script
 interval = 120
 format = <label>
 label-foreground = ${colors.foreground}
-exec = ~/.config/polybar/mail $(xquery color12)
-click-left = chrome gmail.com
+exec = ~/.config/polybar/mail query $(xquery color12)
+click-left = ~/.config/polybar/mail open
 
 [global/wm]
 margin-top		= 5

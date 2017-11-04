@@ -9,7 +9,6 @@ stow $1".theme"
 fi
 feh --bg-tile ~/.wallpaper
 xrdb -I$HOME ~/.Xresources
-killall polybar
-polybar top &
+polybar-msg cmd restart
 i3-msg reload
 refresh

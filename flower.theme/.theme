@@ -1,25 +1,41 @@
-!flower
+! flower
 
-*foreground:	#E8DED6
-*background:	#311f2b
+! special
+*.foreground:   #e8ded6
+*.background:   #311f2b
+*.cursorColor:  #e8ded6
 
-*color0:	#311f2b
-*color1:	#AE758D
-*color10:	#768A9A
-*color11:	#A29AA0
-*color12:	#D7A7A1
-*color13:	#E5CDB4
-*color14:	#C8B7C7
-*color15:	#E8DED6
-*color2:	#768A9A
-*color3:	#A29AA0
-*color4:	#D7A7A1
-*color5:	#E5CDB4
-*color6:	#C8B7C7
-*color66:	#311f2b
-*color7:	#E8DED6
-*color8:	#83787f
-*color9:	#AE758D
+! black
+*.color0:       #311f2b
+*.color8:       #83787f
+
+! red
+*.color1:       #94596e
+*.color9:       #ae758d
+
+! green
+*.color2:       #586c80
+*.color10:      #768a9a
+
+! yellow
+*.color3:       #8a7c8a
+*.color11:      #a29aa0
+
+! blue
+*.color4:       #bd7e7e
+*.color12:      #d7a7a1
+
+! magenta
+*.color5:       #ccad8d
+*.color13:      #e5cdb4
+
+! cyan
+*.color6:       #ad8cab
+*.color14:      #c8b7c7
+
+! white
+*.color7:       #cfbaa9
+*.color15:      #e8ded6
 
 rofi.color-active:	#311f2b, #E8DED6, #311f2b, #D7A7A1, #311f2b
 rofi.color-normal:	#311f2b, #E8DED6, #311f2b, #D7A7A1, #311f2b

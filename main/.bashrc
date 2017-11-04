@@ -16,7 +16,10 @@ alias ls='ls --color=auto'
 alias lsa='ls -a'
 alias r='ranger'
 alias chrome="$(which google-chrome-stable)"
-
+alias yaourt-update="yaourt -Syu"
+alias yaourt-clean="yaourt -Qdt"
+alias weather="curl wttr.in 2>/dev/null | head -n 7 | tail -n +3"
+alias weather-all="curl wttr.in 2>/dev/null | tail -n 33 | head -n 30"
 # No less history
 LESSHISTFILE=-
 
@@ -32,6 +35,5 @@ PS1="$C1\h$END \w $C1»$END "
 HISTCONTROL=ignoreboth
 # Size
 HISTSIZE=500
-export EDITOR=emacs
 # Disable C-s
 stty -ixon

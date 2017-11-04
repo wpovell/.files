@@ -1,0 +1,2 @@
+#!/bin/bash
+emacs $(which $1)

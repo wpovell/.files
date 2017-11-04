@@ -7,8 +7,9 @@ exec --no-startup-id xautolock -time 10 -locker lock
 exec --no-startup-id compton -f
 exec --no-startup-id dunst
 exec --no-startup-id redshift
-exec --no-startup-id dropbox start
+exec --no-startup-id startup
 exec_always --no-startup-id retheme
+
 
 for_window [class="Spotify"] move container to workspace $workspace9
 exec --no-startup-id spotify
@@ -16,9 +17,8 @@ exec --no-startup-id spotify
 bindsym $mod+d exec --no-startup-id rofi -show run
 
 bindsym Print exec --no-startup-id screenshot
-
+bindsym $mod+Shift+s exec --no-startup-id screenshot
 bindsym $mod+c exec --no-startup-id chrome
-bindsym $mod+a exec --no-startup-id atom
 
 set $HOME /home/wpovell
 
@@ -31,7 +31,7 @@ client.focused_inactive $borderUF $borderUF $borderUF $borderUF
 client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
 client.urgent #000000 #000000 #000000
 
-for_window [class="^.*"] border pixel 5
+for_window [class="^.*"] border pixel 3
 
 # Gaps
 gaps inner 10
@@ -40,7 +40,7 @@ gaps outer 10
 # Drag floating windows
 floating_modifier $mod
 
-# Ki
+# Change window
 bindsym ctrl+alt+f1 gksudo chvt 1
 bindsym ctrl+alt+f2 gksudo chvt 2
 
@@ -105,7 +105,7 @@ set $workspace10 "a: X"
 
 bindsym Control+$mod+Left workspace prev
 bindsym Control+$mod+Right workspace next
-
+bindsym button10 workspace prev
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
@@ -152,15 +152,19 @@ mode "Sys" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-bindsym $mod+Pause mode "Sys"
+bindsym $mod+Escape mode "Sys"
 
 ## Music
-bindsym F7 exec --no-startup-id muse prev
-bindsym F8 exec --no-startup-id muse pause
-bindsym F9 exec --no-startup-id muse next
-bindsym F10 exec --no-startup-id muse mute
-bindsym F11 exec --no-startup-id muse down
-bindsym F12 exec --no-startup-id muse up
+bindsym XF86AudioPrev exec --no-startup-id muse prev
+bindsym XF86AudioPause exec --no-startup-id muse pause
+bindsym XF86AudioNext exec --no-startup-id muse next
+bindsym XF86AudioMute exec --no-startup-id muse mute
+bindsym XF86AudioLowerVolume exec --no-startup-id muse down
+bindsym XF86AudioRaiseVolume exec --no-startup-id muse up
+
+# Brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # Resize window
 mode "Resize" {

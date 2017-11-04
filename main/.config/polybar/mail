@@ -1,26 +1,47 @@
 #!/usr/bin/python3
+import json
+import subprocess
 
-import json, imaplib
-from sys import argv
-altColor = argv[1]
+def query():
+    with open('/home/wpovell/dotfiles/pass.json') as f:
+        p = json.load(f);
+    f = open('/tmp/polybar_mail', 'w')
+        
+    l = sorted(p.keys())[::-1]
+    t = []
 
-with open('/home/wpovell/dotfiles/pass.json') as f:
-    p = json.load(f)
-
-l = sorted(p.keys())[::-1]
-t = []
-
-try:
-    for e in l:
-        obj = imaplib.IMAP4_SSL('imap.gmail.com', 993)
-        obj.login(e, p[e])
-        obj.select()
-        t.append(len(obj.search(None, 'UnSeen')[1][0].split()))
-        obj.logout()
+    try:
+        for e in l:
+            obj = imaplib.IMAP4_SSL('imap.gmail.com', 993)
+            obj.login(e, p[e])
+            obj.select()
+            t.append(len(obj.search(None, 'UnSeen')[1][0].split()))
+            obj.logout()
+    except Exception:
+        pass
     s = ''
+    json.dump(t, f)
+    f.close()
     if sum(t):
         s = '%{F' + altColor + '}'
     s += '  ' + '/'.join(map(str, t))
-    print(s)
-except Exception:
-    pass
+    return s
+
+def show():
+    with open('/tmp/polybar_mail') as f:
+        t = json.load(f)
+    if t[1] or (t[1] == 0 and t[0] == 0):
+        subprocess.call(['chrome', 'mail.google.com/mail/u/0/'])
+    if t[0]:
+        subprocess.call(['chrome', 'mail.google.com/mail/u/1/'])
+    
+
+
+import json, imaplib
+from sys import argv
+order = argv[1]
+if order == 'query':
+    altColor = argv[2]
+    print(query())
+else:
+    show()

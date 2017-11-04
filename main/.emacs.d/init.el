@@ -1,6 +1,9 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq linum-format "%d  ")
 
+;; Don't complain about symlinks
+(setq vc-follow-symlinks nil)
+
 (global-linum-mode t)
 (setq inhibit-startup-message t) ;; hide the startup message
 

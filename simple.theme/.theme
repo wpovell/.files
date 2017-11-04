@@ -36,7 +36,7 @@
 *color7:       #707880
 *color15:      #c5c8c6
 
-rofi.color-active:	#282a2e, #c5c8c6, #282a2e, #color10, #282a2e
-rofi.color-normal:	#282a2e, #c5c8c6, #282a2e, #color10, #282a2e
-rofi.color-urgent:	#282a2e, #a54242, #282a2e, #a54242, #707880
-rofi.color-window:	#282a2e, #81a2be, #81a2be
+rofi.color-active:	#282A2E, #C5C8C6, #282A2E, #81A2BE, #282A2E
+rofi.color-normal:	#282A2E, #C5C8C6, #282A2E, #81A2BE, #282a2E
+rofi.color-urgent:	#282A2E, #A54242, #282A2E, #A54242, #707880
+rofi.color-window:	#282A2E, #81A2bE, #81A2bE

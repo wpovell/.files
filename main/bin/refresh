@@ -4,7 +4,7 @@ import re
 
 with open('/home/wpovell/.theme') as f:
     dat = f.read().strip()
-colors = re.findall(r'\*(color[0-9]+|background|foreground):[\s]+(#[0-9A-Fa-f]+)', dat)
+colors = re.findall(r'\*\.?(color[0-9]+|background|foreground):[\s]+(#[0-9A-Fa-f]+)', dat)
 toWrite = ""
 for col in colors:
     c = col[1][1:].lower()
@@ -15,10 +15,11 @@ for col in colors:
         n = col[0].replace('color','')
         toWrite += fmt('4;'+n, c)
     elif col[0] == 'foreground':
-        toWrite += fmt('10', c)
+        pass#toWrite += fmt('10', c)
     if col[0] == 'background':
         toWrite += fmt('708', c)
         toWrite += fmt('11', c)
+        print(c)
 
 for term in glob.glob("/dev/pts/[0-9]*"):
     with open(term, "w") as file:
