@@ -1,1 +1,1 @@
-scrot -f "%s.png" -e 'mv $f ~/Desktop/; notify-send "Screenshot" "Saved as ~/Desktop/$f on your desktop"'
+scrot -f "%s.png" -e 'mv $f ~/Desktop/; notify-send "Screenshot" "~/Desktop/$f"'

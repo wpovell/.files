@@ -19,7 +19,7 @@ p {
     font-size: 70px;
 }
 
-#date {
+#date, suggestions {
     font-size: 40px;
 }
 
@@ -31,5 +31,14 @@ p {
 
 #search:after {
     content: '|';
-    color: #bbc0c2;
+    -moz-animation: 1s blink step-end infinite;
+}
+
+@-moz-keyframes blink {
+  from, to {
+      color: transparent;
+  }
+  50% {
+      color: #bbc0c2;
+  }
 }

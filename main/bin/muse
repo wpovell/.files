@@ -20,6 +20,17 @@ print_music() {
   echo -e $out
 }
 
+toggle_mute() {
+    CURRENT_STATE=`amixer get Master | egrep 'Playback.*?\[o' | egrep -o '\[o.+\]'`
+
+    if [[ $CURRENT_STATE == '[on]' ]]; then
+	amixer set Master mute
+    else
+	amixer set Master unmute
+	amixer set Front unmute
+	amixer set Headphone unmute
+    fi
+}
 
 if [ -z "$1" ]
 then
@@ -36,6 +47,7 @@ else
     ;;
     down) amixer -q sset Master 3%-
     ;;
-    mute) amixer -q sset Master toggle
+    mute) toggle_mute
+	  
   esac
 fi

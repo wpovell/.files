@@ -11,7 +11,7 @@ const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov
 
 function setTime() {
     let d = new Date();
-    h = ((d.getHours() % 12) + "").padStart(2, "0");
+    h = (((d.getHours()-1) % 12)+1 + "").padStart(2, "0");
     let m = (d.getMinutes()+"").padStart(2, "0");
     t.innerText = h + " " + m;
 }
@@ -35,31 +35,108 @@ function setVis(hideSearch) {
 }
 
 let urls = {
-    'g' : ['github.com', '#404448'],
-    'a' : ['amazon.com', '#FF9900'],
-    'y' : ['youtube.com', '#FF0000'],
-    'f' : ['facebook.com', '#4267B2'],
-    'h' : ['news.ycombinator.com', '#FF6600'],
-    'r' : ['reddit.com', '#CEE3F8'],
-    'n' : ['netflix.com', '#E30813'],
-    'c' : ['calendar.google.com', '#DB4A38'],
-    'm' : ['gmail.com','#DB4A38'],
-    't' : ['twitter.com', '#1DA1F2'],
-    'i' : ['instagram.com', '#7E46C0']
+    'nyt' : {
+	color: '#1A1A1A',
+	query: 'nytimes.com'
+    },
+    'g' : {
+	color: '#404448',
+	query: (q) => {
+	    let u = 'github.com/';
+	    if (q == 'smu') {
+		u += 'signmeup/signmeup';
+	    } else {
+		u += q;
+	    }
+	    return u;
+	},
+	suggest: () => {
+	    return ['wpovell', 'smu'];
+	}
+    },
+    'a' : {
+	color: '#FF9900',
+	query: (q) => {
+	    let r = 'amazon.com/';
+	    if (q)
+		r += 's/field-keywords=' + encodeURIComponent(q);
+	    return r;
+	}
+    },
+    'y' : {
+	color: '#FF0000',
+	query: (q) => {
+	    let u = 'youtube.com/';
+	    if (q && q.startsWith('u/')) {
+		u += 'user/' + q.slice(2) + '/videos';
+	    } else if (q) {
+		u += 'results?search_query=' + encodeURIComponent(q);
+	    }
+
+	    return u;
+	},
+	suggest: () => {
+	    return ['u/northernlion'];
+	}
+    },
+    'f' : {
+	color: '#4267B2',
+	query: 'facebook.com'
+    },
+    'h' : {
+	color: '#FF6600',
+	query: 'news.ycombinator.com'
+    },
+    'r' : {
+	color: '#CEE3F8',
+	query: (q) => {
+	    let u = 'reddit.com/';
+	    if (q && q.startsWith('m/')) {
+		u += 'me/' + q;
+	    } else if (q) {
+		u += 'r/' + q;
+	    }
+	    return u;
+	}
+    },
+    'n' : {
+	color: '#E30813',
+	query: 'netflix.com',
+    },
+    'c' : {
+	color: '#DB4A38',
+	query: 'calendar.google.com',
+    },
+    'e' : {
+	color: '#DB4A38',
+	query: 'gmail.com'
+    },
+    't' : {
+	color: '#1DA1F2',
+	query: 'twitter.com'
+    },
+    'i' : {
+	color: '#7E46C0',
+	query: 'instagram.com'
+    },
+    'm' : {
+	color: '#0084FF',
+	query: 'messenger.com'
+    }
 }
 
 
 function enter() {
     let q = s.innerText;
-
-    if (urls[q]) {
-	return 'https://' + urls[q][0];
+    let r = urls[q.split(':')[0]]
+    if (r) {
+	if (typeof r.query == 'string') {
+	    return 'http://'+r.query;
+	} else {
+	    return 'http://'+r.query(q.split(':')[1]);
+	}
     }
     
-    if (q.startsWith('r/')) {
-	return 'https://reddit.com/r/' + q.slice(2);
-    }
-
     return 'https://www.google.com/search?q=' + encodeURIComponent(q);
 }
 
@@ -68,40 +145,40 @@ document.addEventListener("paste", (e) => {
 }, false);
 
 document.onkeypress = (e) => {
+    if (['l','r','C','v'].includes(e.key) && e.ctrlKey) {
+	return;
+    }
+    e.preventDefault();
     setVis(false);
     console.log(e);
-    
+    e.stopPropagation();
     if (e.key == 'Escape') {
 	s.innerText = '';
 	setVis(true);
     } else if (e.key == 'Backspace') {
 	s.innerText = s.innerText.slice(0,-1);
     } else if (e.key == 'Enter') {
-	e.stopPropagation();
 	document.location.href = enter();
     } else if (e.key == 'c' && e.ctrlKey) {
 	s.innerText = '';
-    } else if (e.charCode != 0 || e.key == ' ') {
-	if (e.key == ' ') {
-	    s.innerText += ' ';
-	} else {
-	    s.innerText += e.key;
-	}
-    }
-
-    if (urls[s.innerText] || s.innerText.startsWith('r/')) {
-	console.log(urls[s.innerText.slice(0,1)]);
-	s.style.color = urls[s.innerText][1];
-    } else {
-	s.style.color = '';
+    } else if (!e.ctrlKey && (e.charCode != 0 || e.key == ' ')) {
+	s.innerText += e.key;	
     }
 
     let c;
-    if((c=/#[0-9a-f]{6}$/i.exec(s.innerText)) ||
-       (c=/#[0-9a-f]{3}$/i.exec(s.innerText))) {
+    let start = s.innerText.split(':')[0]
+    if (urls[start]) {
+ 	s.style.color = urls[start].color;
+    } else if((c=/#[0-9a-f]{6}$/i.exec(s.innerText)) ||
+	     (c=/#[0-9a-f]{3}$/i.exec(s.innerText))) {
 	s.style.color = c[0];
     } else {
 	s.style.color = '';
     }
 
+    if (!s.innerText) {
+	setVis(true);
+    }
 };
+
+

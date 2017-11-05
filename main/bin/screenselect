@@ -1,0 +1,3 @@
+#!/bin/bash
+fn="/Desktop/$(date +%s).png"
+import "$HOME$fn" && notify-send "Screenshot" "~$fn"

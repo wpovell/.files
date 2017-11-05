@@ -25,14 +25,18 @@
 
 (defvar myPackages
   '(better-defaults
-    neotree))
+    neotree
+    all-the-icons))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
       (package-install package)))
       myPackages)
 
+(require 'all-the-icons)
 (require 'neotree)
+(setq neo-theme `icons)
+
 (global-set-key [f8] 'neotree-toggle)
 
 (custom-set-faces

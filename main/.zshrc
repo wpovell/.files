@@ -16,3 +16,5 @@ local prompt_string="»"
 C1="\[\033[34m\]"
 END="\[\033[0m\]"
 PROMPT="%{%F{blue}%}%M%{%f%} %4(c:.../:)%3c %{%F{blue}%}»%{%f%} "
+
+setopt automenu

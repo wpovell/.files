@@ -2,29 +2,51 @@
 import json
 import subprocess
 
+CACHE = '/home/wpovell/.cache/polybar_mail'
 def query():
     with open('/home/wpovell/dotfiles/pass.json') as f:
-        p = json.load(f);
-    f = open('/tmp/polybar_mail', 'w')
+        p = json.load(f)
+    with open(CACHE, 'r') as f:
+        past = json.load(f)
+
+    newPast = []
+    f = open(CACHE, 'w')
         
     l = sorted(p.keys())[::-1]
     t = []
 
     try:
-        for e in l:
+        for i, e in enumerate(l):
             obj = imaplib.IMAP4_SSL('imap.gmail.com', 993)
             obj.login(e, p[e])
-            obj.select()
-            t.append(len(obj.search(None, 'UnSeen')[1][0].split()))
+            obj.select('Inbox', readonly=True)
+            unread = list(map(lambda x: x.decode('utf-8'),
+                              obj.search(None, 'UnSeen')[1][0].split()))
+            t.append(unread)
+            newMail = set(unread) - set(past[i])
+            for i in newMail:
+                m = obj.fetch(i, '(RFC822)')[1][0][1].decode('utf-8').split('\n')
+                sub = None
+                frm = None
+                for line in m:
+                    line = line.strip()
+                    if line.startswith('Subject:'):
+                        sub = line
+                    if line.startswith('From:'):
+                        frm = line
+                    if sub and line:
+                        break
+                subprocess.call(['notify-send', 'Mail', '{}\n{}'.format(frm, sub)])
             obj.logout()
-    except Exception:
-        pass
+    except Exception as e:
+        print(e)
     s = ''
     json.dump(t, f)
+    lens = list(map(len, t))
     f.close()
-    if sum(t):
+    if sum(lens):
         s = '%{F' + altColor + '}'
-    s += '  ' + '/'.join(map(str, t))
+    s += '  ' + '/'.join(map(str, lens))
     return s
 
 def show():
