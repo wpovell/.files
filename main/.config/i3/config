@@ -18,7 +18,7 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 
 bindsym Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
-bindsym $mod+c exec --no-startup-id chrome
+bindsym $mod+c exec --no-startup-id browser
 
 set $HOME /home/wpovell
 

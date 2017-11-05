@@ -31,9 +31,9 @@ def show():
     with open('/tmp/polybar_mail') as f:
         t = json.load(f)
     if t[1] or (t[1] == 0 and t[0] == 0):
-        subprocess.call(['chrome', 'mail.google.com/mail/u/0/'])
+        subprocess.call(['browser', 'mail.google.com/mail/u/0/'])
     if t[0]:
-        subprocess.call(['chrome', 'mail.google.com/mail/u/1/'])
+        subprocess.call(['browser', 'mail.google.com/mail/u/1/'])
     
 
 

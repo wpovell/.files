@@ -1,0 +1,35 @@
+body {
+    background-color: #6c818c;
+    font-family: 'Lato', sans-serif;
+}
+
+#wrapper {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 40%;
+    margin: 0 auto;
+}
+
+p {
+    margin: 0px;
+}
+
+#time {
+    font-size: 70px;
+}
+
+#date {
+    font-size: 40px;
+}
+
+#search {
+    color: #162124;
+    font-size: 50px;
+    display: none;
+}
+
+#search:after {
+    content: '|';
+    color: #bbc0c2;
+}
