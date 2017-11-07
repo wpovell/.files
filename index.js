@@ -25,16 +25,69 @@ f();
 setInterval(f, 5000);
 
 let s = document.getElementById("search");
-
+let sug = document.getElementById("suggest");
 function setVis(hideSearch) {
     let sVis = hideSearch ? 'none' : 'block';
     let tVis = hideSearch ? 'block' : 'none';
     t.style.display = tVis;
     dt.style.display = tVis;
     s.style.display = sVis;
+    sug.style.display = sVis;
 }
 
 let urls = {
+    'd'  : {
+	color : '#F4B400',
+	query : 'drive.google.com'
+    },
+    'x' : {
+	color : '#000000',
+	query : 'xkcd.com'
+    },
+    'l' : {
+	color : '#0077B5',
+	query : 'linkedin.com'
+    }, 
+    'rt' : {
+	color: '#fafafa',
+	query: 'rt.cs.brown.edu'
+    },
+    'hm' : {
+	color: '#83C441',
+	query: 'hypem.com/popular'
+    },
+    's' : {
+	color: '#FF4400',
+	query: 'soundcloud.com'
+    },
+    'b' : {
+	color: '#3A1E1A',
+	query: (q) => {
+	    let cc;
+	    switch (q) {
+	    case 'cab':
+		return 'cab.brown.edu';
+	    case 'cs147':
+		cc = 'cs1470';
+		break;
+	    case 'cs123':
+		cc = q;
+		break;
+	    case 'cs33':
+		cc = 'csci0330';
+		break;
+	    case 'cs100':
+		cc = 'csci0100'
+		break;
+	    }
+	    return 'cs.brown.edu/courses/'+cc
+	},
+	suggest: ['cab', 'cs147', 'cs123', 'cs33', 'cs100']
+    },
+    'cab' : {
+	color: '#A10311',
+	query: 'cab.brown.edu'
+    },
     'nyt' : {
 	color: '#1A1A1A',
 	query: 'nytimes.com'
@@ -50,9 +103,7 @@ let urls = {
 	    }
 	    return u;
 	},
-	suggest: () => {
-	    return ['wpovell', 'smu'];
-	}
+	suggest: ['wpovell', 'smu']
     },
     'a' : {
 	color: '#FF9900',
@@ -75,9 +126,7 @@ let urls = {
 
 	    return u;
 	},
-	suggest: () => {
-	    return ['u/northernlion'];
-	}
+	suggest: ['u/northernlion']
     },
     'f' : {
 	color: '#4267B2',
@@ -97,7 +146,9 @@ let urls = {
 		u += 'r/' + q;
 	    }
 	    return u;
-	}
+	},
+	suggest: ['m/programming', 'up']
+	  
     },
     'n' : {
 	color: '#E30813',
@@ -128,6 +179,14 @@ let urls = {
 
 function enter() {
     let q = s.innerText;
+    // Go directly if url
+    if (q.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i)) {
+	return 'https://' + q;
+    }
+    if (q == 'r:up') {
+	return 'https://reddit.com/r/unixporn';
+    }
+    
     let r = urls[q.split(':')[0]]
     if (r) {
 	if (typeof r.query == 'string') {
@@ -140,11 +199,18 @@ function enter() {
     return 'https://www.google.com/search?q=' + encodeURIComponent(q);
 }
 
+// Capture paste
 document.addEventListener("paste", (e) => {
     s.innerText += e.clipboardData.getData('text/plain');
+    if (s.innerText)
+	setVis(false);
 }, false);
 
+let lastS;
 document.onkeypress = (e) => {
+    if (e.key == 'Tab' && !s.innerText)
+	return;
+    
     if (['l','r','C','v'].includes(e.key) && e.ctrlKey) {
 	return;
     }
@@ -154,11 +220,33 @@ document.onkeypress = (e) => {
     e.stopPropagation();
     if (e.key == 'Escape') {
 	s.innerText = '';
+	lastS = '';
 	setVis(true);
     } else if (e.key == 'Backspace') {
 	s.innerText = s.innerText.slice(0,-1);
     } else if (e.key == 'Enter') {
 	document.location.href = enter();
+    } else if (e.key == 'Tab') {
+	let ss = document.getElementById('suggest').children[0].children;
+	let found = false;
+	let setNext = false;
+	for (let c of ss) {
+	    if (setNext) {
+		setNext = false;
+		c.classList.add('active');
+	    } else if (c.classList.contains('active')) {
+		found = true;
+		setNext = true;
+		c.style.color = '';
+		c.classList.remove('active');
+	    }
+	}
+	if (!found || setNext) {
+	    ss[0].classList.add('active');
+	}
+	let active = document.getElementsByClassName('active')[0];
+	active.style.color = s.style.color;
+	s.innerText = s.innerText.split(':')[0] + ':' + active.innerText;
     } else if (e.key == 'c' && e.ctrlKey) {
 	s.innerText = '';
     } else if (!e.ctrlKey && (e.charCode != 0 || e.key == ' ')) {
@@ -176,7 +264,20 @@ document.onkeypress = (e) => {
 	s.style.color = '';
     }
 
+    if (urls[start] && urls[start].suggest) {
+	if(lastS != urls[start].suggest) {
+	    let suggest = urls[start].suggest;
+	    lastS = suggest;
+	    sug.innerHTML = '<ul>' +
+		suggest.map((x) => { return '<li>'+x+'</li>'; }).join('') +
+		'</ul>';
+	}
+    } else {
+	sug.innerHTML = '';
+    }
+
     if (!s.innerText) {
+	lastS = '';
 	setVis(true);
     }
 };

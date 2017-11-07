@@ -22,16 +22,17 @@ print_music() {
 
 toggle_mute() {
     CURRENT_STATE=`amixer get Master | egrep 'Playback.*?\[o' | egrep -o '\[o.+\]'`
-
     if [[ $CURRENT_STATE == '[on]' ]]; then
 	amixer set Master mute
     else
 	amixer set Master unmute
-	amixer set Front unmute
+	amixer set Speaker unmute
 	amixer set Headphone unmute
+	amixer set "Bass Speaker" unmute
     fi
 }
 
+CURRENT_STATE=`amixer get Master | egrep 'Playback.*?\[o' | egrep -o '\[o.+\]'`
 if [ -z "$1" ]
 then
   print_music
@@ -43,9 +44,17 @@ else
     ;;
     prev) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
     ;;
-    up) amixer -q sset Master 3%+
+    up)
+	if [[ $CURRENT_STATE == '[off]' ]]; then
+	    toggle_mute
+	fi
+	amixer -q sset Master 3%+
     ;;
-    down) amixer -q sset Master 3%-
+    down)
+	if [[ $CURRENT_STATE == '[off]' ]]; then
+	    toggle_mute
+	fi
+	amixer -q sset Master 3%-
     ;;
     mute) toggle_mute
 	  

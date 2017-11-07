@@ -21,6 +21,7 @@ alias yaourt-clean="yaourt -Qdt"
 alias weather="curl wttr.in 2>/dev/null | head -n 7 | tail -n +3"
 alias weather-all="curl wttr.in 2>/dev/null | tail -n 33 | head -n 30"
 alias m='browser https://mail.google.com/mail/u/0/'
+alias pdf="evince 2>/dev/null"
 
 # No less history
 LESSHISTFILE=-

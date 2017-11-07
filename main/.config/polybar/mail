@@ -1,8 +1,14 @@
 #!/usr/bin/python3
 import json
 import subprocess
+import os
+
 
 CACHE = '/home/wpovell/.cache/polybar_mail'
+if not os.path.exists(CACHE):
+    with open(CACHE, 'w') as f:
+        f.write('[[],[]]')
+    
 def query():
     with open('/home/wpovell/dotfiles/pass.json') as f:
         p = json.load(f)
@@ -39,7 +45,7 @@ def query():
                 subprocess.call(['notify-send', 'Mail', '{}\n{}'.format(frm, sub)])
             obj.logout()
     except Exception as e:
-        print(e)
+        pass
     s = ''
     json.dump(t, f)
     lens = list(map(len, t))
@@ -50,7 +56,7 @@ def query():
     return s
 
 def show():
-    with open('/tmp/polybar_mail') as f:
+    with open(CACHE) as f:
         t = json.load(f)
     if t[1] or (t[1] == 0 and t[0] == 0):
         subprocess.call(['browser', 'mail.google.com/mail/u/0/'])

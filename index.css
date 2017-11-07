@@ -1,5 +1,6 @@
 body {
     background-color: #6c818c;
+    color: #162124;
     font-family: 'Lato', sans-serif;
 }
 
@@ -19,12 +20,28 @@ p {
     font-size: 70px;
 }
 
-#date, suggestions {
+#date {
     font-size: 40px;
 }
 
+#suggest {
+    color: #4f5659;
+    display: none;
+    font-size: 25px;
+    text-align: center;
+}
+
+#suggest li {
+    display: inline;
+    margin: 10px;
+    padding: 5px;
+}
+
+#suggest > ul {
+    padding: 0;
+}
+
 #search {
-    color: #162124;
     font-size: 50px;
     display: none;
 }

@@ -1,47 +1,56 @@
+;; Don't put tilda files everywhere
 (setq backup-directory-alist `(("." . "~/.saves")))
+
+;; Line numbers
+(global-linum-mode t)
 (setq linum-format "%d  ")
 
 ;; Don't complain about symlinks
 (setq vc-follow-symlinks nil)
 
-(global-linum-mode t)
-(setq inhibit-startup-message t) ;; hide the startup message
+;; hide the startup message
+(setq inhibit-startup-message t)
 
-(menu-bar-mode -1)
-
-(require 'package)
-
-(add-to-list 'package-archives
-       '("melpa" . "http://melpa.org/packages/") t)
-
+;; Better workspace keybindings
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 
+;; No menu
+(menu-bar-mode -1)
+
+;; Package Stuff
+(require 'package)
+(add-to-list 'package-archives
+       '("melpa" . "http://melpa.org/packages/") t)
+
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;; Packages to have installed
 (defvar myPackages
   '(better-defaults
-    neotree
-    all-the-icons))
+    neotree))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
       (package-install package)))
       myPackages)
 
-(require 'all-the-icons)
+;; Neotree
 (require 'neotree)
-(setq neo-theme `icons)
-
 (global-set-key [f8] 'neotree-toggle)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-tooltip ((t (:foreground "white")))))
+;; Show (line, col)
+(column-number-mode 1)
+
+
+;; Change modeline format
+(setq-default mode-line-format
+      (list
+       " " mode-line-modified
+       " %[" mode-line-buffer-identification "%] %l:%c"))
+(setq global-mode-string '((t jabber-activity-mode-string)
+                          "" display-time-string appt-mode-string))
