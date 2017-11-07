@@ -3,6 +3,9 @@
     display: none !important;
 }
 
+/* Make active tab wider */
+tab[selected="true"] { min-width: 200px !important; }
+
 /* Make urlbar be square */
 #urlbar {
     border-radius: 0 !important;
@@ -33,6 +36,16 @@ toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
     background-color: #6c818c !important; /* color4 */
     border-color: #6c818c !important; /* color4 */
     color: #e8ded6 !important; /* foreground */
+}
+
+/* Hide search placeholder text */
+::-moz-placeholder {
+    color: transparent;
+}
+
+findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel-arrowcontent {
+    color: #e8ded6!important;
+    background-color: #6c818c!important;
 }
 
 .autocomplete-richlistitem[selected="true"] {

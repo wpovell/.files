@@ -1,7 +1,7 @@
 @-moz-document domain(www.reddit.com) {
     @media (max-width: 800px) {
 	.side {
-	    display: none;
+	    display: none!important;
 	}
     }
 }
