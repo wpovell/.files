@@ -4,22 +4,23 @@ import re
 
 with open('/home/wpovell/.theme') as f:
     dat = f.read().strip()
-colors = re.findall(r'\*\.?(color[0-9]+|background|foreground):[\s]+(#[0-9A-Fa-f]+)', dat)
+colors = re.findall(r'([FBC\d]{2})\s+(\#[\da-f]{6})', dat)
 toWrite = ""
-for col in colors:
-    c = col[1][1:].lower()
-    c = '/'.join(map(''.join, zip(*[iter(c)]*2)))
+for c, v in colors:
+    print(c,v)
+    # Get in rr/gg/bb format
+    hexc = v[1:].lower()
+    hexc = '/'.join(map(''.join, zip(*[iter(hexc)]*2)))
     n = ''
     fmt = lambda n, c: "\033]{};rgb:{}\007".format(n, c)
-    if col[0].startswith("color"):
-        n = col[0].replace('color','')
-        toWrite += fmt('4;'+n, c)
-    elif col[0] == 'foreground':
-        pass#toWrite += fmt('10', c)
-    if col[0] == 'background':
-        toWrite += fmt('708', c)
-        toWrite += fmt('11', c)
-        print(c)
+    if c == 'BC':
+        toWrite += fmt('708', hexc)
+        toWrite += fmt('11', hexc)
+    elif c == 'CC':
+        pass
+    else:
+        n = c.replace('C','')
+        toWrite += fmt('4;'+n, hexc)
 
 for term in glob.glob("/dev/pts/[0-9]*"):
     with open(term, "w") as file:

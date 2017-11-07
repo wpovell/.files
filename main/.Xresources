@@ -1,3 +1,40 @@
 #include "/home/wpovell/.theme"
 #include "/home/wpovell/.Xresources.d/urxvt"
 #include "/home/wpovell/.Xresources.d/rofi"
+
+! special
+*.foreground:   FC
+*.background:   BC
+*.cursorColor:  CC
+
+! black
+*.color0:       C0
+*.color8:       C8
+
+! red
+*.color1:       C1
+*.color9:       C9
+
+! green
+*.color2:       C2
+*.color10:      C10
+
+! yellow
+*.color3:       C3
+*.color11:      C11
+
+! blue
+*.color4:       C4
+*.color12:      C12
+
+! magenta
+*.color5:       C5
+*.color13:      C13
+
+! cyan
+*.color6:       C6
+*.color14:      C14
+
+! white
+*.color7:       C7
+*.color15:      C15

@@ -32,7 +32,8 @@
 ;; Packages to have installed
 (defvar myPackages
   '(better-defaults
-    neotree))
+    neotree
+    multiple-cursors))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
@@ -42,6 +43,11 @@
 ;; Neotree
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
+
+;; Multiple cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-p") `mc/mark-next-like-this-symbol)
+(global-set-key (kbd "C-q") 'mc/mark-next-like-this)
 
 ;; Show (line, col)
 (column-number-mode 1)
@@ -54,3 +60,15 @@
        " %[" mode-line-buffer-identification "%] %l:%c"))
 (setq global-mode-string '((t jabber-activity-mode-string)
                           "" display-time-string appt-mode-string))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (multiple-cursors s neotree epl better-defaults))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

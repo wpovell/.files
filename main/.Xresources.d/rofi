@@ -1,3 +1,8 @@
 rofi.terminal: urxvt
 rofi.lines: 5
 rofi.separator-style: solid
+
+rofi.color-active: C0, C15, BC, C10, BC
+rofi.color-normal: C0, C15, BC, C10, BC
+rofi.color-urgent: C0, C9, BC, C9, C15
+rofi.color-window: C0, C10, C10

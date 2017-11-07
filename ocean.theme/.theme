@@ -1,43 +1,38 @@
 ! ocean
 
 ! special
-*.foreground:   #e8ded6
-*.background:   #162124
-*.cursorColor:  #e8ded6
+#define FC #e8ded6
+#define BC #162124
+#define CC #e8ded6
 
 ! black
-*.color0:       #162124
-*.color8:       #4f5659
+#define C0 #162124
+#define C8 #4f5659
 
 ! red
-*.color1:       #406b6b
-*.color9:       #5d8385
+#define C1 #406b6b
+#define C9 #5d8385
 
 ! green
-*.color2:       #4f6a73
-*.color10:      #76888c
+#define C2 #4f6a73
+#define C10 #76888c
 
 ! yellow
-*.color3:       #506e78
-*.color11:      #8a9297
+#define C3 #506e78
+#define C11 #8a9297
 
 ! blue
-*.color4:       #6c818c
-*.color12:      #97a1a5
+#define C4 #6c818c
+#define C12 #97a1a5
 
 ! magenta
-*.color5:       #858f99
-*.color13:      #abb0b3
+#define C5 #858f99
+#define C13 #abb0b3
 
 ! cyan
-*.color6:       #91a1a8
-*.color14:      #bbc0c2
+#define C6 #91a1a8
+#define C14 #bbc0c2
 
 ! white
-*.color7:       #a3aeb8
-*.color15:      #cdcfd0
-
-rofi.color-active:	#162124, #CDCFD0, #162124, #76888C, #162124
-rofi.color-normal:	#162124, #CDCFD0, #162124, #76888C, #162124
-rofi.color-urgent:	#162124, #5D8385, #162124, #5D8385, #CDCFD0
-rofi.color-window:	#162124, #76888C, #76888C
+#define C7 #a3aeb8
+#define C15 #cdcfd0

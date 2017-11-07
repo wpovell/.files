@@ -8,7 +8,8 @@ stow -D $CUR_THEME 2>/dev/null
 stow $1".theme"
 fi
 feh --bg-tile ~/.wallpaper
-xrdb -I$HOME ~/.Xresources
+xrdb -merge -cpp /usr/bin/cpp -I$HOME ~/.Xresources
+xup
 polybar-msg cmd restart
 i3-msg reload
 refresh

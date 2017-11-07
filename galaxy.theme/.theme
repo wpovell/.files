@@ -1,44 +1,38 @@
 ! galaxy
 
 ! special
-*.foreground:   #a4a4ad
-*.background:   #26283f
-*.cursorColor:  #a4a4ad
+#define FC  #a4a4ad
+#define BC  #26283f
+#define CC  #a4a4ad
 
 ! black
-*.color0:       #071935
-*.color8:       #2c4966
+#define C0   #071935
+#define C8   #2c4966
 
 ! red
-*.color1:       #42304a
-*.color9:       #5d5464
+#define C1   #42304a
+#define C9   #5d5464
 
 ! green
-*.color2:       #8a2b31
-*.color10:      #a2525a
+#define C2   #8a2b31
+#define C10  #a2525a
 
 ! yellow
-*.color3:       #a35f46
-*.color11:      #bd8a78
+#define C3   #a35f46
+#define C11  #bd8a78
 
 ! blue
-*.color4:       #a2525a
-*.color12:      #60a1e0
+#define C4   #a2525a
+#define C12  #60a1e0
 
 ! magenta
-*.color5:       #397a99
-*.color13:      #669ab2
+#define C5   #397a99
+#define C13  #669ab2
 
 ! cyan
-*.color6:       #96a17a
-*.color14:      #b9bbb3
+#define C6   #96a17a
+#define C14  #b9bbb3
 
 ! white
-*.color7:       #d4d4b8
-*.color15:      #ecece2
-
-
-rofi.color-active:	#010108, #ECECE2, #010108, #A2525A, #010108
-rofi.color-normal:	#010108, #ECECE2, #010108, #A2525A, #010108
-rofi.color-urgent:	#010108, #5D5464, #010108, #5D5464, #ECECE2
-rofi.color-window:	#010108, #A2525A, #A2525A
+#define C7   #d4d4b8
+#define C15  #ecece2
