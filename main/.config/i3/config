@@ -105,10 +105,16 @@ set $workspace8 "8: IIX"
 set $workspace9 "9: IX"
 set $workspace10 "a: X"
 
+# Change workspace
 bindsym Control+$mod+Left workspace prev
 bindsym Control+$mod+Right workspace next
+# Swipe
 bindsym --whole-window button10 workspace prev
 bindsym --whole-window button11 workspace next
+
+# Keyboard brightness
+bindsym XF86KbdBrightnessDown exec kbdlight down 20
+bindsym XF86KbdBrightnessUp exec kbdlight up 20
 
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
