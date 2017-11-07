@@ -1,0 +1,66 @@
+/* Hide things */
+#window-controls, .scrollbutton-up, .scrollbutton-down, #alltabs-button, #PersonalToolbar, .tab-close-button, .tabs-newtab-button, #back-button, #forward-button, #toolbar-menubar, #customizableui-special-spring2, #customizableui-special-spring1, #pageActionButton, #PanelUI-menu-button, .autocomplete-history-dropmarker, #PanelUI-button, #page-action-buttons, .urlbar-go-button, .urlbar-history-dropmarker {
+    display: none !important;
+}
+
+/* Make urlbar be square */
+#urlbar {
+    border-radius: 0 !important;
+}
+
+
+.tab-content[selected=true] {
+    background-color: #6c818c; /* color4 */
+    color:  #e8ded6; /* foreground */
+}
+
+.tab-content:not([selected=true]) {
+    background-color:  #162124; /* color0 */
+    color:  #e8ded6; /* foreground */
+}
+
+tabs {
+    background-color:  #162124 !important; /* color0 */
+}
+
+toolbaritem {
+    color: #e8ded6 !important;
+    background-color: #6c818c !important; /* color4 */
+}
+
+toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
+    box-shadow: none!important;
+    background-color: #6c818c !important; /* color4 */
+    border-color: #6c818c !important; /* color4 */
+    color: #e8ded6 !important; /* foreground */
+}
+
+.autocomplete-richlistitem[selected="true"] {
+    background-color:  #e8ded6 !important;
+    color: #162124 !important;
+}
+
+.autocomplete-richlistitem:not([selected="true"]) {
+    color:  #e8ded6 !important;
+}
+
+/* Gets ride of white line after chrome */
+#navigator-toolbox::after{
+    display: none !important;
+}
+
+/* Change text highlight in url */
+.autocomplete-textbox::-moz-selection {
+    color:  #162124 !important;
+    background-color:  #e8ded6 !important;
+}
+
+/* Fixes small border when tabs fill top. */
+.arrowscrollbox-scrollbox {
+    margin: -1px;
+}
+
+/* Make identity text same as icon */
+#identity-icon-labels {
+    color: rgb(18, 188, 0)!important;
+}
