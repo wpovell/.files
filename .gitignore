@@ -1,5 +1,8 @@
+dunstrc
 pass.json
 main/.config/ranger/bookmarks
 main/.emacs.d/elpa
 main/.config/ranger/history
 main/.emacs.d/auto-save-list/
+main/www/index.css
+userChrome.css

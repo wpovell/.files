@@ -109,8 +109,8 @@ set $workspace10 "a: X"
 bindsym Control+$mod+Left workspace prev
 bindsym Control+$mod+Right workspace next
 # Swipe
-bindsym --whole-window button10 workspace prev
-bindsym --whole-window button11 workspace next
+bindsym --whole-window button11 workspace prev
+bindsym --whole-window button10 workspace next
 
 # Keyboard brightness
 bindsym XF86KbdBrightnessDown exec kbdlight down 20

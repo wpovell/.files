@@ -1,4 +1,4 @@
-URxvt.font:             xft:Inconsolata:pixelsize=20:antialias=true:hinting=true
+URxvt.font:             xft:Inconsolata:pixelsize=20:antialias=true:hinting=true, xft:"all\-the\-icons":pixelsize=20
 URxvt.boldFont:         xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold
 URxvt.italicFont:       xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:italic
 URxvt.bolditalicFont:   xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold:italic
@@ -14,6 +14,8 @@ URxvt*keysym.Shift-Control-C: perl:clipboard:copy
 URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 
 URxvt*dynamicColors: on
+
+URxvt*allowWindowOps: true
 
 ! scroll
 URxvt*scrollTtyKeypress: true

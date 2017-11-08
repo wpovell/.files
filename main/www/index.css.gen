@@ -1,6 +1,6 @@
 body {
-    background-color: #6c818c;
-    color: #162124;
+    background-color: C4;
+    color: C0;
     font-family: 'Lato', sans-serif;
 }
 
@@ -25,7 +25,7 @@ p {
 }
 
 #suggest {
-    color: #4f5659;
+    color: C8;
     display: none;
     font-size: 25px;
     text-align: center;
@@ -56,6 +56,6 @@ p {
       color: transparent;
   }
   50% {
-      color: #bbc0c2;
+      color: C14;
   }
 }

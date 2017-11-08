@@ -225,7 +225,12 @@ document.onkeypress = (e) => {
     } else if (e.key == 'Backspace') {
 	s.innerText = s.innerText.slice(0,-1);
     } else if (e.key == 'Enter') {
-	document.location.href = enter();
+	let url = enter();
+	if (e.altKey) {
+	    window.open(url);
+	} else {
+	    document.location.href = url;
+	}
     } else if (e.key == 'Tab') {
 	let ss = document.getElementById('suggest').children[0].children;
 	let found = false;
@@ -281,5 +286,3 @@ document.onkeypress = (e) => {
 	setVis(true);
     }
 };
-
-

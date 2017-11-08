@@ -9,7 +9,8 @@ stow $1".theme"
 fi
 feh --bg-tile ~/.wallpaper
 xrdb -merge -cpp /usr/bin/cpp -I$HOME ~/.Xresources
-xup
 polybar-msg cmd restart
 i3-msg reload
 refresh
+killall dunst
+dunst &

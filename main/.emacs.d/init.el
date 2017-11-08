@@ -33,16 +33,23 @@
 (defvar myPackages
   '(better-defaults
     neotree
-    multiple-cursors))
+    multiple-cursors
+    xclip
+    all-the-icons))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
       (package-install package)))
       myPackages)
 
+(require 'xclip)
+(setq xclip-select-enable-clipboard nil)
+(xclip-mode 1)
+
 ;; Neotree
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
+(setq neo-theme 'icons)
 
 ;; Multiple cursors
 (require 'multiple-cursors)

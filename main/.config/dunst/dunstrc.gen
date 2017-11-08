@@ -1,0 +1,28 @@
+[global]
+    font = "Inconsolata 12"
+    markup = yes
+    format = "<b>%s</b>\n%b"
+    alignment = center
+    word_wrap = yes
+    ignore_newline = no
+    geometry = "300x5+0+33"
+    shrink=no
+    idle_threshold = 120
+    follow = keyboard
+    line_height = 0
+    separator_height = 5
+    padding = 8
+    horizontal_padding = 8
+    separator_color = "C4"
+    frame_width = 3
+    frame_color = "C4"
+    timeout = 50
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    context = ctrl+shift+period
+
+[urgency_normal] 
+   background = "C0"
+   foreground = "FC"

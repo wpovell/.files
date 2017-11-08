@@ -8,7 +8,7 @@ print_music() {
   # Foreground color formatting tags are optional
   main=$(xquery color12)
   foreground=$(xquery foreground)
-  icon=" \t \t"
+  icon="     "
   if [[ $player_status = "Playing" ]]; then
       out="%{F$main}$icon $metadata"       # Orange when playing
   elif [[ $player_status = "Paused" ]]; then

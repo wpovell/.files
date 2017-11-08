@@ -4,10 +4,21 @@ import re
 
 with open('/home/wpovell/.theme') as f:
     dat = f.read().strip()
-colors = re.findall(r'([FBC\d]{2})\s+(\#[\da-f]{6})', dat)
+colors = re.findall(r'([FBC\d]{2,3})\s+(\#[\da-f]{6})', dat)
+colors.sort(key = lambda x: -len(x[0]))
 toWrite = ""
+
+with open('/home/wpovell/www/index.css.gen') as f:
+    css = f.read()
+
+gens = ['/home/wpovell/.mozilla/firefox/fb8uvoz6.default/chrome/userChrome.css.gen', '/home/wpovell/.config/dunst/dunstrc.gen']
+genOut = []
+for g in gens:
+    with open(g, 'r') as f:
+        genOut.append(f.read())
+
 for c, v in colors:
-    print(c,v)
+    ## Terminals
     # Get in rr/gg/bb format
     hexc = v[1:].lower()
     hexc = '/'.join(map(''.join, zip(*[iter(hexc)]*2)))
@@ -22,6 +33,17 @@ for c, v in colors:
         n = c.replace('C','')
         toWrite += fmt('4;'+n, hexc)
 
+    for i,g in enumerate(genOut):
+        genOut[i] = g.replace(c, v.lower())
+    css = css.replace(c, v.lower())
+
+with open('/home/wpovell/www/index.css', 'w') as f:
+    f.write(css)
+    
+for i, g in enumerate(gens):
+    with open(g[:-4], 'w') as f:
+        f.write(genOut[i])
+    
 for term in glob.glob("/dev/pts/[0-9]*"):
     with open(term, "w") as file:
         file.write(toWrite)

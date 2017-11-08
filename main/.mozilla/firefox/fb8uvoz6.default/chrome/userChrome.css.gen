@@ -3,6 +3,12 @@
     display: none !important;
 }
 
+/* Center tab text */
+.tab-label {
+   -moz-box-flex: 1 !important;
+   text-align: center !important;
+}
+
 /* Make active tab wider */
 tab[selected="true"] { min-width: 200px !important; }
 
@@ -13,29 +19,29 @@ tab[selected="true"] { min-width: 200px !important; }
 
 
 .tab-content[selected=true] {
-    background-color: #6c818c; /* color4 */
-    color:  #e8ded6; /* foreground */
+    background-color: C4;
+    color:  FC;
 }
 
 .tab-content:not([selected=true]) {
-    background-color:  #162124; /* color0 */
-    color:  #e8ded6; /* foreground */
+    background-color:  C0;
+    color:  FC;
 }
 
 tabs {
-    background-color:  #162124 !important; /* color0 */
+    background-color:  C0 !important;
 }
 
 toolbaritem {
-    color: #e8ded6 !important;
-    background-color: #6c818c !important; /* color4 */
+    color: FC !important;
+    background-color: C4 !important;
 }
 
 toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
-    box-shadow: none!important;
-    background-color: #6c818c !important; /* color4 */
-    border-color: #6c818c !important; /* color4 */
-    color: #e8ded6 !important; /* foreground */
+    box-shadow: none !important;
+    background-color: C4 !important; /* color4 */
+    border-color: C4 !important; /* color4 */
+    color: FC !important; /* foreground */
 }
 
 /* Hide search placeholder text */
@@ -44,17 +50,17 @@ toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
 }
 
 findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel-arrowcontent {
-    color: #e8ded6!important;
-    background-color: #6c818c!important;
+    color: FC !important;
+    background-color: C4 !important;
 }
 
 .autocomplete-richlistitem[selected="true"] {
-    background-color:  #e8ded6 !important;
-    color: #162124 !important;
+    background-color:  FC !important;
+    color: C0 !important;
 }
 
 .autocomplete-richlistitem:not([selected="true"]) {
-    color:  #e8ded6 !important;
+    color:  FC !important;
 }
 
 /* Gets ride of white line after chrome */
@@ -64,8 +70,8 @@ findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel
 
 /* Change text highlight in url */
 .autocomplete-textbox::-moz-selection {
-    color:  #162124 !important;
-    background-color:  #e8ded6 !important;
+    color:  C0 !important;
+    background-color:  FC !important;
 }
 
 /* Fixes small border when tabs fill top. */
