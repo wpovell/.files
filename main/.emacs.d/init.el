@@ -1,6 +1,11 @@
 ;; Don't put tilda files everywhere
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+;; Make mouse scrolling working
+(xterm-mouse-mode t)
+(global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<mouse-4>") '(lambda () (interactive) (scroll-down 1)))
+
 ;; Line numbers
 (global-linum-mode t)
 (setq linum-format "%d  ")
@@ -42,9 +47,10 @@
       (package-install package)))
       myPackages)
 
+;; Clipboard
 (require 'xclip)
-(setq xclip-select-enable-clipboard nil)
 (xclip-mode 1)
+(turn-on-xclip)
 
 ;; Neotree
 (require 'neotree)
@@ -59,7 +65,6 @@
 ;; Show (line, col)
 (column-number-mode 1)
 
-
 ;; Change modeline format
 (setq-default mode-line-format
       (list
@@ -67,6 +72,7 @@
        " %[" mode-line-buffer-identification "%] %l:%c"))
 (setq global-mode-string '((t jabber-activity-mode-string)
                           "" display-time-string appt-mode-string))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
