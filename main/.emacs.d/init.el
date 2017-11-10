@@ -40,12 +40,16 @@
     neotree
     multiple-cursors
     xclip
-    all-the-icons))
+    all-the-icons
+    git-gutter))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
       (package-install package)))
       myPackages)
+
+;; Git gutter
+(global-git-gutter-mode +1)
 
 ;; Clipboard
 (require 'xclip)
