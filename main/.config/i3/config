@@ -3,14 +3,11 @@ set $mod Mod4
 
 # Startup Apps
 exec --no-startup-id xrdb -I$HOME ~/.Xresources
-exec --no-startup-id xautolock -time 10 -locker lock
-exec --no-startup-id xss-lock -- lock
-exec --no-startup-id compton -f
+exec --no-startup-id compton
 exec --no-startup-id dunst
 exec --no-startup-id redshift
 exec --no-startup-id startup
 exec_always --no-startup-id retheme
-
 
 for_window [class="Spotify"] move container to workspace $workspace9
 exec --no-startup-id spotify
@@ -33,11 +30,14 @@ client.focused_inactive $borderUF $borderUF $borderUF $borderUF
 client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
 client.urgent #000000 #000000 #000000
 
+#for_window [class="Nightly"] border pixel 3
+#font pango:Inconsolata 10    ##Sets title bar thickness
+#for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
 for_window [class="^.*"] border pixel 3
 
 # Gaps
-gaps inner 10
-gaps outer 10
+gaps inner 0
+gaps outer 0
 
 # Drag floating windows
 floating_modifier $mod
