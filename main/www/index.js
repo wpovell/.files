@@ -11,7 +11,10 @@ const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov
 
 function setTime() {
     let d = new Date();
-    h = (((d.getHours()-1) % 12)+1 + "").padStart(2, "0");
+    let h = d.getHours();
+    if (h == 0)
+	h = 12;
+    h = (((h-1) % 12)+1 + "").padStart(2, "0");
     let m = (d.getMinutes()+"").padStart(2, "0");
     t.innerText = h + " " + m;
 }
