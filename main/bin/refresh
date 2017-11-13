@@ -24,11 +24,13 @@ for c, v in colors:
     hexc = '/'.join(map(''.join, zip(*[iter(hexc)]*2)))
     n = ''
     fmt = lambda n, c: "\033]{};rgb:{}\007".format(n, c)
+    if c == 'FC':
+        toWrite += fmt('10', hexc)
     if c == 'BC':
         toWrite += fmt('708', hexc)
         toWrite += fmt('11', hexc)
     elif c == 'CC':
-        pass
+        toWrite += fmt('12', hexc)
     else:
         n = c.replace('C','')
         toWrite += fmt('4;'+n, hexc)
