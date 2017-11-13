@@ -11,8 +11,7 @@ prompt() {
     C1="\[\033[34m\]"
     END="\[\033[0m\]"
     BRIGHT="\[\033[35m\]"
-    GIT_P=""
-    BRANCH=""
+    GITP=""
     git status > /dev/null 2>&1
     if [[ $? == 0 ]]; then
 	GITP=""
