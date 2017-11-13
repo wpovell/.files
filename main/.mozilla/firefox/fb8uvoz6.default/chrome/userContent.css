@@ -1,4 +1,7 @@
 @-moz-document domain(www.reddit.com) {
+    .hohoho, .goldvertisement, .hohoho-header {
+	display: none !important;
+    }
     @media (max-width: 800px) {
 	.side {
 	    display: none!important;
