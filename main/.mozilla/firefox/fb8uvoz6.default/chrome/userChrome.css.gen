@@ -20,7 +20,7 @@ tab[selected="true"] { min-width: 200px !important; }
 
 .tab-content[selected=true] {
     background-color: C4;
-    color:  FC;
+    color:  C14;
 }
 
 .tab-content:not([selected=true]) {
@@ -33,7 +33,7 @@ tabs {
 }
 
 toolbaritem {
-    color: FC !important;
+    color: C14 !important;
     background-color: C4 !important;
 }
 
@@ -49,8 +49,8 @@ toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
     color: transparent;
 }
 
-findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel-arrowcontent {
-    color: FC !important;
+findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel-arrowcontent, .autocomplete-textbox, .urlbar-input-box {
+    color: C0 !important;
     background-color: C4 !important;
 }
 

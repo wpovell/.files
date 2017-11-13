@@ -1,6 +1,10 @@
 ;; Don't put tilda files everywhere
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+;; Make divider prettier
+(set-face-background 'vertical-border "gray")
+(set-face-foreground 'vertical-border (face-background 'vertical-border))
+
 ;; Make mouse scrolling working
 (xterm-mouse-mode t)
 (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
@@ -50,6 +54,13 @@
 
 ;; Git gutter
 (global-git-gutter-mode +1)
+;; Make update more
+(custom-set-variables
+ '(git-gutter:update-interval 1))
+
+;; Set modifier char to *
+(custom-set-variables
+ '(git-gutter:modified-sign "*"))
 
 ;; Clipboard
 (require 'xclip)
@@ -58,8 +69,9 @@
 
 ;; Neotree
 (require 'neotree)
+(require 'all-the-icons)
 (global-set-key [f8] 'neotree-toggle)
-(setq neo-theme 'icons)
+(setq neo-theme 'nerd)
 
 ;; Multiple cursors
 (require 'multiple-cursors)

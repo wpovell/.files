@@ -9,6 +9,7 @@ export PATH=$PATH:~/bin/:~/dotfiles/bin:/sbin/:/usr/local/cuda-8.0/bin:~/.local/
 __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
 
 # Reload Xresources
+alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
 alias e="emacs"
 # Ls, now with color!

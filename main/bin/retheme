@@ -7,10 +7,11 @@ CUR_THEME="${CUR_THEME:1}"
 stow -D $CUR_THEME 2>/dev/null
 stow $1".theme"
 fi
-feh --bg-tile ~/.wallpaper
+feh --bg-scale ~/.wallpaper
 xrdb -merge -cpp /usr/bin/cpp -I$HOME ~/.Xresources
 polybar-msg cmd restart
 i3-msg reload
 refresh
 killall dunst
 dunst &
+xup

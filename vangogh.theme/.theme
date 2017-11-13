@@ -1,0 +1,38 @@
+! vangogh
+
+! special
+#define FC #CACCB0
+#define BC #273327
+#define CC #CACCB0
+
+! black
+#define C0 #273327
+#define C8 #4f5659
+
+! red
+#define C1 #77a6a9
+#define C9 #229fa8
+
+! green
+#define C2 #7aa8af
+#define C10 #56b0b0
+
+! yellow
+#define C3 #7fabc3
+#define C11 #1d80c2
+
+! blue
+#define C4 #a2ae92
+#define C12 #bdcc5e
+
+! magenta
+#define C5 #87afb3
+#define C13 #2da3b3
+
+! cyan
+#define C6 #b1cc8a
+#define C14 #436025
+
+! white
+#define C7 #cbd187
+#define C15 #bdcc5e

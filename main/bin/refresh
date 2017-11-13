@@ -4,7 +4,7 @@ import re
 
 with open('/home/wpovell/.theme') as f:
     dat = f.read().strip()
-colors = re.findall(r'([FBC\d]{2,3})\s+(\#[\da-f]{6})', dat)
+colors = re.findall(r'([FBC\d]{2,3})\s+(\#[\da-f]{6})', dat, re.IGNORECASE)
 colors.sort(key = lambda x: -len(x[0]))
 toWrite = ""
 

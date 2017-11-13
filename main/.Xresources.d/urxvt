@@ -1,15 +1,16 @@
-URxvt.font:             xft:Inconsolata:pixelsize=20:antialias=true:hinting=true, xft:"all\-the\-icons":pixelsize=20
+URxvt.font:             xft:Inconsolata:pixelsize=20:antialias=true:hinting=true
 URxvt.boldFont:         xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold
 URxvt.italicFont:       xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:italic
 URxvt.bolditalicFont:   xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold:italic
+
 URxvt.scrollBar: false
 URxvt.internalBorder:  15
 URxvt*fading: 20
 URxvt.url-launcher: /usr/bin/browser
-
+URxvt.letterSpace: 1
 ! copy/paste
 URxvt*iso14755: false
-URxvt*perl-ext-common: default,matcher,clipboard
+URxvt*perl-ext-common: default,matcher,clipboard,resize-font
 URxvt*keysym.Shift-Control-C: perl:clipboard:copy
 URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 

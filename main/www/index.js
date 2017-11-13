@@ -43,6 +43,10 @@ let urls = {
 	color : '#F4B400',
 	query : 'drive.google.com'
     },
+    'p' : {
+	color : '#3E7AAB',
+	query : 'piazza.com'
+    },
     'x' : {
 	color : '#000000',
 	query : 'xkcd.com'
@@ -70,6 +74,8 @@ let urls = {
 	    switch (q) {
 	    case 'cab':
 		return 'cab.brown.edu';
+	    case 'canvas':
+		return 'canvas.brown.edu';
 	    case 'cs147':
 		cc = 'cs1470';
 		break;
@@ -85,7 +91,7 @@ let urls = {
 	    }
 	    return 'cs.brown.edu/courses/'+cc
 	},
-	suggest: ['cab', 'cs147', 'cs123', 'cs33', 'cs100']
+	suggest: ['cs147', 'cs123', 'cs33', 'cs100', 'cab', 'canvas']
     },
     'cab' : {
 	color: '#A10311',
