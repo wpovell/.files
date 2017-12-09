@@ -107,12 +107,14 @@ let urls = {
 	    let u = 'github.com/';
 	    if (q == 'smu') {
 		u += 'signmeup/signmeup';
-	    } else {
+	    } else if (q == 'isotope') {
+                u += 'athyuttamre/isotopeticketing';
+            } else {
 		u += q;
 	    }
 	    return u;
 	},
-	suggest: ['wpovell', 'smu']
+	suggest: ['wpovell', 'smu', 'isotope']
     },
     'a' : {
 	color: '#FF9900',
@@ -127,6 +129,10 @@ let urls = {
 	color: '#FF0000',
 	query: (q) => {
 	    let u = 'youtube.com/';
+	    if (q == 'chill') {
+		return u += 'watch?v=AQBh9soLSkI';
+	    }
+
 	    if (q && q.startsWith('u/')) {
 		u += 'user/' + q.slice(2) + '/videos';
 	    } else if (q) {
@@ -135,7 +141,7 @@ let urls = {
 
 	    return u;
 	},
-	suggest: ['u/northernlion']
+	suggest: ['u/northernlion', 'chill']
     },
     'f' : {
 	color: '#4267B2',

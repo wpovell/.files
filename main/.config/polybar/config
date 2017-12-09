@@ -11,7 +11,7 @@ width		        = 100%
 enable-ipc = true
 border-size		  = 0
 fixed-center  	= true
-height			    = 33
+height			    = 27
 background		  = ${colors.background}
 foreground		  = $(colors.foreground}
 radius          = 0
@@ -96,6 +96,7 @@ label-charging-padding-right = 10
 label-discharging-padding-right = 10
 label-full-padding-right = 10
 
+poll-interval = 5
 full-at = 99
 
 ramp-capacity-0 = 

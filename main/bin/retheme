@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ~/dotfiles
-if [ -n "$1" ];
+if [[ -n "$1" && "$1" != "startup" ]];
 then
 CUR_THEME="$(head -n1 ~/.theme 2>/dev/null).theme"
 CUR_THEME="${CUR_THEME:1}"
@@ -14,4 +14,4 @@ i3-msg reload
 refresh
 killall dunst
 dunst &
-xup
+xrdb -I$HOME ~/.Xresources

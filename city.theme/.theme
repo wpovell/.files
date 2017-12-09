@@ -1,0 +1,38 @@
+! city
+
+! special
+#define FC #CACCB0
+#define BC #112831
+#define CC #CACCB0
+
+! black
+#define C0 #112831
+#define C8 #707e83
+
+! red
+#define C1 #697A88
+#define C9 #697A88
+
+! green
+#define C2  #A8A3A6
+#define C10 #A8A3A6
+
+! yellow
+#define C3  #E1B39F
+#define C11 #E1B39F
+
+! blue
+#define C4  #E9C4B6
+#define C12 #E9C4B6
+
+! magenta
+#define C5  #BABFC4
+#define C13 #BABFC4
+
+! cyan
+#define C6  #D4CBCB
+#define C14 #D4CBCB
+
+! white
+#define C7  #E4CDC7
+#define C15 #E4CDC7

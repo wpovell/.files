@@ -1,6 +1,9 @@
 ;; Don't put tilda files everywhere
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+;; Use spaces
+(setq-default indent-tabs-mode nil)
+
 ;; Make divider prettier
 (set-face-background 'vertical-border "gray")
 (set-face-foreground 'vertical-border (face-background 'vertical-border))
@@ -52,20 +55,28 @@
       (package-install package)))
       myPackages)
 
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-mode))
+
 ;; Git gutter
 (global-git-gutter-mode +1)
 ;; Make update more
 (custom-set-variables
- '(git-gutter:update-interval 1))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(git-gutter:modified-sign "*")
+ '(git-gutter:update-interval 1)
+ '(package-selected-packages
+   (quote
+    (auctex multiple-cursors s neotree epl better-defaults))))
 
 ;; Set modifier char to *
-(custom-set-variables
- '(git-gutter:modified-sign "*"))
+
 
 ;; Clipboard
 (require 'xclip)
 (xclip-mode 1)
-(turn-on-xclip)
 
 ;; Neotree
 (require 'neotree)
@@ -89,12 +100,7 @@
 (setq global-mode-string '((t jabber-activity-mode-string)
                           "" display-time-string appt-mode-string))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (multiple-cursors s neotree epl better-defaults))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -39,9 +39,14 @@ toolbaritem {
 
 toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
     box-shadow: none !important;
-    background-color: C4 !important; /* color4 */
-    border-color: C4 !important; /* color4 */
-    color: FC !important; /* foreground */
+    background-color: C4 !important;
+    border-color: C4 !important;
+    color: FC !important;
+}
+
+/* Remove white flash on tab load */
+.browserContainer {
+  background-color: C4 !important;
 }
 
 /* Hide search placeholder text */

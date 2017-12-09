@@ -9,9 +9,17 @@ exec --no-startup-id dunst
 exec --no-startup-id redshift
 exec --no-startup-id startup
 exec_always --no-startup-id retheme
+exec --no-startup-id dropdown
 
+# Spotify
 for_window [class="Spotify"] move container to workspace $workspace9
 exec --no-startup-id spotify
+
+# Dropdown term
+#for_window [instance="metask"] floating enable, move scratchpad
+#for_window [instance="metask"] move position 0px 33px, resize set 1920 300
+bindsym $mod+t [instance="metask"] scratchpad show
+
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 
@@ -32,15 +40,16 @@ client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
 client.urgent #000000 #000000 #000000
 
 # In case I ever want to have title bars
-  # for_window [class="Nightly"] border pixel 3
-  # font pango:Inconsolata 10    ##Sets title bar thickness
-  # for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
+   #for_window [class="Nightly"] border pixel 3
+   #font pango:Inconsolata 10    ##Sets title bar thickness
+   #for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
 
 for_window [class="^.*"] border pixel 3
+for_window [instance="metask"] border pixel 0
 
 # Gaps
-gaps inner 30
-gaps outer 5
+gaps inner 10
+gaps outer 0
 
 smart_gaps on
 smart_borders on

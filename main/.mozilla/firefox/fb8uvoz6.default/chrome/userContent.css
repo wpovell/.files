@@ -2,9 +2,16 @@
     .hohoho, .goldvertisement, .hohoho-header {
 	display: none !important;
     }
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
 	.side {
 	    display: none!important;
 	}
+    }
+}
+
+/* Trying to remove live column, doesn't work */
+@-moz-document domain(www.instagram.com) {
+    #mainFeed:nth-child(2) {
+        display: none!important;
     }
 }

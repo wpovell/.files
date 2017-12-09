@@ -12,8 +12,12 @@ if not os.path.exists(CACHE):
 def query():
     with open('/home/wpovell/dotfiles/pass.json') as f:
         p = json.load(f)
-    with open(CACHE, 'r') as f:
-        past = json.load(f)
+
+    try:
+        with open(CACHE, 'r') as f:
+            past = json.load(f)
+    except Exception:
+        past = [[],[]]
 
     newPast = []
     f = open(CACHE, 'w')
@@ -56,8 +60,12 @@ def query():
     return s
 
 def show():
-    with open(CACHE) as f:
-        t = json.load(f)
+    try:
+        with open(CACHE) as f:
+            t = json.load(f)
+    except Exception:
+        t = [[],[]]
+        
     if t[1] or (t[1] == 0 and t[0] == 0):
         subprocess.call(['browser', 'mail.google.com/mail/u/0/'])
     if t[0]:
