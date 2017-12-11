@@ -1,5 +1,13 @@
 #!/bin/bash
 cd ~/dotfiles
+
+if [[ "$1" == "list" ]];
+then
+ls ~/dotfiles/ | grep .theme | awk '{ gsub(".theme", "",$1); print $1 }'
+exit
+fi
+
+
 if [[ -n "$1" && "$1" != "startup" ]];
 then
 CUR_THEME="$(head -n1 ~/.theme 2>/dev/null).theme"

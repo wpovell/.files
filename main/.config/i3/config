@@ -27,6 +27,7 @@ bindsym Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
 bindsym --release $mod+ctrl+s exec --no-startup-id screenselect
 bindsym $mod+c exec --no-startup-id browser
+bindsym $mod+Shift+f exec --no-startup-id focus
 
 set $HOME /home/wpovell
 
