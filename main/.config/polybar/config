@@ -16,34 +16,34 @@ background		  = ${colors.background}
 foreground		  = $(colors.foreground}
 radius          = 0
 modules-left		= date i3
-modules-right 	= mail network volume music battery
+modules-center = music
+modules-right 	= mail network battery volume
 font-0 			    = FontAwesome:size=10;2
 font-1 			    = Inconsolata:size=10;2
-module-margin		= 5
+module-margin		= 3
 
 [module/volume]
 type = internal/volume
 
 format-volume = <ramp-volume> <label-volume>
-
 label-volume = %percentage%%
 label-volume-foreground = ${colors.bright}
 label-volume-background = ${colors.background}
-
-label-muted = "        "
+label-volume-padding-right = 5
+label-muted = "                "
 label-muted-foreground = ${colors.foreground}
 label-muted-background = ${colors.background}
 
-ramp-volume-0 = "  "
+ramp-volume-0 = "  "
 ramp-volume-0-foreground = ${colors.bright}
 ramp-volume-0-background = ${colors.background}
-ramp-volume-1 = "  "
+ramp-volume-1 = "  "
 ramp-volume-1-foreground = ${colors.bright}
 ramp-volume-1-background = ${colors.background}
-ramp-volume-2 = "  "
+ramp-volume-2 = "  "
 ramp-volume-2-foreground = ${colors.bright}
 ramp-volume-2-background = ${colors.background}
-ramp-volume-3 = "  "
+ramp-volume-3 = "  "
 ramp-volume-3-foreground = ${colors.bright}
 ramp-volume-3-background = ${colors.background}
 
@@ -54,48 +54,40 @@ format			= <label-state><label-mode>
 
 label-focused-background = ${colors.barFocus}
 label-focused-foreground = ${colors.barUnfocus}
-label-focused-padding = 4
+label-focused-padding = 3
 
 label-urgent-background = ${colors.barUnfocus}
 label-urgent-foreground = ${colors.foreground}
-label-urgent-padding = 4
+label-urgent-padding = 3
 
 label-unfocused-background = ${colors.barUnfocus}
 label-unfocused-foreground = ${colors.foreground}
-label-unfocused-padding = 4
+label-unfocused-padding = 3
 
 label-mode-background = ${colors.barMode}
 label-mode-foreground = ${colors.background}
-label-mode-padding = 4
+label-mode-padding = 3
 
 [module/network]
 type = internal/network
 interface = wlp3s0
-label-connected-foreground = ${colors.bright}
+
 #label-connected =    %essid% | %local_ip% | %downspeed%
 label-connected =    %essid%
-
-
-label-connected-background = ${colors.barUnfocus}
-label-connected-padding = 7
+label-connected-foreground = ${colors.bright}
+label-connected-background = ${colors.background}
 
 format-disconnected = <label-disconnected>
-label-disconnected =    Not Connected
+label-disconnected = 
 
 label-disconnected-foreground = ${colors.foreground}
-label-disconnected-padding = 7
-
-label-disconnected-forground = ${colors.bright}
-label-disconnected-background = ${colors.barUnfocus}
+label-disconnected-background = ${colors.background}
 
 [module/battery]
 type=internal/battery
 format-charging = <animation-charging>  <label-charging>
 format-discharging = <ramp-capacity>  <label-discharging>
 #format-full = <ramp-capacity>  <label-full>
-label-charging-padding-right = 10
-label-discharging-padding-right = 10
-label-full-padding-right = 10
 
 poll-interval = 5
 full-at = 99
@@ -132,7 +124,7 @@ date			= %b %d
 time			= %I:%M%p
 label			= %date%, %time%
 label-foreground = ${colors.foreground}
-label-padding-left = 10
+label-padding-left = 5
 
 [module/music]
 type = custom/script
@@ -149,6 +141,7 @@ click-right = muse next
 type = custom/script
 interval = 120
 format = <label>
+format-prefix-foreground = ${colors.foreground}
 label-foreground = ${colors.foreground}
 exec = ~/.config/polybar/mail query $(xquery color12)
 click-left = ~/.config/polybar/mail open
