@@ -16,8 +16,7 @@ background		  = ${colors.background}
 foreground		  = $(colors.foreground}
 radius          = 0
 modules-left		= date i3
-modules-center = music
-modules-right 	= mail network battery volume
+modules-right 	= music mail network battery volume
 font-0 			    = FontAwesome:size=10;2
 font-1 			    = Inconsolata:size=10;2
 module-margin		= 3
@@ -129,12 +128,12 @@ label-padding-left = 5
 [module/music]
 type = custom/script
 interval = 1
-label = %output:0:50:...%
-label-padding = 7
-label-background = ${colors.barUnfocus}
+label = %output:0:60:...%
+label-background = ${colors.background}
 label-foreground = ${colors.foreground}
 exec = muse 2> /dev/null
 click-left = muse pause
+click-middle = muse prev
 click-right = muse next
 
 [module/mail]

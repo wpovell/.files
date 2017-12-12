@@ -73,6 +73,7 @@ jupyter
 kbdlight
 keepassxc
 less
+lib32-icu
 libdbusmenu-qt5
 libreoffice-fresh
 libtool
