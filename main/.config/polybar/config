@@ -72,7 +72,8 @@ label-mode-padding = 4
 type = internal/network
 interface = wlp3s0
 label-connected-foreground = ${colors.bright}
-label-connected =    %essid% | %local_ip% | %downspeed%
+#label-connected =    %essid% | %local_ip% | %downspeed%
+label-connected =    %essid%
 
 
 label-connected-background = ${colors.barUnfocus}

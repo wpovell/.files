@@ -5,7 +5,8 @@
     alignment = center
     word_wrap = yes
     ignore_newline = no
-    geometry = "300x5+0+33"
+    transparency = 10
+    geometry = "300x5-10+33"
     shrink=no
     idle_threshold = 120
     follow = keyboard
