@@ -7,19 +7,20 @@ barMode			  = ${xrdb:color1}
 bright        = ${xrdb:color12}
 
 [bar/top]
-width		        = 100%
-enable-ipc = true
-border-size		  = 0
-fixed-center  	= true
-height			    = 27
-background		  = ${colors.background}
-foreground		  = $(colors.foreground}
-radius          = 0
-modules-left		= date i3
-modules-right 	= music mail network battery volume
-font-0 			    = FontAwesome:size=8;3
-font-1 			    = Inconsolata:size=10;2
-module-margin		= 3
+width                           = 100%
+enable-ipc                      = true
+border-size		        = 0
+fixed-center  	                = true
+height			        = 27
+background		        = ${colors.background}
+foreground		        = $(colors.foreground}
+radius                          = 0
+modules-left                    = i3
+modules-center                  = date
+modules-right 	                = music mail network battery volume
+font-0 			        = FontAwesome:size=8;3
+font-1 			        = Inconsolata:size=10;2
+module-margin	              	= 3
 
 [module/volume]
 type = internal/volume
@@ -118,8 +119,8 @@ label-full-foreground = ${colors.bright}
 type			= internal/date
 interval		= 10
 date			= %b %d
-time			= %I:%M%p
-label			= %date%, %time%
+time			= %I:%M %p
+label			= %date%    %time%
 label-foreground = ${colors.foreground}
 label-padding-left = 5
 
