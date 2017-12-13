@@ -10,8 +10,9 @@
 }
 
 /* Make active tab wider */
+/*
 tab[selected="true"] { min-width: 200px !important; }
-
+*/
 /* Make urlbar be square */
 #urlbar {
     border-radius: 0 !important;

@@ -27,3 +27,11 @@
 [urgency_normal] 
    background = "C0"
    foreground = "FC"
+
+[urgency_critical] 
+   background = "C0"
+   foreground = "FC"
+
+[urgency_low] 
+   background = "C0"
+   foreground = "FC"

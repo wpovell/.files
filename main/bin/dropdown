@@ -1,5 +1,5 @@
 xup
-sleep 0.1
+sleep 1
 urxvt -name metask &
-sleep 0.3
-i3-msg [instance="metask"] floating enable, resize set 1920 300, move position 0px 33px, move scratchpad
+sleep 1
+i3-msg [instance="metask"] floating enable, resize set 1920 300, move position 0px 27px, move scratchpad
