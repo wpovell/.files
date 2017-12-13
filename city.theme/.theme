@@ -1,7 +1,7 @@
 ! city
 
 ! special
-#define FC #CACCB0
+#define FC #a1a38c
 #define BC #112831
 #define CC #CACCB0
 
@@ -30,8 +30,8 @@
 #define C13 #BABFC4
 
 ! cyan
-#define C6  #D4CBCB
-#define C14 #D4CBCB
+#define C6  #7a7373
+#define C14 #7a7373
 
 ! white
 #define C7  #E4CDC7

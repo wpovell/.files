@@ -66,8 +66,8 @@ def show():
             t = json.load(f)
     except Exception:
         t = [[],[]]
-        
-    if t[1] or (t[1] == 0 and t[0] == 0):
+    print(t)
+    if t[1] or (not t[1] and not t[0]):
         subprocess.call(['browser', 'mail.google.com/mail/u/0/'])
     if t[0]:
         subprocess.call(['browser', 'mail.google.com/mail/u/1/'])

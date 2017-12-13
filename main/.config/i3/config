@@ -19,7 +19,7 @@ exec --no-startup-id spotify
 #for_window [instance="metask"] floating enable, move scratchpad
 #for_window [instance="metask"] move position 0px 33px, resize set 1920 300
 bindsym $mod+t [instance="metask"] scratchpad show
-
+bindsym $mod+m exec --no-startup-id ~/.config/polybar/mail open
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 
