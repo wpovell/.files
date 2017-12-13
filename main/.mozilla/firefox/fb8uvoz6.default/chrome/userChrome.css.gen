@@ -3,6 +3,14 @@
     display: none !important;
 }
 
+/* Hide url for pinned tabs */
+#main-window[title*="slackbot"] #nav-bar { display: none !important; }
+#main-window[title*="Calendar"] #nav-bar { display: none !important; }
+#main-window[title*="Messenger"] #nav-bar { display: none !important; }
+.tabbrowser-tab {
+    max-height: 34px;
+}
+
 /* Center tab text */
 .tab-label {
    -moz-box-flex: 1 !important;
