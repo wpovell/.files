@@ -28,9 +28,10 @@ dialog
 diffutils
 dropbox
 dropbox-cli
-dunst
+dunst-git
 e2fsprogs
 emacs-nox
+espeak
 evince
 exfat-utils
 fakeroot

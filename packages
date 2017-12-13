@@ -13,8 +13,8 @@ compton
 cowsay
 dhcpcd
 dialog
-dunst
 emacs-nox
+espeak
 evince
 exfat-utils
 fakeroot
@@ -140,6 +140,7 @@ batify
 bcwc-pcie-git
 cava-git
 dropbox-cli
+dunst-git
 firefox-nightly
 google-chrome
 i3lock-color
