@@ -56,8 +56,10 @@ def query():
     f.close()
     if sum(lens):
         s = '%{F' + altColor + '}'
-    #s += '  ' + '/'.join(map(str, lens))
-    s += '  {}'.format(sum(lens))
+        s += '  {}'.format(sum(lens))
+    else:
+        s += ''
+
     return s
 
 def show():

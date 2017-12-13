@@ -1,0 +1,9 @@
+new='"'$1'"'
+#new=$(i3-msg -t get_workspaces | jq ".[] | select(.num == $1) | .name")
+
+echo $new > ~/outb.txt
+
+current=$(i3-msg -t get_workspaces | jq '.[] | select(.visible == true) | .name')
+i3-msg "rename workspace $new to temp"
+i3-msg "rename workspace $current to $new"
+i3-msg "rename workspace temp to $current"
