@@ -1,3 +1,4 @@
+!URxvt.font: xft:Gohu GohuFont
 URxvt.font:             xft:Inconsolata:pixelsize=20:antialias=true:hinting=true, xft:Inconsolata\ Nerd\ Font\ Mono:pixelsize=20:antialias=true:hinting=true
 URxvt.boldFont:         xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold
 URxvt.italicFont:       xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:italic

@@ -3,15 +3,12 @@
     display: none !important;
 }
 
-/* Hide url for pinned tabs */
-/*
-#main-window[title*="slackbot"] #nav-bar { display: none !important; }
-#main-window[title*="Calendar"] #nav-bar { display: none !important; }
-#main-window[title*="Messenger"] #nav-bar { display: none !important; }
-.tabbrowser-tab {
-    max-height: 34px;
+/* Set font */
+.tab-text, .urlbar-input-box, .autocomplete-richlistitem {
+    font-family: Inconsolata!important;
 }
-*/
+
+/* Hide url for pinned tabs */
 :root {
     --full-height: calc(var(--space-above-tabbar) + var(--tab-min-height));
 }

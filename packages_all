@@ -16,7 +16,7 @@ binutils
 bison
 broadcom-wl-dkms
 bzip2
-cava-git
+cava
 cmatrix
 compton
 coreutils
@@ -130,6 +130,7 @@ python-pillow
 python-pywal
 python-scipy
 python-tensorflow
+python-virtualenv
 qt5-3d
 qt5-canvas3d
 qt5-charts

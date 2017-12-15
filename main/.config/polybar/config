@@ -19,7 +19,8 @@ modules-left                    = i3
 modules-center                  = date
 modules-right 	                = music mail network battery volume
 font-0 			        = FontAwesome:size=8;3
-font-1 			        = Inconsolata:size=10;2
+#font-1 			        = Gohu GohuFont;2
+font-1 = Inconsolata:size=10;2
 module-margin	              	= 3
 
 [module/volume]
@@ -137,7 +138,7 @@ click-right = muse next
 
 [module/mail]
 type = custom/script
-interval = 120
+interval = 60
 format = <label>
 format-prefix-foreground = ${colors.foreground}
 label-foreground = ${colors.foreground}

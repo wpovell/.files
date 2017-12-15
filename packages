@@ -66,6 +66,7 @@ python-matplotlib
 python-pillow
 python-scipy
 python-tensorflow
+python-virtualenv
 qt5-3d
 qt5-canvas3d
 qt5-charts
@@ -138,7 +139,7 @@ adwaita-x-dark-and-light-theme
 asoundconf
 batify
 bcwc-pcie-git
-cava-git
+cava
 dropbox-cli
 dunst-git
 firefox-nightly

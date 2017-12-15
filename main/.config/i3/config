@@ -22,6 +22,7 @@ bindsym $mod+t [instance="metask"] scratchpad show
 bindsym $mod+m exec --no-startup-id ~/.config/polybar/mail open
 
 bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym --release F2 exec --no-startup-id shrugie
 
 bindsym Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
@@ -89,9 +90,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # Change container layout
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 
 # Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle

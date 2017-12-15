@@ -73,6 +73,7 @@ def show():
         subprocess.call(['browser', 'mail.google.com/mail/u/0/'])
     if t[0]:
         subprocess.call(['browser', 'mail.google.com/mail/u/1/'])
+    query()
     
 
 

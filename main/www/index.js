@@ -162,7 +162,7 @@ let urls = {
 	    }
 	    return u;
 	},
-	suggest: ['m/programming', 'up']
+	suggest: ['m/programming', 'm/nix']
 	  
     },
     'n' : {
@@ -197,9 +197,6 @@ function enter() {
     // Go directly if url
     if (q.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i)) {
 	return 'https://' + q;
-    }
-    if (q == 'r:up') {
-	return 'https://reddit.com/r/unixporn';
     }
     
     let r = urls[q.split(':')[0]]
