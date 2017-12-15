@@ -9,7 +9,6 @@ autoconf
 automake
 banner
 bash
-batify
 bc
 bcwc-pcie-git
 binutils
