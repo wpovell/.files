@@ -1,7 +1,7 @@
 body {
     background-color: C4;
     color: C0;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inconsolata', sans-serif;
 }
 
 #wrapper {
