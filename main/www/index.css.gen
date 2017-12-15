@@ -1,14 +1,57 @@
 body {
     background-color: C4;
     color: C0;
-    font-family: 'Inconsolata', sans-serif;
+    font-family: 'Inconsolata', fontawesome, sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.comment {
+  color: #383838!important;
+  padding-left: 25px;
+}
+
+#hn {
+    text-align: left;
+    list-style: none;
+    display: none;
+    margin: 20px 30%;
+}
+
+#weather {
+  margin-top: 5px;
+ list-style-type: none;
+}
+
+#weatherWrapper {
+ position: absolute;
+ bottom: 0;
+}
+
+#weatherWrapper > p {
+  font-weight: bold;
+  font-size: 18px;
+  padding-left: 40px;
+}
+
+#weather > li {
+  width: 130px;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 10px;
+}
+a, a:visited {
+  color: black;
+  text-decoration: none;
 }
 
 #wrapper {
     width: 100%;
     text-align: center;
     position: fixed;
-    top: 40%;
+    top: 5%;
     margin: 0 auto;
 }
 

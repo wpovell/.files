@@ -1,3 +1,59 @@
+let days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function setWeather() {
+    $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/forecast10day/q/RI/Providence.json`, {dataType: 'jsonp'}).then((data) => {
+        console.log(data);
+        for (let day of data.forecast.simpleforecast.forecastday.slice(0, 5)) {
+            console.log(day);
+            let d = new Date(parseInt(day.date.epoch)*1000);
+            console.log(d);
+            let dayWeek = days[d.getDay()];
+            let icon = '';
+            if (day.icon == 'snow') {
+                icon = '';
+            } else if (day.icon.match(/cloudy/)) {
+                icon = '';
+            } else if (day.icon.match(/rain/)) {
+                icon = '';
+            } else if (day.icon == 'clear') {
+                icon = '';
+            }
+        $('#weather').append(`
+<li>
+  <div class="bold">${dayWeek}</div>
+  <div>${icon} ${day.conditions}</div>
+<div>
+  <span class="bold">${day.high.fahrenheit}°</span>
+  <span>${day.low.fahrenheit}°</span>
+<div>
+<div>
+</li>
+    `);
+    }
+});
+}
+
+function setHN() {
+$.ajax('https://hacker-news.firebaseio.com/v0/topstories.json', {
+  dataType: "jsonp",
+}).then((data) => {
+    let c = 0;
+    for(let n of data.slice(0, 10)) {
+        c += 1;
+    $("#hn").append(`<li id="${n}">${c}. </li>`);
+    $.ajax(`https://hacker-news.firebaseio.com/v0/item/${n}.json`, {
+      dataType: 'jsonp',
+    }).then((data) => {
+      $(`#${n}`).append(`<a href="${data.url}">${data.title}</a><br/> <a class="comment" href="https://news.ycombinator.com/item?id=${n}">comments</a><br/><br/>`);
+    });
+  }
+});
+}
+
+setHN();
+
+setWeather();
+
 window.addEventListener( "pageshow", function ( event ) {
     var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
     if ( historyTraversal ) {
@@ -66,6 +122,10 @@ let urls = {
     's' : {
 	color: '#FF4400',
 	query: 'soundcloud.com'
+    },
+    'w' : {
+        color: '#6FC8E3',
+        query: 'google.com/search?q=weather'
     },
     'b' : {
 	color: '#3A1E1A',
@@ -279,6 +339,12 @@ document.onkeypress = (e) => {
 	s.style.color = c[0];
     } else {
 	s.style.color = '';
+    }
+
+    if (start == 'h') {
+        $('#hn').show();
+    } else {
+        $('#hn').hide();
     }
 
     if (urls[start] && urls[start].suggest) {
