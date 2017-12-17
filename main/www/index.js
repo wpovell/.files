@@ -9,7 +9,7 @@ function setWeather() {
             console.log(d);
             let dayWeek = days[d.getDay()];
             let icon = '';
-            if (day.icon == 'snow') {
+            if (day.icon.match(/snow/)) {
                 icon = '';
             } else if (day.icon.match(/cloudy/)) {
                 icon = '';
