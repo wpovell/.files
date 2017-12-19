@@ -2,6 +2,7 @@
 set $mod Mod4
 
 # Startup Apps
+exec --no-startup-id xautolock -locker i3lock-next -time 5
 exec --no-startup-id xrdb -I$HOME ~/.Xresources
 exec --no-startup-id compton
 exec --no-startup-id unclutter

@@ -6,3 +6,5 @@ main/.config/ranger/history
 main/.emacs.d/auto-save-list/
 main/www/index.css
 userChrome.css
+api.js
+banned.txt

@@ -1,366 +1,256 @@
-let days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+// Weather refresh in seconds
+const WEATHER_REFRESH = 60 * 20;
+const WEATHER_LOCATION = 'MD/Baltimore';
 
-function setWeather() {
-    $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/forecast10day/q/RI/Providence.json`, {dataType: 'jsonp'}).then((data) => {
-        console.log(data);
-        for (let day of data.forecast.simpleforecast.forecastday.slice(0, 5)) {
-            console.log(day);
-            let d = new Date(parseInt(day.date.epoch)*1000);
-            console.log(d);
-            let dayWeek = days[d.getDay()];
-            let icon = '';
-            if (day.icon.match(/snow/)) {
-                icon = '';
-            } else if (day.icon.match(/cloudy/)) {
-                icon = '';
-            } else if (day.icon.match(/rain/)) {
-                icon = '';
-            } else if (day.icon == 'clear') {
-                icon = '';
-            }
-        $('#weather').append(`
-<li>
-  <div class="bold">${dayWeek}</div>
-  <div>${icon} ${day.conditions}</div>
-<div>
-  <span class="bold">${day.high.fahrenheit}°</span>
-  <span>${day.low.fahrenheit}°</span>
-<div>
-<div>
-</li>
-    `);
-    }
-});
+// Fetches & caches weather data
+function getWeather(callback) {
+  let modifiedCallback = (data) => {
+      let jsonData = {
+          'location': WEATHER_LOCATION,
+          'time': new Date(),
+          'weather': data
+      }
+      localStorage.setItem('weather', JSON.stringify(jsonData));
+      callback(jsonData);
+  };
+
+  let data = JSON.parse(window.localStorage.getItem('weather'));
+
+    if (data == null || WEATHER_LOCATION != data['location'] ||
+        ((new Date) - new Date(data['time'])) / 1000 > WEATHER_REFRESH) {
+    console.log("Fetching weather");
+    data = $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/forecast10day/q/${WEATHER_LOCATION}.json`, {
+      dataType: 'jsonp'
+    }).then(modifiedCallback);
+  } else {
+    callback(data);
+  }
 }
 
-function setHN() {
-$.ajax('https://hacker-news.firebaseio.com/v0/topstories.json', {
-  dataType: "jsonp",
-}).then((data) => {
-    let c = 0;
-    for(let n of data.slice(0, 10)) {
-        c += 1;
-    $("#hn").append(`<li id="${n}">${c}. </li>`);
-    $.ajax(`https://hacker-news.firebaseio.com/v0/item/${n}.json`, {
-      dataType: 'jsonp',
-    }).then((data) => {
-      $(`#${n}`).append(`<a href="${data.url}">${data.title}</a><br/> <a class="comment" href="https://news.ycombinator.com/item?id=${n}">comments</a><br/><br/>`);
-    });
+// Adds weather data to DOM
+function setWeather() {
+  // Days of the week
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  getWeather((data) => {
+    let weather = data['weather'];
+    for (let day of weather.forecast.simpleforecast.forecastday.slice(0, 5)) {
+      let date = new Date(parseInt(day.date.epoch) * 1000);
+      let dayOfWeek = days[date.getDay()];
+      let icon = '';
+      if (day.icon.match(/snow/)) {
+        icon = '';
+      } else if (day.icon.match(/cloudy/)) {
+        icon = '';
+      } else if (day.icon.match(/rain/)) {
+        icon = '';
+      } else if (day.icon == 'clear') {
+        icon = '';
+      }
+      $('#weather').append(`
+        <li>
+          <div class="bold">${dayOfWeek}</div>
+          <div>${icon} ${day.conditions}</div>
+          <div>
+            <span class="bold">${day.high.fahrenheit}°</span>
+            <span>${day.low.fahrenheit}°</span>
+          <div>
+        </li>
+      `);
+    }
+  });
+}
+
+// Fetches top hackernews stories and adds to DOM
+// TODO: Cache?
+function setHN(callback) {
+  $.ajax('https://hacker-news.firebaseio.com/v0/topstories.json', {
+    dataType: "jsonp",
+  }).then((data) => {
+    let rank = 1;
+    for (let id of data.slice(0, 10)) {
+      $("#hn").append(`<li id="${id}">${rank}. </li>`);
+      $.ajax(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
+        dataType: 'jsonp',
+      }).then((data) => {
+        $(`#${id}`).append(`
+          <a href="${data.url}">${data.title}</a>
+          <br/>
+          <a class="comment" href="https://news.ycombinator.com/item?id=${id}">comments</a>
+          <br/>
+          <br/>`);
+      });
+      rank++;
+    }
+  });
+}
+
+// Force reload on back button
+window.addEventListener("pageshow", function(event) {
+  var historyTraversal = event.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2);
+  if (historyTraversal) {
+    window.location.reload();
   }
 });
-}
-
-setHN();
-
-setWeather();
-
-window.addEventListener( "pageshow", function ( event ) {
-    var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
-    if ( historyTraversal ) {
-	window.location.reload();
-    }
-});
-
-let t = document.getElementById("time");
-let dt = document.getElementById("date");
-const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
-
-function setTime() {
-    let d = new Date();
-    let h = d.getHours();
-    if (h == 0)
-	h = 12;
-    h = (((h-1) % 12)+1 + "").padStart(2, "0");
-    let m = (d.getMinutes()+"").padStart(2, "0");
-    t.innerText = h + " " + m;
-}
-
-function setDate() {
-    let d = new Date();
-    dt.innerText = months[d.getMonth()] + " " + d.getDate();
-}
-f = () => { setTime(); setDate(); };
-f();
-setInterval(f, 5000);
-
-let s = document.getElementById("search");
-let sug = document.getElementById("suggest");
-function setVis(hideSearch) {
-    let sVis = hideSearch ? 'none' : 'block';
-    let tVis = hideSearch ? 'block' : 'none';
-    t.style.display = tVis;
-    dt.style.display = tVis;
-    s.style.display = sVis;
-    sug.style.display = sVis;
-}
-
-let urls = {
-    'd'  : {
-	color : '#F4B400',
-	query : 'drive.google.com'
-    },
-    'p' : {
-	color : '#3E7AAB',
-	query : 'piazza.com'
-    },
-    'x' : {
-	color : '#000000',
-	query : 'xkcd.com'
-    },
-    'l' : {
-	color : '#0077B5',
-	query : 'linkedin.com'
-    }, 
-    'rt' : {
-	color: '#fafafa',
-	query: 'rt.cs.brown.edu'
-    },
-    'hm' : {
-	color: '#83C441',
-	query: 'hypem.com/popular'
-    },
-    's' : {
-	color: '#FF4400',
-	query: 'soundcloud.com'
-    },
-    'w' : {
-        color: '#6FC8E3',
-        query: 'google.com/search?q=weather'
-    },
-    'b' : {
-	color: '#3A1E1A',
-	query: (q) => {
-	    let cc;
-	    switch (q) {
-	    case 'cab':
-		return 'cab.brown.edu';
-	    case 'canvas':
-		return 'canvas.brown.edu';
-	    case 'cs147':
-		cc = 'cs1470';
-		break;
-	    case 'cs123':
-		cc = q;
-		break;
-	    case 'cs33':
-		cc = 'csci0330';
-		break;
-	    case 'cs100':
-		cc = 'csci0100'
-		break;
-	    }
-	    return 'cs.brown.edu/courses/'+cc
-	},
-	suggest: ['cs147', 'cs123', 'cs33', 'cs100', 'cab', 'canvas']
-    },
-    'cab' : {
-	color: '#A10311',
-	query: 'cab.brown.edu'
-    },
-    'nyt' : {
-	color: '#1A1A1A',
-	query: 'nytimes.com'
-    },
-    'g' : {
-	color: '#404448',
-	query: (q) => {
-	    let u = 'github.com/';
-	    if (q == 'smu') {
-		u += 'signmeup/signmeup';
-	    } else if (q == 'isotope') {
-                u += 'athyuttamre/isotopeticketing';
-            } else {
-		u += q;
-	    }
-	    return u;
-	},
-	suggest: ['wpovell', 'smu', 'isotope']
-    },
-    'a' : {
-	color: '#FF9900',
-	query: (q) => {
-	    let r = 'amazon.com/';
-	    if (q)
-		r += 's/field-keywords=' + encodeURIComponent(q);
-	    return r;
-	}
-    },
-    'y' : {
-	color: '#FF0000',
-	query: (q) => {
-	    let u = 'youtube.com/';
-	    if (q == 'chill') {
-		return u += 'watch?v=AQBh9soLSkI';
-	    }
-
-	    if (q && q.startsWith('u/')) {
-		u += 'user/' + q.slice(2) + '/videos';
-	    } else if (q) {
-		u += 'results?search_query=' + encodeURIComponent(q);
-	    }
-
-	    return u;
-	},
-	suggest: ['u/northernlion', 'chill']
-    },
-    'f' : {
-	color: '#4267B2',
-	query: 'facebook.com'
-    },
-    'h' : {
-	color: '#FF6600',
-	query: 'news.ycombinator.com'
-    },
-    'r' : {
-	color: '#CEE3F8',
-	query: (q) => {
-	    let u = 'reddit.com/';
-	    if (q && q.startsWith('m/')) {
-		u += 'me/' + q;
-	    } else if (q) {
-		u += 'r/' + q;
-	    }
-	    return u;
-	},
-	suggest: ['m/programming', 'm/nix']
-	  
-    },
-    'n' : {
-	color: '#E30813',
-	query: 'netflix.com',
-    },
-    'c' : {
-	color: '#DB4A38',
-	query: 'calendar.google.com',
-    },
-    'e' : {
-	color: '#DB4A38',
-	query: 'gmail.com'
-    },
-    't' : {
-	color: '#1DA1F2',
-	query: 'twitter.com'
-    },
-    'i' : {
-	color: '#7E46C0',
-	query: 'instagram.com'
-    },
-    'm' : {
-	color: '#0084FF',
-	query: 'messenger.com'
-    }
-}
-
-
-function enter() {
-    let q = s.innerText;
-    // Go directly if url
-    if (q.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i)) {
-	return 'https://' + q;
-    }
-    
-    let r = urls[q.split(':')[0]]
-    if (r) {
-	if (typeof r.query == 'string') {
-	    return 'http://'+r.query;
-	} else {
-	    return 'http://'+r.query(q.split(':')[1]);
-	}
-    }
-    
-    return 'https://www.google.com/search?q=' + encodeURIComponent(q);
-}
 
 // Capture paste
 document.addEventListener("paste", (e) => {
-    s.innerText += e.clipboardData.getData('text/plain');
-    if (s.innerText)
-	setVis(false);
+  const curQuery = $('#search').text();
+  const newQuery = curQuery + e.clipboardData.getData('text/plain');
+  $('#search').text(newQuery);
+  if (newQuery)
+    setSearch(true);
 }, false);
 
-let lastS;
+
+// Update time
+function setClock() {
+  let time = $('#time');
+  let date = $('#date');
+  const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+  let curTime = new Date();
+  let curHour = curTime.getHours();
+  if (curHour == 0)
+    curHour = 12;
+
+  curHour = (((curHour - 1) % 12) + 1 + "").padStart(2, "0");
+  let curMin = (curTime.getMinutes() + "").padStart(2, "0");
+
+  time.text(curHour + " " + curMin);
+  date.text(months[curTime.getMonth()] + " " + curTime.getDate());
+}
+setInterval(setClock, 5000)
+
+// Set search visibility
+function setSearch(showSearch) {
+  if (showSearch) {
+    $('#searchWrapper').show();
+    $('#timeWrapper').hide();
+  } else {
+    $('#searchWrapper').hide();
+    $('#timeWrapper').show();
+  }
+}
+
+// Perform action on enter
+function enter() {
+  let query = $('#search').text();
+  // Go directly if url
+  if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i)) {
+    return 'https://' + query;
+  }
+
+  let response = urls[query.split(':')[0]];
+  if (response) {
+    // Go directly to site
+    if (typeof response.query == 'string') {
+      return 'http://' + response.query;
+    } else {
+      return 'http://' + response.query(query.split(':')[1]);
+    }
+  }
+
+  // No matches, google it
+  return 'https://www.google.com/search?q=' + encodeURIComponent(query);
+}
+
+let lastQuery = '';
 document.onkeypress = (e) => {
-    if (e.key == 'Tab' && !s.innerText)
-	return;
-    
-    if (['l','r','C','v'].includes(e.key) && e.ctrlKey) {
-	return;
-    }
-    e.preventDefault();
-    setVis(false);
-    console.log(e);
-    e.stopPropagation();
-    if (e.key == 'Escape') {
-	s.innerText = '';
-	lastS = '';
-	setVis(true);
-    } else if (e.key == 'Backspace') {
-	s.innerText = s.innerText.slice(0,-1);
-    } else if (e.key == 'Enter') {
-	let url = enter();
-	if (e.altKey) {
-	    window.open(url);
-	} else {
-	    document.location.href = url;
-	}
-    } else if (e.key == 'Tab') {
-	let ss = document.getElementById('suggest').children[0].children;
-	let found = false;
-	let setNext = false;
-	for (let c of ss) {
-	    if (setNext) {
-		setNext = false;
-		c.classList.add('active');
-	    } else if (c.classList.contains('active')) {
-		found = true;
-		setNext = true;
-		c.style.color = '';
-		c.classList.remove('active');
-	    }
-	}
-	if (!found || setNext) {
-	    ss[0].classList.add('active');
-	}
-	let active = document.getElementsByClassName('active')[0];
-	active.style.color = s.style.color;
-	s.innerText = s.innerText.split(':')[0] + ':' + active.innerText;
-    } else if (e.key == 'c' && e.ctrlKey) {
-	s.innerText = '';
-    } else if (!e.ctrlKey && (e.charCode != 0 || e.key == ' ')) {
-	s.innerText += e.key;	
-    }
+  let search = $('#search');
+  let searchQuery = search.text();
 
-    let c;
-    let start = s.innerText.split(':')[0]
-    if (urls[start]) {
- 	s.style.color = urls[start].color;
-    } else if((c=/#[0-9a-f]{6}$/i.exec(s.innerText)) ||
-	     (c=/#[0-9a-f]{3}$/i.exec(s.innerText))) {
-	s.style.color = c[0];
+  // Don't do anything for tab if there isn't a query
+  if (e.key == 'Tab' && !searchQuery)
+    return;
+
+  // Allow some control keys
+  if (['l', 'r', 'C', 'v'].includes(e.key) && e.ctrlKey) {
+    return;
+  }
+
+  // For everything else, prevent the default
+  e.preventDefault();
+  e.stopPropagation();
+
+
+  if (e.key == 'Escape') {
+    search.text('');
+    lastQuery = '';
+  } else if (e.key == 'Backspace') {
+    search.text(searchQuery.slice(0, -1));
+    searchQuery = search.text();
+  } else if (e.key == 'Enter') {
+    let url = enter();
+
+    // Open in new tab
+    if (e.altKey) {
+      window.open(url);
     } else {
-	s.style.color = '';
+      document.location.href = url;
     }
+  } else if (e.key == 'Tab') {
+    let searchSuggest = $('#suggest').children().first().children();
+    let index = -1;
+    for (let i = 0; i < searchSuggest.length; i++) {
+      if (searchSuggest.eq(i).hasClass('active')) {
+        console.log("HERE");
+        // Get index of new suggestion to have selected
+        index = (searchSuggest.length + i + (e.keyShiftKey ? -1 : 1)) % searchSuggest.length;
+      }
+    }
+    if (index == -1) {
+      index = 0;
+    }
+    let start = search.text().split(':')[0]
+    searchSuggest.css('color', '');
+    searchSuggest.removeClass('active');
+    searchSuggest.eq(index).addClass('active');
+    searchSuggest.eq(index).css('color', urls[start].color);
+    search.text(start + ':' + searchSuggest.eq(index).text());
+  } else if (e.key == 'c' && e.ctrlKey) {
+    search.text('');
+  } else if (!e.ctrlKey && (e.charCode != 0 || e.key == ' ')) {
+    search.text(searchQuery + e.key);
+    searchQuery = search.text();
+  }
 
-    if (start == 'h') {
-        $('#hn').show();
-    } else {
-        $('#hn').hide();
-    }
+  // Set query color
+  let start = search.text().split(':')[0]
+  let color = '';
+  let c;
+  if (urls[start]) {
+    color = urls[start].color;
+  } else if ((c = /#[0-9a-f]{6}$/i.exec(searchQuery)) ||
+    (c = /#[0-9a-f]{3}$/i.exec(searchQuery))) {
+    let color = c;
+  }
+  search.css('color', color);
 
-    if (urls[start] && urls[start].suggest) {
-	if(lastS != urls[start].suggest) {
-	    let suggest = urls[start].suggest;
-	    lastS = suggest;
-	    sug.innerHTML = '<ul>' +
-		suggest.map((x) => { return '<li>'+x+'</li>'; }).join('') +
-		'</ul>';
-	}
-    } else {
-	sug.innerHTML = '';
-    }
+  // Show hackernews
+  if (start == 'h') {
+    $('#hn').show();
+  } else {
+    $('#hn').hide();
+  }
 
-    if (!s.innerText) {
-	lastS = '';
-	setVis(true);
-    }
+  // Add suggests
+  if (urls[start] && urls[start].suggest) {
+    let suggest = urls[start].suggest;
+    $('#suggest').html('<ul>' +
+      suggest.map((x) => {
+        return '<li>' + x + '</li>';
+      }).join('') +
+      '</ul>');
+  } else {
+    $('#suggest').html('');
+  }
+
+  setSearch(searchQuery != '');
 };
+
+$(() => {
+  setSearch(false);
+  setClock();
+  setHN();
+  setWeather();
+});

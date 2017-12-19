@@ -62,7 +62,8 @@ grub
 gvfs
 gzip
 i3-gaps
-i3lock-color
+i3lock-color-git
+i3lock-next-git
 inetutils
 iproute2
 iputils
@@ -231,6 +232,5 @@ xorg-xinit
 xorg-xprop
 xorg-xrandr
 xsel
-xss-lock-git
 yaourt
 zsh

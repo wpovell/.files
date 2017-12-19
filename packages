@@ -145,7 +145,7 @@ dropbox-cli
 dunst-git
 firefox-nightly
 google-chrome
-i3lock-color
+i3lock-next-git
 kbdlight
 linux-macbook
 linux-macbook-docs
@@ -166,5 +166,4 @@ tty-clock
 unclutter-xfixes-git
 urxvt-resize-font-git
 xf86-input-mtrack-git
-xss-lock-git
 yaourt
