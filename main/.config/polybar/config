@@ -17,7 +17,7 @@ foreground		        = $(colors.foreground}
 radius                          = 0
 modules-left                    = i3
 modules-center                  = date
-modules-right 	                = music mail network battery volume
+modules-right 	                = music mail blueno arch battery volume
 font-0 			        = FontAwesome:size=8;3
 #font-1 			        = Gohu GohuFont;2
 font-1 = Inconsolata:size=10;2
@@ -69,20 +69,27 @@ label-mode-background = ${colors.barMode}
 label-mode-foreground = ${colors.background}
 label-mode-padding = 3
 
-[module/network]
+[section/network]
 type = internal/network
-interface = wlp3s0
-
 #label-connected =    %essid% | %local_ip% | %downspeed%
 label-connected =    %essid%
 label-connected-foreground = ${colors.bright}
 label-connected-background = ${colors.background}
-
+cursor-click-left = test
 format-disconnected = <label-disconnected>
 label-disconnected = 
 
 label-disconnected-foreground = ${colors.foreground}
 label-disconnected-background = ${colors.background}
+
+[module/blueno]
+inherit = section/network
+interface = wlp17s0f3u3
+
+[module/arch]
+inherit = section/network
+interface = wlp3s0
+
 
 [module/battery]
 type=internal/battery

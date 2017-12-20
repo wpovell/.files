@@ -1,6 +1,6 @@
 # Cuda Stuff
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
-export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib64:/opt/cuda/extras/CUPTI/lib64"
+export CUDA_HOME=/opt/cuda
 
 # Path
 export PATH=$PATH:~/bin/:~/dotfiles/bin:/sbin/:/usr/local/cuda-8.0/bin:~/.local/bin
@@ -9,8 +9,10 @@ export PATH=$PATH:~/bin/:~/dotfiles/bin:/sbin/:/usr/local/cuda-8.0/bin:~/.local/
 __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
 
 export EDITOR='emacs'
+export BROWSER='firefox-nightly'
 
 # Reload Xresources
+alias lip="ip address | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias rm="rm -I"
 alias restart-wifi="sudo netctl restart wlp3s0-Brown"
 alias open="xdg-open"
@@ -22,7 +24,7 @@ alias r='ranger'
 alias chrome="$(which google-chrome-stable)"
 alias yaourt-update="yaourt -Syu"
 alias yaourt-clean="yaourt -Qdt"
-alias yaourt-backup="(pacman -Qqettn && pacman -Qqettm) > ~/dotfiles/packages && pacman -Qqe > ~/dotfiles/packages_all"
+alias yaourt-backup="(pacman -Qqettn && pacman -Qqettm) > ~/dotfiles/packages/packages_$HOSTNAME && pacman -Qqe > ~/dotfiles/packages/packages_all_$HOSTNAME"
 alias yrt="yaourt-clean; yaourt-update; yaourt-backup"
 alias weather="curl wttr.in 2>/dev/null | head -n 7 | tail -n +3"
 alias weather-all="curl wttr.in 2>/dev/null | tail -n 33 | head -n 30"
@@ -31,6 +33,6 @@ alias pdf="evince 2>/dev/null"
 alias copy="xclip -selection clipboard"
 alias ,='cd ..'
 alias ,,='cd ../..'
-
+alias drp="HOME=/home/wpovell/.dropbox dropbox-cli"
 # No less history
 LESSHISTFILE=-

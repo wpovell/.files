@@ -11,6 +11,7 @@ exec --no-startup-id redshift
 exec --no-startup-id startup
 exec_always --no-startup-id retheme
 exec --no-startup-id dropdown
+exec --no-startup-id startdropbox
 
 # Spotify
 for_window [class="Spotify"] move container to workspace $workspace9
