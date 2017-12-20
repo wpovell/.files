@@ -155,12 +155,13 @@ function enter() {
 }
 
 let lastQuery = '';
+let lastSuggest = '';
 document.onkeypress = (e) => {
   let search = $('#search');
   let searchQuery = search.text();
 
   // Don't do anything for tab if there isn't a query
-  if (e.key == 'Tab' && !searchQuery)
+  if ((e.key == 'Tab' || e.key == ' ') && !searchQuery)
     return;
 
   // Allow some control keys
@@ -192,8 +193,7 @@ document.onkeypress = (e) => {
     let searchSuggest = $('#suggest').children().first().children();
     let index = -1;
     for (let i = 0; i < searchSuggest.length; i++) {
-      if (searchSuggest.eq(i).hasClass('active')) {
-        console.log("HERE");
+      if (searchSuggest[i].classList.contains('active')) {
         // Get index of new suggestion to have selected
         index = (searchSuggest.length + i + (e.keyShiftKey ? -1 : 1)) % searchSuggest.length;
       }
@@ -201,12 +201,14 @@ document.onkeypress = (e) => {
     if (index == -1) {
       index = 0;
     }
-    let start = search.text().split(':')[0]
-    searchSuggest.css('color', '');
+
+    let start = search.text().split(':')[0];
     searchSuggest.removeClass('active');
-    searchSuggest.eq(index).addClass('active');
-    searchSuggest.eq(index).css('color', urls[start].color);
-    search.text(start + ':' + searchSuggest.eq(index).text());
+    searchSuggest.css('color', '');
+    let active = searchSuggest.eq(index);
+    active.css('color', urls[start].color);
+    active.addClass('active');
+    search.text(start + ':' + active.text());
   } else if (e.key == 'c' && e.ctrlKey) {
     search.text('');
   } else if (!e.ctrlKey && (e.charCode != 0 || e.key == ' ')) {
@@ -234,18 +236,19 @@ document.onkeypress = (e) => {
   }
 
   // Add suggests
-  if (urls[start] && urls[start].suggest) {
+  if (start != lastSuggest && urls[start] && urls[start].suggest) {
+    lastSuggest = start;
     let suggest = urls[start].suggest;
     $('#suggest').html('<ul>' +
       suggest.map((x) => {
         return '<li>' + x + '</li>';
       }).join('') +
       '</ul>');
-  } else {
+  } else if (searchQuery == '') {
     $('#suggest').html('');
   }
 
-  setSearch(searchQuery != '');
+  setSearch(searchQuery.replace(/\s+/, '') != '');
 };
 
 $(() => {

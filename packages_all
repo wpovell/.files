@@ -12,6 +12,7 @@ bash
 batify
 bc
 bcwc-pcie-git
+bfg
 binutils
 bison
 broadcom-wl-dkms
@@ -200,6 +201,7 @@ tk
 tlp
 tmux
 toilet
+transmission-cli
 tree
 ttf-all-the-icons
 ttf-font-awesome
@@ -212,6 +214,7 @@ usbutils
 util-linux
 valgrind
 vi
+virtualbox
 w3m
 wget
 which

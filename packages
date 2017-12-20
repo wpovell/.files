@@ -29,7 +29,6 @@ git
 gparted
 grub
 iputils
-jdk8-openjdk
 jfsutils
 jq
 jshon
@@ -114,12 +113,14 @@ texlive-science
 tk
 tlp
 tmux
+transmission-cli
 tree
 ttf-font-awesome
 ttf-inconsolata
 uncrustify
 valgrind
 vi
+virtualbox
 w3m
 wget
 wireless_tools
@@ -140,6 +141,7 @@ adwaita-x-dark-and-light-theme
 asoundconf
 batify
 bcwc-pcie-git
+bfg
 cava
 dropbox-cli
 dunst-git

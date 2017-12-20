@@ -47,7 +47,7 @@ a, a:visited {
     width: 100%;
     text-align: center;
     position: fixed;
-    top: 40%;
+    top: 10%;
     margin: 0 auto;
 }
 

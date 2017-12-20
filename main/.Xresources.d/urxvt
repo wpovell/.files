@@ -9,6 +9,7 @@ URxvt.internalBorder:  15
 URxvt*fading: 20
 URxvt.url-launcher: /usr/bin/browser
 URxvt.letterSpace: 1
+
 ! copy/paste
 URxvt*iso14755: false
 URxvt*perl-ext-common: default,matcher,clipboard,resize-font
@@ -16,7 +17,7 @@ URxvt*keysym.Shift-Control-C: perl:clipboard:copy
 URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 
 URxvt*dynamicColors: on
-
+urxvt.saveLines: 1000000
 URxvt*allowWindowOps: true
 
 ! scroll
