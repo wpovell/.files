@@ -1,5 +1,11 @@
 . ~/.commonrc
 
+# Dropdown ignores ctrl-d
+if [[ $(tty) == /dev/pts/0 ]]
+then
+  set -o ignoreeof
+fi
+
 # No less history
 LESSHISTFILE=-
 
