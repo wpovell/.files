@@ -12,6 +12,7 @@ export EDITOR='emacs'
 export BROWSER='firefox-nightly'
 
 # Reload Xresources
+alias bssh=ssh $(ssh brown "cat .bluenoip" 2>/dev/null)
 alias lip="ip address | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias rm="rm -I"
 alias restart-wifi="sudo netctl restart wlp3s0-Brown"
