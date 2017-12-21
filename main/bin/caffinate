@@ -26,8 +26,6 @@ enable_sleep () {
   xautolock -enable
 }
 
-espeak "caffinate" --stdout | paplay
-
 if we_are_fullscreen; then
     disable_sleep
 else
