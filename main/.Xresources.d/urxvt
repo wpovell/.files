@@ -9,6 +9,7 @@ URxvt.internalBorder:  15
 URxvt*fading: 20
 URxvt.url-launcher: /usr/bin/browser
 URxvt.letterSpace: 1
+URxvt.backend:  xrender
 
 ! copy/paste
 URxvt*iso14755: false
