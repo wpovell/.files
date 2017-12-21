@@ -1,0 +1,29 @@
+#!/bin/bash
+
+xprop_active_info () {
+    xprop -id "$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
+}
+
+we_are_fullscreen () {
+    xprop_active_info | grep -q _NET_WM_STATE_FULLSCREEN
+}
+
+disable_sleep () {
+  xset -dpms
+  xautolock -disable
+}
+
+enable_sleep () {
+  xset +dpms
+  xautolock -enable
+}
+
+
+if we_are_fullscreen; then
+    disable_sleep
+    echo "DISABLED" >> /home/wpovell/caffinate.log
+else
+    enable_sleep
+    echo "ENABLED" >> /home/wpovell/caffinate.log
+fi
+

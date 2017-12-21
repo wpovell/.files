@@ -1,0 +1,5 @@
+[Unit]
+Description=Caffinate
+
+[Service]
+ExecStart=/home/wpovell/bin/caffinate
