@@ -20,7 +20,7 @@ exec --no-startup-id spotify
 # Dropdown term
 #for_window [instance="metask"] floating enable, move scratchpad
 #for_window [instance="metask"] move position 0px 33px, resize set 1920 300
-bindsym $mod+t [instance="metask"] scratchpad show
+bindsym $mod+t [instance="dropdown"] scratchpad show
 bindsym $mod+m exec --no-startup-id ~/.config/polybar/mail open
 
 bindsym $mod+d exec --no-startup-id rofi -show run
@@ -48,7 +48,7 @@ client.urgent #000000 #000000 #000000
    #for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
 
 for_window [class="^.*"] border pixel 3
-for_window [instance="metask"] border pixel 0
+for_window [instance="dropdown"] border pixel 0
 
 # Gaps
 gaps inner 10
