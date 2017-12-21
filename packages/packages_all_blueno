@@ -66,6 +66,7 @@ make
 man-db
 man-pages
 mdadm
+mplayer
 mtools
 nano
 netctl
@@ -127,6 +128,7 @@ wireless_tools
 wpa_supplicant
 xautolock
 xclip
+xdo
 xfsprogs
 xorg-fonts-100dpi
 xorg-server

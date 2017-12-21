@@ -33,6 +33,7 @@ make
 man-db
 man-pages
 mdadm
+mplayer
 mtools
 nano
 netctl
@@ -60,7 +61,6 @@ stow
 sudo
 systemd-sysvcompat
 tmux
-ttf-dejavu
 ttf-font-awesome
 ttf-inconsolata
 unclutter
@@ -73,6 +73,7 @@ wireless_tools
 wpa_supplicant
 xautolock
 xclip
+xdo
 xfsprogs
 xorg-fonts-100dpi
 xorg-xinit
