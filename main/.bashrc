@@ -1,7 +1,8 @@
 . ~/.commonrc
 
 # Dropdown ignores ctrl-d
-if [[ $(tty) == /dev/pts/0 ]]
+window_name=$(xprop -id "$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')" | grep 'WM_NAME(STRING)' | awk '{print $3}')
+if [[ $window_name == '"dropdown"' ]]
 then
   set -o ignoreeof
 fi

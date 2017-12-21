@@ -4,6 +4,6 @@
 
 xup
 sleep 1
-urxvt -name metask &
+urxvt -name dropdown &
 sleep 1
-i3-msg [instance="metask"] floating enable, resize set $(xrandr | grep "*" | perl -lne 'print $1 if /([0-9]+)x/') 300, move position 0px 27px, move scratchpad
+i3-msg [instance="dropdown"] floating enable, resize set $(xrandr | grep "*" | perl -lne 'print $1 if /([0-9]+)x/') 300, move position 0px 27px, move scratchpad
