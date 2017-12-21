@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Old lock script, currently not in use
+
 LOCK_IMAGE=~/Documents/lock.png
 i3-msg mode "default"
 scrot /tmp/screen.png

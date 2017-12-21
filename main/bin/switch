@@ -1,5 +1,8 @@
+#!/bin/bash
+
+# Switches two i3 workspaces
+
 new='"'$1'"'
-#new=$(i3-msg -t get_workspaces | jq ".[] | select(.num == $1) | .name")
 
 current=$(i3-msg -t get_workspaces | jq '.[] | select(.visible == true) | .name')
 i3-msg "rename workspace $new to temp"

@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
+
+# Prints a pretty tree
+
 flower = '\033[31m'
 tree  = '\033[37m'
 
-s = '''           {0}&&            
+s = '''           {0}&&
           &&&&&
         &&&{1}\/{0}& &&&
        &&{1}|,/  |/{0}& &&

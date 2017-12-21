@@ -1,1 +1,5 @@
+#!/bin/bash
+
+# Takes screenshot
+
 scrot -f "%s.png" -e 'mv $f ~/Desktop/; notify-send "Screenshot" "~/Desktop/$f"'

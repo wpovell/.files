@@ -1,2 +1,6 @@
 #!/bin/bash
+
+# Connects to browncs vpn
+# alias?
+
 sudo openvpn /etc/openvpn/client/browncs.opvn

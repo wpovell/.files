@@ -1,3 +1,6 @@
 #!/bin/bash
+
+# Takes screenshot of user selected area
+
 fn="/Desktop/$(date +%s).png"
-import "$HOME$fn" && notify-send "Screenshot" "~$fn"
+import -trim "$HOME$fn" && notify-send "Screenshot" "~$fn"

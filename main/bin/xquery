@@ -1,2 +1,5 @@
 #!/bin/bash
+
+# Greps for arg in current Xresource settings
+
 xrdb -query | grep $1 | cut -f2

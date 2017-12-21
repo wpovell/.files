@@ -1,2 +1,6 @@
 #!/bin/bash
+
+# Edits given command arg
+# alias?
+
 emacs $(which $1)

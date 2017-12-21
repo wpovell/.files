@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# nrnl.sh - displays sys info
+
+# Displays sys info
 
 # colors
 f=3 b=4
@@ -31,7 +32,7 @@ wm() {
 	wm=${wm/\"}
 	wm=${wm/\"*}
 	wm=${wm,,}
-	wm="$wm-gaps"
+	wm="$wm-gaps" # Hacky, adds -gaps to i3 manually
 	export wm
 }
 init() {

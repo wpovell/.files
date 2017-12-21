@@ -1,3 +1,6 @@
 #!/bin/bash
+
+# Starts dropbox in custom directory
+
 export HOME=/home/wpovell/.dropbox
 dropbox

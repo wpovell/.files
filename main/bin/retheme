@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Retheme / changes current theme
+
 cd ~/dotfiles
 
 if [[ "$1" == "list" ]];

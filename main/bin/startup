@@ -1,4 +1,11 @@
 #!/bin/sh
+
+# Run at startup to setup resolution and polybar
+
 sleep 0.1
-xrandr --output eDP1 --primary --mode 1920x1200 --pos 0x0 --rotate normal --output HDMI2 --auto
+
+if [[ $(hostname) == "arch" ]]; then
+  xrandr --output eDP1 --primary --mode 1920x1200 --pos 0x0 --rotate normal --output HDMI2 --auto
+fi
+
 polybar -r top

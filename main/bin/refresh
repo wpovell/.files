@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+
+# Regenerates theme files / updates open terminals
+
 import glob
 import re
 
@@ -41,11 +44,11 @@ for c, v in colors:
 
 with open('/home/wpovell/www/index.css', 'w') as f:
     f.write(css)
-    
+
 for i, g in enumerate(gens):
     with open(g[:-4], 'w') as f:
         f.write(genOut[i])
-    
+
 for term in glob.glob("/dev/pts/[0-9]*"):
     with open(term, "w") as file:
         file.write(toWrite)

@@ -1,1 +1,5 @@
+#!/bin/bash
+
+# Sets clipboard to shrugie
+
 echo -n "¯\_(ツ)_/¯" | xclip -selection clipboard
