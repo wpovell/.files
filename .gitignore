@@ -10,3 +10,4 @@ api.js
 banned.txt
 .git.bfg-report
 poss
+*.target.wants

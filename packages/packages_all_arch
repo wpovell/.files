@@ -201,11 +201,13 @@ tk
 tlp
 tmux
 toilet
+traceroute
 transmission-cli
 tree
 ttf-all-the-icons
 ttf-font-awesome
 ttf-inconsolata
+ttf-roboto
 tty-clock
 unclutter-xfixes-git
 uncrustify
@@ -236,4 +238,5 @@ xorg-xprop
 xorg-xrandr
 xsel
 yaourt
+zathura
 zsh

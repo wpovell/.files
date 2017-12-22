@@ -1,0 +1,5 @@
+charge=$(acpi | grep -o '\([0-9]\+\)%')
+charge=${charge::-1}
+if (($charge <= 10)); then
+   notify-send -u critical"Low Battery" "$charge%"
+fi

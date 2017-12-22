@@ -113,10 +113,12 @@ texlive-science
 tk
 tlp
 tmux
+traceroute
 transmission-cli
 tree
 ttf-font-awesome
 ttf-inconsolata
+ttf-roboto
 uncrustify
 valgrind
 vi
@@ -136,6 +138,7 @@ xorg-xdpyinfo
 xorg-xinit
 xorg-xprop
 xsel
+zathura
 zsh
 adwaita-x-dark-and-light-theme
 asoundconf
