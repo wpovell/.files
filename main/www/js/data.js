@@ -3,6 +3,14 @@ let urls = {
 	color : '#F4B400',
 	query : 'drive.google.com'
     },
+    'pb' : {
+        color : '#4AB367',
+        query : 'pushbullet.com'
+    },
+    'wg' : {
+        color : '#006600',
+        query : '4chan.org/wg'
+    }, 
     'p' : {
 	color : '#3E7AAB',
 	query : 'piazza.com'
