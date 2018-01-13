@@ -17,7 +17,7 @@ foreground		        = $(colors.foreground}
 radius                          = 0
 modules-left                    = i3
 modules-center                  = date
-modules-right 	                = music mail blueno arch battery volume
+modules-right 	                = music mail blueno lambda battery volume
 font-0 			        = FontAwesome:size=8;3
 #font-1 			        = Gohu GohuFont;2
 font-1 = Inconsolata:size=10;2
@@ -86,9 +86,9 @@ label-disconnected-background = ${colors.background}
 inherit = section/network
 interface = wlp17s0f3u3
 
-[module/arch]
+[module/lambda]
 inherit = section/network
-interface = wlp3s0
+interface = wlp4s0
 
 
 [module/battery]

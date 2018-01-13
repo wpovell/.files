@@ -1,4 +1,13 @@
 let urls = {
+    'ff' : {
+        color : '',
+        query: 'firstfinancial.org'
+    },
+    
+    '192' : {
+        color : '',
+        query : '192.168.1.1'
+    },
     'd'  : {
 	color : '#F4B400',
 	query : 'drive.google.com'

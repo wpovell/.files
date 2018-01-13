@@ -32,7 +32,11 @@ prompt() {
 	fi
 	GITP="$GITP "
     fi
-    PS1="$C1\h$END \w $GITP$C1»$END "	
+    PS1="$C1\h$END \w $GITP$C1»$END "
+
+    if [[ -n $VIRTUAL_ENV ]]; then
+        PS1="(`basename \"$VIRTUAL_ENV\"`) $PS1"
+    fi
 }
 
 PROMPT_COMMAND="prompt"

@@ -1,5 +1,9 @@
 acpi
 alsa-utils
+android-platform
+android-sdk-build-tools
+android-tools
+android-udev
 arandr
 atom
 autoconf
@@ -12,6 +16,7 @@ binutils
 bison
 bzip2
 cava
+cli-visualizer
 cmatrix
 compton
 coreutils
@@ -24,6 +29,7 @@ diffutils
 dmidecode
 dropbox
 dropbox-cli
+dstat
 dunst-git
 e2fsprogs
 efibootmgr
@@ -90,6 +96,7 @@ ncdu
 neofetch
 netctl
 nginx-mainline
+ngrep
 openssh
 openvpn
 pacman
@@ -97,6 +104,7 @@ parted
 patch
 pciutils
 pcmciautils
+perf-tools
 perl
 pkg-config
 playerctl
@@ -126,6 +134,7 @@ simple-mtpfs
 spotify
 sshfs
 stow
+strace
 sudo
 sysfsutils
 systemd
@@ -161,6 +170,7 @@ xdotool
 xfsprogs
 xorg-server
 xorg-xbacklight
+xorg-xev
 xorg-xinit
 xorg-xinput
 xorg-xprop

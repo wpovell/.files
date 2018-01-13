@@ -128,6 +128,8 @@ bindsym Control+$mod+Right workspace next
 bindsym --whole-window button11 workspace prev
 bindsym --whole-window button10 workspace next
 
+bindsym $mod+s workspace $workspace9
+
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
@@ -192,16 +194,26 @@ bindsym $mod+Escape mode "Sys"
 ## Music
 bindsym XF86AudioPrev exec --no-startup-id muse prev
 bindsym F7 exec --no-startup-id muse prev
+bindsym $mod+Mod1+Left exec --no-startup-id muse prev
+
 bindsym XF86AudioPause exec --no-startup-id muse pause
 bindsym F8 exec --no-startup-id muse pause
+bindsym $mod+Mod1+space exec --no-startup-id muse pause
+
 bindsym XF86AudioNext exec --no-startup-id muse next
 bindsym F9 exec --no-startup-id muse next
+bindsym $mod+Mod1+Right exec --no-startup-id muse next
+
 bindsym XF86AudioMute exec --no-startup-id muse mute
 bindsym F10 exec --no-startup-id muse mute
+
 bindsym XF86AudioLowerVolume exec --no-startup-id muse down
 bindsym F11 exec --no-startup-id muse down
+bindsym $mod+Mod1+Down exec --no-startup-id muse down
+
 bindsym XF86AudioRaiseVolume exec --no-startup-id muse up
 bindsym F12 exec --no-startup-id muse up
+bindsym $mod+Mod1+Up exec --no-startup-id muse up
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10

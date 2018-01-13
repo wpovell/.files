@@ -1,5 +1,7 @@
 acpi
 alsa-utils
+android-tools
+android-udev
 arandr
 atom
 autoconf
@@ -12,6 +14,7 @@ cowsay
 dhcpcd
 dialog
 dmidecode
+dstat
 efibootmgr
 emacs-nox
 espeak
@@ -52,6 +55,7 @@ nano
 ncdu
 netctl
 nginx-mainline
+ngrep
 openvpn
 pcmciautils
 pkg-config
@@ -70,6 +74,7 @@ s-nail
 scrot
 sshfs
 stow
+strace
 sudo
 systemd-sysvcompat
 tmux
@@ -94,15 +99,19 @@ xdotool
 xfsprogs
 xorg-server
 xorg-xbacklight
+xorg-xev
 xorg-xinit
 xorg-xinput
 xorg-xprop
 xsel
 yaourt
 zsh
+android-platform
+android-sdk-build-tools
 batify
 bfg
 cava
+cli-visualizer
 dropbox-cli
 dunst-git
 firefox-nightly
@@ -110,6 +119,7 @@ google-chrome
 i3-gaps-next-git
 i3lock-next-git
 neofetch
+perf-tools
 polybar-git
 python-pywal
 rofi-git

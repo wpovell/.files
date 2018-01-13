@@ -1,6 +1,6 @@
 body {
-    background-color: #bd7e7e;
-    color: #311f2b;
+    background-color: #6c818c;
+    color: #162124;
     font-family: 'Inconsolata', fontawesome, sans-serif;
 }
 
@@ -17,7 +17,7 @@ body {
     text-align: left;
     list-style: none;
     display: none;
-    margin: 20px 10%;
+    margin: 20px 0;
 }
 
 #weather {
@@ -65,14 +65,13 @@ p {
 
 #searchWrapper {
     display: none;
-    width: 100%;
     margin: 0 30%;
     position: fixed;
     top: 10%;
 }
 
 #suggest {
-    color: #83787f;
+    color: #4f5659;
     font-size: 25px;
 }
 
@@ -100,6 +99,6 @@ p {
       color: transparent;
   }
   50% {
-      color: #756074;
+      color: #bbc0c2;
   }
 }

@@ -18,7 +18,8 @@ alias restart-wifi="sudo netctl restart wlp3s0-Brown"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
 # Ls, now with color!
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
+alias ls='/home/wpovell/.gem/ruby/2.5.0/gems/colorls-1.0.9/exe/colorls --gs'
 alias lsa='ls -a'
 alias r='ranger'
 alias chrome="$(which google-chrome-stable)"
