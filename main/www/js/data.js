@@ -1,11 +1,11 @@
 let urls = {
     'ff' : {
-        color : '',
+        color : '#427C30',
         query: 'firstfinancial.org'
     },
     
     '192' : {
-        color : '',
+        color : '#b2b2b2',
         query : '192.168.1.1'
     },
     'd'  : {
@@ -130,7 +130,22 @@ let urls = {
     },
     'h' : {
 	color: '#FF6600',
-	query: 'news.ycombinator.com'
+	query: (q) => {
+            let res = q.match(/^[0-9]{1,2}$/);
+            if (res) {
+                let ret = $("#hn a:not(.comment)")[parseInt(res)-1].href;
+                ret = ret.replace(/https?:\/\//, '');
+                return ret;
+            }
+            res = q.match(/^([0-9]{1,2})c$/);
+            if (res) {
+                ret = $("#hn a.comment")[parseInt(res[1])-1].href;
+                ret = ret.replace(/https?:\/\//, '');
+                return ret;
+            }
+
+            return 'news.ycombinator.com'
+        }
     },
     'r' : {
 	color: '#CEE3F8',

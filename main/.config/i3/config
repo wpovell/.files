@@ -6,6 +6,8 @@ exec --no-startup-id xautolock -locker lock -time 5
 exec --no-startup-id xrdb -I$HOME ~/.Xresources
 exec --no-startup-id compton
 exec --no-startup-id unclutter
+exec --no-startup-id emacs --daemon
+exec --no-startup-id urxvtd -q -f -o
 exec --no-startup-id dunst
 exec --no-startup-id redshift
 exec --no-startup-id polybar top
@@ -63,7 +65,7 @@ bindsym ctrl+alt+f1 gksudo chvt 1
 bindsym ctrl+alt+f2 gksudo chvt 2
 
 # Start Term
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvtc
 
 # Kill focused window
 bindsym $mod+Shift+q kill

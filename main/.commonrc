@@ -12,6 +12,7 @@ export EDITOR='emacs'
 export BROWSER='firefox-nightly'
 
 # Reload Xresources
+alias emacs='emacsclient -nw -c -a ""'
 alias lip="ip address | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias rm="rm -I"
 alias restart-wifi="sudo netctl restart wlp3s0-Brown"
@@ -20,7 +21,7 @@ alias xup="xrdb -I$HOME ~/.Xresources"
 # Ls, now with color!
 #alias ls='ls --color=auto'
 alias ls='/home/wpovell/.gem/ruby/2.5.0/gems/colorls-1.0.9/exe/colorls --gs'
-alias lsa='ls -a'
+alias lsa='ls -A'
 alias r='ranger'
 alias chrome="$(which google-chrome-stable)"
 alias yaourt-update="yaourt -Syu"

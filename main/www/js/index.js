@@ -5,19 +5,19 @@ const WEATHER_LOCATION = 'MD/Baltimore';
 // Fetches & caches weather data
 function getWeather(callback) {
   let modifiedCallback = (data) => {
-      let jsonData = {
-          'location': WEATHER_LOCATION,
-          'time': new Date(),
-          'weather': data
-      }
-      localStorage.setItem('weather', JSON.stringify(jsonData));
-      callback(jsonData);
+    let jsonData = {
+      'location': WEATHER_LOCATION,
+      'time': new Date(),
+      'weather': data
+    }
+    localStorage.setItem('weather', JSON.stringify(jsonData));
+    callback(jsonData);
   };
 
   let data = JSON.parse(window.localStorage.getItem('weather'));
 
-    if (data == null || WEATHER_LOCATION != data['location'] ||
-        ((new Date) - new Date(data['time'])) / 1000 > WEATHER_REFRESH) {
+  if (data == null || WEATHER_LOCATION != data['location'] ||
+    ((new Date) - new Date(data['time'])) / 1000 > WEATHER_REFRESH) {
     console.log("Fetching weather");
     data = $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/forecast10day/q/${WEATHER_LOCATION}.json`, {
       dataType: 'jsonp'
@@ -38,7 +38,7 @@ function setWeather() {
       let dayOfWeek = days[date.getDay()];
       let icon = '';
       if (day.icon.match(/snow/)) {
-        icon = '';
+        icon = '❄';
       } else if (day.icon.match(/cloudy/)) {
         icon = '';
       } else if (day.icon.match(/rain/)) {
