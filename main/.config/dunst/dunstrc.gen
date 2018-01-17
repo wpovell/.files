@@ -18,6 +18,8 @@
     frame_width = 3
     frame_color = "C4"
     timeout = 50
+    browser = /usr/bin/browser
+    dmenu = /usr/bin/rofi -dmenu
 
 [shortcuts]
     close = ctrl+space

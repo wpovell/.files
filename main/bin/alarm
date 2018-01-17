@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo atd
+echo "_alarm $1" | at "${@:2}"

@@ -1,0 +1,104 @@
+body {
+    background-color: C4;
+    color: C0;
+    font-family: 'Inconsolata', fontawesome, sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.comment {
+  color: #383838!important;
+  padding-left: 25px;
+}
+
+#hn {
+    text-align: left;
+    list-style: none;
+    display: none;
+    margin: 20px 0;
+}
+
+#weather {
+  margin: 0 auto;
+  padding: 0;
+  margin-top: 30px;
+  list-style-type: none;
+}
+
+#weather > li {
+  width: 140px;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+#weather > li > div {
+  text-align: center;
+}
+
+a, a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+#timeWrapper {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 10%;
+    margin: 0 auto;
+}
+
+p {
+    margin: 0px;
+}
+
+#time {
+    font-size: 70px;
+}
+
+#date {
+    font-size: 40px;
+}
+
+#searchWrapper {
+    display: none;
+    margin: 0 30%;
+    position: fixed;
+    top: 10%;
+}
+
+#suggest {
+    color: C8;
+    font-size: 25px;
+}
+
+#suggest li {
+    display: inline;
+    margin: 10px;
+    padding: 5px;
+}
+
+#suggest > ul {
+    padding: 0;
+}
+
+#search {
+    font-size: 50px;
+}
+
+#search:after {
+    content: '|';
+    -moz-animation: 1s blink step-end infinite;
+}
+
+@-moz-keyframes blink {
+  from, to {
+      color: transparent;
+  }
+  50% {
+      color: C14;
+  }
+}

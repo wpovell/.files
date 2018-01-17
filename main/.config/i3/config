@@ -2,13 +2,14 @@
 set $mod Mod4
 
 # Startup Apps
-exec --no-startup-id xautolock -locker i3lock-next -time 5
+exec --no-startup-id xautolock -locker lock -time 5
 exec --no-startup-id xrdb -I$HOME ~/.Xresources
 exec --no-startup-id compton
 exec --no-startup-id unclutter
+exec --no-startup-id urxvtd -q -f -o
 exec --no-startup-id dunst
 exec --no-startup-id redshift
-exec --no-startup-id startup
+exec --no-startup-id polybar top
 exec_always --no-startup-id retheme
 exec --no-startup-id dropdown
 exec --no-startup-id startdropbox
@@ -18,9 +19,7 @@ for_window [class="Spotify"] move container to workspace $workspace9
 exec --no-startup-id spotify
 
 # Dropdown term
-#for_window [instance="metask"] floating enable, move scratchpad
-#for_window [instance="metask"] move position 0px 33px, resize set 1920 300
-bindsym $mod+t [instance="metask"] scratchpad show
+bindsym $mod+t [instance="dropdown"] scratchpad show
 bindsym $mod+m exec --no-startup-id ~/.config/polybar/mail open
 
 bindsym $mod+d exec --no-startup-id rofi -show run
@@ -37,6 +36,9 @@ set_from_resource $borderF color8
 set_from_resource $borderUF color0
 set_from_resource $blue color12
 
+focus_on_window_activation focus
+no_focus [class="spotify"]
+
 client.focused $borderF $borderF $borderF $blue
 client.focused_inactive $borderUF $borderUF $borderUF $borderUF
 client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
@@ -47,8 +49,8 @@ client.urgent #000000 #000000 #000000
    #font pango:Inconsolata 10    ##Sets title bar thickness
    #for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
 
-for_window [class="^.*"] border pixel 3
-for_window [instance="metask"] border pixel 0
+for_window [class="^.*"] border pixel 4
+for_window [instance="dropdown"] border pixel 0
 
 # Gaps
 gaps inner 10
@@ -65,7 +67,7 @@ bindsym ctrl+alt+f1 gksudo chvt 1
 bindsym ctrl+alt+f2 gksudo chvt 2
 
 # Start Term
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvtc
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -110,7 +112,7 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+bindsym $mod+minus [instance="^((?!dropdown).)*$"] scratchpad show
 
 set $workspace1 "1: I"
 set $workspace2 "2: II"
@@ -130,9 +132,7 @@ bindsym Control+$mod+Right workspace next
 bindsym --whole-window button11 workspace prev
 bindsym --whole-window button10 workspace next
 
-# Keyboard brightness
-bindsym XF86KbdBrightnessDown exec kbdlight down 20
-bindsym XF86KbdBrightnessUp exec kbdlight up 20
+bindsym $mod+s workspace $workspace9
 
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -198,16 +198,26 @@ bindsym $mod+Escape mode "Sys"
 ## Music
 bindsym XF86AudioPrev exec --no-startup-id muse prev
 bindsym F7 exec --no-startup-id muse prev
+bindsym $mod+Mod1+Left exec --no-startup-id muse prev
+
 bindsym XF86AudioPause exec --no-startup-id muse pause
 bindsym F8 exec --no-startup-id muse pause
+bindsym $mod+Mod1+space exec --no-startup-id muse pause
+
 bindsym XF86AudioNext exec --no-startup-id muse next
 bindsym F9 exec --no-startup-id muse next
+bindsym $mod+Mod1+Right exec --no-startup-id muse next
+
 bindsym XF86AudioMute exec --no-startup-id muse mute
 bindsym F10 exec --no-startup-id muse mute
+
 bindsym XF86AudioLowerVolume exec --no-startup-id muse down
 bindsym F11 exec --no-startup-id muse down
+bindsym $mod+Mod1+Down exec --no-startup-id muse down
+
 bindsym XF86AudioRaiseVolume exec --no-startup-id muse up
 bindsym F12 exec --no-startup-id muse up
+bindsym $mod+Mod1+Up exec --no-startup-id muse up
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
@@ -235,3 +245,5 @@ mode "Resize" {
 }
 
 bindsym $mod+r mode "Resize"
+
+exec i3-msg workspace $workspace1

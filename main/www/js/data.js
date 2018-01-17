@@ -1,8 +1,32 @@
 let urls = {
+    's' : {
+        color: '#4D394B',
+        query: 'cs0320-s18.slack.com',
+    },
+    'w' : {
+        color: '#4DBFD9',
+        query: 'www.google.com/search?q=weather',
+    },    
+    'ff' : {
+        color : '#427C30',
+        query: 'firstfinancial.org'
+    },    
+    '192' : {
+        color : '#b2b2b2',
+        query : '192.168.1.1'
+    },
     'd'  : {
 	color : '#F4B400',
 	query : 'drive.google.com'
     },
+    'pb' : {
+        color : '#4AB367',
+        query : 'pushbullet.com'
+    },
+    'wg' : {
+        color : '#006600',
+        query : '4chan.org/wg'
+    }, 
     'p' : {
 	color : '#3E7AAB',
 	query : 'piazza.com'
@@ -23,13 +47,9 @@ let urls = {
 	color: '#83C441',
 	query: 'hypem.com/popular'
     },
-    's' : {
+    'so' : {
 	color: '#FF4400',
 	query: 'soundcloud.com'
-    },
-    'w' : {
-        color: '#6FC8E3',
-        query: 'google.com/search?q=weather'
     },
     'b' : {
 	color: '#3A1E1A',
@@ -113,7 +133,25 @@ let urls = {
     },
     'h' : {
 	color: '#FF6600',
-	query: 'news.ycombinator.com'
+	query: (q) => {
+
+            if (q) {
+            let res = q.match(/^[0-9]{1,2}$/);
+            if (res) {
+                let ret = $("#hn a:not(.comment)")[parseInt(res)-1].href;
+                ret = ret.replace(/https?:\/\//, '');
+                return ret;
+            }
+            res = q.match(/^([0-9]{1,2})c$/);
+            if (res) {
+                ret = $("#hn a.comment")[parseInt(res[1])-1].href;
+                ret = ret.replace(/https?:\/\//, '');
+                return ret;
+            }
+            }
+
+            return 'news.ycombinator.com'
+        }
     },
     'r' : {
 	color: '#CEE3F8',

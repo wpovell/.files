@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mpg123 /home/wpovell/dotfiles/misc/alarm.mp3 &
+pid=$!
+result=$(dunstify -A kill,Stop "ALARM" "$1")
+if [ "$result" == "kill" ]
+then
+    kill $pid
+fi

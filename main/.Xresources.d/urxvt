@@ -1,4 +1,3 @@
-!URxvt.font: xft:Gohu Gohufont
 URxvt.font:             xft:Inconsolata\ Nerd\ Font\ Mono:pixelsize=20:antialias=true:hinting=true
 URxvt.boldFont:         xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:bold
 URxvt.italicFont:       xft:Inconsolata:pixelsize=20:antialias=true:hinting=true:italic
@@ -9,6 +8,7 @@ URxvt.internalBorder:  15
 URxvt*fading: 20
 URxvt.url-launcher: /usr/bin/browser
 URxvt.letterSpace: 1
+URxvt.backend:  xrender
 
 ! copy/paste
 URxvt*iso14755: false

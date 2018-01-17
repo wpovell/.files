@@ -11,7 +11,7 @@ colors = re.findall(r'([FBC\d]{2,3})\s+(\#[\da-f]{6})', dat, re.IGNORECASE)
 colors.sort(key = lambda x: -len(x[0]))
 toWrite = ""
 
-with open('/home/wpovell/www/index.css.gen') as f:
+with open('/home/wpovell/www/css/index.css.gen') as f:
     css = f.read()
 
 gens = ['/home/wpovell/.mozilla/firefox/fb8uvoz6.default/chrome/userChrome.css.gen', '/home/wpovell/.config/dunst/dunstrc.gen']
@@ -42,7 +42,7 @@ for c, v in colors:
         genOut[i] = g.replace(c, v.lower())
     css = css.replace(c, v.lower())
 
-with open('/home/wpovell/www/index.css', 'w') as f:
+with open('/home/wpovell/www/css/index.css', 'w') as f:
     f.write(css)
 
 for i, g in enumerate(gens):

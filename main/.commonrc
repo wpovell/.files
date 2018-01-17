@@ -18,14 +18,16 @@ alias restart-wifi="sudo netctl restart wlp3s0-Brown"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
 # Ls, now with color!
-alias ls='ls --color=auto'
-alias lsa='ls -a'
+#alias ls='ls --color=auto'
+alias ls='/home/wpovell/.gem/ruby/2.5.0/gems/colorls-1.0.9/exe/colorls --gs'
+alias lsa='ls -A'
 alias r='ranger'
 alias chrome="$(which google-chrome-stable)"
 alias yaourt-update="yaourt -Syu"
 alias yaourt-clean="yaourt -Qdt"
 alias yaourt-backup="(pacman -Qqettn && pacman -Qqettm) > ~/dotfiles/packages/packages_$HOSTNAME && pacman -Qqe > ~/dotfiles/packages/packages_all_$HOSTNAME"
 alias yrt="yaourt-clean; yaourt-update; yaourt-backup"
+alias yrtrm="yaourt -Rns"
 alias weather="curl wttr.in 2>/dev/null | head -n 7 | tail -n +3"
 alias weather-all="curl wttr.in 2>/dev/null | tail -n 33 | head -n 30"
 alias m='browser https://mail.google.com/mail/u/0/'

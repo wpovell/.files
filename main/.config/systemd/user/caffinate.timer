@@ -1,0 +1,9 @@
+[Unit]
+Description=Runs caffinate every 3min
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=3min
+
+[Install]
+WantedBy=caffinate.target

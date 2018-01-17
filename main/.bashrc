@@ -1,8 +1,8 @@
 . ~/.commonrc
 
 # Dropdown ignores ctrl-d
-window_name=$(xprop -id "$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')" | grep 'WM_NAME(STRING)' | awk '{print $3}' 2> /dev/null)
-if [[ $window_name == '"dropdown"' ]]
+window_name=$(xprop -id "$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')" 2> /dev/null | grep 'WM_NAME(STRING)' | awk '{print $3}' 2> /dev/null)
+if [[ $window_name == '"dropdown"' ]] && [[ -z $TMUX ]]
 then
   set -o ignoreeof
 fi
@@ -32,7 +32,11 @@ prompt() {
 	fi
 	GITP="$GITP "
     fi
-    PS1="$C1\h$END \w $GITP$C1»$END "	
+    PS1="$C1\h$END \w $GITP$C1»$END "
+
+    if [[ -n $VIRTUAL_ENV ]]; then
+        PS1="(`basename \"$VIRTUAL_ENV\"`) $PS1"
+    fi
 }
 
 PROMPT_COMMAND="prompt"
