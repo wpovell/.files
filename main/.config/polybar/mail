@@ -59,7 +59,7 @@ def query():
     for account_id, email in enumerate(accounts):
         try:
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
-        except socket.gaierror:
+        except (socket.gaierror, ConnectionResetError):
             # No internet
             exit()
         

@@ -1,6 +1,6 @@
 // Weather refresh in seconds
 const WEATHER_REFRESH = 60 * 20;
-const WEATHER_LOCATION = 'MD/Baltimore';
+const WEATHER_LOCATION = 'RI/Providence';
 
 // Fetches & caches weather data
 function getWeather(callback) {
