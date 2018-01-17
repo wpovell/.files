@@ -6,7 +6,6 @@ exec --no-startup-id xautolock -locker lock -time 5
 exec --no-startup-id xrdb -I$HOME ~/.Xresources
 exec --no-startup-id compton
 exec --no-startup-id unclutter
-exec --no-startup-id emacs --daemon
 exec --no-startup-id urxvtd -q -f -o
 exec --no-startup-id dunst
 exec --no-startup-id redshift
@@ -37,6 +36,9 @@ set_from_resource $borderF color8
 set_from_resource $borderUF color0
 set_from_resource $blue color12
 
+focus_on_window_activation focus
+no_focus [class="spotify"]
+
 client.focused $borderF $borderF $borderF $blue
 client.focused_inactive $borderUF $borderUF $borderUF $borderUF
 client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
@@ -47,7 +49,7 @@ client.urgent #000000 #000000 #000000
    #font pango:Inconsolata 10    ##Sets title bar thickness
    #for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
 
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 4
 for_window [instance="dropdown"] border pixel 0
 
 # Gaps
@@ -110,7 +112,7 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+bindsym $mod+minus [instance="^((?!dropdown).)*$"] scratchpad show
 
 set $workspace1 "1: I"
 set $workspace2 "2: II"
@@ -243,3 +245,5 @@ mode "Resize" {
 }
 
 bindsym $mod+r mode "Resize"
+
+exec i3-msg workspace $workspace1

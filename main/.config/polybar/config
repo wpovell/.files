@@ -15,12 +15,11 @@ height			        = 27
 background		        = ${colors.background}
 foreground		        = $(colors.foreground}
 radius                          = 0
-modules-left                    = i3
+modules-left                    = i3 scratch
 modules-center                  = date
 modules-right 	                = music mail blueno lambda battery volume
 font-0 			        = FontAwesome:size=8;3
-#font-1 			        = Gohu GohuFont;2
-font-1 = Inconsolata:size=10;2
+font-1                          = Inconsolata:size=10;2
 module-margin	              	= 3
 
 [module/volume]
@@ -151,6 +150,16 @@ format-prefix-foreground = ${colors.foreground}
 label-foreground = ${colors.foreground}
 exec = ~/.config/polybar/mail query $(xquery color12)
 click-left = ~/.config/polybar/mail open
+
+
+[module/scratch]
+type = custom/script
+interval = 5
+format = <label>
+format-prefix-foreground = ${colors.foreground}
+label-foreground = ${colors.foreground}
+exec = ~/.config/polybar/scratch
+click-left = i3-msg [instance="^((?!dropdown).)*$"] scratchpad show
 
 [global/wm]
 margin-top		= 5

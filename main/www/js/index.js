@@ -136,7 +136,8 @@ function setSearch(showSearch) {
 function enter() {
   let query = $('#search').text();
   // Go directly if url
-  if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i)) {
+    if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) &&
+        !query.trim().includes(' ')) {
     return 'https://' + query;
   }
 

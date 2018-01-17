@@ -133,6 +133,7 @@ shadow
 simple-mtpfs
 spotify
 sshfs
+steam
 stow
 strace
 sudo

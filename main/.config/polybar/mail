@@ -2,86 +2,139 @@
 import json
 import subprocess
 import os
+import re
+import imaplib
+import concurrent.futures
+import socket
+from functools import partial
 
+def cleanup_imap(mail, futures):
+    concurrent.futures.wait(futures)
+    mail.logout()
 
+def notification_callback(gid, uid, account_id, mail, future):
+    output = future.result().stdout.decode('utf-8').strip()
+    if output == 'open':
+        url = 'mail.google.com/mail/u/{}/#inbox/{}'.format(account_id, gid)
+        subprocess.call(['browser', url])
+    elif output == 'delete':
+        mail.store(uid, '+FLAGS', r'\Deleted')
+    elif output == 'read':
+        mail.store(uid, '+FLAGS', r'\Seen')
+
+# Ensure cache file eixsts
 CACHE = '/home/wpovell/.cache/polybar_mail'
 if not os.path.exists(CACHE):
     with open(CACHE, 'w') as f:
         f.write('[[],[]]')
-    
-def query():
-    with open('/home/wpovell/dotfiles/pass.json') as f:
-        p = json.load(f)
 
+TRUNCATE_AT = 25
+def truncate(s):
+    '''Truncate long subjects'''
+    return s[:TRUNCATE_AT] + '...' if len(s) > TRUNCATE_AT else s
+
+def query():
+    '''Query for new mail, notify if new.'''
+
+    # Read passwords
+    with open('/home/wpovell/dotfiles/pass.json') as f:
+        passwords = json.load(f)
+
+    # Read in fetched but unread mail to compare to
     try:
         with open(CACHE, 'r') as f:
-            past = json.load(f)
-    except Exception:
-        past = [[],[]]
+            seen = json.load(f)
+    except json.decoder.JSONDecodeError:
+        # Probably an empty json file
+        seen = [[], []]
 
-    newPast = []
-    f = open(CACHE, 'w')
+    new_seen = []
+    cache_file = open(CACHE, 'w')
+    accounts = sorted(passwords.keys())
+    unread_count = []
+
+    pool = concurrent.futures.ThreadPoolExecutor()
+
+    futures = []
+    for account_id, email in enumerate(accounts):
+        try:
+            mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
+        except socket.gaierror:
+            # No internet
+            exit()
         
-    l = sorted(p.keys())[::-1]
-    t = []
+        mail.login(email, passwords[email])
+        mail.select('Inbox')
 
-    try:
-        for i, e in enumerate(l):
-            obj = imaplib.IMAP4_SSL('imap.gmail.com', 993)
-            obj.login(e, p[e])
-            obj.select('Inbox', readonly=True)
-            unread = list(map(lambda x: x.decode('utf-8'),
-                              obj.search(None, 'UnSeen')[1][0].split()))
-            t.append(unread)
-            newMail = set(unread) - set(past[i])
-            for i in newMail:
-                m = obj.fetch(i, '(RFC822)')[1][0][1].decode('utf-8').split('\n')
-                sub = None
-                frm = None
-                for line in m:
-                    line = line.strip()
-                    if line.startswith('Subject:'):
-                        sub = line
-                    if line.startswith('From:'):
-                        frm = line
-                    if sub and line:
-                        break
-                subprocess.call(['notify-send', 'Mail', '{}\n{}'.format(frm, sub)])
-            obj.logout()
-    except Exception as e:
-        pass
+        # Notify for unseen emails
+        unread = list(map(lambda x: x.decode('utf-8'),
+                          mail.search(None, 'UnSeen')[1][0].split()))
+        new_seen.append(unread)
+        new_mail = set(unread) - set(seen[account_id])
+        for uid in new_mail:
+            data = mail.fetch(uid, 'BODY.PEEK[HEADER.FIELDS (FROM SUBJECT)]')
+            frm, sub = data[1][0][1].decode('utf-8').replace('\r','').strip().split('\n')
+
+            # Process
+            frm = frm.replace('From: ', '').replace('"', '')
+            frm = re.sub(r'<[_a-z.@]+>', '', frm, re.I).strip()
+
+            frm = truncate(frm)
+            sub = truncate(sub.replace('Subject: ', ''))
+
+            # Google mail id
+            gid = hex(int(mail.fetch(uid, '(X-GM-MSGID)')[1][0].split()[2][:-1]))[2:]
+
+            args = ['dunstify',
+                    '--action=open,Open "{}"'.format(sub),
+                    '--action=read,Mark "{}" as read'.format(sub),
+                    '--action=delete,Delete "{}"'.format(sub),
+                    '--appname=Mail', 'Mail', '{}\n{}'.format(frm, sub)]
+
+            f = pool.submit(subprocess.run, args, stdout=subprocess.PIPE)
+            print(account_id)
+            f.add_done_callback(
+                partial(notification_callback,
+                        gid, uid, account_id, mail))
+            futures.append(f)
+
+    pool.submit(cleanup_imap, mail, futures)
+    pool.shutdown(wait=False)
+
     s = ''
-    json.dump(t, f)
-    lens = list(map(len, t))
-    f.close()
-    if sum(lens):
-        s = '%{F' + altColor + '}'
-        s += '  {}'.format(sum(lens))
-    else:
-        s += ''
+    json.dump(new_seen, cache_file)
+    cache_file.close()
 
-    return s
+    lens = list(map(len, new_seen))
+    return sum(lens)
 
 def show():
     try:
         with open(CACHE) as f:
-            t = json.load(f)
+            cache = json.load(f)
     except Exception:
-        t = [[],[]]
-    print(t)
-    if t[1] or (not t[1] and not t[0]):
+        cache = [[],[]]
+
+    if cache[0] or (not cache[0] and not cache[1]):
         subprocess.call(['browser', 'mail.google.com/mail/u/0/'])
-    if t[0]:
+    if cache[1]:
         subprocess.call(['browser', 'mail.google.com/mail/u/1/'])
     query()
-    
 
 
-import json, imaplib
-from sys import argv
-order = argv[1]
-if order == 'query':
-    altColor = argv[2]
-    print(query())
-else:
-    show()
+
+if __name__ == '__main__':
+    from sys import argv
+    if len(argv) < 2 or argv[1] == 'query':
+        alt_color = '' if len(argv) < 3 else argv[2]
+        unread = query()
+        if unread:
+            s = '%{F' + alt_color + '}'
+            s += '  {}'.format(unread)
+        else:
+            s = ''
+
+        print(s)
+    else:
+        show()
+        query()
