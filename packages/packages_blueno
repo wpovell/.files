@@ -18,6 +18,7 @@ figlet
 flex
 fontforge
 gcc
+gksu
 gparted
 grub
 iputils
@@ -49,6 +50,7 @@ python-i3-py
 python-matplotlib
 python-pillow
 python-pip
+python-protobuf
 python-scipy
 python-virtualenv
 ranger
