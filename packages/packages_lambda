@@ -3,6 +3,7 @@ alsa-utils
 android-tools
 android-udev
 arandr
+at
 atom
 autoconf
 automake
@@ -15,6 +16,7 @@ dhcpcd
 dialog
 dmidecode
 dstat
+eclipse-cpp
 efibootmgr
 emacs-nox
 espeak
@@ -62,6 +64,7 @@ pkg-config
 playerctl
 python-matplotlib
 python-pillow
+python-pip
 python-scipy
 python-tensorflow
 python-virtualenv
@@ -84,7 +87,6 @@ tree
 ttf-font-awesome
 ttf-inconsolata
 uncrustify
-unzip
 usbutils
 valgrind
 vi

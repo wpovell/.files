@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mpg123 /home/wpovell/dotfiles/misc/alarm.mp3 &
+pb -d 0 "ALARM: $1"
 pid=$!
 result=$(dunstify -A kill,Stop "ALARM" "$1")
 if [ "$result" == "kill" ]
