@@ -38,6 +38,7 @@ gawk
 gcc
 gcc-libs
 gettext
+gksu
 glibc
 google-chrome
 gparted
@@ -91,6 +92,7 @@ python-matplotlib
 python-opencv
 python-pillow
 python-pip
+python-protobuf
 python-pywal
 python-scipy
 python-virtualenv
