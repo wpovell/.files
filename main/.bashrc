@@ -1,5 +1,7 @@
 . ~/.commonrc
 
+set bell-style none
+
 # Dropdown ignores ctrl-d
 window_name=$(xprop -id "$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')" 2> /dev/null | grep 'WM_NAME(STRING)' | awk '{print $3}' 2> /dev/null)
 if [[ $window_name == '"dropdown"' ]] && [[ -z $TMUX ]]

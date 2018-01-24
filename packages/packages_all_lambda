@@ -33,7 +33,7 @@ dropbox-cli
 dstat
 dunst-git
 e2fsprogs
-eclipse-cpp
+eclipse-java
 efibootmgr
 emacs-nox
 espeak
@@ -89,6 +89,7 @@ m4
 make
 man-db
 man-pages
+maven
 mdadm
 mongodb
 mpd
@@ -128,6 +129,7 @@ redshift
 reiserfsprogs
 remmina
 rofi-git
+rsync
 rxvt-unicode
 s-nail
 scrot

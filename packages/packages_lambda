@@ -16,7 +16,7 @@ dhcpcd
 dialog
 dmidecode
 dstat
-eclipse-cpp
+eclipse-java
 efibootmgr
 emacs-nox
 espeak
@@ -49,6 +49,7 @@ lvm2
 lxappearance
 man-db
 man-pages
+maven
 mdadm
 mongodb
 mpd
@@ -73,6 +74,7 @@ recordmydesktop
 redshift
 reiserfsprogs
 remmina
+rsync
 s-nail
 scrot
 sshfs

@@ -73,10 +73,16 @@ def query():
         new_mail = set(unread) - set(seen[account_id])
         for uid in new_mail:
             data = mail.fetch(uid, 'BODY.PEEK[HEADER.FIELDS (FROM SUBJECT)]')
-            frm, sub = data[1][0][1].decode('utf-8').replace('\r','').strip().split('\n')
-
+            
+            headers = data[1][0][1].decode('utf-8').replace('\r','').strip().split('Subject: ')
+            if len(headers) == 2:
+                frm, sub = headers
+            else:
+                frm = headers[0]
+                sub = ''
+                
             # Process
-            frm = frm.replace('From: ', '').replace('"', '')
+            frm = frm.replace('"', '')
             frm = re.sub(r'<[_a-z.@]+>', '', frm, re.I).strip()
 
             frm = truncate(frm)
@@ -84,7 +90,7 @@ def query():
 
             # Google mail id
             gid = hex(int(mail.fetch(uid, '(X-GM-MSGID)')[1][0].split()[2][:-1]))[2:]
-
+            info = frm + ('\n' + sub) if sub else ''
             args = ['dunstify',
                     '--action=open,Open "{}"'.format(sub),
                     '--action=read,Mark "{}" as read'.format(sub),
@@ -92,7 +98,6 @@ def query():
                     '--appname=Mail', 'Mail', '{}\n{}'.format(frm, sub)]
 
             f = pool.submit(subprocess.run, args, stdout=subprocess.PIPE)
-            print(account_id)
             f.add_done_callback(
                 partial(notification_callback,
                         gid, uid, account_id, mail))
