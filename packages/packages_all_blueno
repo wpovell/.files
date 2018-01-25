@@ -1,5 +1,7 @@
 alsa-utils
 asoundconf
+at
+atom
 autoconf
 automake
 bash
@@ -101,6 +103,7 @@ reiserfsprogs
 rofi
 rxvt-unicode
 s-nail
+scrot
 sed
 shadow
 spotify

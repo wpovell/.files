@@ -1,4 +1,6 @@
 alsa-utils
+at
+atom
 autoconf
 automake
 bazel
@@ -14,7 +16,6 @@ evince
 fakeroot
 feh
 figlet
-flex
 fontforge
 gcc
 gksu
@@ -57,6 +58,7 @@ redshift
 reiserfsprogs
 rofi
 s-nail
+scrot
 sshfs
 stow
 sudo

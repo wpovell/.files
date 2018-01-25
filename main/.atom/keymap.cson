@@ -1,7 +1,8 @@
 '.platform-linux atom-text-editor':
   'ctrl-tab': 'pane:show-next-item'
   'ctrl-tab ^ctrl': 'unset!'
-  'ctrl-shift-tab': 'pane:show-previous'
+  'ctrl-shift-tab': 'pane:show-previous-item'
+  'ctrl-shift-tab ^ctrl': 'unset!'
   'ctrl-x': 'unset'
   'ctrl-x-s': 'core:save'
   'ctrl-e': 'editor:move-to-end-of-line'
