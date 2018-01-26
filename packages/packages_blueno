@@ -34,6 +34,7 @@ make
 man-db
 man-pages
 mdadm
+mongodb
 mplayer
 mtools
 nano

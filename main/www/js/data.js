@@ -60,22 +60,19 @@ let urls = {
 		return 'cab.brown.edu';
 	    case 'canvas':
 		return 'canvas.brown.edu';
-	    case 'cs147':
-		cc = 'cs1470';
+	    case 'cs167':
+		cc = 'csci1670';
 		break;
-	    case 'cs123':
-		cc = q;
+	    case 'cs195y':
+		cc = 'cs195y/2018';
 		break;
-	    case 'cs33':
-		cc = 'csci0330';
-		break;
-	    case 'cs100':
-		cc = 'csci0100'
+	    case 'cs32':
+		cc = 'cs0320'
 		break;
 	    }
 	    return 'cs.brown.edu/courses/'+cc
 	},
-	suggest: ['cs147', 'cs123', 'cs33', 'cs100', 'cab', 'canvas']
+	suggest: ['cs167', 'cs195y', 'cs32', 'cab', 'canvas']
     },
     'cab' : {
 	color: '#A10311',
