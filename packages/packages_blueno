@@ -4,8 +4,11 @@ atom
 autoconf
 automake
 bazel
+bc
 bison
+clang
 cmatrix
+cscope
 cudnn
 dhcpcd
 dosfstools
@@ -17,7 +20,6 @@ fakeroot
 feh
 figlet
 fontforge
-gcc
 gksu
 gparted
 grub
@@ -43,6 +45,7 @@ nginx-mainline
 nvidia
 openvpn
 os-prober
+parallel
 patch
 pcmciautils
 pkg-config

@@ -6,13 +6,16 @@ autoconf
 automake
 bash
 bazel
+bc
 binutils
 bison
 bzip2
 cava-git
+clang
 cmatrix
 coreutils
 cryptsetup
+cscope
 cuda
 cudnn
 device-mapper
@@ -80,6 +83,7 @@ openssh
 openvpn
 os-prober
 pacman
+parallel
 patch
 pciutils
 pcmciautils
