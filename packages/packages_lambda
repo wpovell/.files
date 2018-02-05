@@ -9,9 +9,11 @@ autoconf
 automake
 banner
 bison
+clang
 cmatrix
 compton
 cowsay
+cscope
 dhcpcd
 dialog
 dmidecode
@@ -41,6 +43,7 @@ jshon
 jsoncpp
 jupyter
 keepassxc
+libreoffice-fresh
 licenses
 linux
 logrotate
@@ -111,6 +114,7 @@ xorg-xprop
 xsel
 yaourt
 zsh
+alloy
 android-platform
 android-sdk-build-tools
 batify
@@ -125,6 +129,7 @@ i3-gaps-next-git
 i3lock-next-git
 neofetch
 perf-tools
+phantomjs
 polybar-git
 python-pywal
 rofi-git
