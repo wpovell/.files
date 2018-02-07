@@ -6,7 +6,6 @@ xup
 sleep 1
 sess=$(tmux list-sessions | grep "[157x12]")
 sess=${sess:0:1}
-notify-send "'$sess'"
 if [[ -z "$sess" ]]
 then
     urxvt -name dropdown &

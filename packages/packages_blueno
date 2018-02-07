@@ -20,6 +20,7 @@ fakeroot
 feh
 figlet
 fontforge
+gdb
 gksu
 gparted
 grub
@@ -68,6 +69,7 @@ stow
 sudo
 systemd-sysvcompat
 tmux
+tree
 ttf-font-awesome
 ttf-inconsolata
 unclutter
