@@ -1,3 +1,4 @@
+alloy
 alsa-utils
 asoundconf
 at
@@ -11,6 +12,7 @@ binutils
 bison
 bzip2
 cava-git
+cdrtools
 clang
 cmatrix
 coreutils
@@ -25,6 +27,7 @@ dosfstools
 dropbox
 dropbox-cli
 dunst
+dunstify
 e2fsprogs
 efibootmgr
 emacs-nox
@@ -60,6 +63,7 @@ jfsutils
 jsoncpp
 keepassxc
 less
+libisoburn
 libmpdclient
 libtool
 licenses
@@ -71,6 +75,7 @@ m4
 make
 man-db
 man-pages
+maven
 mdadm
 mongodb
 mplayer
@@ -103,6 +108,8 @@ python-protobuf
 python-pywal
 python-scipy
 python-virtualenv
+qemu
+qemu-arch-extra
 ranger
 redshift
 reiserfsprogs
@@ -144,6 +151,8 @@ xfsprogs
 xorg-fonts-100dpi
 xorg-server
 xorg-xinit
+xorg-xkill
 xorg-xprop
 xorg-xrandr
+xterm
 yaourt
