@@ -51,6 +51,12 @@ let urls = {
 	color: '#FF4400',
 	query: 'soundcloud.com'
     },
+    'lh' : {
+        color: '#94BFD0',
+        query: (q) => {
+            return 'localhost:' + q;
+        }
+    },
     'b' : {
 	color: '#3A1E1A',
 	query: (q) => {
