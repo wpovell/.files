@@ -183,7 +183,7 @@ mode "Sys" {
   # Exit
   bindsym e exec --no-startup-id i3-msg exit
   # Lock
-  bindsym l exec --no-startup-id lock
+  bindsym l exec --no-startup-id "i3-msg mode default && lock"
   # Restart
   bindsym r exec --no-startup-id systemctl reboot
   # Shutdown
