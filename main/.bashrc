@@ -15,12 +15,15 @@ LESSHISTFILE=-
 # Max num of dirs
 PROMPT_DIRTRIM=2
 
+FILESYS=$(mount | grep "^$(df -Pk . | head -n 2 | tail -n 1 | cut -f 1 -d ' ') " | cut -f 5 -d ' ')
+
 # Prompt
 prompt() {
     C1="\[\033[34m\]"
     END="\[\033[0m\]"
     BRIGHT="\[\033[35m\]"
     GITP=""
+    if [[ $FILESYS != "fuse.sshfs" ]]; then
     git status > /dev/null 2>&1
     if [[ $? == 0 ]]; then
 	GITP=""
@@ -33,6 +36,7 @@ prompt() {
 	    GITP="$BRIGHT$GITP$END"
 	fi
 	GITP="$GITP "
+    fi
     fi
     PS1="$C1\h$END \w $GITP$C1»$END "
 
