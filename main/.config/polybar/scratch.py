@@ -15,3 +15,5 @@ def count_scratch(node):
 scratch = count_scratch(data) - 1
 if scratch > 0:
     print(f'   {scratch}')
+else:
+    print('')
