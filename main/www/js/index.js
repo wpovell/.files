@@ -162,9 +162,14 @@ document.onkeypress = (e) => {
   let searchQuery = search.text();
 
   // Don't do anything for tab if there isn't a query
-  if ((e.key == 'Tab' || e.key == ' ') && !searchQuery)
+  if ((e.key == 'Tab' || e.key == ' ') && !searchQuery) {
     return;
-
+  }
+    
+  if (e.altKey) {
+    return;
+  }
+    
   // Allow some control keys
   if (['l', 'r', 'C', 'v'].includes(e.key) && e.ctrlKey) {
     return;

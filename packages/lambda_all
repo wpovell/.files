@@ -81,6 +81,7 @@ libreoffice-fresh
 libtool
 licenses
 linux
+linux-headers
 logrotate
 lolcat
 lvm2

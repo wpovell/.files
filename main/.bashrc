@@ -15,28 +15,28 @@ LESSHISTFILE=-
 # Max num of dirs
 PROMPT_DIRTRIM=2
 
-FILESYS=$(mount | grep "^$(df -Pk . | head -n 2 | tail -n 1 | cut -f 1 -d ' ') " | cut -f 5 -d ' ')
-
 # Prompt
 prompt() {
+    FILESYS=$(mount | grep "^$(df -Pk . | sed '2q;d' | cut -f 1 -d ' ') " | cut -f 5 -d ' ')
     C1="\[\033[34m\]"
     END="\[\033[0m\]"
     BRIGHT="\[\033[35m\]"
     GITP=""
+    # Don't use git prompt if in network mount
     if [[ $FILESYS != "fuse.sshfs" ]]; then
-    git status > /dev/null 2>&1
-    if [[ $? == 0 ]]; then
-	GITP=""
-	BRANCH="$(git branch | grep -Po "(?<=\* )\w+")"
-	if [ "$BRANCH" != "master" ]; then
-	    GITP="$GITP [$BRANCH]"
-	fi
-	
-	if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]; then
-	    GITP="$BRIGHT$GITP$END"
-	fi
-	GITP="$GITP "
-    fi
+      git status > /dev/null 2>&1
+      if [[ $? == 0 ]]; then
+      	GITP=""
+      	BRANCH="$(git branch | grep -Po "(?<=\* )\w+")"
+      	if [ "$BRANCH" != "master" ]; then
+      	    GITP="$GITP [$BRANCH]"
+      	fi
+
+      	if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]; then
+      	    GITP="$BRIGHT$GITP$END"
+      	fi
+      	GITP="$GITP "
+      fi
     fi
     PS1="$C1\h$END \w $GITP$C1»$END "
 
