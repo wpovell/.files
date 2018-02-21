@@ -39,7 +39,7 @@ function setWeather() {
       let icon = '';
       if (day.icon.match(/snow/)) {
         icon = '❄';
-      } else if (day.icon.match(/cloudy/)) {
+      } else if (day.icon.match(/cloudy/) || day.icon.match(/fog/)) {
         icon = '';
       } else if (day.icon.match(/rain/)) {
         icon = '';
