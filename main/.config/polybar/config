@@ -25,6 +25,9 @@ module-margin	              	= 3
 [module/volume]
 type = internal/alsa
 
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 14
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-padding-right = 5
