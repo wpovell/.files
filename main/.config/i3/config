@@ -15,13 +15,21 @@ exec --no-startup-id dropdown
 exec --no-startup-id startdropbox
 
 # Spotify
-for_window [class="Spotify"] move container to workspace $workspace9
+for_window [class="Spotify"] move container to workspace $SpotifyWS
 exec --no-startup-id spotify
+bindsym $mod+s workspace $SpotifyWS
+no_focus [class="spotify"]
+
+# Franz
+for_window [class="Franz"] move container to workspace $FranzWS
+exec --no-startup-id franz
+bindsym $mod+m workspace $FranzWS
+no_focus [class="franz"]
+
+#bindsym $mod+m exec --no-startup-id ~/.config/polybar/mail open
 
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
-
-bindsym $mod+m exec --no-startup-id ~/.config/polybar/mail open
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym --release F2 exec --no-startup-id shrugie
@@ -38,7 +46,7 @@ set_from_resource $borderUF color0
 set_from_resource $blue color12
 
 focus_on_window_activation focus
-no_focus [class="spotify"]
+
 
 client.focused $borderF $borderF $borderF $blue
 client.focused_inactive $borderUF $borderUF $borderUF $borderUF
@@ -116,6 +124,8 @@ bindsym $mod+Shift+minus move scratchpad
 #bindsym $mod+minus [instance="^((?!dropdown).)*$"] scratchpad show
 bindsym $mod+minus scratchpad show
 
+set $SpotifyWS ""
+set $FranzWS ""
 set $workspace1 "1: I"
 set $workspace2 "2: II"
 set $workspace3 "3: III"
@@ -133,8 +143,6 @@ bindsym Control+$mod+Right workspace next
 # Swipe
 bindsym --whole-window button11 workspace prev
 bindsym --whole-window button10 workspace next
-
-bindsym $mod+s workspace $workspace9
 
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
