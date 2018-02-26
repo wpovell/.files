@@ -1,6 +1,9 @@
 # Custom Stuff
 set $mod Mod4
 
+# Split direction
+default_orientation horizontal
+
 # Startup Apps
 exec --no-startup-id xautolock -locker lock -time 5
 exec --no-startup-id xrdb -I$HOME ~/.Xresources
