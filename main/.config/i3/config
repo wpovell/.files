@@ -124,8 +124,8 @@ bindsym $mod+Shift+minus move scratchpad
 #bindsym $mod+minus [instance="^((?!dropdown).)*$"] scratchpad show
 bindsym $mod+minus scratchpad show
 
-set $SpotifyWS ""
-set $FranzWS ""
+set $SpotifyWS "99: "
+set $FranzWS "98: "
 set $workspace1 "1: I"
 set $workspace2 "2: II"
 set $workspace3 "3: III"

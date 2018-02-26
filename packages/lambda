@@ -39,7 +39,6 @@ jfsutils
 jq
 jshon
 jsoncpp
-jupyter
 keepassxc
 libreoffice-fresh
 licenses
@@ -121,6 +120,7 @@ cli-visualizer
 dropbox-cli
 dunst-git
 firefox-nightly
+franz
 google-chrome
 i3-gaps-next-git
 i3lock-next-git
