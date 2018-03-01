@@ -5,8 +5,10 @@ export CUDA_HOME=/opt/cuda
 # Path
 export PATH=$PATH:~/bin/:~/dotfiles/bin:/sbin/:/opt/cuda/bin:~/.local/bin:/home/wpovell/.gem/ruby/2.5.0/bin
 
+export JAVA_HOME=/usr/lib/jvm/default
+
 # No nv
-__GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
+export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
 
 export EDITOR='emacs'
 export BROWSER='firefox-nightly'
@@ -14,7 +16,7 @@ export BROWSER='firefox-nightly'
 # Reload Xresources
 alias lip="ip address | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias rm="rm -I"
-alias restart-wifi="sudo netctl restart wlp3s0-Brown"
+alias wifi="sudo netctl stop-all; sudo netctl start brown"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
 # Ls, now with color!
