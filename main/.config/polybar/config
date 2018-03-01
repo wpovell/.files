@@ -172,7 +172,7 @@ format = <label>
 format-prefix-foreground = ${colors.foreground}
 label-foreground = ${colors.foreground}
 exec = ~/.config/polybar/scratch
-click-left = i3-msg [instance="^((?!dropdown).)*$"] scratchpad show
+click-left = i3-msg scratchpad show
 
 [global/wm]
 margin-top		= 5

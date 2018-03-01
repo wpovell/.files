@@ -137,8 +137,8 @@ set $workspace5 "5: V"
 set $workspace6 "6: VI"
 set $workspace7 "7: VII"
 set $workspace8 "8: IIX"
-set $workspace9 "9: IX"
-set $workspace10 "a: X"
+set $workspace9 "98: "
+set $workspace10 "99: "
 
 # Change workspace
 bindsym Control+$mod+Left workspace prev
