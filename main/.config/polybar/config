@@ -17,17 +17,14 @@ foreground		        = $(colors.foreground}
 radius                          = 0
 modules-left                    = i3 scratch
 modules-center                  = date
-modules-right 	                = music mail blueno lambda battery volume
+modules-right 	                = music mail blueno lambda battery volume_blueno volume_lambda
 font-0 			        = FontAwesome:size=8;3
 font-1                          = Inconsolata:size=10;2
 module-margin	              	= 3
 
-[module/volume]
+[section/volume]
 type = internal/alsa
 
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-headphone-id = 14
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-padding-right = 5
@@ -49,6 +46,18 @@ ramp-volume-2-background = ${colors.background}
 ramp-volume-3 = "  "
 ramp-volume-3-foreground = ${colors.bright}
 ramp-volume-3-background = ${colors.background}
+
+[module/volume_blueno]
+inherit = section/volume
+speaker-mixer = Front
+headphone-mixer = Headphone
+headphone-id = 35
+
+[module/volume_lambda]
+inherit = section/volume
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 14
 
 [module/i3]
 type			= internal/i3
@@ -86,7 +95,8 @@ label-disconnected-background = ${colors.background}
 
 [module/blueno]
 inherit = section/network
-interface = wlp17s0f3u3
+#interface = wlp17s0f3u3
+interface = wlp3s0f0u3
 
 [module/lambda]
 inherit = section/network

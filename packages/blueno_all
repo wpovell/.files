@@ -41,6 +41,7 @@ findutils
 firefox-nightly
 flex
 fontforge
+franz
 gawk
 gcc
 gcc-libs
