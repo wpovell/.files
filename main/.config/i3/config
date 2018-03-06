@@ -33,7 +33,7 @@ no_focus [class="franz"]
 
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
-
+bindsym $mod+e exec --no-startup-id emoji
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym --release F2 exec --no-startup-id shrugie
 

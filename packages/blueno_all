@@ -47,6 +47,7 @@ gcc
 gcc-libs
 gdb
 gettext
+gimp
 gksu
 glibc
 google-chrome
@@ -84,6 +85,7 @@ mtools
 nano
 netctl
 nginx-mainline
+noto-fonts-emoji
 nvidia
 nvidia-utils
 openssh
@@ -95,6 +97,7 @@ patch
 pciutils
 pcmciautils
 perl
+perl-io-tty
 pkg-config
 playerctl
 polybar-git
@@ -148,6 +151,7 @@ wpa_supplicant
 xautolock
 xclip
 xdo
+xdotool
 xfsprogs
 xorg-fonts-100dpi
 xorg-server
@@ -155,5 +159,7 @@ xorg-xinit
 xorg-xkill
 xorg-xprop
 xorg-xrandr
+xsel
 xterm
 yaourt
+zsh
