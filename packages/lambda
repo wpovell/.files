@@ -14,6 +14,7 @@ cowsay
 cscope
 dhcpcd
 dialog
+dkms
 dmidecode
 dstat
 eclipse-java
@@ -93,7 +94,6 @@ uncrustify
 usbutils
 valgrind
 vi
-virtualbox
 w3m
 wget
 wireless_tools
