@@ -1,6 +1,7 @@
 acpi
 alsa-utils
 arandr
+arc-gtk-theme
 at
 atom
 autoconf
@@ -62,6 +63,7 @@ ncdu
 netctl
 nginx-mainline
 ngrep
+noto-fonts-emoji
 openvpn
 pcmciautils
 pkg-config
