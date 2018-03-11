@@ -6,7 +6,7 @@ barUnfocus		= ${xrdb:color8}
 barMode			  = ${xrdb:color1}
 bright        = ${xrdb:color12}
 
-[bar/top]
+[bar/base]
 width                           = 100%
 enable-ipc                      = true
 border-size		        = 0
@@ -15,12 +15,28 @@ height			        = 27
 background		        = ${colors.background}
 foreground		        = $(colors.foreground}
 radius                          = 0
-modules-left                    = i3 scratch
+modules-left                    = i3 scratch vpn
 modules-center                  = date
-modules-right 	                = music mail blueno lambda battery volume_blueno volume_lambda
 font-0 			        = FontAwesome:size=8;3
 font-1                          = Inconsolata:size=10;2
+
 module-margin	              	= 3
+
+[bar/blueno]
+inherit = bar/base
+modules-right 	                = music mail blueno lambda battery volume_blueno
+
+[bar/lambda]
+inherit = bar/base
+modules-right 	                = music mail blueno lambda battery volume_lambda
+
+[module/vpn]
+type = custom/script
+exec = echo VPN
+exec-if = pgrep -x openvpn
+interval = 5
+label-foreground = ${colors.bright}
+click-right = sudo killall openvpn
 
 [section/volume]
 type = internal/alsa
@@ -86,7 +102,6 @@ type = internal/network
 label-connected =    %essid%
 label-connected-foreground = ${colors.bright}
 label-connected-background = ${colors.background}
-cursor-click-left = test
 format-disconnected = <label-disconnected>
 label-disconnected = 
 

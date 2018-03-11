@@ -20,8 +20,8 @@ alias wifi="sudo netctl stop-all; sudo netctl start brown"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
 # Ls, now with color!
-alias ls='ls --color=auto'
-alias lsa='ls -A'
+alias ls='exa'
+alias lsa='ls -a'
 alias r='ranger'
 alias chrome="$(which google-chrome-stable)"
 alias yaourt-update="yaourt -Syu"

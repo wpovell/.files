@@ -30,11 +30,14 @@
 [urgency_normal] 
    background = "C0"
    foreground = "FC"
+   timeout = 10
 
 [urgency_critical] 
    background = "C0"
    foreground = "FC"
+   timeout = 15
 
 [urgency_low] 
    background = "C0"
    foreground = "FC"
+   timeout = 3

@@ -1,0 +1,25 @@
+confirm() {
+    echo -e "Yes\nNo" | rofi -dmenu -i -format d -selected-row 1 -p "${1:-Confirm}"
+}
+
+exit="Exit"
+lock="Lock"
+restart="Restart"
+shutdown="Shutdown"
+hibernate="Hibernate"
+
+content="$exit\n$lock\n$restart\n$shutdown\n$hibernate"
+
+selection=$(echo -e $content | rofi -dmenu -i -markup-rows -p "Action")
+case $selection in
+    $exit)
+         [[ $(confirm) = 1 ]] && (i3-msg exit) ;;
+    $lock)
+        lock ;;
+    $restart)
+         [[ $(confirm) = 1 ]] && (systemctl reboot) ;;
+    $shutdown)
+        [[ $(confirm) = 1 ]] && (systemctl poweroff) ;;
+    $hibernate)
+        [[ $(confirm) = 1 ]] && (systemctl suspend) ;;
+esac

@@ -32,6 +32,7 @@ e2fsprogs
 efibootmgr
 emacs-nox
 evince
+exa
 fakeroot
 feh
 figlet
@@ -57,6 +58,7 @@ groff
 grub
 gzip
 i3-gaps
+i3lock-color
 i3lock-next-git
 inetutils
 iproute2

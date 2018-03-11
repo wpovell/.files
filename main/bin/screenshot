@@ -2,4 +2,4 @@
 
 # Takes screenshot
 
-scrot -f "%s.png" -e 'mv $f ~/Desktop/; notify-send "Screenshot" "~/Desktop/$f"'
+scrot "%s.png" -e 'mv $f ~/Desktop/; notify-send "Screenshot" "~/Desktop/$f"'

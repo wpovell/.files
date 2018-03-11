@@ -12,7 +12,7 @@ exec --no-startup-id unclutter
 exec --no-startup-id urxvtd -q -f -o
 exec --no-startup-id dunst
 exec --no-startup-id redshift
-exec --no-startup-id polybar top
+exec --no-startup-id plybar
 exec_always --no-startup-id retheme
 exec --no-startup-id dropdown
 exec --no-startup-id startdropbox
@@ -189,24 +189,8 @@ bindsym $mod+Shift+c reload
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
-mode "Sys" {
-  # Exit
-  bindsym e exec --no-startup-id i3-msg exit
-  # Lock
-  bindsym l exec --no-startup-id "i3-msg mode default && lock"
-  # Restart
-  bindsym r exec --no-startup-id systemctl reboot
-  # Shutdown
-  bindsym s exec --no-startup-id systemctl poweroff
-  # Hibernate
-  bindsym h exec --no-startup-id "i3-msg mode default && systemctl hibernate"
-
-  # Back to normal
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+Escape mode "Sys"
+#bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
+bindsym $mod+Escape exec --no-startup-id power
 
 ## Music
 bindsym XF86AudioPrev exec --no-startup-id muse prev
