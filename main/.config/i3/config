@@ -12,7 +12,7 @@ exec --no-startup-id unclutter
 exec --no-startup-id urxvtd -q -f -o
 exec --no-startup-id dunst
 exec --no-startup-id redshift
-exec --no-startup-id plybar
+exec --no-startup-id ply
 exec_always --no-startup-id retheme
 exec --no-startup-id dropdown
 exec --no-startup-id startdropbox
