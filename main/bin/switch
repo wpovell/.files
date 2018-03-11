@@ -5,6 +5,4 @@
 new='"'$1'"'
 
 current=$(i3-msg -t get_workspaces | jq '.[] | select(.visible == true) | .name')
-i3-msg "rename workspace $new to temp"
-i3-msg "rename workspace $current to $new"
-i3-msg "rename workspace temp to $current"
+i3-msg "rename workspace $new to temp; rename workspace $current to $new; rename workspace temp to $current"

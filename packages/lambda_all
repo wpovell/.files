@@ -39,6 +39,7 @@ efibootmgr
 emacs-nox
 espeak
 evince
+exa
 exfat-utils
 fakeroot
 feh
@@ -59,6 +60,7 @@ gettext
 gimp
 git
 glibc
+gnu-netcat
 google-chrome
 gparted
 grep

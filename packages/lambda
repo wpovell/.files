@@ -23,6 +23,7 @@ efibootmgr
 emacs-nox
 espeak
 evince
+exa
 exfat-utils
 fakeroot
 feh
@@ -32,6 +33,7 @@ freerdp
 gdb
 gimp
 git
+gnu-netcat
 gparted
 grub
 intel-ucode
