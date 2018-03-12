@@ -39,7 +39,7 @@ bindsym --release F2 exec --no-startup-id shrugie
 
 bindsym Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
-bindsym --release $mod+ctrl+s exec --no-startup-id screenselect
+bindsym --release $mod+ctrl+s exec --no-startup-id screenshot -s
 bindsym $mod+c exec --no-startup-id browser
 
 set $HOME /home/wpovell

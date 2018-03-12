@@ -1,5 +1,27 @@
 #!/bin/bash
 
-# Takes screenshot
+# Takes screenshot of user selected area
 
-scrot "%s.png" -e 'mv $f ~/Desktop/; notify-send "Screenshot" "~/Desktop/$f"'
+fn="$HOME/Desktop/$(date +%s).png"
+
+if [[ $1 == "-s" ]]; then
+    read -r G < <(slop -f "%g")
+    import -window root -crop $G "$fn"
+else
+    scrot "$fn"
+fi
+res=$(dunstify \
+          --action='open,Open' \
+          --action='delete,Delete' \
+          --action='copy,Copy' "Screenshot" "~$fn"\
+          --appname=Screenshot
+)
+
+case $res in
+    open)
+        feh $fn ;;
+    delete)
+        rm $fn ;;
+    copy)
+        xclip -selection clipboard -t image/png -i $fn
+esac        
