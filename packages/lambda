@@ -102,7 +102,7 @@ vi
 w3m
 wget
 wireless_tools
-wpa_supplicant
+wpa_actiond
 xautolock
 xclip
 xdo

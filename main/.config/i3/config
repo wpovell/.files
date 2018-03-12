@@ -189,7 +189,7 @@ bindsym $mod+Shift+c reload
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-#bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
+bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
 bindsym $mod+Escape exec --no-startup-id power
 
 ## Music

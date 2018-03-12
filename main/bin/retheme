@@ -27,7 +27,7 @@ then
     exit
 fi
 
-if ! `contains "$list" "$1"` ; then
+if (! `contains "$list" "$1"`) && [[ -n "$1" && "$1" != "startup" ]] ; then
     exit
 fi
 

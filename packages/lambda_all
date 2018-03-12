@@ -177,6 +177,7 @@ w3m
 wget
 which
 wireless_tools
+wpa_actiond
 wpa_supplicant
 xautolock
 xclip
