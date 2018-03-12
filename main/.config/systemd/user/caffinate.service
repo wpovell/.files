@@ -2,4 +2,8 @@
 Description=Caffinate
 
 [Service]
+Type=Simple
 ExecStart=/home/wpovell/bin/caffinate
+
+[Install]
+WantedBy=default.target

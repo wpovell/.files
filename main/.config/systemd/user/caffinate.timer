@@ -1,9 +1,13 @@
 [Unit]
 Description=Runs caffinate every 3min
+RefuseManualStart=no
+RefuseManualStop=no
 
 [Timer]
+Persistent=false
 OnBootSec=3min
 OnUnitActiveSec=3min
+Unit=caffinate.service
 
 [Install]
-WantedBy=caffinate.target
+WantedBy=timers.target
