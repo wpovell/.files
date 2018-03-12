@@ -37,5 +37,6 @@ alias copy="xclip -selection clipboard"
 alias ,='cd ..'
 alias ,,='cd ../..'
 alias drp="HOME=/home/wpovell/.dropbox dropbox-cli"
+alias startx="startx >/tmp/startx.out 2>&1"
 # No less history
 LESSHISTFILE=-

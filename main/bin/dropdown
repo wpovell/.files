@@ -2,8 +2,6 @@
 
 # Creates dropdown terminal on login
 
-xrdb -I$HOME ~/.Xresources
-sleep 0.5
 sess=$(tmux list-sessions | grep "[157x12]")
 sess=${sess:0:1}
 if [[ -z "$sess" ]]

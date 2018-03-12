@@ -5,6 +5,12 @@
 import glob
 import re
 
+from sys import argv
+
+bad = []
+if len(argv) > 1:
+    bad = argv[1].split()
+
 with open('/home/wpovell/.theme') as f:
     dat = f.read().strip()
 colors = re.findall(r'([FBC\d]{2,3})\s+(\#[\da-f]{6})', dat, re.IGNORECASE)
@@ -50,5 +56,7 @@ for i, g in enumerate(gens):
         f.write(genOut[i])
 
 for term in glob.glob("/dev/pts/[0-9]*"):
+    if term.split('/')[-1] in bad:
+        continue
     with open(term, "w") as file:
         file.write(toWrite)

@@ -45,7 +45,8 @@ feh --bg-scale ~/.wallpaper
 xrdb -merge -cpp /usr/bin/cpp -I$HOME ~/.Xresources
 polybar-msg cmd restart
 i3-msg reload
-refresh
+bad_pts=$(ps -ef | grep "\-bash" | grep -v "tty1\|grep" | perl -lne 'print $1 if /pts\/([0-9]+)/')
+refresh "$bad_pts"
 killall dunst
 dunst &
 xrdb -I$HOME ~/.Xresources
