@@ -2,22 +2,45 @@
 
 # Retheme / changes current theme
 
+set -e
+
+function contains {
+  local list="$1"
+  local item="$2"
+  if [[ $list =~ (^|[[:space:]])"$item"($|[[:space:]]) ]] ; then
+    # yes, list include item
+    result=0
+  else
+    result=1
+  fi
+  return $result
+}
+
+
+list=$(ls ~/dotfiles/ | grep .theme | awk '{ gsub(".theme", "",$1); print $1 }')
+
 cd ~/dotfiles
 
 if [[ "$1" == "list" ]];
 then
-ls ~/dotfiles/ | grep .theme | awk '{ gsub(".theme", "",$1); print $1 }'
-exit
+    echo $list
+    exit
 fi
 
+if ! `contains "$list" "$1"` ; then
+    exit
+fi
+
+    
 
 if [[ -n "$1" && "$1" != "startup" ]];
 then
-CUR_THEME="$(head -n1 ~/.theme 2>/dev/null).theme"
-CUR_THEME="${CUR_THEME:1}"
-stow -D $CUR_THEME 2>/dev/null
-stow $1".theme"
+    CUR_THEME="$(head -n1 ~/.theme 2>/dev/null).theme"
+    CUR_THEME="${CUR_THEME:1}"
+    stow -D $CUR_THEME 2>/dev/null
+    stow $1".theme"
 fi
+
 feh --bg-scale ~/.wallpaper
 xrdb -merge -cpp /usr/bin/cpp -I$HOME ~/.Xresources
 polybar-msg cmd restart

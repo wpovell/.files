@@ -1,9 +1,0 @@
-[Unit]
-Description=Checks and notifies when battery is critical
-
-[Timer]
-OnBootSec=1min
-OnUnitActiveSec=1min
-
-[Install]
-WantedBy=bat.target

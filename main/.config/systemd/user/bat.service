@@ -1,5 +1,0 @@
-[Unit]
-Description=Bat
-
-[Service]
-ExecStart=/home/wpovell/bin/batterynotify
