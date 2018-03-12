@@ -2,7 +2,7 @@
 
 # Creates dropdown terminal on login
 
-sess=$(tmux list-sessions | grep "[157x12]")
+sess=$(tmux list-sessions | grep "\[157x12\]")
 sess=${sess:0:1}
 if [[ -z "$sess" ]]
 then
