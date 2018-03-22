@@ -96,7 +96,7 @@ let urls = {
 		u += 'signmeup/signmeup';
 	    } else if (q == 'isotope') {
                 u += 'athyuttamre/isotopeticketing';
-            } else {
+            } else if (q) {
 		u += q;
 	    }
 	    return u;
