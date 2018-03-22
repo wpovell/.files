@@ -1,5 +1,7 @@
-if [[ $(pgrep -x openvpn) ]]; then
+if [[ "$1" = "-k" || $(pgrep -x openvpn) ]]; then
    sudo killall openvpn
+   polybar-msg hook vpn 2
 else
    csvpn &
+   polybar-msg hook vpn 1
 fi

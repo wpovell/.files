@@ -1,0 +1,13 @@
+#!/bin/bash
+
+FN=/tmp/notif_snooze
+
+if [[ "$1" = "on" || -f $FN ]]; then
+   rm $FN
+   notify-send "DUNST_COMMAND_RESUME"
+   polybar-msg hook notif 1
+else
+   touch $FN
+   notify-send "DUNST_COMMAND_PAUSE"
+   polybar-msg hook notif 2   
+fi
