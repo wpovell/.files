@@ -139,6 +139,7 @@ systemd
 systemd-sysvcompat
 tar
 texinfo
+tla-toolbox
 tmux
 tree
 ttf-dejavu
