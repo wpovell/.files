@@ -1,0 +1,5 @@
+Xft.hinting: hintfull
+Xft.antialias: rgba
+Xft.rgba: rgb
+Emacs.font: Inconsolata\ Nerd\ Font\ Mono:pixelsize=20
+Emacs.FontBackend: xft
