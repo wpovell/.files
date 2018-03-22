@@ -30,13 +30,20 @@ modules-right 	                = music mail blueno lambda battery volume_blueno
 inherit = bar/base
 modules-right 	                = music mail blueno lambda battery volume_lambda
 
+#[module/notif]
+#type = custom/script
+#exec = if [[ $(pgrep -x dunst) ]]; then echo ""; else echo ""; fi
+#interval = 5
+#label-foreground = ${colors.bright}
+#click-left = toggle-notif
+
 [module/vpn]
 type = custom/script
-exec = echo VPN
-exec-if = pgrep -x openvpn
+exec = if [[ $(pgrep -x openvpn) ]]; then echo ""; else echo ""; fi
 interval = 5
 label-foreground = ${colors.bright}
 click-right = sudo killall openvpn
+click-left = toggle-vpn
 
 [section/volume]
 type = internal/alsa

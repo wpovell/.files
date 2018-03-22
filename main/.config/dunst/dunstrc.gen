@@ -8,6 +8,8 @@
     transparency = 10
     geometry = "300x5-10+33"
     shrink=no
+    icon_position = left
+    max_icon_size = 60
     idle_threshold = 120
     follow = keyboard
     line_height = 0

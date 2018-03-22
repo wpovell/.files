@@ -2,8 +2,6 @@
 
 # Script to prevent sleep/lock while fullscreen
 
-#notify-send "caffinate"
-
 systemctl --user import-environment DISPLAY XAUTHORITY
 
 if which dbus-update-activation-environment >/dev/null 2>&1; then
@@ -15,10 +13,11 @@ xprop_active_info () {
 }
 
 we_are_fullscreen () {
-    xprop_active_info | grep -q _NET_WM_STATE_FULLSCREEN
+    xprop_active_info | grep _NET_WM_STATE_FULLSCREEN
 }
 
 disable_sleep () {
+  notify-send "caffinate" "disabling sleep"
   xset -dpms
   xautolock -disable
 }
@@ -28,7 +27,7 @@ enable_sleep () {
   xautolock -enable
 }
 
-if we_are_fullscreen; then
+if [[ -n $(we_are_fullscreen) ]]; then
     disable_sleep
 else
     enable_sleep

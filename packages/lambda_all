@@ -1,4 +1,5 @@
 acpi
+acpi_call
 alloy
 alsa-utils
 arandr
@@ -67,6 +68,7 @@ grep
 groff
 grub
 gzip
+htop
 i3-gaps-next-git
 i3lock-next-git
 inetutils
@@ -99,6 +101,7 @@ maven
 mdadm
 mongodb
 mongodb-tools
+mosh
 mpd
 mplayer
 nano
@@ -157,8 +160,11 @@ systemd
 systemd-sysvcompat
 tar
 texinfo
+tla-toolbox
+tlp
 tmux
 toilet
+tp_smapi
 transmission-cli
 tree
 ttf-dejavu

@@ -14,7 +14,8 @@ res=$(dunstify \
           --action='open,Open' \
           --action='delete,Delete' \
           --action='copy,Copy' "Screenshot" "~$fn"\
-          --appname=Screenshot
+          --appname="Screenshot" \
+          --icon="$fn"
 )
 
 case $res in

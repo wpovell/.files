@@ -1,0 +1,5 @@
+if [[ $(pgrep -x openvpn) ]]; then
+   sudo killall openvpn
+else
+   csvpn &
+fi
