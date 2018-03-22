@@ -1,6 +1,13 @@
 # Custom Stuff
 set $mod Mod4
 
+#bar {
+#    tray_output none
+#    status_command i3status
+#    font xft:FontAwesome, Inconsolata 8
+#    strip_workspace_numbers yes
+#}
+
 # Split direction
 default_orientation horizontal
 

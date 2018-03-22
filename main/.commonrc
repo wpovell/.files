@@ -13,8 +13,7 @@ export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
 export EDITOR='emacs'
 export BROWSER='firefox-nightly'
 
-# Reload Xresources
-alias lip="ip address | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias emacs="emacs -nw"
 alias rm="rm -I"
 alias wifi="sudo netctl stop-all; sudo netctl start brown"
 alias open="xdg-open"
