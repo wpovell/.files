@@ -2,8 +2,6 @@
 
 # Retheme / changes current theme
 
-set -e
-
 function contains {
   local list="$1"
   local item="$2"
