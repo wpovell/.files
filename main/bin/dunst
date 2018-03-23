@@ -1,3 +1,11 @@
 #!/bin/bash
-toggle-notif on
-dunst &
+FN=/tmp/notif_snooze
+
+function finish {
+    rm $FN
+}
+
+trap finish EXIT
+
+polybar-msg hook notif 1
+dunst

@@ -32,9 +32,11 @@ no_focus [class="spotify"]
 
 # Franz
 for_window [class="Franz"] move container to workspace $FranzWS
-exec --no-startup-id franz
-bindsym $mod+m workspace $FranzWS
 no_focus [class="franz"]
+## Temporarily disabling franz
+#exec --no-startup-id franz
+#bindsym $mod+m workspace $FranzWS
+bindsym $mod+m exec /home/wpovell/.config/polybar/mail open
 
 #bindsym $mod+m exec --no-startup-id ~/.config/polybar/mail open
 

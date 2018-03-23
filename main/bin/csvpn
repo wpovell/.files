@@ -1,6 +1,6 @@
 #!/bin/bash
-
 # Connects to browncs vpn
-# alias?
 
+polybar-msg hook vpn 1
 sudo openvpn /etc/openvpn/client/browncs.opvn
+polybar-msg hook vpn 2
