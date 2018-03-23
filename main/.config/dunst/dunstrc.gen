@@ -26,6 +26,12 @@
     hide_duplicate_count = true
     show_indicators = no
 
+[fullscreen_delay_everything]
+    fullscreen = pushback
+[fullscreen_show_critical]
+    msg_urgency = critical
+    fullscreen = show
+
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
