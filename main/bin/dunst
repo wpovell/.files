@@ -8,4 +8,4 @@ function finish {
 trap finish EXIT
 
 polybar-msg hook notif 1
-dunst
+/usr/bin/dunst

@@ -10,7 +10,7 @@
     shrink=no
     icon_position = left
     max_icon_size = 60
-    idle_threshold = 120
+    idle_threshold = 0
     follow = keyboard
     line_height = 0
     separator_height = 5
@@ -19,9 +19,12 @@
     separator_color = "C4"
     frame_width = 3
     frame_color = "C4"
-    timeout = 50
+    timeout = 15
     browser = /usr/bin/browser
     dmenu = /usr/bin/rofi -dmenu
+    stack_duplicates = false
+    hide_duplicate_count = true
+    show_indicators = no
 
 [shortcuts]
     close = ctrl+space

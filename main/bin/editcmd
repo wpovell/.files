@@ -1,6 +1,5 @@
 #!/bin/bash
 
 # Edits given command arg
-# alias?
 
-emacs $(which $1)
+emacs -nw $(which $1)

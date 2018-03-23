@@ -10,9 +10,9 @@ export JAVA_HOME=/usr/lib/jvm/default
 # No nv
 export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
 
-export EDITOR='emacs'
+export EDITOR='emacs -nw'
 export BROWSER='firefox-nightly'
-
+alias xdotool='export DISPLAY=:0.0 && xdotool'
 alias emacs="emacs -nw"
 alias rm="rm -I"
 alias wifi="sudo netctl stop-all; sudo netctl start brown"
