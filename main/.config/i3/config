@@ -12,7 +12,7 @@ set $mod Mod4
 default_orientation horizontal
 
 # Startup Apps
-exec --no-startup-id xautolock -locker lock -time 5
+exec --no-startup-id startlocker
 exec --no-startup-id xrdb -I$HOME ~/.Xresources
 exec --no-startup-id compton
 exec --no-startup-id unclutter

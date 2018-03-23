@@ -1,0 +1,6 @@
+rm /tmp/lock_disabled
+if [[ $HOSTNAME == "lambda" ]]; then
+   xautolock -locker lock -time 5 -killer "systemctl suspend" -killtime 10
+else
+   xautolock -locker lock -time 10
+fi

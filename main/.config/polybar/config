@@ -15,7 +15,7 @@ height			        = 27
 background		        = ${colors.background}
 foreground		        = $(colors.foreground}
 radius                          = 0
-modules-left                    = i3 scratch vpn notif
+modules-left                    = i3 scratch vpn notif lock
 modules-center                  = date
 font-0 			        = FontAwesome:size=8;3
 font-1                          = Inconsolata:size=10;2
@@ -30,11 +30,21 @@ modules-right 	                = music mail blueno battery volume_blueno
 inherit = bar/base
 modules-right 	                = music mail lambda battery volume_lambda
 
+[module/lock]
+type = custom/ipc
+
+hook-0 = echo ""
+hook-1 = echo '%{F'$(xquery foreground)'}'
+initial = 1
+
+format-foreground = ${colors.bright}
+click-left = caffinate toggle
+
 [module/notif]
 type = custom/ipc
 
 hook-0 = echo ""
-hook-1 = echo ""
+hook-1 = echo '%{F'$(xquery foreground)'}'
 initial = 1
 
 format-foreground = ${colors.bright}
@@ -44,7 +54,7 @@ click-left = toggle-notif
 type = custom/ipc
 
 hook-0 = echo ""
-hook-1 = echo ""
+hook-1 = echo '%{F'$(xquery foreground)'}'
 initial = 2
 
 format-foreground = ${colors.bright}
