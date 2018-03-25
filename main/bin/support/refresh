@@ -51,7 +51,9 @@ def generate_css(colors):
         to_write += ';\n'
     to_write += '}'
 
-    with open(Path.home() / 'dotfiles/gen/colors.css', 'w') as f:
+    css_path = Path.home() / 'dotfiles/gen/colors.css'
+    Path.mkdir(css_path.parent, parents=True, exist_ok=True)
+    with open(css_path, 'w') as f:
         f.write(to_write)
 
 if __name__ == '__main__':
