@@ -1,14 +1,11 @@
-dunstrc
 pass.json
-main/www/css/index.css
 main/.config/ranger/bookmarks
 main/.emacs.d/elpa
 main/.config/ranger/history
 main/.emacs.d/auto-save-list/
-userChrome.css
 api.js
-banned.txt
 .git.bfg-report
-poss
 *.target.wants
 .mc-lists.el
+gen/
+colors.css

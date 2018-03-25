@@ -1,3 +1,5 @@
+@import 'colors.css';
+
 /* Hide things */
 #window-controls, .scrollbutton-up, .scrollbutton-down, #alltabs-button, #PersonalToolbar, .tab-close-button, .tabs-newtab-button, #back-button, #forward-button, #toolbar-menubar, #customizableui-special-spring2, #customizableui-special-spring1, #pageActionButton, #PanelUI-menu-button, .autocomplete-history-dropmarker, #PanelUI-button, #page-action-buttons, .urlbar-go-button, .urlbar-history-dropmarker {
     display: none !important;
@@ -67,34 +69,34 @@ tab[selected="true"] { min-width: 200px !important; }
 
 
 .tab-content[selected=true] {
-    background-color: C4;
-    color:  C14;
+    background-color: var(--color4);
+    color:  var(--color14);
 }
 
 .tab-content:not([selected=true]) {
-    background-color:  C0;
-    color:  FC;
+    background-color:  var(--color0);
+    color:  var(--foreground);
 }
 
 tabs {
-    background-color:  C0 !important;
+    background-color:  var(--color0) !important;
 }
 
 toolbaritem {
-    color: C14 !important;
-    background-color: C4 !important;
+    color: var(--color14) !important;
+    background-color: var(--color4) !important;
 }
 
 toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
     box-shadow: none !important;
-    background-color: C4 !important;
-    border-color: C4 !important;
-    color: FC !important;
+    background-color: var(--color4) !important;
+    border-color: var(--color4) !important;
+    color: var(--foreground) !important;
 }
 
 /* Remove white flash on tab load */
 .browserContainer {
-  background-color: C4 !important;
+  background-color: var(--color4) !important;
 }
 
 /* Hide search placeholder text */
@@ -103,17 +105,17 @@ toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
 }
 
 findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel-arrowcontent, .autocomplete-textbox, .urlbar-input-box {
-    color: C0 !important;
-    background-color: C4 !important;
+    color: var(--color0) !important;
+    background-color: var(--color4) !important;
 }
 
 .autocomplete-richlistitem[selected="true"] {
-    background-color:  FC !important;
-    color: C0 !important;
+    background-color:  var(--foreground) !important;
+    color: var(--color0) !important;
 }
 
 .autocomplete-richlistitem:not([selected="true"]) {
-    color:  FC !important;
+    color:  var(--foreground) !important;
 }
 
 /* Gets ride of white line after chrome */
@@ -123,8 +125,8 @@ findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel
 
 /* Change text highlight in url */
 .autocomplete-textbox::-moz-selection {
-    color:  C0 !important;
-    background-color:  FC !important;
+    color:  var(--color0) !important;
+    background-color:  var(--foreground) !important;
 }
 
 /* Fixes small border when tabs fill top. */

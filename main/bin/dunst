@@ -2,6 +2,12 @@
 
 # Wrapper around dunst to signal polybar appropriately
 
+case $1 in
+    -h|--help)
+        /usr/bin/dunst -h
+        exit ;;
+esac               
+
 FN=/tmp/notif_snooze
 function finish {
     rm $FN
@@ -9,4 +15,5 @@ function finish {
 trap finish EXIT
 
 polybar-msg hook notif 1
-/usr/bin/dunst $@
+/usr/bin/dunst $@ -conf <(cat ~/.config/dunst/dunstrc | \
+                          perl -pe 's/--([a-z0-9]+)/`xquery -q $1`/e')

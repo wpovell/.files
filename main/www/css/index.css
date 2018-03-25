@@ -1,6 +1,8 @@
+@import 'colors.css';
+
 body {
-    background-color: C4;
-    color: C0;
+    background-color: var(--color4);
+    color: var(--color0);
     font-family: 'Inconsolata', fontawesome, sans-serif;
 }
 
@@ -71,7 +73,7 @@ p {
 }
 
 #suggest {
-    color: C8;
+    color: var(--color8);
     font-size: 25px;
 }
 
@@ -99,6 +101,6 @@ p {
       color: transparent;
   }
   50% {
-      color: C14;
+      color: var(--color14);
   }
 }

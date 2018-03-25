@@ -18,7 +18,7 @@ contains() {
   local list="$1"
   local item="$2"
   if [[ $list =~ (^|[[:space:]])"$item"($|[[:space:]]) ]] ; then
-    # yes, list include item
+    # list include item
     result=0
   else
     result=1
@@ -60,17 +60,24 @@ feh --bg-scale ~/.wallpaper
 xrdb -merge -cpp /usr/bin/cpp -I$HOME ~/.Xresources
 
 if [[ "$1" = "startup" ]]; then
+    CHECK=~/dotfiles/main/www/css/colors.css
+    if [[ ! -e $CHECK ]]; then
+        FN=~/dotfiles/gen/colors.css
+        ln $FN ~/dotfiles/main/.mozilla/firefox/fb8uvoz6.default/chrome/colors.css
+        ln $FN $CHECK
+    fi
+    
     exit
 fi
 
-    polybar-msg cmd restart
+polybar-msg cmd restart
 i3-msg reload
 
 # Interesting reason behind this
 # We don't want to send color updates to terminals inside of tmux, just tmux itself
 # This gets a list of all pts of these "bad" pseudo terminals
 bad_pts=$(ps -ef | grep "\-bash" | grep -v "tty1\|grep" | perl -lne 'print $1 if /pts\/([0-9]+)/')
-refresh "$bad_pts"
+~/bin/support/refresh "$bad_pts"
 
 killall dunst
 dunst &

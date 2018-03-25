@@ -10,7 +10,7 @@ if [[ "$HOSTNAME" = "blueno" ]]; then
 fi
 
 # Path
-export PATH=~/bin/:$PATH:/sbin/
+export PATH=~/bin/:~/bin/color:$PATH:/sbin/
 export JAVA_HOME=/usr/lib/jvm/default
 
 # Editor

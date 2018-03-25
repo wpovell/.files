@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+
+# Regenerates theme files / updates open terminals
+
+import re
+from pathlib import Path
+
+def get_colors():
+    with open(Path.home() / '.theme') as f:
+        dat = f.read().strip()
+    colors = re.findall(r'([FBC\d]{2,3})\s+(\#[\da-f]{6})', dat, re.IGNORECASE)
+    colors.sort(key = lambda x: -len(x[0]))
+    return colors
+
+def term_string(colors):
+    to_write = ''
+    for c, v in colors:
+        # Get in rr/gg/bb format
+        hexc = v[1:].lower()
+        hexc = '/'.join(map(''.join, zip(*[iter(hexc)]*2)))
+        fmt = lambda n, c: "\033]{};rgb:{}\007".format(n, c)
+        if c == 'FC':
+            to_write += fmt('10', hexc)
+        if c == 'BC':
+            to_write += fmt('708', hexc)
+            to_write += fmt('11', hexc)
+        elif c == 'CC':
+            to_write += fmt('12', hexc)
+        else:
+            n = c.replace('C','')
+            to_write += fmt('4;'+n, hexc)
+    return to_write
+
+def refresh_terminals(bad_pids, colors):
+    to_write = term_string(colors)
+    for term in Path('/dev/pts/').glob('[0-9]*'):
+        if term.name in bad_pids:
+            continue
+        with open(term, "w") as file:
+            file.write(to_write)
+
+def generate_css(colors):
+    to_write = ':root {\n'
+    for c, v in colors:
+        if c == 'FC':
+            to_write += '\t--foreground: {}'.format(v)
+        elif c == 'BC':
+            to_write += '\t--background: {}'.format(v)
+        elif c != 'CC':
+            to_write += '\t--color{}: {}'.format(c[1:], v)
+        to_write += ';\n'
+    to_write += '}'
+
+    with open(Path.home() / 'dotfiles/gen/colors.css', 'w') as f:
+        f.write(to_write)
+
+if __name__ == '__main__':
+    from sys import argv
+
+    # Pids of pts inside of tmux
+    bad_pids = []
+    if len(argv) > 1:
+        bad_pids = argv[1].split()
+
+    colors = get_colors()
+    generate_css(colors)
+    refresh_terminals(bad_pids, colors)
