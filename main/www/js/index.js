@@ -61,7 +61,6 @@ function setWeather() {
 }
 
 // Fetches top hackernews stories and adds to DOM
-// TODO: Cache?
 function setHN(callback) {
   $.ajax('https://hacker-news.firebaseio.com/v0/topstories.json', {
     dataType: "jsonp",
@@ -127,6 +126,9 @@ function setSearch(showSearch) {
     $('#searchWrapper').show();
     $('#timeWrapper').hide();
   } else {
+    $('#search').text('');
+    lastSuggest = '';
+    $('#content').html('');
     $('#searchWrapper').hide();
     $('#timeWrapper').show();
   }
@@ -155,7 +157,6 @@ function enter() {
   return 'https://www.google.com/search?q=' + encodeURIComponent(query);
 }
 
-let lastQuery = '';
 let lastSuggest = '';
 document.onkeypress = (e) => {
   let search = $('#search');
@@ -165,13 +166,14 @@ document.onkeypress = (e) => {
   if ((e.key == 'Tab' || e.key == ' ') && !searchQuery) {
     return;
   }
-    
+
+  // Don't capture alt
   if (e.altKey) {
     return;
   }
-    
+
   // Allow some control keys
-  if (['l', 'r', 'C', 'v'].includes(e.key) && e.ctrlKey) {
+  if (['l', 'r', 'C', 'v', 'R'].includes(e.key) && e.ctrlKey) {
     return;
   }
 
@@ -179,10 +181,10 @@ document.onkeypress = (e) => {
   e.preventDefault();
   e.stopPropagation();
 
-
-  if (e.key == 'Escape') {
-    search.text('');
-    lastQuery = '';
+  // Escape and ^c reset
+  if (e.key == 'Escape' || (e.key == 'c' && e.ctrlKey)) {
+    setSearch(false);
+    return;
   } else if (e.key == 'Backspace') {
     search.text(searchQuery.slice(0, -1));
     searchQuery = search.text();
@@ -196,12 +198,12 @@ document.onkeypress = (e) => {
       document.location.href = url;
     }
   } else if (e.key == 'Tab') {
-    let searchSuggest = $('#suggest').children().first().children();
+    let searchSuggest = $('#content').children().first().children();
     let index = -1;
     for (let i = 0; i < searchSuggest.length; i++) {
       if (searchSuggest[i].classList.contains('active')) {
         // Get index of new suggestion to have selected
-        index = (searchSuggest.length + i + (e.keyShiftKey ? -1 : 1)) % searchSuggest.length;
+        index = (searchSuggest.length + i + (e.shiftKey ? -1 : 1)) % searchSuggest.length;
       }
     }
     if (index == -1) {
@@ -215,8 +217,6 @@ document.onkeypress = (e) => {
     active.css('color', urls[start].color);
     active.addClass('active');
     search.text(start + ':' + active.text());
-  } else if (e.key == 'c' && e.ctrlKey) {
-    search.text('');
   } else if (!e.ctrlKey && (e.charCode != 0 || e.key == ' ')) {
     search.text(searchQuery + e.key);
     searchQuery = search.text();
@@ -241,23 +241,35 @@ document.onkeypress = (e) => {
     $('#hn').hide();
   }
 
+  if (start == 'x') {
+    $.ajax('http://dynamic.xkcd.com/api-0/jsonp/comic/',
+            { dataType: 'jsonp' }).then( (data) => {
+              $('#content').html(`
+                <div class="xkcd">
+                  <img src="${data.img}" />
+                  <p>${data.alt}</p>
+                </div>`);
+            })
+  }
+
   // Add suggests
   if (start != lastSuggest && urls[start] && urls[start].suggest) {
     lastSuggest = start;
     let suggest = urls[start].suggest;
-    $('#suggest').html('<ul>' +
+    $('#content').html('<ul>' +
       suggest.map((x) => {
         return '<li>' + x + '</li>';
       }).join('') +
       '</ul>');
   } else if (searchQuery == '') {
-    $('#suggest').html('');
+    $('#content').html('');
   }
 
   setSearch(searchQuery.replace(/\s+/, '') != '');
 };
 
 $(() => {
+  // Not currently searching
   setSearch(false);
   setClock();
   setHN();
