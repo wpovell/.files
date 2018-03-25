@@ -2,7 +2,20 @@
 
 <img src="misc/ocean.png">
 
-This repo holds my dotfiles & various other things for my desktop and laptop.
+This repo holds my dotfiles & various other things for my desktop (`blueno`) and laptop (`lambda`).
+
+## Setup
+
+- Distro: `Arch Linux`
+- Window Manager: `i3-gaps`
+- Shell: `bash`
+- Terminal: `urxvt`
+- Notifications: `dunst`
+- Launcher: `rofi`
+- Music: `Spotify`
+- Editor: `emacs` / `atom`
+- Browser: `firefox-nightly`
+
 
 ## Structure
 
@@ -21,14 +34,3 @@ This repo holds my dotfiles & various other things for my desktop and laptop.
 - `misc/`: Resources and various odds and ends
 
 Notably `main` and themes are managed by [`stow`](https://www.gnu.org/software/stow/).
-
-## Setup
-
-- Launcher: `rofi`
-- Music: `Spotify`
-- Notifications: `dunst`
-- Shell: `bash`
-- Terminal: `urxvt`
-- Editor: `emacs` / `atom`
-- Browser: `firefox-nightly`
-- Window Manager: `i3-gaps`

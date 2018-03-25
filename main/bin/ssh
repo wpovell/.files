@@ -1,0 +1,12 @@
+if [[ $1 = "blueno" ]]; then
+  IP=$(cat .cache/blueno_ip)
+  if ping -c1 -W1 $IP; then
+    /bin/ssh $IP ${@:2}
+  else
+    /bin/ssh blueno
+    /bin/ssh brown cat .bluenoip > .cache/blueno_ip 2>/dev/null &
+  fi
+else
+  /bin/ssh $@
+fi
+
