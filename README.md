@@ -1,6 +1,6 @@
 # dotfiles
 
-<div style="display: inline-block; margin: auto"><img src="misc/ocean.png" style="width: 40%"> <img src="misc/flower.png" style="width:40%"></dev>
+<img src="misc/ocean.png">
 
 This repo holds my dotfiles & various other things for my desktop and laptop.
 
