@@ -25,6 +25,7 @@ This repo holds my dotfiles & various other things for my desktop (`blueno`) and
 - `archived/`: Old themes I don't use anymore
 - `main/`: Pretty much everything that gets linked, mostly self-explanatory
   - `.config/`: Where all my config files are
+  - `www`: Root of start page served to `localhost`
   - `bin/`: Scripts I've made and found useful
     - `color/`: Color test scripts
     - `rofi/`: Rofi prompts bound to shortcuts

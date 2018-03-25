@@ -1,8 +1,6 @@
 #!/bin/bash
 
-PATH=$PATH:/home/wpovell/bin/support
-
-
+PATH=$PATH:~/bin/support
 
 if [[ "$1" = "-r" ]]; then
   retheme    
@@ -11,8 +9,7 @@ fi
 
 retheme startup # Blocks
 
-compton 2>/dev/null
-
+compton 2>/dev/null &
 unclutter &
 urxvtd -q -f -o
 urxvt -name dropdown &

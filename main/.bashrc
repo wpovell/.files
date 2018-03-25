@@ -9,9 +9,9 @@ if [[ -n $DISPLAY ]]; then
         set -o ignoreeof
         dim=$(xrandr | grep "*" | perl -lne 'print $1 if /([0-9]+)x/')
         i3-msg \[instance=\"dropdown\"\] floating enable, resize set $dim 300, \
-               move position 0px 27px, move scratchpad 2>/dev/null
+               move position 0px 27px, move scratchpad >/dev/null 2>&1
 
-        if sess=$(tmux list-sessions | grep "x12"); then
+        if sess=$(tmux list-sessions 2>/dev/null | grep "x12"); then
             sess=${sess:0:1}
             tmux attach -t $sess
         fi
