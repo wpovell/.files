@@ -6,6 +6,7 @@ atom
 autoconf
 automake
 bash
+bash-completion
 bazel
 bc
 binutils
@@ -32,6 +33,7 @@ dunstify
 e2fsprogs
 efibootmgr
 emacs
+espeak
 evince
 exa
 fakeroot

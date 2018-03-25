@@ -3,6 +3,7 @@ at
 atom
 autoconf
 automake
+bash-completion
 bazel
 bc
 bison
@@ -15,6 +16,7 @@ cudnn
 dhcpcd
 efibootmgr
 emacs
+espeak
 evince
 exa
 fakeroot
