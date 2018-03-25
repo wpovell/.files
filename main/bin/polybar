@@ -2,4 +2,4 @@
 
 # Warpper around polybar that lauches host-appropriate bar
 
-/usr/bin/polybar $@ $HOSTNAME
+/usr/bin/polybar $HOSTNAME

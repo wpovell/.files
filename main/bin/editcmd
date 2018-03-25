@@ -15,7 +15,7 @@ case $1 in
     -h|--help) usage ;;
 esac
 
-FILE=$(find ~/bin/ -name $1)
+FILE=$(find ~/bin/ -name $1 -type f)
 
 if [[ -e $FILE ]]; then
   emacs -nw $FILE
