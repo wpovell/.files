@@ -11,3 +11,4 @@ banned.txt
 .git.bfg-report
 poss
 *.target.wants
+.mc-lists.el

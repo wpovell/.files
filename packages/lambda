@@ -8,6 +8,8 @@ atom
 autoconf
 automake
 banner
+bash-completion
+bind-tools
 bison
 clang
 cmatrix
@@ -119,6 +121,7 @@ xorg-xinput
 xorg-xprop
 xsel
 yaourt
+zip
 zsh
 alloy
 batify

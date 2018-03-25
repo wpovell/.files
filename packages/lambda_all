@@ -10,8 +10,10 @@ autoconf
 automake
 banner
 bash
+bash-completion
 batify
 bfg
+bind-tools
 binutils
 bison
 bzip2
@@ -198,4 +200,5 @@ xorg-xinput
 xorg-xprop
 xsel
 yaourt
+zip
 zsh
