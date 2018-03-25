@@ -1,0 +1,2 @@
+_editcmd=$(ls $HOME/bin/)
+complete -W "${_editcmd}" 'editcmd'
