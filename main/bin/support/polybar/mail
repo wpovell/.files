@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 ~/bin/support/polybar/mail.py $1 $2 > >(tee -a ~/.cache/mail.out) 2> >(tee -a ~/.cache/mail.out >&2)

@@ -2,13 +2,42 @@
 
 # Script to prevent sleep/lock while fullscreen
 
+usage() {
+    echo "$(tput bold)caffinate$(tput sgr0)
+    caffinate [COMMAND]
+
+    Script used to prevent me having to unlock my screen while watching youtube vids.
+
+    If no command is passed, will disable autolocker if currently in fullscreen.
+    This is meant to be run by a systemd service (see caffinate.service).
+
+Commands:
+    toggle    Toggles locker. If disabled, will remain disabled regardless of
+              fullscreen state.
+    polybar   Sends appropriate ipc to polybar (used when polybar is restart)
+    "
+    exit
+}
+
+FN="/tmp/lock_disabled"
+
+polybar() {
+  if [[ -f $FN ]]; then
+    polybar-msg hook lock 2
+  fi
+  exit
+}
+
+case $1 in
+    -h|--help) usage ;;
+    polybar) polybar ;;
+esac
+
 systemctl --user import-environment DISPLAY XAUTHORITY
 
 if which dbus-update-activation-environment >/dev/null 2>&1; then
         dbus-update-activation-environment DISPLAY XAUTHORITY
 fi
-
-FN="/tmp/lock_disabled"
 
 xprop_active_info () {
     xprop -id "$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
@@ -19,14 +48,16 @@ we_are_fullscreen () {
 }
 
 disable_sleep () {
-  polybar-msg hook lock 2
+  echo "Disabling locker"
+  polybar-msg hook lock 2 2>/dev/null
   xset -dpms
   xautolock -disable
 }
 
 enable_sleep () {
   if [[ ! -f $FN ]]; then
-      polybar-msg hook lock 1
+      echo "Enabling locker"
+      polybar-msg hook lock 1 2>/dev/null
       xset +dpms
       xautolock -enable
   fi

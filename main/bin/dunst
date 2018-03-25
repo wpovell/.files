@@ -1,11 +1,12 @@
 #!/bin/bash
-FN=/tmp/notif_snooze
 
+# Wrapper around dunst to signal polybar appropriately
+
+FN=/tmp/notif_snooze
 function finish {
     rm $FN
 }
-
 trap finish EXIT
 
 polybar-msg hook notif 1
-/usr/bin/dunst
+/usr/bin/dunst $@

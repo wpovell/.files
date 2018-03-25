@@ -1,40 +1,60 @@
+# This should get imported by both bash & zsh #
+
 # Cuda Stuff
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib64:/opt/cuda/extras/CUPTI/lib64"
-export CUDA_HOME=/opt/cuda
+if [[ "$HOSTNAME" = "blueno" ]]; then
+  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib64:/opt/cuda/extras/CUPTI/lib64"
+  export CUDA_HOME=/opt/cuda
+  export PATH=$PATH:/opt/cuda/bin
+  # No nv
+  export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
+fi
 
 # Path
-export PATH=~/bin/:$PATH:~/dotfiles/bin:/sbin/:/opt/cuda/bin:~/.local/bin:/home/wpovell/.gem/ruby/2.5.0/bin
-
+export PATH=~/bin/:$PATH:/sbin/
 export JAVA_HOME=/usr/lib/jvm/default
 
-# No nv
-export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv/
-
+# Editor
 export EDITOR='emacs -nw'
-export BROWSER='firefox-nightly'
-alias xdotool='export DISPLAY=:0.0 && xdotool'
 alias emacs="emacs -nw"
+
+# Browser
+export BROWSER='firefox-nightly'
+alias browser="$BROWSER"
+alias chrome="$(which google-chrome-stable)"
+
+# Allows xdotool to run over SSH
+alias xdotool='export DISPLAY=:0.0 && xdotool'
+
+# Warn me when I rm multiple things
 alias rm="rm -I"
-alias wifi="sudo netctl stop-all; sudo netctl start brown"
-alias open="xdg-open"
-alias xup="xrdb -I$HOME ~/.Xresources"
+
 # Ls, now with color!
 alias ls='exa'
 alias lsa='ls -a'
-alias r='ranger'
-alias chrome="$(which google-chrome-stable)"
+
+
+# Yaourt
 alias yaourt-update="yaourt -Syu"
 alias yaourt-clean="yaourt -Qdt"
 alias yaourt-backup="(pacman -Qqettn && pacman -Qqettm) > ~/dotfiles/packages/$HOSTNAME && pacman -Qqe > ~/dotfiles/packages/"$HOSTNAME"_all"
 alias yrt="yaourt-clean; yaourt-update; yaourt-backup"
 alias yrtrm="yaourt -Rns"
+
+# Weather
 alias weather="curl wttr.in 2>/dev/null | head -n 7 | tail -n +3"
 alias weather-all="curl wttr.in 2>/dev/null | tail -n 33 | head -n 30"
+
+# cd shortcuts
+alias ,='cd ..'
+alias ,,='cd ../..'
+
+## Misc ##
+alias r='ranger'
 alias m='browser https://mail.google.com/mail/u/0/'
 alias pdf="evince 2>/dev/null"
 alias copy="xclip -selection clipboard"
-alias ,='cd ..'
-alias ,,='cd ../..'
+alias open="xdg-open"
+alias xup="xrdb -I$HOME ~/.Xresources"
 alias drp="HOME=/home/wpovell/.dropbox dropbox-cli"
 alias startx="startx >/tmp/startx.out 2>&1"
 alias mosh="mosh --experimental-remote-ip=remote"

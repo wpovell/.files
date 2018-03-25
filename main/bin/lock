@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Slightly modified version of i3lock-next
+
 from sys import argv, getdefaultencoding, exit
 from os import getenv, path, remove, urandom
 import os

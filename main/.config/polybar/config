@@ -189,7 +189,7 @@ interval = 1
 label = %output:0:60:...%
 label-background = ${colors.background}
 label-foreground = ${colors.foreground}
-exec = muse 2> /dev/null
+exec = muse bar 2> /dev/null
 click-left = muse pause
 click-middle = muse prev
 click-right = muse next
@@ -200,8 +200,8 @@ interval = 60
 format = <label>
 format-prefix-foreground = ${colors.foreground}
 label-foreground = ${colors.foreground}
-exec = ~/.config/polybar/mail query $(xquery color12)
-click-left = ~/.config/polybar/mail open
+exec = ~/bin/support/polybar/mail query $(xquery color12)
+click-left =  ~/bin/support/polybar/mail open
 
 
 [module/scratch]
@@ -210,7 +210,7 @@ interval = 5
 format = <label>
 format-prefix-foreground = ${colors.foreground}
 label-foreground = ${colors.foreground}
-exec = ~/.config/polybar/scratch
+exec =  ~/bin/support/polybar/scratch
 click-left = i3-msg scratchpad show
 
 [global/wm]

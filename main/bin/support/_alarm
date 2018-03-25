@@ -1,6 +1,11 @@
 #!/bin/bash
 
+# Command run by alarm
+# Makes alarm sound + spawns dunst notif
+
+
 mpg123 /home/wpovell/dotfiles/misc/alarm.mp3 &
+# Send pushbullet to phone
 pb -d 0 "ALARM: $1"
 pid=$!
 result=$(dunstify -A kill,Stop "ALARM" "$1")

@@ -16,7 +16,7 @@ def notification_callback(gid, uid, account_id, mail, future):
     output = future.result().stdout.decode('utf-8').strip()
     if output == 'open':
         url = 'mail.google.com/mail/u/{}/#inbox/{}'.format(account_id, gid)
-        subprocess.call(['browser', url])
+        subprocess.call(['firefox-nightly', url])
     elif output == 'delete':
         mail.store(uid, '+FLAGS', r'\Deleted')
     elif output == 'read':

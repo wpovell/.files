@@ -1,0 +1,26 @@
+#!/bin/bash
+
+PATH=$PATH:/home/wpovell/bin/support
+
+
+
+if [[ "$1" = "-r" ]]; then
+  retheme    
+  exit
+fi
+
+retheme startup # Blocks
+
+compton 2>/dev/null
+
+unclutter &
+urxvtd -q -f -o
+urxvt -name dropdown &
+dunst >/tmp/dunst.log 2>&1 &
+redshift &
+polybar &
+startdropbox
+startlocker &
+spotify &
+
+i3-msg workspace "1: I"

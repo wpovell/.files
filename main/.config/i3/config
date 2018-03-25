@@ -1,74 +1,47 @@
 # Custom Stuff
 set $mod Mod4
-
-#bar {
-#    tray_output none
-#    status_command i3status
-#    font xft:FontAwesome, Inconsolata 8
-#    strip_workspace_numbers yes
-#}
+set $HOME $HOME
 
 # Split direction
 default_orientation horizontal
 
-# Startup Apps
-exec --no-startup-id startlocker
-exec --no-startup-id xrdb -I$HOME ~/.Xresources
-exec --no-startup-id compton
-exec --no-startup-id unclutter
-exec --no-startup-id urxvtd -q -f -o
-exec --no-startup-id dunst
-exec --no-startup-id redshift
-exec --no-startup-id ply
-exec_always --no-startup-id retheme
-exec --no-startup-id dropdown
-exec --no-startup-id startdropbox
+# Startup
+exec_always --no-startup-id $HOME/bin/support/start -r
+exec --no-startup-id $HOME/bin/support/start
 
 # Spotify
 for_window [class="Spotify"] move container to workspace $SpotifyWS
-exec --no-startup-id spotify
 bindsym $mod+s workspace $SpotifyWS
 no_focus [class="spotify"]
 
-# Franz
-for_window [class="Franz"] move container to workspace $FranzWS
-no_focus [class="franz"]
-## Temporarily disabling franz
-#exec --no-startup-id franz
-#bindsym $mod+m workspace $FranzWS
-bindsym $mod+m exec /home/wpovell/.config/polybar/mail open
-
-#bindsym $mod+m exec --no-startup-id ~/.config/polybar/mail open
+# Mail
+bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
 
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
-bindsym $mod+e exec --no-startup-id emoji
+bindsym $mod+e exec --no-startup-id $HOME/bin/rofi/emoji
 bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym --release F2 exec --no-startup-id shrugie
+bindsym --release F2 exec --no-startup-id $HOME/bin/support/shrugie
 
+# Screenshot
 bindsym Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
 bindsym --release $mod+ctrl+s exec --no-startup-id screenshot -s
-bindsym $mod+c exec --no-startup-id browser
+bindsym $mod+c exec --no-startup-id firefox-nightly
 
-set $HOME /home/wpovell
-
+# Colors from Xresources
 set_from_resource $borderF color8
 set_from_resource $borderUF color0
 set_from_resource $blue color12
 
+# Jump to application when started
 focus_on_window_activation focus
 
-
+# Borders
 client.focused $borderF $borderF $borderF $blue
 client.focused_inactive $borderUF $borderUF $borderUF $borderUF
 client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
 client.urgent #000000 #000000 #000000
-
-# In case I ever want to have title bars
-   #for_window [class="Nightly"] border pixel 3
-   #font pango:Inconsolata 10    ##Sets title bar thickness
-   #for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
 
 for_window [class="^.*"] border pixel 4
 for_window [instance="dropdown"] border pixel 0
@@ -88,7 +61,7 @@ bindsym ctrl+alt+f1 gksudo chvt 1
 bindsym ctrl+alt+f2 gksudo chvt 2
 
 # Start Term
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec --no-startup-id urxvtc
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -114,11 +87,6 @@ bindsym $mod+v split v
 # Fullscreen
 bindsym $mod+f fullscreen toggle
 
-# Change container layout
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
-
 # Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -126,18 +94,17 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # Focus the parent container
-bindsym $mod+Shift-a focus parent
+bindsym $mod+Shift+a focus parent
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-#bindsym $mod+minus [instance="^((?!dropdown).)*$"] scratchpad show
 bindsym $mod+minus scratchpad show
 
+# Workspaces
 set $SpotifyWS "99: "
-set $FranzWS "98: "
 set $workspace1 "1: I"
 set $workspace2 "2: II"
 set $workspace3 "3: III"
@@ -146,15 +113,12 @@ set $workspace5 "5: V"
 set $workspace6 "6: VI"
 set $workspace7 "7: VII"
 set $workspace8 "8: IIX"
-set $workspace9 "98: "
+set $workspace9 "9: IX"
 set $workspace10 "99: "
 
 # Change workspace
 bindsym Control+$mod+Left workspace prev
 bindsym Control+$mod+Right workspace next
-# Swipe
-bindsym --whole-window button11 workspace prev
-bindsym --whole-window button10 workspace next
 
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -169,15 +133,15 @@ bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # Swap
-bindsym Control+$mod+1 exec --no-startup-id switch $workspace1 
-bindsym Control+$mod+2 exec --no-startup-id switch $workspace2 
-bindsym Control+$mod+3 exec --no-startup-id switch $workspace3 
-bindsym Control+$mod+4 exec --no-startup-id switch $workspace4 
-bindsym Control+$mod+5 exec --no-startup-id switch $workspace5 
-bindsym Control+$mod+6 exec --no-startup-id switch $workspace6 
-bindsym Control+$mod+7 exec --no-startup-id switch $workspace7 
-bindsym Control+$mod+8 exec --no-startup-id switch $workspace8 
-bindsym Control+$mod+9 exec --no-startup-id switch $workspace9 
+bindsym Control+$mod+1 exec --no-startup-id switch $workspace1
+bindsym Control+$mod+2 exec --no-startup-id switch $workspace2
+bindsym Control+$mod+3 exec --no-startup-id switch $workspace3
+bindsym Control+$mod+4 exec --no-startup-id switch $workspace4
+bindsym Control+$mod+5 exec --no-startup-id switch $workspace5
+bindsym Control+$mod+6 exec --no-startup-id switch $workspace6
+bindsym Control+$mod+7 exec --no-startup-id switch $workspace7
+bindsym Control+$mod+8 exec --no-startup-id switch $workspace8
+bindsym Control+$mod+9 exec --no-startup-id switch $workspace9
 bindsym Control+$mod+0 exec --no-startup-id switch $workspace10
 
 
@@ -199,16 +163,16 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
-bindsym $mod+Escape exec --no-startup-id power
+bindsym $mod+Escape exec --no-startup-id $HOME/bin/rofi/power
 
 ## Music
 bindsym XF86AudioPrev exec --no-startup-id muse prev
 bindsym F7 exec --no-startup-id muse prev
 bindsym $mod+Mod1+Left exec --no-startup-id muse prev
 
-bindsym XF86AudioPause exec --no-startup-id muse pause
-bindsym F8 exec --no-startup-id muse pause
-bindsym $mod+Mod1+space exec --no-startup-id muse pause
+bindsym XF86AudioPause exec --no-startup-id muse toggle
+bindsym F8 exec --no-startup-id muse toggle
+bindsym $mod+Mod1+space exec --no-startup-id muse toggle
 
 bindsym XF86AudioNext exec --no-startup-id muse next
 bindsym F9 exec --no-startup-id muse next
@@ -228,6 +192,10 @@ bindsym $mod+Mod1+Up exec --no-startup-id muse up
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+
+# Swipe (currently I don't have any machines that use this)
+bindsym --whole-window button11 workspace prev
+bindsym --whole-window button10 workspace next
 
 # Resize window
 mode "Resize" {
@@ -252,4 +220,32 @@ mode "Resize" {
 
 bindsym $mod+r mode "Resize"
 
-exec i3-msg workspace $workspace1
+### Unusued ###
+
+## Franz
+# Currently unused bc Franz was being glitchy
+for_window [class="Franz"] move container to workspace $FranzWS
+no_focus [class="franz"]
+#set $FranzWS $workspace9
+
+## In case I ever want to have title bars
+#for_window [class="Nightly"] border pixel 3
+#font pango:Inconsolata 10    ##Sets title bar thickness
+#for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
+
+## i3bar
+#bar {
+#    tray_output none
+#    status_command i3status
+#    font xft:FontAwesome, Inconsolata 8
+#    strip_workspace_numbers yes
+#}
+
+## Change container layout
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
+
+## Cycles avoiding dropdown
+# Unforunately this shows all / none of the scratchpad
+#bindsym $mod+minus [instance="^((?!dropdown).)*$"] scratchpad show

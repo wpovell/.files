@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Repackages spotify to have a custom theme based on Xresources.
+# Essentially one big sed command, based on oomoxify.
+
 killall spotify 2>/dev/null
 
 UNZIP_DIR="/tmp/spotify_tmp" && mkdir -p $UNZIP_DIR
@@ -9,7 +12,7 @@ SPOT_DIR="/usr/share/spotify/Apps"
 
 function finish {
     rm -rf $UNZIP_DIR
-    spotify >/dev/null 2>&1 & 
+    spotify >/dev/null 2>&1 &
 }
 
 function color {
@@ -165,4 +168,3 @@ for f in $(find $BAK -name "*.spa"); do
     done
     sudo zip -r "$SPOT_DIR/$(basename $f)" . >/dev/null
 done
-

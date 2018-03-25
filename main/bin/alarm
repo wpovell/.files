@@ -1,4 +1,20 @@
 #!/bin/bash
 
+# Script to play alarm sound + show notif at given time
+
+usage() {
+    echo "$(tput bold)alarm$(tput sgr0)
+    alarm <MESSAGE> <TIME_INFO...>
+
+    Plays alarm sound and shows dunst notif with given message at given time.
+    TIME_INFO param should be in some format at accepts.
+    "
+    exit
+}
+
+case $1 in
+    -h|--help) usage ;;
+esac
+
 sudo atd
-echo "_alarm $1" | at "${@:2}"
+echo "$HOME/bin/support/_alarm $1" | at "${@:2}"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Switches two i3 workspaces
+# Switches current workspace with the given
 
 new='"'$1'"'
 

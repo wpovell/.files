@@ -1,2 +1,2 @@
-_editcmd=$(ls $HOME/bin/)
+_editcmd=$(find ~/bin/ -exec basename {} \;)
 complete -W "${_editcmd}" 'editcmd'

@@ -5,9 +5,16 @@ set bell-style none
 # Dropdown ignores ctrl-d
 if [[ -n $DISPLAY ]]; then
     window_name=$(xprop -id "$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')" 2> /dev/null | grep 'WM_NAME(STRING)' | awk '{print $3}' 2> /dev/null)
-    if [[ $window_name == '"dropdown"' ]] && [[ -z $TMUX ]]
-    then
+    if [[ $window_name == '"dropdown"' && -z $TMUX ]]; then
         set -o ignoreeof
+        dim=$(xrandr | grep "*" | perl -lne 'print $1 if /([0-9]+)x/')
+        i3-msg \[instance=\"dropdown\"\] floating enable, resize set $dim 300, \
+               move position 0px 27px, move scratchpad 2>/dev/null
+
+        if sess=$(tmux list-sessions | grep "x12"); then
+            sess=${sess:0:1}
+            tmux attach -t $sess
+        fi
     fi
 fi
 

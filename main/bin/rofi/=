@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # Calculator for use with rofi/dmenu(2)
-# Copying to the clipboard requires xclip
 # https://github.com/onespaceman/menu-calc
 
 usage() {

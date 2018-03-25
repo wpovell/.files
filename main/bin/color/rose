@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Prints a pretty tree
+# Prints a flower
 
 flower = '\033[31m'
 tree  = '\033[37m'

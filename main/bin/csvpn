@@ -1,6 +1,53 @@
 #!/bin/bash
+
 # Connects to browncs vpn
 
-polybar-msg hook vpn 1
-sudo openvpn /etc/openvpn/client/browncs.opvn
-polybar-msg hook vpn 2
+usage() {
+    echo "$(tput bold)csvpn$(tput sgr0)
+    csvpn [kill | status]
+
+    Script to connect to Brown CS vpn.
+
+    If no command passed, will toggle the vpn.
+
+    Commands:
+        kill      Will stop the vpn, regardless of its current state.
+        status    Prints the status of vpn.
+        polybar   Sends appropriate ipc to polybar (used when polybar is restart)
+    "
+    exit
+}
+
+status() {
+  if [[ $(pgrep -x openvpn) ]]; then
+    echo "Running"
+  else
+    echo "Stopped"
+  fi
+  exit
+}
+
+polybar() {
+  if [[ $(pgrep -x openvpn) ]]; then
+    polybar-msg hook vpn 1
+  fi
+  exit
+}
+
+case $1 in
+    -h|--help) usage ;;
+    status) status ;;
+    polybar) polybar ;;
+esac
+
+if [[ "$1" = "kill" || $(pgrep -x openvpn) ]]; then
+   echo "Stopping"
+   sudo killall openvpn
+else
+   echo "Starting"
+   {
+     polybar-msg hook vpn 1 2>/dev/null
+     sudo openvpn /etc/openvpn/client/browncs.opvn >/tmp/vpn.log 2>&1
+     polybar-msg hook vpn 2 2>/dev/null
+   } &
+fi

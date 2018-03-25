@@ -2,4 +2,23 @@
 
 # Edits given command arg
 
-emacs -nw $(which $1)
+usage() {
+    echo "$(tput bold)editcmd$(tput sgr0)
+    editcmd SCRIPT
+
+    Opens the script passed in emacs. Script must be under ~/bin to be found.
+    "
+    exit
+}
+
+case $1 in
+    -h|--help) usage ;;
+esac
+
+FILE=$(find ~/bin/ -name $1)
+
+if [[ -e $FILE ]]; then
+  emacs -nw $FILE
+else
+  echo "ERROR: No such script '$1'"
+fi

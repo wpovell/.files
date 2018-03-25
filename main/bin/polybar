@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Warpper around polybar that lauches host-appropriate bar
+
+/usr/bin/polybar $@ $HOSTNAME

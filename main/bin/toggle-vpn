@@ -1,5 +1,0 @@
-if [[ "$1" = "-k" || $(pgrep -x openvpn) ]]; then
-   sudo killall openvpn
-else
-   csvpn &
-fi
