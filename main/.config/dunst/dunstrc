@@ -20,7 +20,7 @@
     frame_width = 3
     frame_color = --color4
     timeout = 15
-    browser = /usr/bin/browser
+    browser = firefox-nightly
     dmenu = /usr/bin/rofi -dmenu
     stack_duplicates = false
     hide_duplicate_count = true

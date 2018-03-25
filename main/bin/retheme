@@ -70,8 +70,8 @@ if [[ "$1" = "startup" ]]; then
     exit
 fi
 
-polybar-msg cmd restart
-i3-msg reload
+polybar-msg cmd restart 2>/dev/null
+i3-msg reload 1>/dev/null
 
 # Interesting reason behind this
 # We don't want to send color updates to terminals inside of tmux, just tmux itself

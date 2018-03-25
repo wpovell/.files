@@ -48,7 +48,7 @@ hook-1 = echo '%{F'$(xquery foreground)'}'
 initial = 1
 
 format-foreground = ${colors.bright}
-click-left = toggle-notif
+click-left = notif-snooze
 
 [module/vpn]
 type = custom/ipc
@@ -59,8 +59,8 @@ initial = 2
 
 format-foreground = ${colors.bright}
 
-click-right = toggle-vpn -k
-click-left = toggle-vpn
+click-right = csvpn kill
+click-left = csvpn
 
 [section/volume]
 type = internal/alsa
@@ -190,7 +190,7 @@ label = %output:0:60:...%
 label-background = ${colors.background}
 label-foreground = ${colors.foreground}
 exec = muse bar 2> /dev/null
-click-left = muse pause
+click-left = muse toggle
 click-middle = muse prev
 click-right = muse next
 

@@ -10,10 +10,10 @@ esac
 
 FN=/tmp/notif_snooze
 function finish {
-    rm $FN
+    rm $FN 2>/dev/null
 }
 trap finish EXIT
 
-polybar-msg hook notif 1
+polybar-msg hook notif 1 2>/dev/null
 /usr/bin/dunst $@ -conf <(cat ~/.config/dunst/dunstrc | \
                           perl -pe 's/--([a-z0-9]+)/`xquery -q $1`/e')

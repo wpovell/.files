@@ -37,7 +37,7 @@ def query():
     '''Query for new mail, notify if new.'''
 
     # Read passwords
-    with open('/home/wpovell/dotfiles/pass.json') as f:
+    with open('/home/wpovell/dotfiles/misc/pass.json') as f:
         passwords = json.load(f)
 
     # Read in fetched but unread mail to compare to
@@ -121,9 +121,9 @@ def show():
         cache = [[],[]]
 
     if cache[0] or (not cache[0] and not cache[1]):
-        subprocess.call(['browser', 'mail.google.com/mail/u/0/'])
+        subprocess.call(['firefox-nightly', 'mail.google.com/mail/u/0/'])
     if cache[1]:
-        subprocess.call(['browser', 'mail.google.com/mail/u/1/'])
+        subprocess.call(['firefox-nightly', 'mail.google.com/mail/u/1/'])
     query()
 
 

@@ -29,7 +29,7 @@ status() {
 
 polybar() {
   if [[ $(pgrep -x openvpn) ]]; then
-    polybar-msg hook vpn 1
+    polybar-msg hook vpn 1 2>/dev/null
   fi
   exit
 }
