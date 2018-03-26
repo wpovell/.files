@@ -14,6 +14,9 @@ for_window [class="Spotify"] move container to workspace $SpotifyWS
 bindsym $mod+s workspace $SpotifyWS
 no_focus [class="spotify"]
 
+# Hide qemu bc im hella behind in os
+for_window [class="qemu-system-i386"] move scratchpad
+
 # Mail
 bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
 
