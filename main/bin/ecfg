@@ -9,6 +9,9 @@ usage() {
     exit
 }
 
+if [[ -z $1 ]]; then
+   usage
+fi
 
 case $1 in
      -h|--help) usage ;;

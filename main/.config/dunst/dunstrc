@@ -32,6 +32,11 @@
     msg_urgency = critical
     fullscreen = show
 
+# This is needed bc dunst gets weird when there are <> in notifs
+[facebook]
+    appname = "Nightly"
+    markup  = no
+
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
