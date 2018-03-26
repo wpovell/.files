@@ -1,0 +1,31 @@
+#!/bin/bash
+
+usage() {
+    echo "$(tput bold)editcfg$(tput sgr0)
+    editcfg [program]
+    
+    Opens the given program's config for editing.
+    "
+    exit
+}
+
+
+case $1 in
+     -h|--help) usage ;;
+     tmux) F=~/.tmux.conf ;;
+     bash) F=~/.bashrc ;;
+     common) F=~/.commonrc ;;
+     zsh) F=~/.zshrc ;;
+     i3) F=~/.config/i3/config ;;
+     dunst) F=~/.config/dunst/dunstrc ;;
+     emacs) F=~/.emacs.d/init.el ;;
+     firefox) F=~/.mozilla/firefox/fb8uvoz6.default/chrome/userChrome.css ;;
+     polybar) F=~/.config/polybar/config ;;
+     ssh) F=~/.ssh/config ;;
+     git) F=~/.gitconfig ;;
+     urxvt) F=~/.Xresources.d/urxvt ;;
+     rofi) F=~/.Xresources.d/rofi ;;     
+     *) echo "No such config file '$1'" && exit ;;
+esac
+
+$EDITOR $F
