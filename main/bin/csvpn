@@ -42,7 +42,7 @@ esac
 
 if [[ "$1" = "kill" || $(pgrep -x openvpn) ]]; then
    echo "Stopping"
-   sudo killall openvpn
+   sudo killall openvpn 2>/dev/null
 else
    echo "Starting"
    {

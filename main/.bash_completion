@@ -1,2 +1,5 @@
-_editcmd=$(find ~/bin/ -exec basename {} \;)
-complete -W "${_editcmd}" 'editcmd'
+_ecmd=$(find ~/bin/ -exec basename {} \;)
+complete -W "${_ecmd}" 'ecmd'
+
+_ecfg=$(grep -ohP '(?<=\s{5})[a-z0-9]+(?=\))' ~/bin/ecfg)
+complete -W "${_ecfg}" 'ecfg'

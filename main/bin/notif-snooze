@@ -2,7 +2,7 @@
 
 usage() {
     echo "$(tput bold)notif-snooze$(tput sgr0)
-    muse [polybar]
+    notif-snooze [polybar]
 
     Toggles whether notifications are snoozed.
     The polybar option is used after resets to send the appropriate ipc calls.
