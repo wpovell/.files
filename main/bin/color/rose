@@ -3,7 +3,7 @@
 # Prints a flower
 
 flower = '\033[31m'
-tree  = '\033[37m'
+stem  = '\033[37m'
 
 s = r'''    {0}.--.---.
    ( \'--'/ )
@@ -15,6 +15,6 @@ s = r'''    {0}.--.---.
        __ \\|_/
       /  \ \\
        '--'.\ >
-             \\   '''.format(flower, tree)
+             \\   '''.format(flower, stem)
 
 print(s + '\033[0m')
