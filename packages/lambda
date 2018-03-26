@@ -1,5 +1,6 @@
 acpi
 acpi_call
+adobe-source-han-sans-kr-fonts
 alsa-utils
 arandr
 arc-gtk-theme
@@ -110,6 +111,7 @@ wireless_tools
 wpa_actiond
 xautolock
 xclip
+xdg-user-dirs
 xdo
 xdotool
 xfsprogs

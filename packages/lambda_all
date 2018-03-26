@@ -1,5 +1,6 @@
 acpi
 acpi_call
+adobe-source-han-sans-kr-fonts
 alloy
 alsa-utils
 arandr
@@ -189,6 +190,7 @@ wpa_actiond
 wpa_supplicant
 xautolock
 xclip
+xdg-user-dirs
 xdo
 xdotool
 xfsprogs
