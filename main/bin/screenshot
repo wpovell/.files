@@ -12,7 +12,7 @@ usage() {
     exit
 }
 
-fn="$HOME/Desktop/$(date +%s).png"
+fn="$HOME/desktop/$(date +%s).png"
 
 case $1 in
   -h|--help) usage ;;
