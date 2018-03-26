@@ -6,13 +6,13 @@ body {
     font-family: 'Inconsolata', fontawesome, sans-serif;
 }
 
-.xkcd {
+#xkcd {
   width: 700px;
   position: fixed;
   margin: 0 auto;
 }
 
-.xkcd p {
+#xkcd p {
   color: black;
   margin-top: 20px;
   font-size: 20px;

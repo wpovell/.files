@@ -242,16 +242,10 @@ document.onkeypress = (e) => {
   }
 
   if (start == 'x') {
-    $.ajax('http://dynamic.xkcd.com/api-0/jsonp/comic/',
-            { dataType: 'jsonp' }).then( (data) => {
-              $('#content').html(`
-                <div class="xkcd">
-                  <img src="${data.img}" />
-                  <p>${data.alt}</p>
-                </div>`);
-            })
+      $('#xkcd').show();
+  } else {
+      $('#xkcd').hide();
   }
-
   // Add suggests
   if (start != lastSuggest && urls[start] && urls[start].suggest) {
     lastSuggest = start;
@@ -261,17 +255,28 @@ document.onkeypress = (e) => {
         return '<li>' + x + '</li>';
       }).join('') +
       '</ul>');
-  } else if (searchQuery == '') {
+  } else if (!urls[start]) {
+    lastSuggest = '';
     $('#content').html('');
   }
 
   setSearch(searchQuery.replace(/\s+/, '') != '');
 };
 
+function setXkcd() {
+    $.ajax('http://dynamic.xkcd.com/api-0/jsonp/comic/',
+           { dataType: 'jsonp' }).then( (data) => {
+               $('#xkcd').html(`
+                  <img src="${data.img}" />
+                  <p>${data.alt}</p>`);
+           });
+}
+
 $(() => {
   // Not currently searching
   setSearch(false);
   setClock();
   setHN();
+  setXkcd()
   setWeather();
 });

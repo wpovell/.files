@@ -90,6 +90,7 @@ which
 wpa_actiond
 xautolock
 xclip
+xdg-user-dirs
 xdo
 xdotool
 xorg-fonts-100dpi
