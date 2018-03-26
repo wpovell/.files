@@ -1,6 +1,7 @@
 . ~/.commonrc
 
 set bell-style none
+bind 'set mark-symlinked-directories on'
 
 # Dropdown ignores ctrl-d
 if [[ -n $DISPLAY ]]; then
