@@ -1,12 +1,36 @@
 // Weather refresh in seconds
 const WEATHER_REFRESH = 60 * 20;
-const WEATHER_LOCATION = 'RI/Providence';
+const WEATHER_DEFAULT = ['/q/RI/Providence', 'Providence'];
+
+function getLocation() {
+    let cached = JSON.parse(window.localStorage.getItem('location'));
+    if (cached == null || ((new Date) - new Date(cached['time'])) / 1000 > WEATHER_REFRESH) {
+        console.log("Fetching location");
+        $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/geolookup/q/autoip.json`, {
+            dataType: 'jsonp'
+        }).then((data) => {
+            data = data.location;
+            let newCached = {
+                name: data.city,
+                time: new Date(),
+                code: data.l,
+            };
+            window.localStorage.setItem('location', JSON.stringify(newCached));
+        });
+        return WEATHER_DEFAULT;
+    } else {
+        return [cached.code, cached.name];
+    }
+}
 
 // Fetches & caches weather data
 function getWeather(callback) {
+
+  let location = getLocation();
+  
   let modifiedCallback = (data) => {
     let jsonData = {
-      'location': WEATHER_LOCATION,
+      'location': location[1],
       'time': new Date(),
       'weather': data
     }
@@ -16,10 +40,10 @@ function getWeather(callback) {
 
   let data = JSON.parse(window.localStorage.getItem('weather'));
 
-  if (data == null || WEATHER_LOCATION != data['location'] ||
+  if (data == null || location[1] != data['location'] ||
     ((new Date) - new Date(data['time'])) / 1000 > WEATHER_REFRESH) {
     console.log("Fetching weather");
-    data = $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/forecast10day/q/${WEATHER_LOCATION}.json`, {
+    data = $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/forecast10day${location[0]}.json`, {
       dataType: 'jsonp'
     }).then(modifiedCallback);
   } else {
