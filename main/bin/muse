@@ -25,13 +25,9 @@ print_music() {
 
 toggle_mute() {
   if [[ $CURRENT_STATE == '[on]' ]]; then
-	   amixer set Master mute
+      amixer scontrols | grep -oE "'.*'" | awk -F\'  '{print "amixer set \""$2"\" mute"}' | sh
   else
-  	amixer set Master unmute
-  	amixer set Speaker unmute
-  	amixer set Headphone unmute
-  	amixer set "Bass Speaker" unmute
-    amixer set Front unmute
+        amixer scontrols | grep -oE "'.*'" | awk -F\'  '{print "amixer set \""$2"\" unmute"}' | sh
   fi
 }
 
