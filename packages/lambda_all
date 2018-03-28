@@ -138,6 +138,7 @@ python-pywal
 python-scipy
 python-tensorflow
 python-virtualenv
+rambox-bin
 ranger
 recordmydesktop
 redshift
