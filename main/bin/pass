@@ -44,7 +44,7 @@ if [[ -z $1 || "$1" = "-h" || "$1" = "--help" ]]; then
 fi
 
 if [[ "$1" = "rofi" ]]; then
-  password=$(rofi -dmenu -password -p pass)
+  password=$(rofi -dmenu -password -p pass -l 0)
   # Exit on escape  
   if [[ $? -ne 0 ]]; then
     exit
@@ -68,7 +68,7 @@ if [[ "$1" == "rofi" ]]; then
   if [[ -f $CACHE ]]; then
     RESULTS=$(cat $CACHE | rofi -dmenu -i -p pass)
   else
-    RESULTS=$(ls_all | rofi -dmenu -p -i pass)
+    RESULTS=$(ls_all | rofi -dmenu -i -p pass)
   fi
   if [[ $? -ne 0 ]]; then
     exit
@@ -80,8 +80,6 @@ fi
 RESULTS=$(echo "$RESULTS" | tail -n +2 | grep -v "Recycle Bin\|No results for that search term")
 
 N=$(echo "$RESULTS" | wc -l)
-
-ls_all > $CACHE &
 
 if [[ -z $RESULTS ]]; then
   echo "No password found"
@@ -124,3 +122,5 @@ else
     rofi -e "Faield to copy password for \"$RESULTS\""
   fi
 fi
+
+ls_all | sort | uniq > $CACHE &
