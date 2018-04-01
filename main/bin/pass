@@ -1,18 +1,23 @@
 #!/bin/bash
 
 DATABASE=~/files/pass.kdbx
+TIMEOUT=15
+CACHE=~/.cache/passwords.cache
 
 usage() {
     echo "$(tput bold)pass$(tput sgr0)
-    pass [ENTRY]
+    pass [rofi] ENTRY
 
     Wrapper around xkeepassxc-cli.
+
+    Commands:
+        rofi    Produces rofi prompt rather than cli
     "
     exit
 }
 
 copy_pass() {
-    echo $password | keepassxc-cli clip $DATABASE "$1" >/dev/null 2>&1
+    echo $password | keepassxc-cli clip $DATABASE "$1" $TIMEOUT >/dev/null 2>&1
 }
 
 ls_all() {
@@ -32,16 +37,18 @@ ls_all() {
 
 
 
-if [[ -z $1 ]]; then
+if [[ -z $1 || "$1" = "-h" || "$1" = "--help" ]]; then
   usage
   exit
 fi
 
-echo -n "Password: "
-read -s password
-echo
-
-ls_all > .cache/passwords.cache &
+if [[ "$1" = "rofi" ]]; then
+  password=$(rofi -dmenu -password -p pass)
+else
+  echo -n "Password: "
+  read -s password
+  echo
+fi
 
 RESULTS=$(echo $password | keepassxc-cli locate $DATABASE $1 2>/dev/null)
 
@@ -51,6 +58,15 @@ if [[ $? -ne 0 ]]; then
 fi
 
 RESULTS=$(echo "$RESULTS" | tail -n +2 | grep -v "Recycle Bin")
+
+if [[ "$1" == "rofi" ]]; then
+  if [[ -f $CACHE ]]; then
+    RESULTS=$(cat $CACHE | rofi -dmenu -pass)
+  else
+    RESULTS=$(ls_all | rofi -dmenu -pass)
+  fi
+fi
+
 N=$(echo "$RESULTS" | wc -l)
 if [[ $N -eq 0 ]]; then
   echo "No password found"
@@ -68,3 +84,5 @@ else
   RESULTS=$(sed -n ${choice}p <<< "$RESULTS")
   copy_pass "$RESULTS"
 fi
+
+ls_all > $CACHE &
