@@ -58,6 +58,6 @@ alias xup="xrdb -I$HOME ~/.Xresources"
 alias drp="HOME=/home/wpovell/.dropbox dropbox-cli"
 alias startx="startx >/tmp/startx.out 2>&1"
 alias mosh="mosh --experimental-remote-ip=remote"
-
+alias grep="grep --color='auto'"
 # No less history
 LESSHISTFILE=-
