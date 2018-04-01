@@ -4,5 +4,5 @@ complete -W "${_ecmd}" 'ecmd'
 _ecfg=$(grep -ohP '(?<=\s{5})[a-z0-9]+(?=\))' ~/bin/ecfg)
 complete -W "${_ecfg}" 'ecfg'
 
-_pass=$(cat ~/.cache/passwords.cache)
+_pass=$(cat ~/.cache/passwords.cache 2>/dev/null)
 complete -W "${_pass}" 'pass'
