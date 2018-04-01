@@ -54,7 +54,6 @@ findutils
 firefox-nightly
 fish
 flex
-franz
 freerdp
 gawk
 gcc
@@ -87,7 +86,6 @@ jupyter
 keepassxc
 less
 libmtp
-libreoffice-fresh
 libtool
 licenses
 linux
@@ -138,7 +136,6 @@ python-pywal
 python-scipy
 python-tensorflow
 python-virtualenv
-rambox-bin
 ranger
 recordmydesktop
 redshift
