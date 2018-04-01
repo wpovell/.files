@@ -17,7 +17,7 @@ usage() {
 }
 
 copy_pass() {
-    echo $password | keepassxc-cli clip $DATABASE "$1" $TIMEOUT >/dev/null 2>&1
+    echo $password | keepassxc-cli clip $DATABASE "$1" $TIMEOUT >/dev/null &
 }
 
 ls_all() {
@@ -35,7 +35,8 @@ ls_all() {
     echo "$RES"
 }
 
-
+# Suppress all stderr
+exec 2<&-
 
 if [[ -z $1 || "$1" = "-h" || "$1" = "--help" ]]; then
   usage
@@ -44,32 +45,46 @@ fi
 
 if [[ "$1" = "rofi" ]]; then
   password=$(rofi -dmenu -password -p pass)
+  # Exit on escape  
+  if [[ $? -ne 0 ]]; then
+    exit
+  fi
 else
   echo -n "Password: "
   read -s password
   echo
 fi
 
-RESULTS=$(echo $password | keepassxc-cli locate $DATABASE $1 2>/dev/null)
-
+RESULTS=$(echo $password | keepassxc-cli locate $DATABASE $1)
 if [[ $? -ne 0 ]]; then
   echo "Bad password"
+  if [[ "$1" = "rofi" ]]; then
+    rofi -e "Bad password"
+  fi
   exit
 fi
 
-RESULTS=$(echo "$RESULTS" | tail -n +2 | grep -v "Recycle Bin")
-
 if [[ "$1" == "rofi" ]]; then
   if [[ -f $CACHE ]]; then
-    RESULTS=$(cat $CACHE | rofi -dmenu -pass)
+    RESULTS=$(cat $CACHE | rofi -dmenu -p pass)
   else
-    RESULTS=$(ls_all | rofi -dmenu -pass)
+    RESULTS=$(ls_all | rofi -dmenu -p pass)
   fi
+  RESULTS=$(echo $password | keepassxc-cli locate $DATABASE $RESULTS)  
 fi
 
+RESULTS=$(echo "$RESULTS" | tail -n +2 | grep -v "Recycle Bin\|No results for that search term")
+
 N=$(echo "$RESULTS" | wc -l)
-if [[ $N -eq 0 ]]; then
+
+ls_all > $CACHE &
+
+if [[ -z $RESULTS ]]; then
   echo "No password found"
+  if [[ "$1" = "rofi" ]]; then
+    rofi -e "No password found"
+  fi
+  exit
 elif [[ $N -eq 1 ]]; then
   copy_pass "$RESULTS"
 else
@@ -85,4 +100,4 @@ else
   copy_pass "$RESULTS"
 fi
 
-ls_all > $CACHE &
+echo "Copied password for \"$RESULTS\""
