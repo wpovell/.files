@@ -48,7 +48,6 @@ jq
 jshon
 jsoncpp
 keepassxc
-libreoffice-fresh
 licenses
 linux-headers
 logrotate
@@ -132,7 +131,6 @@ cli-visualizer
 dropbox-cli
 dunst-git
 firefox-nightly
-franz
 google-chrome
 i3-gaps-next-git
 i3lock-next-git
@@ -140,7 +138,6 @@ perf-tools
 phantomjs
 polybar-git
 python-pywal
-rambox-bin
 rofi-git
 simple-mtpfs
 spotify

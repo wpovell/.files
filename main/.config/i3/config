@@ -17,6 +17,9 @@ no_focus [class="spotify"]
 # Mail
 bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
 
+# Pass
+bindsym $mod+p exec --no-startup-id pass rofi
+
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
 bindsym $mod+e exec --no-startup-id $HOME/bin/rofi/emoji
