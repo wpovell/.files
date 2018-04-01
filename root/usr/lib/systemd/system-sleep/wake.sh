@@ -1,4 +1,5 @@
 #!/bin/sh
+# ::lambda
 
 case $1/$2 in
   pre/*)

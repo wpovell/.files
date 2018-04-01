@@ -20,6 +20,8 @@ fi
 
 cd ~wpovell/dotfiles/root
 for i in $(find . -type f); do
-  echo ${i:1}
-  ln -sf $i ${i:1}
+  if grep "# ::$HOSTNAME" $i >/dev/null; then
+    echo ${i:1}
+    ln -sf $i ${i:1}
+  fi
 done

@@ -1,3 +1,5 @@
+# ::lambda
+
 ACTION=="change", KERNEL=="BAT0", \
 SUBSYSTEM=="power_supply", \
 ATTR{status}=="Discharging", \
