@@ -1,0 +1,25 @@
+#!/bin/bash
+
+usage() {
+    echo "$(tput bold)root_link$(tput sgr0)
+
+    Script to link root directory of dotfiles to the appropriate places in the file system.
+    Must be run as root.
+    "
+    exit
+}
+
+case $1 in
+  -h|--help) usage ;;
+esac
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
+
+cd ~wpovell/dotfiles/root
+for i in $(find . -type f); do
+  echo ${i:1}
+  ln -sf $i ${i:1}
+done
