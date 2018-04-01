@@ -237,12 +237,36 @@ no_focus [class="franz"]
 #for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
 
 ## i3bar
-#bar {
-#    tray_output none
-#    status_command i3status
-#    font xft:FontAwesome, Inconsolata 8
-#    strip_workspace_numbers yes
-#}
+
+set_from_resource $background color0
+set_from_resource $foreground foreground
+set_from_resource $barFocus color4
+set_from_resource $barUnfocus color8
+set_from_resource $barMode color1
+set_from_resource $bright color12
+set $transparent #00000000
+
+set_from_resource $showBar showBar
+
+bar {
+    mode $showBar
+    modifier none
+    tray_output none
+    status_command i3status
+    font xft:FontAwesome, Inconsolata 8
+    strip_workspace_numbers yes
+    colors {
+      statusline $foreground
+      background $background
+      separator $transparent
+
+      focused_workspace $background $background $barFocus
+      inactive_workspace $background $background $foreground
+      active_workspace $barFocus $background $barUnfocus
+      urgent_workspace $background $background $foreground
+      binding_mode $barMode $barMode $background
+    }
+}
 
 ## Change container layout
 #bindsym $mod+s layout stacking
