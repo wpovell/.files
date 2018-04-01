@@ -223,19 +223,6 @@ mode "Resize" {
 
 bindsym $mod+r mode "Resize"
 
-### Unusued ###
-
-## Franz
-# Currently unused bc Franz was being glitchy
-for_window [class="Franz"] move container to workspace $FranzWS
-no_focus [class="franz"]
-#set $FranzWS $workspace9
-
-## In case I ever want to have title bars
-#for_window [class="Nightly"] border pixel 3
-#font pango:Inconsolata 10    ##Sets title bar thickness
-#for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
-
 ## i3bar
 
 set_from_resource $background color0
@@ -267,6 +254,13 @@ bar {
       binding_mode $barMode $barMode $background
     }
 }
+
+### Unusued ###
+
+## In case I ever want to have title bars
+#for_window [class="Nightly"] border pixel 3
+#font pango:Inconsolata 10    ##Sets title bar thickness
+#for_window [class=".*"] title_format "<span size='small' foreground='white' font='Inconsolata'> ♦ %title</span>" #Set actual title font and size
 
 ## Change container layout
 #bindsym $mod+s layout stacking
