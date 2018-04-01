@@ -18,6 +18,7 @@ case $1 in
      tmux) F=~/.tmux.conf ;;
      bash) F=~/.bashrc ;;
      common) F=~/.commonrc ;;
+     completion) F=~/.bash_completion ;;
      zsh) F=~/.zshrc ;;
      i3) F=~/.config/i3/config ;;
      dunst) F=~/.config/dunst/dunstrc ;;

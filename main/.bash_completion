@@ -6,3 +6,6 @@ complete -W "${_ecfg}" 'ecfg'
 
 _pass=$(cat ~/.cache/passwords.cache 2>/dev/null)
 complete -W "${_pass}" 'pass'
+
+_retheme=$(retheme list)
+complete -W "${_retheme}" 'retheme'

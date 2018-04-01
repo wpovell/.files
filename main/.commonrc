@@ -29,16 +29,22 @@ alias xdotool='export DISPLAY=:0.0 && xdotool'
 alias rm="rm -I"
 
 # Ls, now with color!
-alias ls='exa'
+if which exa >/dev/null 2>&1; then
+   alias ls='exa'
+else
+   alias ls='ls --color'
+fi
+
 alias la='ls -a'
 alias ll='ls -l'
 
 # Yaourt
-alias yaourt-update="yaourt -Syu"
-alias yaourt-clean="yaourt -Qdt"
-alias yaourt-backup="(pacman -Qqettn && pacman -Qqettm) > ~/dotfiles/packages/$HOSTNAME && pacman -Qqe > ~/dotfiles/packages/"$HOSTNAME"_all"
-alias yrt="yaourt-clean; yaourt-update; yaourt-backup"
-alias yrtrm="yaourt -Rns"
+if which yaourt >/dev/null 2>&1; then
+   alias yaourt-update="yaourt -Syu"
+   alias yaourt-clean="yaourt -Qdt"
+   alias yaourt-backup="(pacman -Qqettn && pacman -Qqettm) > ~/dotfiles/packages/$HOSTNAME && pacman -Qqe > ~/dotfiles/packages/"$HOSTNAME"_all"
+   alias yrt="yaourt-clean; yaourt-update; yaourt-backup"
+fi
 
 # Weather
 alias weather="curl wttr.in 2>/dev/null | head -n 7 | tail -n +3"
@@ -50,7 +56,7 @@ alias ,,='cd ../..'
 
 ## Misc ##
 alias r='ranger'
-alias m='browser https://mail.google.com/mail/u/0/'
+alias m='~/bin/support/polybar/mail show'
 alias pdf="evince 2>/dev/null"
 alias copy="xclip -selection clipboard"
 alias open="xdg-open"
@@ -59,7 +65,7 @@ alias drp="HOME=/home/wpovell/.dropbox dropbox-cli"
 alias startx="startx >/tmp/startx.out 2>&1"
 alias mosh="mosh --experimental-remote-ip=remote"
 alias grep="grep --color='auto'"
-alias keepassxc="keepassxc ~/files/pass.kdbx"
+alias keepassxc="keepassxc ~/files/pass.kdbx &"
 alias df='df -h'
 # No less history
 LESSHISTFILE=-

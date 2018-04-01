@@ -5,6 +5,17 @@
     display: none !important;
 }
 
+/* Get rid of fullscreen animation */
+#navigator-toolbox[fullscreenShouldAnimate] {
+    transition: none !important;
+}
+
+/* Fix private browsing logo */
+.private-browsing-indicator {
+    background-position: top!important;
+    margin-top: 5px;
+}
+
 /* Set font */
 .tab-text, .urlbar-input-box, .autocomplete-richlistitem {
     font-family: Inconsolata!important;
