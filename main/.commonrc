@@ -30,8 +30,8 @@ alias rm="rm -I"
 
 # Ls, now with color!
 alias ls='exa'
-alias lsa='ls -a'
-
+alias la='ls -a'
+alias ll='ls -l'
 
 # Yaourt
 alias yaourt-update="yaourt -Syu"
@@ -59,5 +59,7 @@ alias drp="HOME=/home/wpovell/.dropbox dropbox-cli"
 alias startx="startx >/tmp/startx.out 2>&1"
 alias mosh="mosh --experimental-remote-ip=remote"
 alias grep="grep --color='auto'"
+alias keepassxc="keepassxc ~/files/pass.kdbx"
+alias df='df -h'
 # No less history
 LESSHISTFILE=-

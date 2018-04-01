@@ -66,10 +66,14 @@ fi
 
 if [[ "$1" == "rofi" ]]; then
   if [[ -f $CACHE ]]; then
-    RESULTS=$(cat $CACHE | rofi -dmenu -p pass)
+    RESULTS=$(cat $CACHE | rofi -dmenu -i -p pass)
   else
-    RESULTS=$(ls_all | rofi -dmenu -p pass)
+    RESULTS=$(ls_all | rofi -dmenu -p -i pass)
   fi
+  if [[ $? -ne 0 ]]; then
+    exit
+  fi
+  
   RESULTS=$(echo $password | keepassxc-cli locate $DATABASE $RESULTS)  
 fi
 
@@ -89,15 +93,26 @@ elif [[ $N -eq 1 ]]; then
   copy_pass "$RESULTS"
 else
   echo "Multiple matches"
-  c=0
-  while read i; do
-    ((c++))
-    echo "$c) $i"
-  done <<< "$RESULTS"
-  echo -n "Choice: "
-  read choice
-  RESULTS=$(sed -n ${choice}p <<< "$RESULTS")
+
+  if [[ "$1" = "rofi" ]]; then
+    # TODO: Make this more robust
+    RESULTS=$(echo "$RESULTS" | rofi -dmenu -p pass)
+  else  
+    c=0
+    while read i; do
+      ((c++))
+      echo "$c) $i"
+    done <<< "$RESULTS"
+    echo -n "Choice: "
+    read choice
+    RESULTS=$(sed -n ${choice}p <<< "$RESULTS")
+  fi
+
   copy_pass "$RESULTS"
 fi
 
-echo "Copied password for \"$RESULTS\""
+if [[ $? -eq 0 ]]; then
+  echo "Copied password for \"$RESULTS\""
+else
+  echo "Faield to copy password for \"$RESULTS\""
+fi
