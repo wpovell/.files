@@ -1,0 +1,9 @@
+#!/bin/bash
+
+IP=$(ip address | \
+grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | \
+grep -Eo '([0-9]*\.){3}[0-9]*' | \
+grep -v '127.0.0.1' | \
+head -n 1)
+ssh -i ~wpovell/.ssh/id_rsa -F ~wpovell/.ssh/config -oStrictHostKeyChecking=no brown "echo $IP > .bluenoip"
+echo "wrote $IP on `date` (`whoami`)" > /home/wpovell/.cache/ip_log
