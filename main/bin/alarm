@@ -16,5 +16,6 @@ case $1 in
     -h|--help) usage ;;
 esac
 
+
 sudo atd
-echo "$HOME/bin/support/_alarm $1" | at "${@:2}"
+echo "$HOME/bin/support/_alarm $2" | at "now + $1"
