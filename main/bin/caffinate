@@ -23,7 +23,7 @@ FN="/tmp/lock_disabled"
 
 polybar() {
   if [[ -f $FN ]]; then
-    polybar-msg hook lock 2
+    polybar-msg hook lock 2 2>/dev/null
   fi
   exit
 }

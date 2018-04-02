@@ -21,6 +21,9 @@
     font-family: Inconsolata!important;
 }
 
+/* Prevent insta-click on right click menu */
+#contentAreaContextMenu{ margin: 2px 0 0 2px }
+
 /* Hide url for pinned tabs */
 :root {
     --full-height: calc(var(--space-above-tabbar) + var(--tab-min-height));
