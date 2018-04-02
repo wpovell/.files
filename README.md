@@ -12,7 +12,7 @@ This repo holds my dotfiles & various other things for my desktop (`blueno`) and
 - Terminal: `urxvt`
 - Notifications: `dunst`
 - Launcher: `rofi`
-- Music: `Spotify`
+- Music: `spotify`
 - Editor: `emacs` / `atom`
 - Browser: `firefox-nightly`
 
