@@ -73,6 +73,7 @@ gzip
 htop
 i3-gaps-next-git
 i3lock-next-git
+i3status
 inetutils
 intel-ucode
 iproute2
