@@ -46,6 +46,7 @@ mongodb
 mosh
 mplayer
 mtools
+mutt
 nano
 neofetch
 netctl
@@ -78,6 +79,7 @@ sshfs
 stow
 sudo
 systemd-sysvcompat
+task
 tmux
 tree
 ttf-font-awesome

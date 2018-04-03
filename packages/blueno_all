@@ -90,6 +90,7 @@ mongodb
 mosh
 mplayer
 mtools
+mutt
 nano
 neofetch
 netctl
@@ -141,6 +142,7 @@ sysfsutils
 systemd
 systemd-sysvcompat
 tar
+task
 texinfo
 tla-toolbox
 tmux

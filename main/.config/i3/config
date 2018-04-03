@@ -23,6 +23,9 @@ bindsym $mod+p exec --no-startup-id pass rofi
 # Calc
 bindsym $mod+equal exec --no-startup-id =
 
+# Feh
+for_window [class="feh"] floating enable
+
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
 bindsym $mod+e exec --no-startup-id $HOME/bin/rofi/emoji

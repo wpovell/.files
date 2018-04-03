@@ -192,7 +192,7 @@ document.onkeypress = (e) => {
   }
 
   // Don't capture alt
-  if (e.altKey) {
+  if (e.key != 'Enter' && e.altKey) {
     return;
   }
 
@@ -254,7 +254,7 @@ document.onkeypress = (e) => {
     color = urls[start].color;
   } else if ((c = /#[0-9a-f]{6}$/i.exec(searchQuery)) ||
     (c = /#[0-9a-f]{3}$/i.exec(searchQuery))) {
-    let color = c;
+    color = c[0];
   }
   search.css('color', color);
 
