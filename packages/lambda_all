@@ -58,6 +58,7 @@ freerdp
 gawk
 gcc
 gcc-libs
+gcc49
 gdb
 gettext
 gimp
@@ -87,6 +88,7 @@ jupyter
 keepassxc
 less
 libcacard
+libisoburn
 libmtp
 libtool
 licenses
@@ -107,6 +109,7 @@ mongodb-tools
 mosh
 mpd
 mplayer
+mtools
 nano
 ncdu
 neofetch
@@ -138,6 +141,8 @@ python-pywal
 python-scipy
 python-tensorflow
 python-virtualenv
+qemu
+qemu-arch-extra
 ranger
 recordmydesktop
 redshift
@@ -201,6 +206,7 @@ xorg-xinit
 xorg-xinput
 xorg-xprop
 xsel
+xterm
 yaourt
 zip
 zsh

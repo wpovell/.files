@@ -49,7 +49,7 @@ jq
 jshon
 jsoncpp
 keepassxc
-libcacard
+libisoburn
 licenses
 linux-headers
 logrotate
@@ -65,6 +65,7 @@ mongodb-tools
 mosh
 mpd
 mplayer
+mtools
 nano
 ncdu
 neofetch
@@ -82,6 +83,7 @@ python-pip
 python-scipy
 python-tensorflow
 python-virtualenv
+qemu-arch-extra
 ranger
 recordmydesktop
 redshift
@@ -122,6 +124,7 @@ xorg-xinit
 xorg-xinput
 xorg-xprop
 xsel
+xterm
 yaourt
 zip
 zsh
@@ -133,6 +136,7 @@ cli-visualizer
 dropbox-cli
 dunst-git
 firefox-nightly
+gcc49
 google-chrome
 i3-gaps-next-git
 i3lock-next-git
