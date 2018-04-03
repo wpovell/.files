@@ -78,6 +78,8 @@ ln -f ~/dotfiles/gen/colors.css ~/dotfiles/main/.mozilla/firefox/fb8uvoz6.defaul
 killall dunst
 dunst &
 
+~/bin/support/theme-spotify >/dev/null &
+
 {
 # Not sure why this is needed, I guess bc polybar takes some time to restart
 sleep 1
