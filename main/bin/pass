@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ "$(ps -o comm= $PPID)" == "systemd" && -z $1 ]]; then
+  set -- rofi
+fi
+
 DATABASE=~/files/pass.kdbx
 TIMEOUT=15
 CACHE=~/.cache/passwords.cache
