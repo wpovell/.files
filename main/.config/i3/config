@@ -12,7 +12,7 @@ exec --no-startup-id $HOME/bin/support/start
 # Spotify
 for_window [class="Spotify"] move container to workspace $SpotifyWS
 bindsym $mod+s workspace $SpotifyWS
-no_focus [class="spotify"]
+no_focus [class="Spotify"]
 
 # Mail
 bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
