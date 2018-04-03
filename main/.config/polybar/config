@@ -24,7 +24,7 @@ module-margin	              	= 3
 
 [bar/blueno]
 inherit = bar/base
-modules-right 	                = music mail blueno battery volume_blueno
+modules-right 	                = music mail blueno volume_blueno
 
 [bar/lambda]
 inherit = bar/base
