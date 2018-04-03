@@ -49,6 +49,7 @@ jq
 jshon
 jsoncpp
 keepassxc
+libcacard
 licenses
 linux-headers
 logrotate

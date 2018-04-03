@@ -10,6 +10,7 @@ function getLocation() {
             dataType: 'jsonp'
         }).then((data) => {
             data = data.location;
+            console.log(data.city);
             let newCached = {
                 name: data.city,
                 time: new Date(),
