@@ -53,6 +53,7 @@ netctl
 nginx-mainline
 noto-fonts-emoji
 nvidia
+openbox
 openvpn
 os-prober
 parallel
@@ -111,6 +112,7 @@ cava-git
 dropbox-cli
 dunstify
 firefox-nightly
+gcc49
 google-chrome
 i3lock-next-git
 klatexformula

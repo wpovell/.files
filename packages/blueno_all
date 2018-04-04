@@ -49,6 +49,7 @@ fontforge
 gawk
 gcc
 gcc-libs
+gcc49
 gdb
 gettext
 gimp
@@ -98,6 +99,7 @@ nginx-mainline
 noto-fonts-emoji
 nvidia
 nvidia-utils
+openbox
 openssh
 openvpn
 os-prober

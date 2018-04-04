@@ -7,6 +7,6 @@ case $HOSTNAME in
   lambda)
     xautolock -locker lock -time 5 -killer "systemctl suspend" -killtime 10 ;;
   blueno)
-    xautolock -locker lock -time 10 ;;
+    ;;
   *) xautolock -locker lock -time 10 ;;
 esac
