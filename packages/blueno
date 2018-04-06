@@ -7,6 +7,7 @@ automake
 bash-completion
 bazel
 bc
+bind-tools
 bison
 cdrtools
 clang
@@ -38,6 +39,7 @@ libmpdclient
 licenses
 logrotate
 lolcat
+lsof
 make
 man-db
 man-pages
@@ -80,7 +82,7 @@ sshfs
 stow
 sudo
 systemd-sysvcompat
-task
+tcpdump
 tmux
 tree
 ttf-font-awesome

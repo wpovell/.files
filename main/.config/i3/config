@@ -40,6 +40,7 @@ bindsym Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
 bindsym --release $mod+ctrl+s exec --no-startup-id screenshot -s
 bindsym $mod+c exec --no-startup-id firefox-nightly
+for_window [class="Nightly"] split h
 
 # Colors from Xresources
 set_from_resource $borderF color8
