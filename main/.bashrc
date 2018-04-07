@@ -27,6 +27,7 @@ PROMPT_DIRTRIM=2
 
 # Prompt
 prompt() {
+    last=$?
     FILESYS=$(mount | grep "^$(df -Pk . | sed '2q;d' | cut -f 1 -d ' ') " | cut -f 5 -d ' ')
     C1="\[\033[34m\]"
     END="\[\033[0m\]"
@@ -48,7 +49,11 @@ prompt() {
       	GITP="$GITP "
       fi
     fi
-    PS1="$C1\h$END \w $GITP$C1»$END "
+    end="»"
+    if [[ "$last" -ne "0" ]]; then
+      end=$(printf "\e[38;5;196m$end\e[0m")
+    fi
+    PS1="$C1\h$END \w $GITP$C1$end$END "
 
     if [[ -n $VIRTUAL_ENV ]]; then
         PS1="(`basename \"$VIRTUAL_ENV\"`) $PS1"

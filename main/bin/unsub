@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Hello,
+
+You're receiving ugrad/announce/syspost messages because you have an active CS account with a ugrad status. Do you still need that account? If you do, then your best option is to change your Subscriber Options for the list through the web interface at lists.cs.brown.edu. (Best to change delivery to 'no mail' rather than unsubscribe, because some of those lists are re-generated nightly and you'd get subscribed right back.) If you no longer need your CS account, let me know and I'll close it out for you. That will remove you from all lists, but you'll lose any files you have on the department filesystem. If you want your CS account removed please provide your CS username.
+
+- wpovell" | xclip -selection clipboard
