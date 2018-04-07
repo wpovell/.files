@@ -1,4 +1,8 @@
 let urls = {
+    'wd' : {
+        color: '#0568CB',
+        query: 'wd5.myworkday.com/brown/login.flex'
+    },
     's' : {
         color: '#4D394B',
         query: 'cs0320-s18.slack.com',
