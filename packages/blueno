@@ -30,6 +30,7 @@ gimp
 gksu
 gparted
 grub
+gvim
 i3status
 iputils
 jfsutils
@@ -40,6 +41,7 @@ licenses
 logrotate
 lolcat
 lsof
+lxappearance
 make
 man-db
 man-pages

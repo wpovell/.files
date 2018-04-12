@@ -4,3 +4,4 @@
 [alias]
 	s = status
 	cm = commit -am
+	uncommit = reset HEAD^
