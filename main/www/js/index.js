@@ -62,7 +62,7 @@ function setWeather() {
       let date = new Date(parseInt(day.date.epoch) * 1000);
       let dayOfWeek = days[date.getDay()];
       let icon = '';
-      if (day.icon.match(/snow/)) {
+      if (day.icon.match(/snow/) || day.icon.match(/sleet/)) {
         icon = '❄';
       } else if (day.icon.match(/cloudy/) || day.icon.match(/fog/)) {
         icon = '';

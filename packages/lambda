@@ -10,6 +10,7 @@ autoconf
 automake
 banner
 bash-completion
+beep
 bind-tools
 bison
 clang

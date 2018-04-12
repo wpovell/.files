@@ -17,6 +17,9 @@ no_focus [class="Spotify"]
 # Mail
 bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
 
+# Lock
+bindsym $mod+l exec --no-startup-id lock
+
 # Pass
 bindsym $mod+p exec --no-startup-id pass rofi
 
