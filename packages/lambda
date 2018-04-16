@@ -142,6 +142,7 @@ gcc49
 google-chrome
 i3-gaps-next-git
 i3lock-next-git
+otf-fira-code
 perf-tools
 phantomjs
 polybar-git
@@ -151,6 +152,7 @@ simple-mtpfs
 spotify
 tla-toolbox
 toilet
+ttf-fira-code
 tty-clock
 unclutter-xfixes-git
 urxvt-resize-font-git

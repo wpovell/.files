@@ -121,6 +121,7 @@ ngrep
 noto-fonts-emoji
 openssh
 openvpn
+otf-fira-code
 pacman
 parted
 patch
@@ -178,6 +179,7 @@ tp_smapi
 transmission-cli
 tree
 ttf-dejavu
+ttf-fira-code
 ttf-font-awesome
 ttf-ms-fonts
 tty-clock
