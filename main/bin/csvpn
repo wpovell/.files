@@ -40,7 +40,7 @@ case $1 in
     polybar) polybar ;;
 esac
 
-if [[ "$1" = "kill" || $(pgrep -x openvpn) ]]; then
+if [[ "$1" = "kill" || $(pgrep -cx csvpn) -gt 1 ]]; then
    echo "Stopping"
    sudo killall openvpn 2>/dev/null
 else

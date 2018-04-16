@@ -31,7 +31,7 @@ prompt() {
     FILESYS=$(mount | grep "^$(df -Pk . | sed '2q;d' | cut -f 1 -d ' ') " | cut -f 5 -d ' ')
     C1="\[\033[34m\]"
     END="\[\033[0m\]"
-    BRIGHT="\[\033[35m\]" 
+    BRIGHT="\[\033[35m\]"
     GITP=""
     # Don't use git prompt if in network mount
     if [[ $FILESYS != "fuse.sshfs" ]]; then
