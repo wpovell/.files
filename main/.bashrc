@@ -31,7 +31,7 @@ prompt() {
     FILESYS=$(mount | grep "^$(df -Pk . | sed '2q;d' | cut -f 1 -d ' ') " | cut -f 5 -d ' ')
     C1="\[\033[34m\]"
     END="\[\033[0m\]"
-    BRIGHT="\[\033[35m\]"
+    BRIGHT="\[\033[35m\]" 
     GITP=""
     # Don't use git prompt if in network mount
     if [[ $FILESYS != "fuse.sshfs" ]]; then
@@ -51,7 +51,7 @@ prompt() {
     fi
     end="»"
     if [[ "$last" -ne "0" ]]; then
-      end=$(printf "\e[38;5;196m$end\e[0m")
+      end=$(printf "\[\e[38;5;196m\]$end\[\e[0m\]")
     fi
     PS1="$C1\h$END \w $GITP$C1$end$END "
 
