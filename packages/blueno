@@ -65,6 +65,7 @@ os-prober
 parallel
 patch
 pcmciautils
+perl-anyevent-i3
 pkg-config
 playerctl
 python-i3-py
@@ -122,10 +123,12 @@ gcc49
 google-chrome
 i3lock-next-git
 klatexformula
+otf-fira-code
 polybar-git
 python-opencv
 python-pywal
 spotify
 tla-toolbox
+ttf-fira-code
 tty-clock
 urxvt-resize-font-git

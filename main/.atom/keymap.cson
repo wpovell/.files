@@ -1,4 +1,6 @@
 '.platform-linux atom-text-editor':
+  'alt': 'abort!'
+  'alt-f1': 'window:toggle-menu-bar'
   'ctrl-tab': 'pane:show-next-item'
   'ctrl-tab ^ctrl': 'unset!'
   'ctrl-shift-tab': 'pane:show-previous-item'
@@ -18,6 +20,8 @@
   'ctrl-d': 'core:delete'
   'ctrl-q': 'find-and-replace:select-next'
   'ctrl-z': 'core:undo'
+  'alt-left': 'window:focus-pane-on-left'
+  'alt-right': 'window:focus-pane-on-right'
 
 'body':
   'ctrl-k space': 'unset!'

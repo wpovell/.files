@@ -109,12 +109,14 @@ openbox
 openssh
 openvpn
 os-prober
+otf-fira-code
 pacman
 parallel
 patch
 pciutils
 pcmciautils
 perl
+perl-anyevent-i3
 perl-io-tty
 pkg-config
 playerctl
@@ -156,6 +158,7 @@ tla-toolbox
 tmux
 tree
 ttf-dejavu
+ttf-fira-code
 ttf-font-awesome
 ttf-inconsolata
 tty-clock
