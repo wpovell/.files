@@ -22,6 +22,7 @@ cmatrix
 coreutils
 cryptsetup
 cscope
+ctags
 cuda
 cudnn
 device-mapper
