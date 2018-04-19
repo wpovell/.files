@@ -1,5 +1,6 @@
 # Custom Stuff
 set $mod Mod4
+set $alt Mod1
 set $HOME $HOME
 
 # Split direction
@@ -187,26 +188,26 @@ bindsym $mod+Escape exec --no-startup-id $HOME/bin/rofi/power
 ## Music
 bindsym XF86AudioPrev exec --no-startup-id muse prev
 bindsym F7 exec --no-startup-id muse prev
-bindsym $mod+Mod1+Left exec --no-startup-id muse prev
+bindsym $mod+$alt+Left exec --no-startup-id muse prev
 
 bindsym XF86AudioPause exec --no-startup-id muse toggle
 bindsym F8 exec --no-startup-id muse toggle
-bindsym $mod+Mod1+space exec --no-startup-id muse toggle
+bindsym $mod+$alt+space exec --no-startup-id muse toggle
 
 bindsym XF86AudioNext exec --no-startup-id muse next
 bindsym F9 exec --no-startup-id muse next
-bindsym $mod+Mod1+Right exec --no-startup-id muse next
+bindsym $mod+$alt+Right exec --no-startup-id muse next
 
 bindsym XF86AudioMute exec --no-startup-id muse mute
 bindsym F10 exec --no-startup-id muse mute
 
 bindsym XF86AudioLowerVolume exec --no-startup-id muse down
 bindsym F11 exec --no-startup-id muse down
-bindsym $mod+Mod1+Down exec --no-startup-id muse down
+bindsym $mod+$alt+Down exec --no-startup-id muse down
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id muse up
 bindsym F12 exec --no-startup-id muse up
-bindsym $mod+Mod1+Up exec --no-startup-id muse up
+bindsym $mod+$alt+Up exec --no-startup-id muse up
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
