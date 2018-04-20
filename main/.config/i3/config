@@ -30,8 +30,9 @@ bindsym $mod+equal exec --no-startup-id =
 # Feh
 for_window [class="feh"] floating enable
 
-# MPlayer
+# Default to floating
 for_window [class="MPlayer"] floating enable
+for_window [class="keepassxc"] floating enable
 
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
