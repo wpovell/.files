@@ -184,7 +184,15 @@ let urls = {
     },
     'e' : {
 	color: '#DB4A38',
-	query: 'gmail.com'
+	query: (q) => {
+            let acct = 0;
+            if (q == "personal") {
+                acct = 1;
+            }
+            url = `mail.google.com/mail/u/${acct}/#inbox`
+            return url;
+        },
+        suggest: ["brown", "personal"]
     },
     't' : {
 	color: '#1DA1F2',

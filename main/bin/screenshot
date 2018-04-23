@@ -19,10 +19,9 @@ case $1 in
 esac
 
 if [[ $1 == "-s" ]]; then
-    read -r G < <(slop -f "%g")
-    import -window root -crop $G "$fn"
+    maim -s > $fn
 else
-    scrot "$fn"
+    maim > $fn
 fi
 
 {
@@ -40,6 +39,7 @@ case $res in
     delete)
         rm $fn ;;
     copy)
-        xclip -selection clipboard -t image/png -i $fn
+        cat $fn | xclip -selection clipboard -t image/png
+        rm $fn
 esac
 } &

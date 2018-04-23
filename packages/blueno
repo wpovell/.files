@@ -28,7 +28,6 @@ figlet
 fontforge
 gdb
 gimp
-gksu
 gparted
 grub
 gvim
@@ -43,6 +42,7 @@ logrotate
 lolcat
 lsof
 lxappearance
+maim
 make
 man-db
 man-pages
@@ -82,7 +82,6 @@ reiserfsprogs
 rofi
 s-nail
 scrot
-slop
 sshfs
 stow
 sudo
@@ -120,6 +119,7 @@ dropbox-cli
 dunstify
 firefox-nightly
 gcc49
+gksu
 google-chrome
 i3lock-next-git
 klatexformula
