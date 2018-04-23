@@ -1,0 +1,12 @@
+#!/bin/bash
+
+network="brown"
+if [[ -n $1 ]]; then
+  network=$1
+fi
+
+echo "Restarting $network"
+
+netctl stop-all
+ip link set wlp4s0 down
+netctl start $network
