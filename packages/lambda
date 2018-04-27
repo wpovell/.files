@@ -58,6 +58,7 @@ logrotate
 lolcat
 lvm2
 lxappearance
+maim
 man-db
 man-pages
 maven
@@ -94,7 +95,6 @@ remmina
 rsync
 s-nail
 scrot
-slop
 sshfs
 steam
 stow
