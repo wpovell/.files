@@ -30,6 +30,9 @@ bindsym $mod+equal exec --no-startup-id =
 # Feh
 for_window [class="feh"] floating enable
 
+# Sticky Toggle
+bindsym $mod+$alt+s sticky toggle
+
 # Default to floating
 for_window [class="MPlayer"] floating enable
 for_window [class="keepassxc"] floating enable
