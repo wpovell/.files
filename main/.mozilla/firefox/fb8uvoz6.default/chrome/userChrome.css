@@ -1,5 +1,8 @@
 @import 'colors.css';
 
+/* Hide bar for startpage */
+#main-window[title*="♦"] #nav-bar { display: none !important; }
+
 /* Hide things */
 #window-controls, .scrollbutton-up, .scrollbutton-down, #alltabs-button, #PersonalToolbar, .tab-close-button, .tabs-newtab-button, #back-button, #forward-button, #toolbar-menubar, #customizableui-special-spring2, #customizableui-special-spring1, #pageActionButton, #PanelUI-menu-button, .autocomplete-history-dropmarker, #PanelUI-button, #page-action-buttons, .urlbar-go-button, .urlbar-history-dropmarker {
     display: none !important;

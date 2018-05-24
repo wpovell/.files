@@ -57,7 +57,8 @@ function setWeather() {
   // Days of the week
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   getWeather((data) => {
-    let weather = data['weather'];
+    let weather = data.weather;
+    let location = data.location
     for (let day of weather.forecast.simpleforecast.forecastday.slice(0, 5)) {
       let date = new Date(parseInt(day.date.epoch) * 1000);
       let dayOfWeek = days[date.getDay()];
@@ -256,7 +257,7 @@ document.onkeydown = (e) => {
   }
 
   // Remove active on keypress
-  if (e.key != 'Tab') {
+  if (e.key != 'Tab' && e.key != 'Enter') {
     searchSuggest.removeClass('active');
     searchSuggest.css('color', '');
   }
