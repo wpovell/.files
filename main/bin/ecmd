@@ -26,4 +26,12 @@ if [[ -e $FILE ]]; then
   emacs -nw $FILE
 else
   echo "ERROR: No such script '$1'"
+  echo -n "Create script? [y/n] "
+  read ans
+  if [[ "$ans" = "y" ]]; then
+    FILE="$HOME/bin/$1"
+    touch $FILE
+    chmod +X $FILE
+    emacs -nw $FILE
+  fi
 fi

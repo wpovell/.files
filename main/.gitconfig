@@ -2,6 +2,9 @@
 	email = william_povell@brown.edu
 	name = Will Povell
 [alias]
-	s = status
-	cm = commit -am
+	s  = status
+        a  = add 
+	ca = commit -am
+        c  = commit -m
+        d  = diff
 	uncommit = reset HEAD^

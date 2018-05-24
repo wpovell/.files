@@ -68,3 +68,6 @@ alias grep="grep --color='auto'"
 alias df='df -h'
 # No less history
 LESSHISTFILE=-
+
+# Quick todo edit
+alias etodo="emacs -nw files/linux_todo"
