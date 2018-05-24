@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+
+import sys
+
+colors = {
+    'c2': '\033[37m',
+    'c1': '\033[31m',
+    'r':  '\033[0m',
+}
+
+parrot = '''{c1}     _
+    /{r}•{c2}>{c1}
+   /)\\|
+  // /
+ /'{c2}" "{c1}
+/`'''
+
+rose = r'''    {c1}.--.---.
+   ( \'--'/ )
+  ( '..-...' )
+   '.'-._.'.'
+    {c2}<'-.,.->
+       `\(   _
+        < \ / \
+       __ \\|_/
+      /  \ \\
+       '--'.\ >
+             \\   '''
+
+willow = '''           {c1}&&
+          &&&&&
+        &&&{c2}\/{c1}& &&&
+       &&{c2}|,/  |/{c1}& &&
+        &&{c2}/   /  /_{c1}&  &&{c2}
+          \  {{  |_____/_{c1}&{c2}
+          {{  / /          {c1}&&&{c2}
+          `, \{{___________/_{c1}&&{c2}
+           }} }}{{       \\
+           }}{{{{         \\____{c1}&{c2}
+          {{}}{{           `{c1}&{c2}\{c1}&&{c2}
+          {{{{}}             {c1}&&{c2}
+    , -=-~{{ .-^- _
+          `}}
+           {{'''
+
+cross = r'''/_/\/\
+\_\  /
+/_/  \
+\_\/\ \
+   \_\/'''
+
+art = {
+  'parrot': parrot,
+  'rose': rose,
+  'willow': willow,
+  'cross': cross,
+}
+
+def help():
+  print('''ascii
+  ascii <art>
+
+  Prints out specified ascii art. Possible choices include:
+  {}'''.format(', '.join(art.keys())))
+
+  sys.exit(1)
+
+if len(sys.argv) < 2:
+  help()
+
+key = sys.argv[1].lower()
+if key == '-h' or key == '--help':
+  help()
+
+if key not in art:
+  print(f'"{key}" not found. Choose from the following:')
+  print(' '.join(art.keys()))
+else:
+  print(art[key].format(**colors) + colors['r'])
