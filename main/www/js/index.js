@@ -3,32 +3,32 @@ const WEATHER_REFRESH = 60 * 20;
 const WEATHER_DEFAULT = ['/q/RI/Providence', 'Providence'];
 
 function getLocation() {
-    let cached = JSON.parse(window.localStorage.getItem('location'));
-    if (cached == null || ((new Date) - new Date(cached['time'])) / 1000 > WEATHER_REFRESH) {
-        console.log("Fetching location");
-        $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/geolookup/q/autoip.json`, {
-            dataType: 'jsonp'
-        }).then((data) => {
-            data = data.location;
-            console.log(data.city);
-            let newCached = {
-                name: data.city,
-                time: new Date(),
-                code: data.l,
-            };
-            window.localStorage.setItem('location', JSON.stringify(newCached));
-        });
-        return WEATHER_DEFAULT;
-    } else {
-        return [cached.code, cached.name];
-    }
+  let cached = JSON.parse(window.localStorage.getItem('location'));
+  if (cached == null || ((new Date) - new Date(cached['time'])) / 1000 > WEATHER_REFRESH) {
+    console.log("Fetching location");
+    $.ajax(`https://api.wunderground.com/api/${WEATHER_API}/geolookup/q/autoip.json`, {
+      dataType: 'jsonp'
+    }).then((data) => {
+      data = data.location;
+      console.log(data.city);
+      let newCached = {
+        name: data.city,
+        time: new Date(),
+        code: data.l,
+      };
+      window.localStorage.setItem('location', JSON.stringify(newCached));
+    });
+    return WEATHER_DEFAULT;
+  } else {
+    return [cached.code, cached.name];
+  }
 }
 
 // Fetches & caches weather data
 function getWeather(callback) {
 
   let location = getLocation();
-  
+
   let modifiedCallback = (data) => {
     let jsonData = {
       'location': location[1],
@@ -163,8 +163,8 @@ function setSearch(showSearch) {
 function enter() {
   let query = $('#search').text();
   // Go directly if url
-    if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) &&
-        !query.trim().includes(' ')) {
+  if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) &&
+    !query.trim().includes(' ')) {
     return 'https://' + query;
   }
 
@@ -183,7 +183,9 @@ function enter() {
 }
 
 let lastSuggest = '';
-document.onkeypress = (e) => {
+document.onkeydown = (e) => {
+  console.log(e);
+
   let search = $('#search');
   let searchQuery = search.text();
 
@@ -242,7 +244,7 @@ document.onkeypress = (e) => {
     active.css('color', urls[start].color);
     active.addClass('active');
     search.text(start + ':' + active.text());
-  } else if (!e.ctrlKey && (e.charCode != 0 || e.key == ' ')) {
+  } else if (!e.ctrlKey && (e.keyCode != 0 || e.key == ' ')) {
     search.text(searchQuery + e.key);
     searchQuery = search.text();
   }
@@ -267,9 +269,9 @@ document.onkeypress = (e) => {
   }
 
   if (start == 'x') {
-      $('#xkcd').show();
+    $('#xkcd').show();
   } else {
-      $('#xkcd').hide();
+    $('#xkcd').hide();
   }
   // Add suggests
   if (start != lastSuggest && urls[start] && urls[start].suggest) {
@@ -289,12 +291,13 @@ document.onkeypress = (e) => {
 };
 
 function setXkcd() {
-    $.ajax('http://dynamic.xkcd.com/api-0/jsonp/comic/',
-           { dataType: 'jsonp' }).then( (data) => {
-               $('#xkcd').html(`
+  $.ajax('http://dynamic.xkcd.com/api-0/jsonp/comic/', {
+    dataType: 'jsonp'
+  }).then((data) => {
+    $('#xkcd').html(`
                   <img src="${data.img}" />
                   <p>${data.alt}</p>`);
-           });
+  });
 }
 
 $(() => {
