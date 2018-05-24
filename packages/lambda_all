@@ -75,6 +75,7 @@ grub
 gzip
 htop
 i3-gaps-next-git
+i3lock-color-git
 i3lock-next-git
 i3status
 inetutils
@@ -98,6 +99,7 @@ linux
 linux-headers
 logrotate
 lolcat
+lsof
 lvm2
 lxappearance
 m4
@@ -213,5 +215,6 @@ xorg-xprop
 xsel
 xterm
 yaourt
+yay
 zip
 zsh

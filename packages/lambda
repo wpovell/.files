@@ -38,7 +38,6 @@ fish
 freerdp
 gdb
 gimp
-git
 gnu-netcat
 gparted
 grub
@@ -56,6 +55,7 @@ licenses
 linux-headers
 logrotate
 lolcat
+lsof
 lvm2
 lxappearance
 maim
@@ -99,7 +99,6 @@ sshfs
 steam
 stow
 strace
-sudo
 systemd-sysvcompat
 tlp
 tmux
@@ -156,3 +155,4 @@ ttf-fira-code
 tty-clock
 unclutter-xfixes-git
 urxvt-resize-font-git
+yay
