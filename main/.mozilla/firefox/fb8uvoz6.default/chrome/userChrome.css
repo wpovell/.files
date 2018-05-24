@@ -24,47 +24,6 @@
 /* Prevent insta-click on right click menu */
 #contentAreaContextMenu{ margin: 2px 0 0 2px }
 
-/* Hide url for pinned tabs */
-:root {
-    --full-height: calc(var(--space-above-tabbar) + var(--tab-min-height));
-}
-:root:not([uidensity])     { --navbar-height: 36px; }
-:root[uidensity="compact"] { --navbar-height: 32px; }
-:root[uidensity="touch"]   { --navbar-height: 38px; }
-#titlebar {
-    margin-bottom: calc(0px - var(--full-height)) !important;
-    pointer-events: none !important;
-    position: relative !important;
-    z-index: 3 !important;
-}
-#titlebar-buttonbox {
-    height: var(--full-height) !important;
-}
-.titlebar-button {
-    pointer-events: initial !important;
-}
-#TabsToolbar {
-    clip-path: polygon(0 0, 100% 0, 100% var(--full-height), 0 var(--full-height)) !important;
-    position: relative !important;
-    z-index: 2 !important;
-}
-.tabbrowser-tab, #TabsToolbar .toolbarbutton-1 {
-    -moz-box-align: start !important;
-}
-.tabbrowser-tab {
-    min-height: var(--tab-min-height) !important;
-}
-.tabbrowser-tab[visuallyselected]:not([pinned]) {
-    margin-bottom: var(--navbar-height) !important;
-}
-.tab-stack {
-  min-height: 35px!important;
-}
-#nav-bar {
-    height: var(--navbar-height) !important;
-    margin-top: calc(0px - var(--navbar-height)) !important;
-}
-
 /* Center tab text */
 .tab-label {
    -moz-box-flex: 1 !important;
@@ -72,16 +31,50 @@
 }
 
 /* Make active tab wider */
-/*
-tab[selected="true"] { min-width: 200px !important; }
-*/
+/* tab[selected="true"] { min-width: 200px !important; } */
+
+/* Hide line between tabs */
+.tabbrowser-tab:not([visuallyselected="true"]) {
+    color: transparent !important;
+}
 
 /* Make urlbar be square */
 #urlbar {
     border-radius: 0 !important;
 }
 
+/* Remove white flash on tab load */
+.browserContainer {
+  background-color: var(--color4) !important;
+}
 
+/* Hide search placeholder text */
+::-moz-placeholder {
+    color: transparent;
+}
+
+/* Gets ride of white line after chrome */
+#navigator-toolbox::after{
+    display: none !important;
+}
+
+/* Change text highlight in url */
+.autocomplete-textbox::-moz-selection {
+    color:  var(--color0) !important;
+    background-color:  var(--foreground) !important;
+}
+
+/* Fixes small border when tabs fill top. */
+.arrowscrollbox-scrollbox {
+    margin: -1px;
+}
+
+/* Make identity text same as icon */
+#identity-icon-labels {
+    color: rgb(18, 188, 0)!important;
+}
+
+/* Coloring */
 .tab-content[selected=true] {
     background-color: var(--color4);
     color:  var(--color14);
@@ -108,16 +101,6 @@ toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
     color: var(--foreground) !important;
 }
 
-/* Remove white flash on tab load */
-.browserContainer {
-  background-color: var(--color4) !important;
-}
-
-/* Hide search placeholder text */
-::-moz-placeholder {
-    color: transparent;
-}
-
 findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel-arrowcontent, .autocomplete-textbox, .urlbar-input-box {
     color: var(--color0) !important;
     background-color: var(--color4) !important;
@@ -130,25 +113,4 @@ findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel
 
 .autocomplete-richlistitem:not([selected="true"]) {
     color:  var(--foreground) !important;
-}
-
-/* Gets ride of white line after chrome */
-#navigator-toolbox::after{
-    display: none !important;
-}
-
-/* Change text highlight in url */
-.autocomplete-textbox::-moz-selection {
-    color:  var(--color0) !important;
-    background-color:  var(--foreground) !important;
-}
-
-/* Fixes small border when tabs fill top. */
-.arrowscrollbox-scrollbox {
-    margin: -1px;
-}
-
-/* Make identity text same as icon */
-#identity-icon-labels {
-    color: rgb(18, 188, 0)!important;
 }
