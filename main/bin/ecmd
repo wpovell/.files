@@ -20,7 +20,7 @@ if [[ -z $1 ]]; then
   exit
 fi
 
-FILE=$(find ~/bin/ -name $1 -type f)
+FILE=$(find ~/bin/ -name `basename $1` -type f)
 
 if [[ -e $FILE ]]; then
   emacs -nw $FILE
@@ -31,7 +31,7 @@ else
   if [[ "$ans" = "y" ]]; then
     FILE="$HOME/bin/$1"
     touch $FILE
-    chmod +X $FILE
+    chmod +x $FILE
     emacs -nw $FILE
   fi
 fi

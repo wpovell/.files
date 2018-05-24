@@ -3,8 +3,9 @@
 	name = Will Povell
 [alias]
 	s  = status
-        a  = add 
+  a  = add
 	ca = commit -am
-        c  = commit -m
-        d  = diff
+  c  = commit -m
+  d  = diff
 	uncommit = reset HEAD^
+  open = !atom  `~/bin/support/git-open`
