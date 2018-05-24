@@ -70,6 +70,8 @@ function setWeather() {
         icon = '';
       } else if (day.icon == 'clear') {
         icon = '';
+      } else if (day.icon.match(/storms/)) {
+        icon = ''
       }
       $('#weather').append(`
         <li>
@@ -96,10 +98,12 @@ function setHN(callback) {
       $.ajax(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
         dataType: 'jsonp',
       }).then((data) => {
+        let comment = `https://news.ycombinator.com/item?id=${id}`;
+        let url = data.url ? data.url : comment;
         $(`#${id}`).append(`
-          <a href="${data.url}">${data.title}</a>
+          <a href="${url}">${data.title}</a>
           <br/>
-          <a class="comment" href="https://news.ycombinator.com/item?id=${id}">comments</a>
+          <a class="comment" href="${comment}">comments</a>
           <br/>
           <br/>`);
       });
@@ -208,6 +212,9 @@ document.onkeydown = (e) => {
   e.preventDefault();
   e.stopPropagation();
 
+  // Suggestions
+  let searchSuggest = $('#content').children().first().children();
+
   // Escape and ^c reset
   if (e.key == 'Escape' || (e.key == 'c' && e.ctrlKey)) {
     setSearch(false);
@@ -225,7 +232,6 @@ document.onkeydown = (e) => {
       document.location.href = url;
     }
   } else if (e.key == 'Tab') {
-    let searchSuggest = $('#content').children().first().children();
     let index = -1;
     for (let i = 0; i < searchSuggest.length; i++) {
       if (searchSuggest[i].classList.contains('active')) {
@@ -234,7 +240,7 @@ document.onkeydown = (e) => {
       }
     }
     if (index == -1) {
-      index = 0;
+      index = (e.shiftKey ? searchSuggest.length - 1 : 0);
     }
 
     let start = search.text().split(':')[0];
@@ -244,9 +250,15 @@ document.onkeydown = (e) => {
     active.css('color', urls[start].color);
     active.addClass('active');
     search.text(start + ':' + active.text());
-  } else if (!e.ctrlKey && (e.keyCode != 0 || e.key == ' ')) {
+  } else if (!e.ctrlKey && e.key.length == 1) {
     search.text(searchQuery + e.key);
     searchQuery = search.text();
+  }
+
+  // Remove active on keypress
+  if (e.key != 'Tab') {
+    searchSuggest.removeClass('active');
+    searchSuggest.css('color', '');
   }
 
   // Set query color
@@ -282,7 +294,7 @@ document.onkeydown = (e) => {
         return '<li>' + x + '</li>';
       }).join('') +
       '</ul>');
-  } else if (!urls[start]) {
+  } else if (!urls[start] || !urls[start].suggest) {
     lastSuggest = '';
     $('#content').html('');
   }
