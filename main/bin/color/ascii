@@ -8,6 +8,14 @@ colors = {
     'r':  '\033[0m',
 }
 
+tux = r'''{c1}    ---
+   ({r}.•{c1} |
+   ({c2}<>{c1} |
+  / {r}__{c1}  \
+ ( {r}/  \{c1} /|
+{c2}_{c1}/\ {r}--){c1}/{c2}_{c1})
+{c2}\/{c1}-____{c2}\/'''
+
 parrot = '''{c1}     _
     /{r}•{c2}>{c1}
    /)\\|
@@ -54,6 +62,7 @@ art = {
   'rose': rose,
   'willow': willow,
   'cross': cross,
+  'tux': tux,
 }
 
 def help():
