@@ -16,9 +16,10 @@
  '(custom-safe-themes
    (quote
     ("a4df5d4a4c343b2712a8ed16bc1488807cd71b25e3108e648d4a26b02bc990b3" default)))
+ '(git-gutter:update-interval 2)
  '(package-selected-packages
    (quote
-    (git-gutter yaml-mode dracula-theme neotree all-the-icons dashboard page-break-lines general))))
+    (markdown-mode projectile git-gutter yaml-mode dracula-theme neotree all-the-icons dashboard page-break-lines general))))
 
 (load-file "~/.emacs.d/modules/main.el")
 (load-file "~/.emacs.d/modules/keybind.el")

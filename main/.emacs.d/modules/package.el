@@ -13,6 +13,7 @@
 (setq dashboard-startup-banner "~/.emacs.d/imgs/ep2.png")
 (setq dashboard-banner-logo-title "")
 (setq dashboard-items '((recents  . 5)
+                        (projects . 5)
                         (agenda . 5)))
 
 ;; git-gutter & linum
