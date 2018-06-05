@@ -18,6 +18,8 @@ bfg
 bind-tools
 binutils
 bison
+bluez
+bluez-utils
 bzip2
 cava
 clang
@@ -128,17 +130,19 @@ otf-fira-code
 pacman
 parted
 patch
+pavucontrol
 pciutils
 pcmciautils
 perf-tools
 perl
 phantomjs
-pkg-config
+pkgconf
 playerctl
 polybar-git
 procps-ng
 psmisc
 pulseaudio
+pulseaudio-bluetooth
 python
 python-matplotlib
 python-pillow
@@ -186,6 +190,7 @@ ttf-fira-code
 ttf-font-awesome
 ttf-ms-fonts
 tty-clock
+tzupdate
 unclutter-xfixes-git
 uncrustify
 unzip
