@@ -13,6 +13,7 @@ bash-completion
 beep
 bind-tools
 bison
+bluez-utils
 clang
 cmatrix
 compton
@@ -77,12 +78,15 @@ nginx-mainline
 ngrep
 noto-fonts-emoji
 openvpn
+pavucontrol
 pcmciautils
-pkg-config
+pkgconf
 playerctl
+pulseaudio-bluetooth
 python-matplotlib
 python-pillow
 python-pip
+python-pywal
 python-scipy
 python-tensorflow
 python-virtualenv
@@ -126,7 +130,6 @@ xorg-xinput
 xorg-xprop
 xsel
 xterm
-yaourt
 zip
 zsh
 alloy
@@ -145,7 +148,6 @@ otf-fira-code
 perf-tools
 phantomjs
 polybar-git
-python-pywal
 rofi-git
 simple-mtpfs
 spotify
@@ -153,6 +155,8 @@ tla-toolbox
 toilet
 ttf-fira-code
 tty-clock
+tzupdate
 unclutter-xfixes-git
 urxvt-resize-font-git
+yaourt
 yay
