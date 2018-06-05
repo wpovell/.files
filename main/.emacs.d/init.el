@@ -18,7 +18,7 @@
     ("a4df5d4a4c343b2712a8ed16bc1488807cd71b25e3108e648d4a26b02bc990b3" default)))
  '(package-selected-packages
    (quote
-    (yaml-mode git-gutter nlinum dracula-theme neotree all-the-icons dashboard page-break-lines general))))
+    (multiple-cursors yaml-mode git-gutter nlinum dracula-theme neotree all-the-icons dashboard page-break-lines general))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

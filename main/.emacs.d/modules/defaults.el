@@ -1,6 +1,18 @@
 ;; Fish some ansi-term newline issues
 (setq term-suppress-hard-newline t)
 
+;; Ido
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-create-new-buffer 'always)
+
+;; Multi cursor
+(require 'multiple-cursors)
+(global-set-key (kbd "C-p") `mc/mark-next-like-this-symbol)
+(global-set-key (kbd "C-q") 'mc/mark-next-like-this)
+
 ;; Start in fullscreen
 (set-frame-parameter nil 'fullscreen 'fullboth)
 
