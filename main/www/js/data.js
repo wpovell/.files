@@ -1,29 +1,36 @@
-let urls = {
+export const urls = {
   'wd': {
+    name: 'workday',
     color: '#0568CB',
     query: 'wd5.myworkday.com/brown/login.flex'
   },
   's': {
+    name: 'slack',
     color: '#4D394B',
-    query: 'cs0320-s18.slack.com',
+    query: 'cs0320-s18.slack.com'
   },
   'w': {
+    name: 'weather',
     color: '#4DBFD9',
-    query: 'www.google.com/search?q=weather',
+    query: 'www.google.com/search?q=weather'
   },
   'ff': {
+    name: 'bank',
     color: '#427C30',
     query: 'firstfinancial.org'
   },
   '192': {
+    name: 'router',
     color: '#b2b2b2',
     query: '192.168.1.1'
   },
   'd': {
+    name: 'drive',
     color: '#F4B400',
     query: 'drive.google.com'
   },
   'pb': {
+    name: 'pushbullet',
     color: '#4AB367',
     query: 'pushbullet.com'
   },
@@ -32,14 +39,17 @@ let urls = {
     query: '4chan.org/wg'
   },
   'p': {
+    name: 'piazza',
     color: '#3E7AAB',
     query: 'piazza.com'
   },
   'x': {
+    name: 'xkcd',
     color: '#000000',
     query: 'xkcd.com'
   },
   'l': {
+    name: 'linkedin',
     color: '#0077B5',
     query: 'linkedin.com'
   },
@@ -48,20 +58,24 @@ let urls = {
     query: 'rt.cs.brown.edu'
   },
   'hm': {
+    name: 'hypemachine',
     color: '#83C441',
     query: 'hypem.com/popular'
   },
   'so': {
+    name: 'soundcloud',
     color: '#FF4400',
     query: 'soundcloud.com'
   },
   'lh': {
+    name: 'localhost',
     color: '#94BFD0',
     query: (q) => {
       return 'localhost:' + q;
     }
   },
   'b': {
+    name: 'brown',
     color: '#3A1E1A',
     query: (q) => {
       let cc;
@@ -93,6 +107,7 @@ let urls = {
     query: 'nytimes.com'
   },
   'g': {
+    name: 'github',
     color: '#404448',
     query: (q) => {
       let u = 'github.com/';
@@ -110,6 +125,7 @@ let urls = {
     suggest: ['wpovell', 'bluenos', 'smu', 'isotope']
   },
   'a': {
+    name: 'amazon',
     color: '#FF9900',
     query: (q) => {
       let r = 'amazon.com/';
@@ -119,6 +135,7 @@ let urls = {
     }
   },
   'y': {
+    name: 'youtube',
     color: '#FF0000',
     query: (q) => {
       let u = 'youtube.com/';
@@ -134,10 +151,12 @@ let urls = {
     suggest: ['u/northernlion']
   },
   'f': {
+    name: 'facebook',
     color: '#4267B2',
     query: 'facebook.com'
   },
   'h': {
+    name: 'hackernews',
     color: '#FF6600',
     query: (q) => {
 
@@ -160,6 +179,7 @@ let urls = {
     }
   },
   'r': {
+    name: 'reddit',
     color: '#CEE3F8',
     query: (q) => {
       let u = 'reddit.com/';
@@ -172,17 +192,20 @@ let urls = {
       }
       return u;
     },
-    suggest: ['m/programming', 'm/nix', 'hiphopheads']
+    suggest: ['m/programming', 'm/nix', 'hiphopheads', 'u/puzzel']
   },
   'n': {
+    name: 'netflix',
     color: '#E30813',
-    query: 'netflix.com',
+    query: 'netflix.com'
   },
   'c': {
+    name: 'calendar',
     color: '#DB4A38',
-    query: 'calendar.google.com',
+    query: 'calendar.google.com'
   },
   'e': {
+    name: 'email',
     color: '#DB4A38',
     query: (q) => {
       let acct = 0;
@@ -195,14 +218,17 @@ let urls = {
     suggest: ["brown", "personal"]
   },
   't': {
+    name: 'twitter',
     color: '#1DA1F2',
     query: 'twitter.com'
   },
   'i': {
+    name: 'instagram',
     color: '#7E46C0',
     query: 'instagram.com'
   },
   'm': {
+    name: 'messenger',
     color: '#0084FF',
     query: 'messenger.com'
   }

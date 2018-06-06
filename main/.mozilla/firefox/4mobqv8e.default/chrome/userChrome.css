@@ -1,8 +1,5 @@
 @import 'colors.css';
 
-/* Hide bar for startpage */
-#main-window[title*="♦"] #nav-bar { display: none !important; }
-
 /* Hide things */
 #window-controls, .scrollbutton-up, .scrollbutton-down, #alltabs-button, #PersonalToolbar, .tab-close-button, .tabs-newtab-button, #back-button, #forward-button, #toolbar-menubar, #customizableui-special-spring2, #customizableui-special-spring1, #pageActionButton, #PanelUI-menu-button, .autocomplete-history-dropmarker, #PanelUI-button, #page-action-buttons, .urlbar-go-button, .urlbar-history-dropmarker {
     display: none !important;
@@ -116,4 +113,45 @@ findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel
 
 .autocomplete-richlistitem:not([selected="true"]) {
     color:  var(--foreground) !important;
+}
+
+/* Pinned / startpage don't show url */
+:root {
+    --tab-min-height: 32px;
+    --full-height: calc(var(--space-above-tabbar) + var(--tab-min-height));
+}
+:root:not([uidensity])     { --navbar-height: 36px; }
+:root[uidensity="compact"] { --navbar-height: 32px; }
+:root[uidensity="touch"]   { --navbar-height: 38px; }
+
+#titlebar {
+    margin-bottom: calc(0px - var(--full-height)) !important;
+    pointer-events: none !important;
+    position: relative !important;
+    z-index: 3 !important;
+}
+#titlebar-buttonbox {
+    height: var(--full-height) !important;
+}
+.titlebar-button {
+    pointer-events: initial !important;
+}
+#TabsToolbar {
+    clip-path: polygon(0 0, 100% 0, 100% var(--full-height), 0 var(--full-height)) !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+.tabbrowser-tab,
+#TabsToolbar .toolbarbutton-1 {
+    -moz-box-align: start !important;
+}
+.tabbrowser-tab {
+    min-height: var(--tab-min-height) !important;
+}
+.tabbrowser-tab[visuallyselected]:not([pinned]):not([label="♦"]) {
+    margin-bottom: var(--navbar-height) !important;
+}
+#nav-bar {
+    height: var(--navbar-height) !important;
+    margin-top: calc(0px - var(--navbar-height)) !important;
 }
