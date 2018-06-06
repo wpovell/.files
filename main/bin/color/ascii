@@ -8,6 +8,14 @@ colors = {
     'r':  '\033[0m',
 }
 
+lmbda = r'''  _ __
+ /_/_ \
+   \_\ \
+   / /  \
+  / / /\ \
+ / / /\ \ \_
+/_/_/  \_\_/'''
+
 tux = r'''{c1}    ---
    ({r}.•{c1} |
    ({c2}<>{c1} |
@@ -63,6 +71,7 @@ art = {
   'willow': willow,
   'cross': cross,
   'tux': tux,
+  'lambda': lmbda
 }
 
 def help():
