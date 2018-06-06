@@ -16,7 +16,7 @@
                         (projects . 5)
                         (agenda . 5)))
 
-;; git-gutter & linum
+;; git-gutter ;;
 (global-git-gutter-mode)
 (custom-set-variables
  '(git-gutter:update-interval 2))
@@ -31,3 +31,6 @@
 
 (global-set-key (kbd "C-p") `mc/mark-next-like-this-symbol)
 (global-set-key (kbd "C-q") 'mc/mark-next-like-this)
+
+;; Projectile ;;
+(setq projectile-enable-caching t)
