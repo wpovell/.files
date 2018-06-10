@@ -8,6 +8,13 @@ colors = {
     'r':  '\033[0m',
 }
 
+mouse = r''' /\_/\
+/     \
+\ {c1}x{r} {c1}x{r} /
+>>   <<
+  \ /
+'''
+
 lmbda = r'''  _ __
  /_/_ \
    \_\ \
@@ -71,7 +78,8 @@ art = {
   'willow': willow,
   'cross': cross,
   'tux': tux,
-  'lambda': lmbda
+  'lambda': lmbda,
+  'mouse': mouse,
 }
 
 def help():
