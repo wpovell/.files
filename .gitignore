@@ -1,8 +1,9 @@
-main/.emacs.d/projectile-bookmarks.eld
-main/.emacs.d/ido.last
-main/.emacs.d/recentf
-main/.emacs.d/backups
-main/.emacs.d/eshell
+projectile-bookmarks.eld
+ido.last
+recentf
+backups
+eshell
+projectile.cache
 pass.json
 main/.config/ranger/bookmarks
 main/.emacs.d/elpa
