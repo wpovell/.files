@@ -1,3 +1,6 @@
+;; Keep buffers consistent with disk
+(global-auto-revert-mode t)
+
 ;; Org mode
 (setf org-agenda-files '("~/org"))
 
