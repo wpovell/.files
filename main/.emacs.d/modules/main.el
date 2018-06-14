@@ -1,3 +1,6 @@
+;; Enable mouse in term emacs
+(xterm-mouse-mode 1)
+
 ;; Keep buffers consistent with disk
 (global-auto-revert-mode t)
 

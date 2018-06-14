@@ -35,10 +35,10 @@ prompt() {
     GITP=""
     # Don't use git prompt if in network mount
     if [[ $FILESYS != "fuse.sshfs" ]]; then
-      git status -uno > /dev/null 2>&1
+      git diff --no-ext-diff --quiet --exit-code
       if [[ $? == 0 ]]; then
         GITP=""
-        BRANCH=$(git branch | grep -Po "(?<=\* )\w+|(?<=HEAD detached at )[a-f0-9]+")
+        BRANCH=$(git branch | grep -Po "(?<=\* ).+|(?<=HEAD detached at )[a-f0-9]+")
       	if [ "$BRANCH" != "master" ]; then
       	    GITP="$GITP [$BRANCH]"
       	fi
