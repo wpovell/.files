@@ -17,6 +17,6 @@ function fish_prompt
      end
   end
   set_color blue
-  echo -en "\n» "
+  echo -en "\n⨉⪧ "
   set_color normal
 end
