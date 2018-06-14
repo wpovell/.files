@@ -1,5 +1,5 @@
 . ~/.commonrc
-. ~/git/weenix/.weenixrc
+[[ -f ~/git/weenix/.weenixrc ]] && source ~/git/weenix/.weenixrc
 set bell-style none
 bind 'set mark-symlinked-directories on'
 
@@ -29,35 +29,40 @@ PROMPT_DIRTRIM=2
 prompt() {
     last=$?
     FILESYS=$(mount | grep "^$(df -Pk . | sed '2q;d' | cut -f 1 -d ' ') " | cut -f 5 -d ' ')
-    C1="\[\033[34m\]"
+    C3="\[\033[33m\]"
+    C4="\[\033[34m\]"
+    C5="\[\033[35m\]"
+    RED="\[\033[38;5;196m\]"
     END="\[\033[0m\]"
-    BRIGHT="\[\033[35m\]"
     GITP=""
     # Don't use git prompt if in network mount
-    if [[ $FILESYS != "fuse.sshfs" ]]; then
-      git diff --no-ext-diff --quiet --exit-code
-      if [[ $? == 0 ]]; then
-        GITP=""
-        BRANCH=$(git branch | grep -Po "(?<=\* ).+|(?<=HEAD detached at )[a-f0-9]+")
-      	if [ "$BRANCH" != "master" ]; then
-      	    GITP="$GITP [$BRANCH]"
-      	fi
+    if [[ "$FILESYS" != "fuse.sshfs" ]] && (
+           [ -d .git ] ||
+           git rev-parse --git-dir)>/dev/null 2>&1; then
+       GITP=""
+       BRANCH=$(git branch | grep -Po "(?<=\* ).+|(?<=HEAD detached at )[a-f0-9]+")
+       if [ "$BRANCH" != "master" ]; then
+         GITP="$GITP [$BRANCH]"
+       fi
 
-      	if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]; then
-      	    GITP="$BRIGHT$GITP$END"
-      	fi
-      	GITP="$GITP "
-      fi
+       if git diff --no-ext-diff --quiet --exit-code; then
+      	   GITP="$C4$GITP"
+       else
+           GITP="$C3$GITP"
+       fi
+       GITP="$GITP$END "
     fi
-    end="»"
+    end="» "
     if [[ "$last" -ne "0" ]]; then
-      end=$(printf "\[\e[38;5;196m\]$end\[\e[0m\]")
+      end="$RED$end"
     fi
-    PS1="$C1\h$END \w $GITP$C1$end$END "
+    PS1="$C4\h$END \w $GITP$C4"
 
     if [[ -n $VIRTUAL_ENV ]]; then
         PS1="(`basename \"$VIRTUAL_ENV\"`) $PS1"
     fi
+
+    PS1="$PS1\n$end$END"
 }
 
 PROMPT_COMMAND="prompt"
