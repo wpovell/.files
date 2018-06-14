@@ -1,3 +1,4 @@
+#!/bin/bash
 . ~/.commonrc
 [[ -f ~/git/weenix/.weenixrc ]] && source ~/git/weenix/.weenixrc
 set bell-style none
