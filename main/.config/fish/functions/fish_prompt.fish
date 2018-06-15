@@ -1,5 +1,5 @@
 function fish_prompt
-  echo -n (date '+(%I:%M) ')
+  echo
   set_color blue	 
   echo -n "$USER "
   set_color normal
