@@ -4,7 +4,7 @@
 # Makes alarm sound + spawns dunst notif
 
 
-mpg123 /home/wpovell/dotfiles/misc/alarm.mp3 &
+mpg123 /home/wpovell/.files/misc/alarm.mp3 &
 # Send pushbullet to phone
 pb -d 0 "ALARM: $1"
 pid=$!

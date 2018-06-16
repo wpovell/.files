@@ -11,8 +11,8 @@ retheme startup # Blocks
 
 compton 2>/dev/null &
 unclutter &
-urxvtd -q -f -o
-urxvt -name dropdown &
+#urxvtd -q -f -o
+#urxvt -name dropdown &
 dunst >/tmp/dunst.log 2>&1 &
 redshift &
 polybar &

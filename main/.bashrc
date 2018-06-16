@@ -1,5 +1,5 @@
 . ~/.commonrc
-. ~/git/weenix/.weenixrc
+
 set bell-style none
 bind 'set mark-symlinked-directories on'
 

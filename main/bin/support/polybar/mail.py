@@ -37,7 +37,7 @@ def query():
     '''Query for new mail, notify if new.'''
 
     # Read passwords
-    with open('/home/wpovell/dotfiles/misc/pass.json') as f:
+    with open('/home/wpovell/.files/misc/pass.json') as f:
         passwords = json.load(f)
 
     # Read in fetched but unread mail to compare to

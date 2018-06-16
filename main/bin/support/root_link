@@ -18,10 +18,10 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-cd ~wpovell/dotfiles/root/
+cd ~wpovell/.files/root/
 for i in $(find . -type f); do
   if grep "# ::$HOSTNAME" $i >/dev/null; then
     echo ${i:1}
-    ln -sf "/home/wpovell/dotfiles/root${i:1}" ${i:1}
+    ln -sf "/home/wpovell/.files/root${i:1}" ${i:1}
   fi
 done
