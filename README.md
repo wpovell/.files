@@ -9,7 +9,7 @@ This repo holds my dotfiles & various other things for my desktop (`blueno`) and
 - Distro: `Arch Linux`
 - Window Manager: `i3-gaps`
 - Shell: `bash`
-- Terminal: `urxvt`
+- Terminal: `urxvt`/`kitty`
 - Notifications: `dunst`
 - Launcher: `rofi`
 - Music: `spotify`

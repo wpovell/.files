@@ -19,7 +19,7 @@
  '(git-gutter:update-interval 2)
  '(package-selected-packages
    (quote
-    (org-beautify-theme markdown-mode projectile git-gutter yaml-mode dracula-theme neotree all-the-icons dashboard page-break-lines general))))
+    (fish-mode org-beautify-theme markdown-mode projectile git-gutter yaml-mode dracula-theme neotree all-the-icons dashboard page-break-lines general))))
 
 (load-file "~/.emacs.d/modules/main.el")
 (load-file "~/.emacs.d/modules/keybind.el")

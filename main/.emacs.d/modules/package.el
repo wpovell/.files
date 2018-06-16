@@ -1,3 +1,4 @@
+
 ;; Neotree ;;
 (require 'neotree)
 
@@ -34,3 +35,9 @@
 
 ;; Projectile ;;
 (setq projectile-enable-caching t)
+
+;; 80 Char Col ;;
+(setq-default
+ whitespace-line-column 80
+ whitespace-style       '(face lines-tail))
+(add-hook 'prog-mode-hook #'whitespace-mode)

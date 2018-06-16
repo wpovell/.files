@@ -19,3 +19,15 @@
 
 ;; Term
 (global-set-key (kbd "<C-return>") '(lambda () (interactive) (ansi-term "/bin/bash")))
+
+;; Switch focus on split
+(global-set-key (kbd "C-x /") (lambda ()
+                                (interactive)
+                                (split-window-vertically)
+                                (other-window 1)
+                                (find-file-at-point)))
+(global-set-key (kbd "C-x \\") (lambda ()
+                                 (interactive)
+                                 (split-window-horizontally)
+                                 (other-window 1)
+                                 (find-file-at-point)))
