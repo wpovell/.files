@@ -64,7 +64,7 @@ click-right = csvpn kill
 click-left = csvpn
 
 [section/volume]
-type = internal/alsa
+type = internal/volume
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
@@ -96,9 +96,6 @@ headphone-id = 35
 
 [module/volume_lambda]
 inherit = section/volume
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-headphone-id = 14
 
 [module/i3]
 type			= internal/i3
