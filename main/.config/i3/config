@@ -83,7 +83,7 @@ bindsym ctrl+alt+f1 gksudo chvt 1
 bindsym ctrl+alt+f2 gksudo chvt 2
 
 # Start Term
-bindsym $mod+Return exec --no-startup-id urxvtc
+bindsym $mod+Return exec --no-startup-id kitty
 
 # Kill focused window
 bindsym $mod+Shift+q kill

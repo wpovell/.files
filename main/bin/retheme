@@ -27,7 +27,7 @@ contains() {
 }
 
 
-list=$(ls ~/dotfiles/ | grep .theme | awk '{ gsub(".theme", "",$1); print $1 }')
+list=$(ls ~/.files/ | grep .theme | awk '{ gsub(".theme", "",$1); print $1 }')
 
 list() {
   echo $list
@@ -45,7 +45,7 @@ if (! `contains "$list" "$1"`) && [[ -n "$1" && "$1" != "startup" ]]; then
   list
 fi
 
-cd ~/dotfiles
+cd ~/.files
 
 # Only run if we're changing the theme
 if [[ -n "$1" && "$1" != "startup" ]];
@@ -72,8 +72,8 @@ i3-msg reload 1>/dev/null
 bad_pts=$(ps -ef | grep "\-bash" | grep -v "tty1\|grep" | perl -lne 'print $1 if /pts\/([0-9]+)/')
 ~/bin/support/refresh "$bad_pts"
 
-ln -f ~/dotfiles/gen/colors.css ~/dotfiles/main/www/css/colors.css
-ln -f ~/dotfiles/gen/colors.css ~/dotfiles/main/.mozilla/firefox/fb8uvoz6.default/chrome/colors.css
+ln -f ~/.files/gen/colors.css ~/.files/main/www/css/colors.css
+ln -f ~/.files/gen/colors.css ~/.files/main/.mozilla/firefox/fb8uvoz6.default/chrome/colors.css
 
 killall dunst
 dunst &

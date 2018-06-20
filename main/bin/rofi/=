@@ -35,7 +35,7 @@ else
     exit
 fi
 
-answer=$(echo "$@" | bc -l ~/dotfiles/misc/bc_consts | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
+answer=$(echo "$@" | bc -l ~/.files/misc/bc_consts | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
 
 action=$(echo -e "Copy to clipboard\nClear\nClose" |
 $menu -p "= $answer")
