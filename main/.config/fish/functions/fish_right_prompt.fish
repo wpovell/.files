@@ -10,7 +10,7 @@ function fish_right_prompt
         set -l duration_copy $CMD_DURATION
         set -l duration (echo $CMD_DURATION | humanize_duration)
 
-        echo -sn (set_color $status_color) "$duration" (set_color normal)
+        echo -sn (set_color $status_color) "$duration" " " (set_color 555) (date "+%I:%M") (set_color normal)
     else
         echo -sn (set_color 555) (date "+%I:%M") (set_color normal)
     end
