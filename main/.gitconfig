@@ -1,6 +1,6 @@
 [user]
-	email = william_povell@brown.edu
-	name = Will Povell
+  email = william_povell@brown.edu
+  name = Will Povell
 [push]
   default = current
 [alias]
@@ -10,5 +10,6 @@
   ca = commit -am
   c  = commit -m
   d  = diff
+  p = push -u
   uncommit = reset HEAD^
-  open = !atom  `~/bin/support/git-open`
+  open = !emacs  `~/bin/support/git-open`
