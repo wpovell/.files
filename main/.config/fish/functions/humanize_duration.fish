@@ -1,10 +1,13 @@
 function humanize_duration -d "Humanize a time interval for display"
     command awk '
-        function hmTime(time,   stamp) {
+        function hmTime(time, stamp) {
             split("h:m:s:ms", units, ":")
             for (i = 2; i >= -1; i--) {
                 if (t = int( i < 0 ? time % 1000 : time / (60 ^ i * 1000) % 60 )) {
-                    stamp = stamp t units[sqrt((i - 2) ^ 2) + 1] " "
+                    ind = sqrt((i - 2) ^ 2) + 1
+                    if (ind != 4 || time < 5000) {
+                        stamp = stamp t units[ind] " "
+                    }
                 }
             }
             if (stamp ~ /^ *$/) {
