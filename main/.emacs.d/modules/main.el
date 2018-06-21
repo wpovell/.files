@@ -21,7 +21,7 @@
 (setq ido-create-new-buffer 'always)
 
 ;; Start in fullscreen
-(set-frame-parameter nil 'fullscreen 'fullboth)
+;; (set-frame-parameter nil 'fullscreen 'fullboth)
 
 ;; Don't put tilda files everywhere
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) )

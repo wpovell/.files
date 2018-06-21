@@ -49,7 +49,7 @@ Commands:
     exit
 }
 
-CURRENT_STATE=`amixer get Master | egrep 'Playback.*?\[o' | egrep -o '\[o.+\]'`
+CURRENT_STATE=`amixer get Master | egrep 'Playback.*?\[o' | egrep -o '\[o.+\]' | head -n 1`
 
 case $1 in
   -h|--help) usage ;;
