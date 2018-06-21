@@ -56,6 +56,24 @@ def generate_css(colors):
     with open(css_path, 'w') as f:
         f.write(to_write)
 
+def generate_kitty_conf(colors):
+    path = Path.home() / '.files/gen/colors.conf'
+    to_write = ''
+    for c, v in colors:
+        if c == 'FC':
+            to_write += f'foreground {v}\n'
+            to_write += f'selection_background {v}'
+        elif c == 'BC':
+            to_write += f'background {v}\n'
+            to_write += f'selection_foreground {v}'
+        elif c == 'CC':
+            to_write += f'cursor {v}'
+        else:
+            to_write += f'color{c[1:]} {v}'
+        to_write += '\n'  
+    with open(path, 'w') as f:
+        f.write(to_write)
+        
 if __name__ == '__main__':
     from sys import argv
 
@@ -66,4 +84,5 @@ if __name__ == '__main__':
 
     colors = get_colors()
     generate_css(colors)
+    generate_kitty_conf(colors)
     refresh_terminals(bad_pids, colors)
