@@ -1,1 +1,2 @@
-mplayer tv:// -vf screenshot
+#!/bin/bash
+exec mplayer tv:// -vf screenshot

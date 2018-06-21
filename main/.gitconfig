@@ -9,6 +9,7 @@
   aa = add .
   ca = commit -am
   c  = commit -m
+  cm = commit -m
   d  = diff
   p = push -u
   uncommit = reset HEAD^
