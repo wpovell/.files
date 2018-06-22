@@ -11,6 +11,7 @@
   c  = commit -m
   cm = commit -m
   d  = diff
-  p = push -u
+  p  = push -u
+  pl = pull
   uncommit = reset HEAD^
   open = !emacs  `~/bin/support/git-open`
