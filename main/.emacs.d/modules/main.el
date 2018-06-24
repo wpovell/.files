@@ -1,6 +1,12 @@
 ;; Enable mouse in term emacs
 (xterm-mouse-mode 1)
 
+;; Highlight current line
+(global-hl-line-mode 1)
+
+;; Set scratch text
+(setq initial-scratch-message ";; SCRATCH ;;")
+
 ;; Keep buffers consistent with disk
 (global-auto-revert-mode t)
 
