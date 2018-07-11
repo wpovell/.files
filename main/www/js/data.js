@@ -100,12 +100,14 @@ let urls = {
         u += 'signmeup/signmeup';
       } else if (q == 'isotope') {
         u += 'wpovell/isotopeticketing';
+      } else if (q == 'bluenos') {
+        u += 'wpovell/bluenos';
       } else if (q) {
         u += q;
       }
       return u;
     },
-    suggest: ['wpovell', 'smu', 'isotope']
+    suggest: ['wpovell', 'bluenos', 'smu', 'isotope']
   },
   'a': {
     color: '#FF9900',
@@ -165,7 +167,7 @@ let urls = {
         u += 'me/' + q;
       } else if (q && !q.startsWith('u/')) {
         u += 'r/' + q;
-      } else {
+      } else if (q) {
         u += q;
       }
       return u;
