@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-x k") 'volatile-kill-buffer)
 
 ;; Fullscreen
-(global-set-key (kbd "C-f") 'toggle-frame-fullscreen)
+(global-set-key (kbd "C-S-f") 'toggle-frame-fullscreen)
 
 ;; Term
 (global-set-key (kbd "<C-return>") '(lambda () (interactive) (ansi-term "/bin/bash")))

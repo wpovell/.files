@@ -30,7 +30,7 @@
 ;; Multi cursor ;;
 (require 'multiple-cursors)
 
-(global-set-key (kbd "C-p") `mc/mark-next-like-this-symbol)
+;;(global-set-key (kbd "C-p") `mc/mark-next-like-this-symbol)
 (global-set-key (kbd "C-q") 'mc/mark-next-like-this)
 
 ;; Projectile ;;
