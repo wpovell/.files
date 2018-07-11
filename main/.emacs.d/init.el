@@ -1,13 +1,16 @@
 ;; -*- mode: elisp -*-
 
+;; Package setup
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t))
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; multiple-cursors should be in here but wasn't found?
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; Theme
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -15,10 +18,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("a4df5d4a4c343b2712a8ed16bc1488807cd71b25e3108e648d4a26b02bc990b3" default)))
+    ("78496062ff095da640c6bb59711973c7c66f392e3ac0127e611221d541850de2" "a4df5d4a4c343b2712a8ed16bc1488807cd71b25e3108e648d4a26b02bc990b3" default)))
+ '(git-gutter:update-interval 2)
  '(package-selected-packages
    (quote
-    (fish-mode org-beautify-theme markdown-mode projectile git-gutter yaml-mode dracula-theme neotree all-the-icons dashboard page-break-lines))))
+    (magit atom-one-dark-theme helm-projectile helm yaml-mode use-package projectile org-beautify-theme nlinum neotree multiple-cursors markdown-mode git-gutter git-commit general fringe-helper fish-mode fill-column-indicator dracula-theme dashboard all-the-icons))))
 
 (load-file "~/.emacs.d/modules/main.el")
 (load-file "~/.emacs.d/modules/keybind.el")

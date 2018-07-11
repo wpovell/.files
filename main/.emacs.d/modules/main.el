@@ -3,6 +3,12 @@
 (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
 (global-set-key (kbd "<mouse-4>") '(lambda () (interactive) (scroll-down 1)))
 
+;; 80 Char Col ;;
+(setq-default
+ whitespace-line-column 80
+ whitespace-style       '(face lines-tail))
+(add-hook 'prog-mode-hook #'whitespace-mode)
+
 ;; Highlight current line
 (global-hl-line-mode 1)
 
