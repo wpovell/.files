@@ -1,5 +1,7 @@
 ;; Enable mouse in term emacs
-(xterm-mouse-mode 1)
+(xterm-mouse-mode t)
+(global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<mouse-4>") '(lambda () (interactive) (scroll-down 1)))
 
 ;; Highlight current line
 (global-hl-line-mode 1)

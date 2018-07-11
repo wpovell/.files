@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ $1 = "blueno" ]]; then
   IP_F=~/.cache/blueno_ip
   if [[ -e $IP_F ]] && `ping -c1 -W1 $(cat $IP_F) >/dev/null 2>/dev/null`; then

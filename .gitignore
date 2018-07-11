@@ -15,3 +15,6 @@ api.js
 .mc-lists.el
 gen/
 colors.css
+main/.atom/*
+!main/.atom/config.cson
+!main/.atom/keymap.cson
