@@ -1,0 +1,17 @@
+"*":
+  "atom-beautify":
+    c:
+      beautify_on_save: true
+      default_beautifier: "clang-format"
+    general:
+      _analyticsUserId: "0d90ab9d-303c-4ce1-90da-0fe2d65ccea2"
+  core:
+    telemetryConsent: "limited"
+  editor:
+    fontFamily: "Inconsolata Nerd Font Mono"
+    showIndentGuide: true
+    showInvisibles: true
+  "exception-reporting":
+    userId: "7bac6570-8d2d-4e31-9986-57ba90443e66"
+  welcome:
+    showOnStartup: false
