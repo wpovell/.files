@@ -3,6 +3,12 @@
 (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
 (global-set-key (kbd "<mouse-4>") '(lambda () (interactive) (scroll-down 1)))
 
+;; Highlight current line
+(global-hl-line-mode 1)
+
+;; Set scratch text
+(setq initial-scratch-message ";; SCRATCH ;;")
+
 ;; Keep buffers consistent with disk
 (global-auto-revert-mode t)
 
