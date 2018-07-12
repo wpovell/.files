@@ -172,8 +172,7 @@ let urls = {
       }
       return u;
     },
-    suggest: ['m/programming', 'm/nix']
-
+    suggest: ['m/programming', 'm/nix', 'hiphopheads']
   },
   'n': {
     color: '#E30813',

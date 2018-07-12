@@ -16,6 +16,7 @@
   r  = reset
   d  = diff
   p  = push -u
+  pf = push -f
   pl = pull
   uncommit = reset HEAD^
   open = !emacs  `~/bin/support/git-open`
