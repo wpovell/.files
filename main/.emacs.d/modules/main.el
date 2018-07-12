@@ -10,7 +10,8 @@
 (add-hook 'prog-mode-hook #'whitespace-mode)
 
 ;; Highlight current line
-(global-hl-line-mode 1)
+(if window-system
+    (global-hl-line-mode 1))
 
 ;; Set scratch text
 (setq initial-scratch-message ";; SCRATCH ;;")
