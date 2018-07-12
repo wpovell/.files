@@ -20,8 +20,7 @@ if [[ -z $1 ]]; then
   exit
 fi
 
-FILE=$(find ~/bin/ -name `basename $1`)
-
+FILE=$(find -L ~/bin/ -name `basename $1`)
 if [[ -e $FILE ]]; then
   emacs -nw $FILE
 else

@@ -9,7 +9,10 @@
   aa = add .
   ca = commit -am
   c  = commit -m
-  cm = commit -m
+  ch = checkout
+  st = stash
+  sp = stash pop
+  r  = reset
   d  = diff
   p  = push -u
   pl = pull
