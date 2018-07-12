@@ -23,6 +23,7 @@ alias ,="cd .."
 alias ,,="cd ../.."
 
 ## Misc ##
+alias root="sudo -s"
 alias g="git"
 alias r="ranger"
 alias m="~/bin/support/polybar/mail show"
@@ -36,6 +37,9 @@ alias mosh="mosh --experimental-remote-ip=remote"
 alias grep="grep --color='auto'"
 alias df="df -h"
 alias diff="colordiff"
+alias xx="atool -x"
+alias json="python -m json.tool"
+alias ax="chmod a+x"
 
 # Quick todo edit
 alias etodo="emacs -nw files/linux_todo"
