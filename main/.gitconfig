@@ -10,6 +10,7 @@
   ca = commit -am
   c  = commit -m
   ch = checkout
+  b  = branch
   st = stash
   sp = stash pop
   r  = reset
