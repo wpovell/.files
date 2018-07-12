@@ -1,8 +1,9 @@
 #!/bin/bash
-. ~/.commonrc
-[[ -f ~/git/weenix/.weenixrc ]] && source ~/git/weenix/.weenixrc
-set bell-style none
-bind 'set mark-symlinked-directories on'
+
+# Shared env vars between bash and fish
+function setenv() { export "$1=$2"; }
+. ~/.env
+. ~/.aliases
 
 # Dropdown ignores ctrl-d
 if [[ -n $DISPLAY ]]; then
@@ -19,9 +20,6 @@ if [[ -n $DISPLAY ]]; then
         fi
     fi
 fi
-
-# No less history
-LESSHISTFILE=-
 
 # Max num of dirs
 PROMPT_DIRTRIM=2
@@ -74,3 +72,6 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 # Disable C-s
 stty -ixon
+
+set bell-style none
+bind 'set mark-symlinked-directories on'
