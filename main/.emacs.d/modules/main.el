@@ -11,7 +11,9 @@
 
 ;; Highlight current line
 (if window-system
-    (global-hl-line-mode 1))
+  (global-hl-line-mode)
+  (set-face-background 'mode-line "Blue")
+)
 
 ;; Set scratch text
 (setq initial-scratch-message ";; SCRATCH ;;")
