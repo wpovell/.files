@@ -24,6 +24,7 @@ alias ,="cd .."
 alias ,,="cd ../.."
 
 ## Misc ##
+alias t="tmux"
 alias root="sudo -s"
 alias g="git"
 alias r="ranger"

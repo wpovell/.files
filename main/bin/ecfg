@@ -17,7 +17,7 @@ case $1 in
      -h|--help) usage ;;
      tmux) F=~/.tmux.conf ;;
      bash) F=~/.bashrc ;;
-     common) F=~/.commonrc ;;
+     alias) F=~/.aliases ;;
      completion) F=~/.bash_completion ;;
      zsh) F=~/.zshrc ;;
      i3) F=~/.config/i3/config ;;

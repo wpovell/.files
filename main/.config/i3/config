@@ -86,7 +86,7 @@ bindsym ctrl+alt+f2 gksudo chvt 2
 bindsym $mod+Return exec --no-startup-id kitty
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # Change focus
 bindsym $mod+Left focus left
