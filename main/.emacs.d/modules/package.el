@@ -35,7 +35,9 @@
 
 ;; Helm ;;
 (use-package helm
-  :bind (("M-x" . helm-M-x))
+  :bind (("M-x" . helm-M-x)
+         ("C-x b" . helm-mini)
+         ("C-x C-b" . helm-mini))
   :config
   (require 'helm-config)
   (helm-mode 1))
