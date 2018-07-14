@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -s checkip.dyndns.org | sed 's/[^0-9.]//g'

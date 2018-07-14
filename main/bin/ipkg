@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PKG_PATH=~/.packages
+
+set -e
+
+if [[ -z $1 ]]; then
+  echo "Please provide package to install"
+  exit
+fi
+
+
+if hash yay 2>/dev/null; then
+  yay -S $1
+else
+  pacman -S $1
+fi
+
+grep -q -F "$1" $PKG_PATH 2>/dev/null || echo "$1" >> $PKG_PATH

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PKG_PATH=~/.packages
+
+set -e
+
+if [[ -z $1 ]]; then
+  echo "Please provide package to remove"
+  exit
+fi
+
+
+if hash yay 2>/dev/null; then
+  yay -R $1
+else
+  pacman -R $1
+fi
+
+cat $PKG_PATH | sed "/$1/d" > $PKG_PATH

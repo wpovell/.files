@@ -41,6 +41,7 @@ alias diff="colordiff"
 alias xx="atool -x"
 alias json="python -m json.tool"
 alias ax="chmod a+x"
+alias hdmi="xrandr --output HDMI1 --auto"
 
 # Quick todo edit
-alias etodo="emacs -nw files/linux_todo"
+alias etodo="$EDITOR files/linux_todo"
