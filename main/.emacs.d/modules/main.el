@@ -1,3 +1,6 @@
+;; Delete backup versions
+(setq delete-old-versions t)
+
 ;; Enable mouse in term emacs
 (xterm-mouse-mode t)
 (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
@@ -9,7 +12,7 @@
  whitespace-style       '(face lines-tail))
 (add-hook 'prog-mode-hook #'whitespace-mode)
 
-;; Highlight current line
+;; Highlight current line in GUI
 (if window-system
   (global-hl-line-mode)
   (set-face-background 'mode-line "Blue")
@@ -30,16 +33,6 @@
 ;; Use spaces
 (setq-default indent-tabs-mode nil)
 
-;; Ido
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(setq ido-use-filename-at-point 'guess)
-(setq ido-create-new-buffer 'always)
-
-;; Start in fullscreen
-;; (set-frame-parameter nil 'fullscreen 'fullboth)
-
 ;; Don't put tilda files everywhere
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) )
 
@@ -56,32 +49,22 @@
 (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
 ;; Follow symlinks without asking
-(setq vc-follow-symlinks t )
+(setq vc-follow-symlinks t)
 
 ;; Hide the startup message
 (setq inhibit-startup-message t
-      inhibit-startup-screen t )
+      inhibit-startup-screen t)
 
 (defun display-startup-echo-area-message () (message ""))
-
-;; No bell
-(setq ring-bell-function 'ignore )
-
-;; UTF-8 Default
-(setq coding-system-for-read 'utf-8 )
-(setq coding-system-for-write 'utf-8 )
 
 ;; Wrap text
 (setq default-fill-column 80)
 
 ;; Highlight parens
-(show-paren-mode 1)
+(show-paren-mode t)
 
 ;; Show column in modeline
 (setq column-number-mode t)
-
-;; Theme
-(load-theme 'dracula)
 
 ;; Close term buffer on exit
 (defadvice term-handle-exit

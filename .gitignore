@@ -18,3 +18,5 @@ colors.css
 main/.atom/*
 !main/.atom/config.cson
 !main/.atom/keymap.cson
+/main/.emacs.d/recentf~
+main/.emacs.d/url/

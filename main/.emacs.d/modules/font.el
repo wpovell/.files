@@ -1,4 +1,4 @@
-
+;; Setup Fira Code Font
 (when  (window-system)
   (set-frame-font "Fira Code"))
  (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
