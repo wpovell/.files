@@ -57,6 +57,10 @@
 
 (defun display-startup-echo-area-message () (message ""))
 
+;; Auto fullscreen on Mac
+(if (eq system-type 'darwin)
+    (set-frame-parameter nil 'fullscreen 'fullboth))
+
 ;; Wrap text
 (setq default-fill-column 80)
 

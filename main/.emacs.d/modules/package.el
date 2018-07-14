@@ -41,15 +41,16 @@
   (setq dashboard-startup-banner "~/.emacs.d/imgs/ep2.png")
   (setq dashboard-banner-logo-title "")
   (setq dashboard-items '((recents  . 5)
-                          (projects . 5)))
+                          (projects . 5)
+                          (agenda   . 5)))
 
   :config
   (dashboard-setup-startup-hook)
   ;; Disable linenum and modeline for dash
   (add-hook 'dashboard-mode-hook
             (lambda ()
-	      (display-line-numbers-mode -1))))
-
+	      (display-line-numbers-mode -1)))
+)
 ;; git-gutter ;;
 (use-package git-gutter
   :diminish git-gutter-mode
@@ -77,4 +78,5 @@
 (use-package yaml-mode)
 
 ;; Theme ;;
-(use-package atom-one-dark-theme)
+(if window-system
+    (use-package atom-one-dark-theme))

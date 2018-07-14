@@ -17,7 +17,7 @@
                     " ["
                     (:eval
                      (replace-regexp-in-string
-                      (format "^ %s:"
+                      (format "^ %s."
                               (vc-backend buffer-file-name))
                       "" vc-mode))
                     "] "))
