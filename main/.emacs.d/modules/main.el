@@ -13,10 +13,9 @@
 (add-hook 'prog-mode-hook #'whitespace-mode)
 
 ;; Highlight current line in GUI
-(if window-system
-  (global-hl-line-mode)
-  (set-face-background 'mode-line "Blue")
-)
+(if (not (isgui))
+    (set-face-background 'mode-line "Blue")
+  (global-hl-line-mode))
 
 ;; Set scratch text
 (setq initial-scratch-message ";; SCRATCH ;;")

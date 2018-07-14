@@ -9,6 +9,8 @@ fi
 
 retheme startup # Blocks
 
+emacs --daemon=gui &
+emacs --daemon=term &
 compton 2>/dev/null &
 unclutter &
 kitty --class=dropdown /bin/bash 

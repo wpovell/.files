@@ -144,6 +144,8 @@ set $workspace10 "99: "
 # Change workspace
 bindsym Control+$mod+Left workspace prev
 bindsym Control+$mod+Right workspace next
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+bracketright workspace next
 
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
