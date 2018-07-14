@@ -1,35 +1,51 @@
-#!/bin/bash
+#!/sbin/fish
 
-usage() {
-    echo "$(tput bold)editcfg$(tput sgr0)
-    editcfg [program]
+function usage
+    echo "editcfg [program]
     
     Opens the given program's config for editing.
     "
     exit
-}
+end
 
-if [[ -z $1 ]]; then
+if test -z $argv[1]
    usage
-fi
+end
 
-case $1 in
-     -h|--help) usage ;;
-     tmux) F=~/.tmux.conf ;;
-     bash) F=~/.bashrc ;;
-     alias) F=~/.aliases ;;
-     completion) F=~/.bash_completion ;;
-     zsh) F=~/.zshrc ;;
-     i3) F=~/.config/i3/config ;;
-     dunst) F=~/.config/dunst/dunstrc ;;
-     emacs) F=~/.emacs.d/init.el ;;
-     firefox) F=~/.mozilla/firefox/fb8uvoz6.default/chrome/userChrome.css ;;
-     polybar) F=~/.config/polybar/config ;;
-     ssh) F=~/.ssh/config ;;
-     git) F=~/.gitconfig ;;
-     urxvt) F=~/.Xresources.d/urxvt ;;
-     rofi) F=~/.Xresources.d/rofi ;;     
-     *) echo "No such config file '$1'" && exit ;;
-esac
+switch $argv[1]
+    case -h --help
+        usage
+    case tmux
+        set F ~/.tmux.conf
+    case bash
+        set F ~/.bashrc
+    case alias
+        set F ~/.aliases
+    case completion
+        set F ~/.bash_completion
+    case zsh
+        set F ~/.zshrc
+    case i3
+        set F ~/.config/i3/config
+    case dunst
+        set F ~/.config/dunst/dunstrc
+    case emacs
+        set F ~/.emacs.d/init.el
+    case firefox
+        set F ~/.mozilla/firefox/fb8uvoz6.default/chrome/userChrome.css
+    case polybar
+        set F ~/.config/polybar/config
+    case ssh
+        set F ~/.ssh/config
+    case git
+        set F ~/.gitconfig
+    case urxvt
+        set F ~/.Xresources.d/urxvt
+    case rofi
+        set F ~/.Xresources.d/rofi
+    case "*"
+        echo "No such config file '$argv[1]'"
+        exit 1
+end
 
-$EDITOR $F
+eval $EDITOR $F

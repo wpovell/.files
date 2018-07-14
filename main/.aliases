@@ -1,5 +1,5 @@
 # Emacs
-alias e="emacsclient -s term"
+alias e="$EDITOR"
 
 # Browser
 alias browser="$BROWSER"

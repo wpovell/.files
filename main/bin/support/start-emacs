@@ -1,0 +1,3 @@
+#!/bin/bash
+emacs --daemon=gui
+emacs --daemon=term

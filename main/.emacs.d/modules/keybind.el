@@ -24,10 +24,10 @@
 (global-set-key (kbd "C-x /") (lambda ()
                                 (interactive)
                                 (split-window-vertically)
-                                (other-window 1)
-                                (find-file-at-point)))
+                                (other-window 1)))
+
 (global-set-key (kbd "C-x \\") (lambda ()
                                  (interactive)
                                  (split-window-horizontally)
-                                 (other-window 1)
-                                 (find-file-at-point)))
+                                 (other-window 1)))
+

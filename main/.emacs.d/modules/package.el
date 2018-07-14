@@ -37,7 +37,7 @@
     (use-package dashboard
       :init
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-      (setq dashboard-startup-banner "~/.emacs.d/imgs/ep2.png")
+      (setq dashboard-startup-banner 1)
       (setq dashboard-banner-logo-title "Emacs")
       (setq dashboard-items '((recents  . 5)
                               (projects . 5)

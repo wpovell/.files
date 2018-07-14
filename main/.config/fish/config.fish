@@ -1,5 +1,3 @@
-source ~/.aliases
-
 function setenv
     if [ $argv[1] = PATH ]
         # Replace colons and spaces with newlines
@@ -9,3 +7,4 @@ function setenv
     end
 end
 source ~/.env
+source ~/.aliases
