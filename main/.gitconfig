@@ -8,7 +8,8 @@
   a  = add
   aa = add .
   ca = commit -am
-  c  = commit -m
+  cm = commit -m
+  c  = commit
   ch = checkout
   b  = branch
   st = stash

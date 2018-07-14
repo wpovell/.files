@@ -1,4 +1,3 @@
-
 ;; Custom set variables
 (setq custom-file "~/.emacs.d/custom.el")
 (if (file-exists-p custom-file)
