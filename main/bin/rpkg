@@ -16,4 +16,4 @@ else
   pacman -R $1
 fi
 
-cat $PKG_PATH | sed "/$1/d" > $PKG_PATH
+sed -i "/$1/d" $PKG_PATH
