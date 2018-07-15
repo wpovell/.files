@@ -24,6 +24,7 @@ alias ,,="cd ../.."
 
 ## Misc ##
 alias t="tmux"
+alias wifi="sudo wifi-menu"
 alias root="sudo -s"
 alias g="git"
 alias r="ranger"

@@ -62,14 +62,28 @@
 (use-package multiple-cursors
   :bind (("C-q" . mc/mark-next-like-this)))
 
-;; Projectile ;;
-(use-package projectile
-  :init
-  (setq projectile-enable-caching t))
-
 ;; Magit ;;
 (use-package magit
   :bind (("C-c m s" . magit-status)))
+
+;; Ivy ;;
+(use-package ivy
+  :bind
+  :config
+  (ivy-mode t))
+
+(use-package swiper
+  :bind (("C-s" . swiper)))
+
+(use-package counsel
+  :bind (("C-x C-f" . counsel-find-file)
+         ("M-x" . counsel-M-x)))
+
+;; Projectile ;;
+(use-package projectile
+  :init
+  (setq projectile-enable-caching t)
+  (setq projectile-completion-system 'ivy))
 
 ;; Modes ;;
 (use-package fish-mode)

@@ -8,14 +8,13 @@ This repo holds my dotfiles & various other things for my desktop (`blueno`) and
 
 - Distro: `Arch Linux`
 - Window Manager: `i3-gaps`
-- Shell: `bash`
-- Terminal: `urxvt`/`kitty`
+- Shell: `fish` / `bash`
+- Terminal: `kitty`
 - Notifications: `dunst`
 - Launcher: `rofi`
 - Music: `spotify`
-- Editor: `emacs` / `atom`
+- Editor: `emacs`
 - Browser: `firefox-nightly`
-
 
 ## Structure
 
@@ -30,8 +29,7 @@ This repo holds my dotfiles & various other things for my desktop (`blueno`) and
     - `color/`: Color test scripts
     - `rofi/`: Rofi prompts bound to shortcuts
     - `support/`: Things not on my path but used by `i3`/`polybar`
-- `packages/`: Backup of all the packages on each machine
 - `root/`: Mirrors the structure of `/`, holds machine-wide configuration files
 - `misc/`: Resources and various odds and ends
 
-Notably `main` and themes are managed by [`stow`](https://www.gnu.org/software/stow/).
+`main` and themes are managed by [`stow`](https://www.gnu.org/software/stow/).
