@@ -71,7 +71,9 @@
 
 ;; Flyspell
 (setq flyspell-issue-welcome-flag nil)
-(setq-default ispell-program-name "/sbin/aspell")
+(if (eq system-type 'darwin)
+    (setq-default ispell-program-name "/usr/local/bin/aspell")
+  (setq-default ispell-program-name "/sbin/aspell"))
 
 ;; Highlight parens
 (show-paren-mode t)
