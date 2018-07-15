@@ -1,8 +1,8 @@
 ;; Window movement
-(global-set-key (kbd "<M-right>") 'windmove-right)
-(global-set-key (kbd "<M-left>") 'windmove-left)
-(global-set-key (kbd "<M-up>") 'windmove-up)
-(global-set-key (kbd "<M-down>") 'windmove-down)
+(global-set-key (kbd "M-l") 'windmove-right)
+(global-set-key (kbd "M-h") 'windmove-left)
+(global-set-key (kbd "M-k") 'windmove-up)
+(global-set-key (kbd "M-j") 'windmove-down)
 
 ;; Easier ffap
 (global-set-key (kbd "C-x C-f") 'find-file-at-point)
@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-x k") 'volatile-kill-buffer)
 
 ;; Fullscreen
-(global-set-key (kbd "C-S-f") 'toggle-frame-fullscreen)
+(global-set-key (kbd "s-f") 'toggle-frame-fullscreen)
 
 ;; Term
 (global-set-key (kbd "<C-return>") '(lambda () (interactive) (ansi-term "/bin/bash")))
@@ -31,3 +31,5 @@
                                  (split-window-horizontally)
                                  (other-window 1)))
 
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)

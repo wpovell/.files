@@ -1,6 +1,9 @@
 ;; Delete backup versions
 (setq delete-old-versions t)
 
+;; Type y rather than yes
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; Enable mouse in term emacs
 (xterm-mouse-mode t)
 (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
@@ -60,8 +63,15 @@
 (if (eq system-type 'darwin)
     (set-frame-parameter nil 'fullscreen 'fullboth))
 
-;; Wrap text
-(setq default-fill-column 80)
+;; Delete trailing whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Faster keystroke echo
+(setq echo-keystrokes 0.1)
+
+;; Flyspell
+(setq flyspell-issue-welcome-flag nil)
+(setq-default ispell-program-name "/sbin/aspell")
 
 ;; Highlight parens
 (show-paren-mode t)

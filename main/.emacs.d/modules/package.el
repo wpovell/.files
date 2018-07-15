@@ -73,7 +73,11 @@
 
 ;; Modes ;;
 (use-package fish-mode)
-(use-package markdown-mode)
+(use-package markdown-mode
+  :config
+  (add-hook 'markdown-mode-hook
+            (lambda ()
+              (flyspell-mode))))
 (use-package yaml-mode)
 
 ;; Theme ;;
