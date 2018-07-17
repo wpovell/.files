@@ -4,7 +4,7 @@
 [push]
   default = current
 [alias]
-  s  = status
+  s  = status -s
   a  = add
   aa = add .
   ca = commit -am
@@ -20,5 +20,6 @@
   pf = push -f
   pl = pull
   l  = log
+  amend = commit --amend
   uncommit = reset HEAD^
   open = !E `~/bin/support/git-open`
