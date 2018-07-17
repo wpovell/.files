@@ -72,13 +72,28 @@
               ("TAB" . ivy-alt-done))
  :config
  (ivy-mode t))
-
-(use-package swiper
- :bind (("C-s" . swiper)))
-
 (use-package counsel
- :bind (("C-x C-f" . counsel-find-file)
-        ("M-x" . counsel-M-x)))
+  :config
+  (counsel-mode))
+(use-package swiper
+  :bind ("C-s" . swiper))
+
+;; Neotree ;;
+(use-package all-the-icons)
+(use-package neotree
+  :bind (("C-\\" . neotree-toggle))
+  :init
+  (setq neo-theme (if (isgui) 'icons 'arrow))
+  (setq neo-smart-open t)
+  :config
+  (add-hook 'neo-after-create-hook
+               #'(lambda (_)
+       (with-current-buffer (get-buffer neo-buffer-name)
+         (setq display-line-numbers nil)
+         (setq mode-line-format '((" Neotree")))
+         (text-scale-adjust 0)
+         (text-scale-decrease 1))))
+)
 
 ;; Projectile ;;
 (use-package projectile
