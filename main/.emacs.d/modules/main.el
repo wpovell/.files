@@ -34,6 +34,7 @@
 
 ;; Use spaces
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
 
 ;; Don't put tilda files everywhere
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) )

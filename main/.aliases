@@ -23,6 +23,8 @@ alias ,="cd .."
 alias ,,="cd ../.."
 
 ## Misc ##
+alias rw="restart-wifi"
+alias re="restart-emacs"
 alias t="tmux"
 alias wifi="sudo wifi-menu"
 alias root="sudo -s"
