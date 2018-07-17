@@ -68,16 +68,17 @@
 
 ;; Ivy ;;
 (use-package ivy
-  :bind
-  :config
-  (ivy-mode t))
+  :bind (:map ivy-minibuffer-map
+              ("TAB" . ivy-alt-done))
+ :config
+ (ivy-mode t))
 
 (use-package swiper
-  :bind (("C-s" . swiper)))
+ :bind (("C-s" . swiper)))
 
 (use-package counsel
-  :bind (("C-x C-f" . counsel-find-file)
-         ("M-x" . counsel-M-x)))
+ :bind (("C-x C-f" . counsel-find-file)
+        ("M-x" . counsel-M-x)))
 
 ;; Projectile ;;
 (use-package projectile
