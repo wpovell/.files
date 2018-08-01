@@ -224,8 +224,8 @@ bindsym F12 exec --no-startup-id muse up
 bindsym $mod+$alt+Up exec --no-startup-id muse up
 
 # Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id light +
+bindsym XF86MonBrightnessDown exec --no-startup-id light -
 
 # Swipe (currently I don't have any machines that use this)
 bindsym --whole-window button11 workspace prev

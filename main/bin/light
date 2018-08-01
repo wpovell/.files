@@ -1,0 +1,28 @@
+#!/bin/bash
+
+cur=$(xbacklight -get)
+if [[ -z $1 ]]; then
+  echo $cur
+  exit
+fi
+
+function cmp {
+ [ $(bc <<< $1) == "1" ]
+}
+
+if [[ $1 == "-" ]]; then
+   if cmp "$cur > 10"; then
+     xbacklight -dec 10
+   elif cmp "$cur > 1"; then
+     xbacklight -set 1
+   else
+     xbacklight -set 0
+   fi
+elif [[ $1 == "+" ]]; then
+  if cmp "$cur == 0"; then
+    xbacklight -set 1
+  else
+    xbacklight -inc 10
+  fi
+fi
+xbacklight -get
