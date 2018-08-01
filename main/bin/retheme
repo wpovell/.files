@@ -73,7 +73,7 @@ bad_pts=$(ps -ef | grep "\-bash" | grep -v "tty1\|grep" | perl -lne 'print $1 if
 ~/bin/support/refresh "$bad_pts"
 
 ln -f ~/.files/gen/colors.css ~/.files/main/www/css/colors.css
-ln -f ~/.files/gen/colors.css ~/.files/main/.mozilla/firefox/fb8uvoz6.default/chrome/colors.css
+ln -f ~/.files/gen/colors.css ~/.files/main/.mozilla/firefox/*/chrome/colors.css
 ln -f ~/.files/gen/colors.conf ~/.config/kitty/colors.conf
 
 killall dunst
@@ -81,7 +81,7 @@ dunst &
 
 #if [[ -n $1 ]]; then
 #  ~/bin/support/theme-spotify >/dev/null &
-#fi    
+#fi
 
 {
 # Not sure why this is needed, I guess bc polybar takes some time to restart
