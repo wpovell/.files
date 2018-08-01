@@ -47,7 +47,7 @@ else
    echo "Starting"
    {
      polybar-msg hook vpn 1 2>/dev/null
-     sudo openvpn /etc/openvpn/client/browncs.opvn >/tmp/vpn.log 2>&1
+     sudo openvpn /etc/openvpn/client/browncs.ovpn >/tmp/vpn.log 2>&1
      polybar-msg hook vpn 2 2>/dev/null
    } &
 fi
