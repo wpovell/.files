@@ -133,6 +133,7 @@ bindsym $mod+minus scratchpad show
 
 # Toggle
 bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab exec --no-startup-id rofi -show window
 
 # Workspaces
 set $SpotifyWS "99: "
