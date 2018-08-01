@@ -22,4 +22,5 @@
   l  = log
   amend = commit --amend
   uncommit = reset HEAD^
+  get = !~/bin/support/git-get
   open = !E `~/bin/support/git-open`
