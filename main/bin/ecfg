@@ -17,6 +17,8 @@ switch $argv[1]
         usage
     case tmux
         set F ~/.tmux.conf
+    case env
+        set F ~/.env
     case bash
         set F ~/.bashrc
     case alias
