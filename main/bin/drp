@@ -1,2 +1,2 @@
 #!/bin/bash
-HOME=/home/wpovell/.dropbox dropbox-cli
+HOME=/home/wpovell/.dropbox dropbox-cli $@
