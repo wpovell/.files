@@ -8,3 +8,4 @@
 (load-file "~/.emacs.d/modules/main.el")
 (load-file "~/.emacs.d/modules/keybind.el")
 (load-file "~/.emacs.d/modules/modeline.el")
+(load-file "~/.emacs.d/modules/org.el")
