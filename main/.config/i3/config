@@ -6,6 +6,9 @@ set $HOME $HOME
 # Split direction
 default_orientation horizontal
 
+# Link saver
+bindsym --release $mod+x exec --no-startup-id $HOME/bin/support/save-url
+
 # Startup
 exec_always --no-startup-id $HOME/bin/support/start -r
 exec --no-startup-id $HOME/bin/support/start

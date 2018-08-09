@@ -93,3 +93,6 @@ aspell
 aspell-en
 physlockmosh
 python-pip
+pandoc
+clang
+hub
