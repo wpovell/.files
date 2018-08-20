@@ -24,6 +24,7 @@ alias ,,="cd ../.."
 
 ## Misc ##
 alias less="less -R"
+alias dfs="cd ~/.files"
 alias rw="sudo restart-wifi"
 alias f="find . -name"
 alias re="restart-emacs"

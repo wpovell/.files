@@ -69,9 +69,11 @@ PROMPT_COMMAND="prompt"
 # Ignore repeat history
 HISTCONTROL=ignoreboth
 # Size
-HISTSIZE=1000
+HISTFILESIZE=10000
+HISTSIZE=10000
+# Session appends rather than overwrites history
+shopt -s histappend
 # Disable C-s
 stty -ixon
-
 set bell-style none
 bind 'set mark-symlinked-directories on'
