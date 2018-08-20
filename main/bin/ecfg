@@ -19,6 +19,8 @@ switch $argv[1]
         set F ~/.tmux.conf
     case env
         set F ~/.env
+    case fish
+        set F ~/.config/fish/config.fish
     case bash
         set F ~/.bashrc
     case alias

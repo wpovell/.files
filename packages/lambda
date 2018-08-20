@@ -96,3 +96,8 @@ python-pip
 pandoc
 clang
 hub
+nmap
+geoclue2
+zenity
+bluez-utils
+pulseaudio-bluetooth

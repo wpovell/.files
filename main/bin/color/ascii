@@ -8,6 +8,14 @@ colors = {
     'r':  '\033[0m',
 }
 
+whale = r'''     .-'
+ '--./ /     _.---.
+ '-,  (__..-'       \
+    \          {c1}.{r}     |
+     ',.__.   ,__.--/
+       '._/_.'___.-'
+'''
+
 mouse = r''' /\_/\
 /     \
 \ {c1}x{r} {c1}x{r} /
@@ -80,6 +88,7 @@ art = {
   'tux': tux,
   'lambda': lmbda,
   'mouse': mouse,
+  'whale': whale,
 }
 
 def help():

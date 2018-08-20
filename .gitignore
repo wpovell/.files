@@ -20,3 +20,4 @@ main/.atom/*
 !main/.atom/keymap.cson
 /main/.emacs.d/recentf~
 main/.emacs.d/url/
+main/.emacs.d/bookmarks
