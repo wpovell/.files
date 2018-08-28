@@ -88,7 +88,7 @@ bindsym ctrl+alt+f1 gksudo chvt 1
 bindsym ctrl+alt+f2 gksudo chvt 2
 
 # Start Term
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id ~/bin/support/term
 
 # Kill focused window
 bindsym $mod+q kill
@@ -270,11 +270,12 @@ set $transparent #00000000
 set_from_resource $showBar showBar
 
 bar {
+    position top
     mode $showBar
     modifier none
     tray_output none
     status_command i3status
-    font xft:FontAwesome, Inconsolata 8
+    font xft:Inconsolata Nerd Font Mono 12
     strip_workspace_numbers yes
     colors {
       statusline $foreground
