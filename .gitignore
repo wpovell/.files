@@ -1,3 +1,10 @@
+id_rsa*
+known_hosts
+authorized_keys
+pulse
+dconf
+chromium
+Atom
 projectile-bookmarks.eld
 ido.last
 recentf
