@@ -46,7 +46,7 @@ for_window [title="QEMU"] floating enable
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
 bindsym $mod+e exec --no-startup-id $HOME/bin/rofi/emoji
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id $HOME/bin/alias/dm
 bindsym --release F2 exec --no-startup-id $HOME/bin/support/shrugie
 
 # Screenshot
