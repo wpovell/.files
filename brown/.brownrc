@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Various functions used by brown scripts
+setenvvar () { eval $1=\"$2\"; export $1; }
+setenvifnot () { if eval [ -z \"\$$1\" ]; then eval $1=\"$2\"; export $1; fi; }
+pathappend () { if eval expr ":\$$1::" : ".*:$2:.*" >/dev/null 2>&1; then true; else eval $1=\$$1:$2; fi; }
+pathappendifdir () { if [ -d "$2" ]; then pathappend $*; fi; }
+pathprepend () { if eval expr ":\$$1::" : ".*:$2:.*" >/dev/null 2>&1; then true; else eval $1=$2:\$$1; fi; }
+pathprependifdir () { if [ -d "$2" ]; then pathprepend $*; fi; }
+shellcmd () { _cmd=$1; shift; eval "$_cmd () { command $* \"\$@\"; }"; }
+sourcefile () { if [ -f "$1" ]; then . $1; fi; }
+
 # Run the coursehooks.
 sourcefile /u/system/hooks/sh/identities
 
