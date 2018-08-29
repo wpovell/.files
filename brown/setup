@@ -4,17 +4,9 @@ BASE=$HOME/.files/main
 
 cd $BASE
 
-for i in $(find . -maxdepth 1); do
-  filename=${i:2}
-  if [[ -n $filename ]]; then
-    ln -sf $BASE/$filename $HOME/
-  fi
-done
+rsync -rPc . ~/
 
 ln -f $HOME/.files/brown/host $HOME/.Xresources.d/host
-
-unlink ~/.aliases
-cp $BASE/.aliases ~/.aliases
 
 sed -i '/alias git="hub"/d' ~/.aliases
 sed -i 's/alias ls="exa"/alias ls="ls --color"/g' ~/.aliases
