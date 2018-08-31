@@ -62,9 +62,17 @@
 (use-package multiple-cursors
   :bind (("C-q" . mc/mark-next-like-this)))
 
-;; Magit ;;
-(use-package magit
-  :bind (("C-c m s" . magit-status)))
+(if (> emacs-major-version 25)
+    (
+     ;; Magit ;;
+     (use-package magit
+       :bind (("C-c m s" . magit-status)))
+     ;; Projectile ;;
+     (use-package projectile
+       :init
+       (setq projectile-enable-caching t)
+       (setq projectile-completion-system 'ivy))
+     ))
 
 ;; Ivy ;;
 (use-package ivy
@@ -94,12 +102,6 @@
          (text-scale-adjust 0)
          (text-scale-decrease 1))))
 )
-
-;; Projectile ;;
-(use-package projectile
-  :init
-  (setq projectile-enable-caching t)
-  (setq projectile-completion-system 'ivy))
 
 ;; Modes ;;
 (use-package fish-mode)
