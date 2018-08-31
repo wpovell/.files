@@ -11,7 +11,7 @@ shellcmd () { _cmd=$1; shift; eval "$_cmd () { command $* \"\$@\"; }"; }
 sourcefile () { if [ -f "$1" ]; then . $1; fi; }
 
 # Run the coursehooks.
-sourcefile /u/system/hooks/sh/identities
+sourcefile /u/system/hooks/sh/identities 2>/dev/null
 
 # SPOC stuff
 PATH="$PATH:/tstaff/bin:/usr/sbin:/sbin/"
