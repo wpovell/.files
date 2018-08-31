@@ -63,7 +63,7 @@
   :bind (("C-q" . mc/mark-next-like-this)))
 
 (if (> emacs-major-version 25)
-    (
+    (progn
      ;; Magit ;;
      (use-package magit
        :bind (("C-c m s" . magit-status)))
