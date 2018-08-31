@@ -284,7 +284,7 @@ bar {
 
       focused_workspace $background $background $barFocus
       inactive_workspace $background $background $foreground
-      active_workspace $barFocus $background $barUnfocus
+      active_workspace $background $background $barUnfocus
       urgent_workspace $background $background $foreground
       binding_mode $barMode $barMode $background
     }
