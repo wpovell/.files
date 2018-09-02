@@ -4,7 +4,7 @@
 [push]
   default = current
 [alias]
-  s  = status
+  s  = status -s
   a  = add
   aa = add .
   ca = commit -am
@@ -20,5 +20,9 @@
   pf = push -f
   pl = pull
   l  = log
+  amend = commit --amend
   uncommit = reset HEAD^
-  open = !emacs  `~/bin/support/git-open`
+  get = !~/bin/support/git-get
+  open = !E `~/bin/support/git-open`
+  ls = ls-files
+  shallow = clone --depth 1

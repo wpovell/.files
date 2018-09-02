@@ -2,12 +2,12 @@ export const urls = {
   'wd': {
     name: 'workday',
     color: '#0568CB',
-    query: 'wd5.myworkday.com/brown/login.flex'
+    query: 'wd5.myworkday.com/brown/login.flex',
   },
   's': {
     name: 'slack',
     color: '#4D394B',
-    query: 'cs0320-s18.slack.com'
+    query: '2018cs033tas.slack.com',
   },
   'w': {
     name: 'weather',
@@ -27,7 +27,14 @@ export const urls = {
   'd': {
     name: 'drive',
     color: '#F4B400',
-    query: 'drive.google.com'
+    query: (q) => {
+      let base = 'drive.google.com';
+      if (q == 'cs33') {
+        return base + '/drive/u/0/folders/1QWcj9eTvVAnS5nVnNRqaEqVuJz0mUKNs';
+      }
+      return base;
+    },
+    suggest: ['cs33']
   },
   'pb': {
     name: 'pushbullet',
@@ -84,19 +91,13 @@ export const urls = {
           return 'cab.brown.edu';
         case 'canvas':
           return 'canvas.brown.edu';
-        case 'cs167':
-          cc = 'csci1670';
-          break;
-        case 'cs195y':
-          cc = 'cs195y/2018';
-          break;
-        case 'cs32':
-          cc = 'cs0320'
+        case 'cs33':
+          cc = 'cs033'
           break;
       }
       return 'cs.brown.edu/courses/' + cc
     },
-    suggest: ['cs167', 'cs195y', 'cs32', 'cab', 'canvas']
+    suggest: ['cs33', 'cab', 'canvas']
   },
   'cab': {
     color: '#A10311',

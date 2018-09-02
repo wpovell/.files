@@ -17,7 +17,7 @@
 
 ;; Highlight current line in GUI
 (if (not (isgui))
-    (set-face-background 'mode-line "Blue")
+  (set-face-background 'mode-line "Blue")
   (global-hl-line-mode))
 
 ;; Set scratch text
@@ -34,6 +34,7 @@
 
 ;; Use spaces
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
 
 ;; Don't put tilda files everywhere
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) )
@@ -87,4 +88,6 @@
   (kill-buffer))
 
 ;; Line numbers
-(global-display-line-numbers-mode)
+(if (> emacs-major-version 25)
+  (global-display-line-numbers-mode)
+  (global-linum-mode 1))

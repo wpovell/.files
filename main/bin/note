@@ -1,0 +1,3 @@
+#!/sbin/fish
+
+eval $EDITOR "~/files/notes/$argv[1].md"

@@ -8,6 +8,28 @@ colors = {
     'r':  '\033[0m',
 }
 
+moose = r'''
+          _       _
+         ) \     /_(
+          )_`-)-_(_
+           `,' `__,)
+          _/   ((
+ ______,-'    )
+(            ,
+ \  )    (   |
+/| /`_____` /|
+\ \        / |
+|\|\      /| |\
+'''
+
+whale = r'''     .-'
+ '--./ /     _.---.
+ '-,  (__..-'       \
+    \          {c1}.{r}     |
+     ',.__.   ,__.--/
+       '._/_.'___.-'
+'''
+
 mouse = r''' /\_/\
 /     \
 \ {c1}x{r} {c1}x{r} /
@@ -73,6 +95,7 @@ cross = r'''/_/\/\
    \_\/'''
 
 art = {
+  'moose': moose,
   'parrot': parrot,
   'rose': rose,
   'willow': willow,
@@ -80,6 +103,7 @@ art = {
   'tux': tux,
   'lambda': lmbda,
   'mouse': mouse,
+  'whale': whale,
 }
 
 def help():

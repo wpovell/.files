@@ -1,0 +1,3 @@
+set completion-ignore-case on
+# Single tab complete
+set show-all-if-ambiguous on

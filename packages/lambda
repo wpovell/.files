@@ -57,7 +57,6 @@ mplayer
 xorg-xev
 exa
 wget
-meteor-js
 npm
 yarn
 atom
@@ -92,4 +91,13 @@ texlive-most
 lsof
 aspell
 aspell-en
-physlock
+physlockmosh
+python-pip
+pandoc
+clang
+hub
+nmap
+geoclue2
+zenity
+bluez-utils
+pulseaudio-bluetooth

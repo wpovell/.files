@@ -1,0 +1,17 @@
+#!/bin/bash
+
+BASE=$HOME/.files/main
+
+cd $BASE
+
+rsync -rPc . ~/
+
+ln -f $HOME/.files/brown/host $HOME/.Xresources.d/host
+
+sed -i '/alias git="hub"/d' ~/.aliases
+sed -i 's/alias ls="exa"/alias ls="ls --color"/g' ~/.aliases
+sed -i '/gaps /d' ~/.config/i3/config
+sed -i '/smart_borders/d' ~/.config/i3/config
+sed -i 's_/usr/bin/fish_/bin/bash_g' ~/.tmux.conf
+
+echo -e "\nsource ~/.files/brown/.brownrc" >> ~/.bashrc

@@ -8,7 +8,7 @@
   core:
     telemetryConsent: "limited"
   editor:
-    fontFamily: "Inconsolata Nerd Font Mono"
+    fontFamily: "Fira Code"
     showIndentGuide: true
     showInvisibles: true
   "exception-reporting":

@@ -3,4 +3,8 @@
 # Starts dropbox in custom directory
 
 export HOME=/home/wpovell/.dropbox
-dropbox
+if command -v dropbox-cli >/dev/null 2>&1; then
+  dropbox
+else
+  dropbox start -i
+fi

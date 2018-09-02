@@ -2,7 +2,7 @@
 
 function usage
     echo "editcfg [program]
-    
+
     Opens the given program's config for editing.
     "
     exit
@@ -17,6 +17,10 @@ switch $argv[1]
         usage
     case tmux
         set F ~/.tmux.conf
+    case env
+        set F ~/.env
+    case fish
+        set F ~/.config/fish/config.fish
     case bash
         set F ~/.bashrc
     case alias
@@ -32,7 +36,7 @@ switch $argv[1]
     case emacs
         set F ~/.emacs.d/init.el
     case firefox
-        set F ~/.mozilla/firefox/fb8uvoz6.default/chrome/userChrome.css
+        set F ~/.mozilla/firefox/*/chrome/userChrome.css
     case polybar
         set F ~/.config/polybar/config
     case ssh

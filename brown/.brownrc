@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Various functions used by brown scripts
+setenvvar () { eval $1=\"$2\"; export $1; }
+setenvifnot () { if eval [ -z \"\$$1\" ]; then eval $1=\"$2\"; export $1; fi; }
+pathappend () { if eval expr ":\$$1::" : ".*:$2:.*" >/dev/null 2>&1; then true; else eval $1=\$$1:$2; fi; }
+pathappendifdir () { if [ -d "$2" ]; then pathappend $*; fi; }
+pathprepend () { if eval expr ":\$$1::" : ".*:$2:.*" >/dev/null 2>&1; then true; else eval $1=$2:\$$1; fi; }
+pathprependifdir () { if [ -d "$2" ]; then pathprepend $*; fi; }
+shellcmd () { _cmd=$1; shift; eval "$_cmd () { command $* \"\$@\"; }"; }
+sourcefile () { if [ -f "$1" ]; then . $1; fi; }
+
+# Run the coursehooks.
+sourcefile /u/system/hooks/sh/identities 2>/dev/null
+
+# SPOC stuff
+PATH="$PATH:/tstaff/bin:/usr/sbin:/sbin/"
+# Don't make your stuff readable
+umask 0027
+# Fuck workrave
+killall workrave > /dev/null 2>&1
+
+# CUDA
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda-8.0
+
+# Fix kitty issues
+export TERM="linux"
+export BROWSER="firefox"

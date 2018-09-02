@@ -6,6 +6,9 @@ set $HOME $HOME
 # Split direction
 default_orientation horizontal
 
+# Link saver
+bindsym --release $mod+x exec --no-startup-id $HOME/bin/support/save-url
+
 # Startup
 exec_always --no-startup-id $HOME/bin/support/start -r
 exec --no-startup-id $HOME/bin/support/start
@@ -43,14 +46,14 @@ for_window [title="QEMU"] floating enable
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
 bindsym $mod+e exec --no-startup-id $HOME/bin/rofi/emoji
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id $HOME/bin/alias/dm
 bindsym --release F2 exec --no-startup-id $HOME/bin/support/shrugie
 
 # Screenshot
 bindsym Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
 bindsym --release $mod+ctrl+s exec --no-startup-id screenshot -s
-bindsym $mod+c exec --no-startup-id firefox-nightly
+bindsym $mod+c exec --no-startup-id $BROWSER
 for_window [class="Nightly"] split h
 
 # Colors from Xresources
@@ -85,7 +88,7 @@ bindsym ctrl+alt+f1 gksudo chvt 1
 bindsym ctrl+alt+f2 gksudo chvt 2
 
 # Start Term
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id ~/bin/support/term
 
 # Kill focused window
 bindsym $mod+q kill
@@ -133,6 +136,7 @@ bindsym $mod+minus scratchpad show
 
 # Toggle
 bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab exec --no-startup-id rofi -show window
 
 # Workspaces
 set $SpotifyWS "99: "
@@ -223,8 +227,8 @@ bindsym F12 exec --no-startup-id muse up
 bindsym $mod+$alt+Up exec --no-startup-id muse up
 
 # Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id light +
+bindsym XF86MonBrightnessDown exec --no-startup-id light -
 
 # Swipe (currently I don't have any machines that use this)
 bindsym --whole-window button11 workspace prev
@@ -266,11 +270,12 @@ set $transparent #00000000
 set_from_resource $showBar showBar
 
 bar {
+    position top
     mode $showBar
     modifier none
     tray_output none
     status_command i3status
-    font xft:FontAwesome, Inconsolata 8
+    font xft:Inconsolata Nerd Font Mono 12
     strip_workspace_numbers yes
     colors {
       statusline $foreground
