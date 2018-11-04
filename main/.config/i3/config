@@ -24,7 +24,7 @@ bindsym $mod+i exec --no-startup-id E
 bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
 
 # Lock
-bindsym $mod+Shift+l exec --no-startup-id physlock
+bindsym $mod+Shift+l exec --no-startup-id physlock -m
 
 # Pass
 bindsym $mod+p exec --no-startup-id pass rofi
@@ -170,16 +170,16 @@ bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # Swap
-bindsym Control+$mod+1 exec --no-startup-id switch $workspace1
-bindsym Control+$mod+2 exec --no-startup-id switch $workspace2
-bindsym Control+$mod+3 exec --no-startup-id switch $workspace3
-bindsym Control+$mod+4 exec --no-startup-id switch $workspace4
-bindsym Control+$mod+5 exec --no-startup-id switch $workspace5
-bindsym Control+$mod+6 exec --no-startup-id switch $workspace6
-bindsym Control+$mod+7 exec --no-startup-id switch $workspace7
-bindsym Control+$mod+8 exec --no-startup-id switch $workspace8
-bindsym Control+$mod+9 exec --no-startup-id switch $workspace9
-bindsym Control+$mod+0 exec --no-startup-id switch $workspace10
+bindsym Control+$mod+1 exec --no-startup-id $HOME/bin/support/switch $workspace1
+bindsym Control+$mod+2 exec --no-startup-id $HOME/bin/support/switch $workspace2
+bindsym Control+$mod+3 exec --no-startup-id $HOME/bin/support/switch $workspace3
+bindsym Control+$mod+4 exec --no-startup-id $HOME/bin/support/switch $workspace4
+bindsym Control+$mod+5 exec --no-startup-id $HOME/bin/support/switch $workspace5
+bindsym Control+$mod+6 exec --no-startup-id $HOME/bin/support/switch $workspace6
+bindsym Control+$mod+7 exec --no-startup-id $HOME/bin/support/switch $workspace7
+bindsym Control+$mod+8 exec --no-startup-id $HOME/bin/support/switch $workspace8
+bindsym Control+$mod+9 exec --no-startup-id $HOME/bin/support/switch $workspace9
+bindsym Control+$mod+0 exec --no-startup-id $HOME/bin/support/switch $workspace10
 
 
 # Move focused container to workspace
