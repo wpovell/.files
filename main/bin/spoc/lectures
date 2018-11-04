@@ -1,0 +1,4 @@
+#!/bin/bash
+
+read pass
+sudo mount -t cifs //files.brown.edu/Multimedia -o "username=wpovell,password=$pass,domain=ad" mnt/
