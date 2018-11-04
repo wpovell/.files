@@ -11,8 +11,17 @@ const $autocomplete = $('#autocomplete');
 function getSuggestions(query, callback) {
   // Clear correction
   $autocomplete.val('');
+
+  let suggestions = [];
+
+  let shortcut = urls[query.split(':')[0]]
+  if (shortcut && shortcut.suggest) {
+    console.log(shortcut.suggest);
+    suggestions = shortcut.suggest.slice();
+  }
+
   if (query.length < 3) {
-    $suggestions.empty();
+    return callback(suggestions);
   } else {
     $.ajax(SUGG_URL, {
       data: {
@@ -20,7 +29,9 @@ function getSuggestions(query, callback) {
         client: 'firefox'
       },
       dataType: 'jsonp'
-    }).then(callback);
+    }).then((data) => {
+      return callback(suggestions.concat(data[1]));
+    });
   }
 }
 
@@ -39,6 +50,9 @@ function submitHandler(alt, ctrl) {
   // Go directly if url
   if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) && !query.trim().includes(' ')) {
     url = query;
+    if (!(url.startsWith('http://') || url.startsWith('http://'))) {
+      url = 'https://' + url;
+    }
   } else {
     url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
     // Feelin' lucky
@@ -60,7 +74,6 @@ function submitHandler(alt, ctrl) {
     url = 'https://' + url;
   }
 
-  console.log(url);
   // Open in new tab
   if (alt) {
     window.open(url);
@@ -69,19 +82,22 @@ function submitHandler(alt, ctrl) {
   }
 }
 
-function updateSuggestions(data) {
-  let suggestions = data[1];
+function updateSuggestions(suggestions) {
   $suggestions.empty();
 
   // Autocomplete
-  if (suggestions[0].startsWith($search.val())) {
+  if (suggestions.length > 0  && suggestions[0].startsWith($search.val())) {
     $autocomplete.val(suggestions[0]);
   } else {
     $autocomplete.val('');
   }
 
-  for (let suggestion of suggestions) {
-    $suggestions.append(`<li>${suggestion}</li>`);
+  if (suggestions.length == 0) {
+    $suggestions.empty();
+  } else {
+    for (let suggestion of suggestions) {
+      $suggestions.append(`<li>${suggestion}</li>`);
+    }
   }
 }
 

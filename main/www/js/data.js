@@ -1,4 +1,41 @@
 export const urls = {
+  'wa': {
+     name: 'wolfram alpha',
+     color: '#dd1100',
+     query: (q) => {
+       let base = 'www.wolframalpha.com';
+       if (!q) {
+         return base;
+       }
+
+       return base + '/input/?i=' + q;
+     }
+   },
+  'gs': {
+     name: 'gradescope',
+     color: '#1b807c',
+     query: 'www.gradescope.com',
+   },
+  'ol': {
+     name: 'overleaf',
+     color: '#4f9c45',
+     query: 'v2.overleaf.com/project',
+  },
+  'zip': {
+    name: 'zipcar',
+    color: '#6cb33e',
+    query: 'www.zipcar.com',
+  },
+  'smu': {
+    name: 'signmeup',
+    color: 'white',
+    query: 'signmeup.cs.brown.edu',
+  },
+  'sys': {
+    name: 'sysdoc',
+    color: '#ba3925',
+    query: 'sysdoc.cs.brown.edu',
+  },
   'wd': {
     name: 'workday',
     color: '#0568CB',
@@ -92,12 +129,24 @@ export const urls = {
         case 'canvas':
           return 'canvas.brown.edu';
         case 'cs33':
-          cc = 'cs033'
+          cc = 'cs033';
           break;
+        case 'robo':
+          cc = 'cs1951r';
+          break;
+        case 'algos':
+          cc = 'cs157';
+          break;
+        case 'net':
+          cc = 'csci1680/f18';
+          break;
+        default:
+          cc = q;
       }
-      return 'cs.brown.edu/courses/' + cc
+
+      return 'cs.brown.edu/courses/' + cc;
     },
-    suggest: ['cs33', 'cab', 'canvas']
+    suggest: ['net', 'algos', 'robo','cs33', 'cab', 'canvas']
   },
   'cab': {
     color: '#A10311',
@@ -213,7 +262,7 @@ export const urls = {
       if (q == "personal") {
         acct = 1;
       }
-      url = `mail.google.com/mail/u/${acct}/#inbox`
+      let url = `mail.google.com/mail/u/${acct}/#inbox`
       return url;
     },
     suggest: ["brown", "personal"]
