@@ -18,7 +18,7 @@ radius                          = 0
 modules-center                  = date
 font-0 			        = FontAwesome:size=8;3
 font-1                          = Inconsolata:size=10;2
-
+monitor = ${env:MONITOR:}
 module-margin	              	= 3
 
 [bar/blueno]
@@ -101,6 +101,7 @@ inherit = section/volume
 type			= internal/i3
 strip-wsnumbers		= true
 format			= <label-state><label-mode>
+pin-workspaces = true
 
 label-focused-background = ${colors.barFocus}
 label-focused-foreground = ${colors.barUnfocus}
