@@ -3,7 +3,7 @@
 PATH=$PATH:~/bin/support
 
 if [[ "$1" = "-r" ]]; then
-  retheme    
+  retheme
   exit
 fi
 
@@ -12,10 +12,10 @@ retheme startup # Blocks
 start-emacs &
 compton 2>/dev/null &
 unclutter &
-kitty --class=dropdown /bin/bash 
+kitty --class=dropdown /bin/bash
 dunst >/tmp/dunst.log 2>&1 &
 redshift &
-polybar &
+bar &
 startdropbox
 startlocker &
 spotify &
