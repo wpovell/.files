@@ -80,7 +80,7 @@ export const urls = {
   },
   'wg': {
     color: '#006600',
-    query: '4chan.org/wg'
+    query: '4chan.org/wg/catalog'
   },
   'p': {
     name: 'piazza',
