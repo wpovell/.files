@@ -33,7 +33,7 @@
 
 ;; Dashboard ;;
 (if
-    (isgui)
+    (and (isgui) (> emacs-major-version 25))
     (use-package dashboard
       :init
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
