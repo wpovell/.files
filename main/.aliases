@@ -1,6 +1,8 @@
 # Emacs
 alias e="$EDITOR"
 
+alias cpu="ps -eo pid,comm,%mem,%cpu --sort=-%cpu | head -n 10"
+
 # Browser
 alias browser="$BROWSER"
 alias chrome="/usr/bin/chromium >/dev/null 2>&1"
