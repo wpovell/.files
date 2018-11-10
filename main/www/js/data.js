@@ -131,9 +131,6 @@ export const urls = {
         case 'cs33':
           cc = 'cs033';
           break;
-        case 'robo':
-          cc = 'cs1951r';
-          break;
         case 'algos':
           cc = 'cs157';
           break;
@@ -146,7 +143,7 @@ export const urls = {
 
       return 'cs.brown.edu/courses/' + cc;
     },
-    suggest: ['net', 'algos', 'robo','cs33', 'cab', 'canvas']
+    suggest: ['net', 'algos','cs33', 'cab', 'canvas']
   },
   'cab': {
     color: '#A10311',
@@ -161,18 +158,14 @@ export const urls = {
     color: '#404448',
     query: (q) => {
       let u = 'github.com/';
-      if (q == 'smu') {
-        u += 'signmeup/signmeup';
-      } else if (q == 'isotope') {
-        u += 'wpovell/isotopeticketing';
-      } else if (q == 'bluenos') {
-        u += 'wpovell/bluenos';
+      if (q == 'tcp') {
+        u += 'brown-csci1680/ip-tcp-graphics-round-2';
       } else if (q) {
         u += q;
       }
       return u;
     },
-    suggest: ['wpovell', 'bluenos', 'smu', 'isotope']
+    suggest: ['wpovell', 'tcp']
   },
   'a': {
     name: 'amazon',
@@ -190,7 +183,9 @@ export const urls = {
     query: (q) => {
       let u = 'youtube.com/';
 
-      if (q && q.startsWith('u/')) {
+      if (q == 'nl') {
+        u += 'user/northernlion/videos';
+      } else if (q && q.startsWith('u/')) {
         u += 'user/' + q.slice(2) + '/videos';
       } else if (q) {
         u += 'results?search_query=' + encodeURIComponent(q);
@@ -198,7 +193,7 @@ export const urls = {
 
       return u;
     },
-    suggest: ['u/northernlion']
+    suggest: ['nl']
   },
   'f': {
     name: 'facebook',
@@ -209,7 +204,6 @@ export const urls = {
     name: 'hackernews',
     color: '#FF6600',
     query: (q) => {
-
       if (q) {
         let res = q.match(/^[0-9]{1,2}$/);
         if (res) {
@@ -233,7 +227,9 @@ export const urls = {
     color: '#CEE3F8',
     query: (q) => {
       let u = 'reddit.com/';
-      if (q && q.startsWith('m/')) {
+      if (q == 'hhh') {
+        u += 'r/hiphopheads';
+      } else if (q && q.startsWith('m/')) {
         u += 'me/' + q;
       } else if (q && !q.startsWith('u/')) {
         u += 'r/' + q;
@@ -242,7 +238,7 @@ export const urls = {
       }
       return u;
     },
-    suggest: ['m/programming', 'm/nix', 'hiphopheads', 'u/puzzel']
+    suggest: ['m/programming', 'm/nix', 'hhh', 'u/puzzel']
   },
   'n': {
     name: 'netflix',
@@ -259,13 +255,13 @@ export const urls = {
     color: '#DB4A38',
     query: (q) => {
       let acct = 0;
-      if (q == "personal") {
+      if (q == "p") {
         acct = 1;
       }
       let url = `mail.google.com/mail/u/${acct}/#inbox`
       return url;
     },
-    suggest: ["brown", "personal"]
+    suggest: ["b", "p"]
   },
   't': {
     name: 'twitter',
