@@ -1,7 +1,7 @@
 @import '/css/colors.css';
 @import '/css/font.css';
-/* Resets */
 
+/* Resets */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0px;
@@ -12,7 +12,6 @@
 }
 
 /* Main */
-
 body {
   display: flex;
   align-items: flex-start;
@@ -38,7 +37,6 @@ a, a:visited {
 }
 
 /* Time */
-
 #timeWrapper {
   width: 100%;
   text-align: center;
@@ -55,7 +53,6 @@ a, a:visited {
 }
 
 /* HN */
-
 #hn {
   text-align: left;
   list-style: none;
@@ -63,8 +60,21 @@ a, a:visited {
   margin: 20px 0;
 }
 
-/* Search */
+/* XKCD */
+#xkcd {
+  width: 700px;
+  display: none;
+  position: fixed;
+  margin: 0 auto;
+}
 
+#xkcd p {
+  color: black;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+/* Search */
 #bar {
   display: none;
 }
@@ -104,7 +114,6 @@ a, a:visited {
 }
 
 /* Weather */
-
 #weatherWrapper {
   margin-top: 30px;
   display: grid;

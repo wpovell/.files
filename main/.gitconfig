@@ -19,6 +19,7 @@
   ss = stash show -p
 
   ch = checkout
+  m  = checkout master
   b  = branch
   r  = reset
   d  = diff

@@ -9,6 +9,7 @@ const $bar = $('#bar');
 const $timeWrapper = $('#timeWrapper');
 const $autocomplete = $('#autocomplete');
 const $hn = $('#hn');
+const $xkcd = $('#xkcd');
 
 // Currently active suggestion
 let active = -1;
@@ -55,6 +56,7 @@ function hideSearch(e) {
   e.target.value = '';
   $bar.hide();
   $hn.hide();
+  $xkcd.hide();
   $suggestions.empty();
   $autocomplete.val('');
   $timeWrapper.show();
@@ -149,6 +151,12 @@ function inputHandler(e) {
       $hn.show();
     } else {
       $hn.hide();
+    }
+
+    if (start == 'x') {
+      $xkcd.show();
+    } else {
+      $xkcd.hide();
     }
 
     return;
