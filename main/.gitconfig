@@ -5,24 +5,33 @@
   default = current
 [alias]
   s  = status -s
+
   a  = add
   aa = add .
+
   ca = commit -am
   cm = commit -m
   c  = commit
-  ch = checkout
-  b  = branch
+
   st = stash
   sp = stash pop
+  sl = stash list
+  ss = stash show -p
+
+  ch = checkout
+  b  = branch
   r  = reset
   d  = diff
+  l  = log
+
   p  = push -u
   pf = push -f
   pl = pull
-  l  = log
+
+  shallow = clone --depth 1
   amend = commit --amend
   uncommit = reset HEAD^
+  ls = ls-files
+
   get = !~/bin/support/git-get
   open = !E `~/bin/support/git-open`
-  ls = ls-files
-  shallow = clone --depth 1

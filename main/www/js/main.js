@@ -1,5 +1,6 @@
 import {setupWeather} from "/js/weather.js";
 import {setupSearch} from "/js/search.js";
+import {setupHN} from "/js/hn.js";
 
 const months = [
   "jan",
@@ -47,6 +48,7 @@ window.addEventListener("pageshow", function(event) {
 });
 
 $(() => {
+  setupHN();
   setupClock();
   setupWeather();
   setupSearch();

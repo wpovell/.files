@@ -40,7 +40,6 @@ function getLocation() {
 
 // Fetches & caches weather data
 function getWeather(callback) {
-
   let location = getLocation();
 
   let modifiedCallback = (data) => {

@@ -8,6 +8,7 @@ const $search = $('#search');
 const $bar = $('#bar');
 const $timeWrapper = $('#timeWrapper');
 const $autocomplete = $('#autocomplete');
+const $hn = $('#hn');
 
 // Currently active suggestion
 let active = -1;
@@ -53,9 +54,10 @@ function getSuggestions() {
 function hideSearch(e) {
   e.target.value = '';
   $bar.hide();
-  $timeWrapper.show();
+  $hn.hide();
   $suggestions.empty();
   $autocomplete.val('');
+  $timeWrapper.show();
 }
 
 // Run on enter, redirects to new page
@@ -129,16 +131,26 @@ function inputHandler(e) {
       e.target.selectionStart = $search.val().length;
     }
   } else { // Character typed
+    const start = e.target.value.split(':')[0];
     if (e.key == 'Backspace' || e.key.length == 1) {
       active = -1;
       getSuggestions();
-      let res = urls[e.target.value.split(':')[0]];
+      let res = urls[start];
       if (res) {
         $search.css('color', res.color);
       } else {
         $search.css('color', '');
       }
     }
+
+    // Show hackernews
+    console.log(start);
+    if (start == 'h') {
+      $hn.show();
+    } else {
+      $hn.hide();
+    }
+
     return;
   }
 
