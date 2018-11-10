@@ -160,6 +160,8 @@ export const urls = {
       let u = 'github.com/';
       if (q == 'tcp') {
         u += 'brown-csci1680/ip-tcp-graphics-round-2';
+      } else if (q == 'dot') {
+        u += 'wpovell/dotfiles';
       } else if (q) {
         u += q;
       }
