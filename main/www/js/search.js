@@ -75,13 +75,9 @@ function submitHandler(alt, ctrl) {
   // Go directly if url
   if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) && !query.trim().includes(' ')) {
     url = query;
-    if (url.startsWith('http://')) {
-      url = url.slice('http://'.length)
-    } else if (url.startsWith('https://')) {
-      url = url.slice('https://'.length)
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'http://' + url;
     }
-
-    url = 'https://' + url;
   } else if (res) {
     if (typeof res.query === 'string') {
       url = res.query;
