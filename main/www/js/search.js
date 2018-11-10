@@ -67,31 +67,34 @@ function submitHandler(alt, ctrl) {
   let query = $search.val();
   let url;
 
-  // Go directly if url
-  if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) && !query.trim().includes(' ')) {
-    url = query;
-    if (!(url.startsWith('http://') || url.startsWith('http://'))) {
-      url = 'https://' + url;
-    }
-  } else {
-    url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
-    // Feelin' lucky
-    if (ctrl) {
-      url += '&btnI=I';
-    }
-  }
-
   let [root, shortQuery] = getSplit();
   shortQuery = shortQuery || '';
 
   let res = urls[root];
-  if (res) {
+
+  // Go directly if url
+  if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) && !query.trim().includes(' ')) {
+    url = query;
+    if (url.startsWith('http://')) {
+      url = url.slice('http://'.length)
+    } else if (url.startsWith('https://')) {
+      url = url.slice('https://'.length)
+    }
+
+    url = 'https://' + url;
+  } else if (res) {
     if (typeof res.query === 'string') {
       url = res.query;
     } else {
       url = res.query(shortQuery);
     }
     url = 'https://' + url;
+  } else {
+    url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+    // Feelin' lucky
+    if (ctrl) {
+      url += '&btnI=I';
+    }
   }
 
   // Open in new tab
