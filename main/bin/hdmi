@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# This needs to be rerun to get external keyboards to map Caps Lock -> Ctrl
+xmodmap ~/.config/Xmodmap
+
+case $1 in
+"mirror")
+   xrandr --output HDMI1 --auto
+  ;;
+"left")
+  xrandr --output eDP1 --right-of HDMI1
+  bar &
+  ;;
+"right")
+  xrandr --output eDP1 --left-of HDMI1
+  bar &
+  ;;
+*)
+  echo "Choose mirror, left, or right."
+  ;;
+esac
