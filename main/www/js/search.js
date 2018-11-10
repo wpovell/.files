@@ -1,40 +1,55 @@
-import {urls} from '/js/data.js';
+import { urls } from '/js/data.js';
 
 const SUGG_URL = 'https://www.google.com/complete/search';
 
+// JQuery handles
 const $suggestions = $('#suggestions');
 const $search = $('#search');
 const $bar = $('#bar');
 const $timeWrapper = $('#timeWrapper');
 const $autocomplete = $('#autocomplete');
 
-function getSuggestions(query, callback) {
+// Currently active suggestion
+let active = -1;
+
+// Get shortcut name if : is present in search
+function getSplit() {
+  let split = $search.val().split(":");
+  if (split.length == 1) {
+    return split;
+  } else {
+    return [split[0], split[1]]
+  }
+}
+
+// Updates suggestions based on shortcut & google suggestions
+function getSuggestions() {
   // Clear correction
   $autocomplete.val('');
 
   let suggestions = [];
 
-  let shortcut = urls[query.split(':')[0]]
+  let shortcut = urls[getSplit()[0]]
   if (shortcut && shortcut.suggest) {
-    console.log(shortcut.suggest);
     suggestions = shortcut.suggest.slice();
   }
 
-  if (query.length < 3) {
-    return callback(suggestions);
+  if ($search.val().length < 3) {
+    return updateSuggestions(suggestions);
   } else {
     $.ajax(SUGG_URL, {
       data: {
-        q: query,
+        q: $search.val(),
         client: 'firefox'
       },
       dataType: 'jsonp'
     }).then((data) => {
-      return callback(suggestions.concat(data[1]));
+      return updateSuggestions(suggestions.concat(data[1]));
     });
   }
 }
 
+// Switch from search to start
 function hideSearch(e) {
   e.target.value = '';
   $bar.hide();
@@ -43,6 +58,7 @@ function hideSearch(e) {
   $autocomplete.val('');
 }
 
+// Run on enter, redirects to new page
 function submitHandler(alt, ctrl) {
   let query = $search.val();
   let url;
@@ -61,7 +77,7 @@ function submitHandler(alt, ctrl) {
     }
   }
 
-  let [root, shortQuery] = query.split(':');
+  let [root, shortQuery] = getSplit();
   shortQuery = shortQuery || '';
 
   let res = urls[root];
@@ -86,7 +102,7 @@ function updateSuggestions(suggestions) {
   $suggestions.empty();
 
   // Autocomplete
-  if (suggestions.length > 0  && suggestions[0].startsWith($search.val())) {
+  if (suggestions.length > 0 && suggestions[0].startsWith($search.val())) {
     $autocomplete.val(suggestions[0]);
   } else {
     $autocomplete.val('');
@@ -114,8 +130,9 @@ function inputHandler(e) {
     }
   } else { // Character typed
     if (e.key == 'Backspace' || e.key.length == 1) {
-      getSuggestions(e.target.value, updateSuggestions);
-      let res = urls[$search.val().split(':')[0]];
+      active = -1;
+      getSuggestions();
+      let res = urls[e.target.value.split(':')[0]];
       if (res) {
         $search.css('color', res.color);
       } else {
@@ -135,6 +152,39 @@ export function setupSearch() {
       $timeWrapper.hide();
       $bar.show();
       $search.focus();
+    }
+
+    if (e.key == 'Tab') {
+      e.preventDefault();
+
+      // Don't do anything if no suggestions
+      if ($suggestions.children().size() == 0) {
+        return;
+      }
+
+      if (active == -1) {
+        active = 0;
+      } else {
+        active = (active + 1) % $suggestions.children().size();
+      }
+      let activeColor = 'var(--foreground)';
+
+      const [short] = getSplit();
+      const entry = urls[short];
+      if (entry) {
+        activeColor = entry['color'];
+        $search.val(short + ":" + $suggestions.children().eq(active).text());
+      } else {
+        $search.val($suggestions.children().eq(active).text());
+      }
+
+      // Highlight suggestion
+      $suggestions.children().css('color', '');
+      $suggestions.children().eq(active).css('color', activeColor);
+
+      // Remove autocorrect
+      $autocomplete.val('');
+
     }
   }
 

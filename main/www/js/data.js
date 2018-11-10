@@ -255,13 +255,13 @@ export const urls = {
     color: '#DB4A38',
     query: (q) => {
       let acct = 0;
-      if (q == "p") {
+      if (q == "personal") {
         acct = 1;
       }
       let url = `mail.google.com/mail/u/${acct}/#inbox`
       return url;
     },
-    suggest: ["b", "p"]
+    suggest: ["brown", "personal"]
   },
   't': {
     name: 'twitter',
