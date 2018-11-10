@@ -215,7 +215,7 @@ export const urls = {
         }
         res = q.match(/^([0-9]{1,2})c$/);
         if (res) {
-          ret = $("#hn a.comment")[parseInt(res[1]) - 1].href;
+          let ret = $("#hn a.comment")[parseInt(res[1]) - 1].href;
           ret = ret.replace(/https?:\/\//, '');
           return ret;
         }
