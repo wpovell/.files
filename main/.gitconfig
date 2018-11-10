@@ -20,6 +20,7 @@
 
   ch = checkout
   m  = checkout master
+  mg = merge
   b  = branch
   r  = reset
   d  = diff
