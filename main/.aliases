@@ -49,7 +49,6 @@ alias df="df -h"
 alias diff="colordiff"
 alias xx="atool -x"
 alias json="python -m json.tool"
-alias serve="python -m http.server"
 alias ax="chmod a+x"
 alias hdmi="xrandr --output HDMI1 --auto"
 
