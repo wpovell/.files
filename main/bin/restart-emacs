@@ -1,4 +1,4 @@
 #!/bin/bash
 
-killall emacs
-~/bin/support/start-emacs
+killall -q emacs
+~/bin/support/start-emacs >/dev/null &

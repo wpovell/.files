@@ -1,6 +1,8 @@
 # Emacs
 alias e="$EDITOR"
 
+alias cpu="ps -eo pid,comm,%mem,%cpu --sort=-%cpu | head -n 10"
+
 # Browser
 alias browser="$BROWSER"
 alias chrome="/usr/bin/chromium >/dev/null 2>&1"
@@ -44,12 +46,11 @@ alias startx="startx >/tmp/startx.out 2>&1"
 alias mosh="mosh --experimental-remote-ip=remote"
 alias grep="grep --color='auto'"
 alias df="df -h"
+alias fsys="df --output=pcent,target  --type=ext4"
 alias diff="colordiff"
 alias xx="atool -x"
 alias json="python -m json.tool"
-alias serve="python -m http.server"
 alias ax="chmod a+x"
-alias hdmi="xrandr --output HDMI1 --auto"
 
 # Quick todo edit
 alias etodo="$EDITOR files/linux_todo"
