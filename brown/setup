@@ -15,3 +15,4 @@ sed -i '/smart_borders/d' ~/.config/i3/config
 sed -i 's_/usr/bin/fish_/bin/bash_g' ~/.tmux.conf
 
 echo -e "\nsource ~/.files/brown/.brownrc" >> ~/.bashrc
+echo -e "\nsetenv PATH $PATH:/local/bin/" >> ~/.env
