@@ -24,7 +24,7 @@ bindsym $mod+i exec --no-startup-id E
 bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
 
 # Lock
-bindsym $mod+Shift+l exec --no-startup-id physlock -m
+bindsym $mod+Shift+l exec --no-startup-id lock
 
 # Pass
 bindsym $mod+p exec --no-startup-id pass rofi
@@ -53,7 +53,7 @@ bindsym --release F2 exec --no-startup-id $HOME/bin/support/shrugie
 bindsym Print exec --no-startup-id screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
 bindsym --release $mod+ctrl+s exec --no-startup-id screenshot -s
-bindsym $mod+c exec --no-startup-id $HOME/bin/browser
+bindsym $mod+c exec --no-startup-id $BROWSER
 for_window [class="Nightly"] split h
 
 # Colors from Xresources

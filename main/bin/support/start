@@ -10,13 +10,11 @@ fi
 retheme startup # Blocks
 
 start-emacs &
-compton 2>/dev/null &
-unclutter &
-kitty --class=dropdown /bin/bash
+kitty --class=dropdown /bin/bash &
 dunst >/tmp/dunst.log 2>&1 &
 redshift &
 bar &
-startdropbox
+drp start -i &
 startlocker &
 spotify &
 

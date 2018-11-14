@@ -3,15 +3,16 @@
 # This needs to be rerun to get external keyboards to map Caps Lock -> Ctrl
 xmodmap ~/.config/Xmodmap
 
+ARGS=(--output HDMI1 --mode 2560x1440 --auto)
 case $1 in
 "mirror")
-  xrandr --output HDMI1 --mode 2560x1440 --auto
+  xrandr --output HDMI1 "${ARGS[@]}"
   ;;
 "left")
-  xrandr --output eDP1 --right-of HDMI1 --mode 2560x1440 --auto
+  xrandr --output eDP1 --right-of HDMI1 "${ARGS[@]}"
   ;;
 "right")
-  xrandr --output eDP1 --left-of HDMI1 --mode 2560x1440 --auto
+  xrandr --output eDP1 --left-of HDMI1 "${ARGS[@]}"
   ;;
 *)
   xrandr --auto
