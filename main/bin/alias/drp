@@ -1,9 +1,8 @@
 #!/bin/bash
 
 export HOME=/home/wpovell/.dropbox
-
 if command -v dropbox-cli >/dev/null 2>&1; then
-    dropbox-cli $@
+  dropbox-cli $@
 else
-    dropbox $@
+  dropbox $@
 fi
