@@ -74,7 +74,7 @@ export function setupWeather() {
       let dayOfWeek = days[date.getDay()];
       let icon = '';
       if (day.icon.match(/snow/) || day.icon.match(/sleet/)) {
-        icon = '❄';
+        icon = '';
       } else if (day.icon.match(/cloudy/) || day.icon.match(/fog/)) {
         icon = '';
       } else if (day.icon.match(/rain/)) {
