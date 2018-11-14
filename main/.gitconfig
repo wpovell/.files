@@ -17,6 +17,7 @@
   sp = stash pop
   sl = stash list
   ss = stash show -p
+  sd = stash drop
 
   ch = checkout
   m  = checkout master
