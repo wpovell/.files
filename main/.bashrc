@@ -10,7 +10,7 @@ if [[ -n $DISPLAY ]]; then
     window_name=$(xprop -id "$(xprop -root _NET_ACTIVE_WINDOW 2>/dev/null | awk '{print $5}')" 2> /dev/null | grep 'WM_CLASS(STRING)' | awk '{print $3}' 2> /dev/null)
     if [[ $window_name == '"dropdown",' && -z $TMUX ]]; then
         set -o ignoreeof
-        dim=$(xrandr | grep "*" | perl -lne 'print $1 if /([0-9]+)x/')
+        dim=$(xrandr | grep "*" | head -n1 | perl -lne 'print $1 if /([0-9]+)x/')
         i3-msg \[class=\"dropdown\"\] floating enable, resize set $dim 300, \
                move position 0px 27px, move scratchpad >/dev/null 2>&1
 
