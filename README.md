@@ -8,7 +8,7 @@ This repo holds my dotfiles & various other things for my desktop (`blueno`) and
 
 - Distro: `Arch Linux`
 - Window Manager: `i3-gaps`
-- Shell: `fish` / `bash`
+- Shell: `fish`
 - Terminal: `kitty`
 - Notifications: `dunst`
 - Launcher: `rofi`
@@ -21,7 +21,6 @@ This repo holds my dotfiles & various other things for my desktop (`blueno`) and
 - `*.theme/`: A theme usable by `retheme`
   - `.wallpaper`: Wallpaper
   - `.theme`: Color definitions
-- `archived/`: Old themes I don't use anymore
 - `main/`: Pretty much everything that gets linked, mostly self-explanatory
   - `.config/`: Where all my config files are
   - `www`: Root of start page served to `localhost`

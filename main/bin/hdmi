@@ -5,13 +5,13 @@ xmodmap ~/.config/Xmodmap
 
 case $1 in
 "mirror")
-  xrandr --output HDMI1 --auto
+  xrandr --output HDMI1 --mode 2560x1440 --auto
   ;;
 "left")
-  xrandr --output eDP1 --right-of HDMI1
+  xrandr --output eDP1 --right-of HDMI1 --mode 2560x1440 --auto
   ;;
 "right")
-  xrandr --output eDP1 --left-of HDMI1
+  xrandr --output eDP1 --left-of HDMI1 --mode 2560x1440 --auto
   ;;
 *)
   xrandr --auto
