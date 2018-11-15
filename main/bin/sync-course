@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rsync -Prc --links brown:~/course/ ~/course/
