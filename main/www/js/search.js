@@ -72,20 +72,22 @@ function submitHandler(alt, ctrl) {
 
   let res = urls[root];
 
-  // Go directly if url
   if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) && !query.trim().includes(' ')) {
+      // Go directly if url
     url = query;
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       url = 'http://' + url;
     }
   } else if (res) {
+    // Shortcut
     if (typeof res.query === 'string') {
       url = res.query;
     } else {
       url = res.query(shortQuery);
     }
-    url = 'https://' + url;
+    url = 'http://' + url;
   } else {
+    // Search
     url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
     // Feelin' lucky
     if (ctrl) {

@@ -160,6 +160,8 @@ export const urls = {
       let u = 'github.com/';
       if (q == 'tcp') {
         u += 'brown-csci1680/ip-tcp-graphics-round-2';
+      } else if (q == 'smu') {
+        u += 'signmeup/signmeup';
       } else if (q) {
         if (q.includes('/')) {
           u += q;
@@ -169,7 +171,7 @@ export const urls = {
       }
       return u;
     },
-    suggest: ['wpovell', 'tcp', 'dotfiles']
+      suggest: ['wpovell/', 'tcp', 'dotfiles', 'smu'],
   },
   'a': {
     name: 'amazon',
