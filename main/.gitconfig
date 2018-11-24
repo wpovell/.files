@@ -33,6 +33,7 @@
 
   shallow = clone --depth 1
   amend = commit --amend
+  ammend = commit --amend
   uncommit = reset HEAD^
   ls = ls-files
 
