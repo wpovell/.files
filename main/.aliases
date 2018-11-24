@@ -26,7 +26,6 @@ alias ,,="cd ../.."
 
 ## Misc ##
 alias less="less -R"
-alias play="mplayer -af scaletempo 2>&1 1>/dev/null &"
 alias dfs="cd ~/.files"
 alias rw="sudo restart-wifi"
 alias f="find . -name"
