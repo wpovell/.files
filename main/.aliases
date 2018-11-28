@@ -13,6 +13,7 @@ alias f="find . -name"
 alias t="tmux"
 alias mk="make"
 alias r="ranger"
+alias s='sudo'
 
 # Info
 alias cpu="ps -eo pid,comm,%mem,%cpu --sort=-%cpu | head -n 10"
