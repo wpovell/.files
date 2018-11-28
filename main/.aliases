@@ -14,6 +14,11 @@ alias t="tmux"
 alias mk="make"
 alias r="ranger"
 alias s='sudo'
+alias m="~/bin/support/polybar/mail show"
+
+# Unmount
+alias um='sudo umount'
+alias uml='sudo umount -l'
 
 # Info
 alias cpu="ps -eo pid,comm,%mem,%cpu --sort=-%cpu | head -n 10"
@@ -49,7 +54,6 @@ alias less="less -R"
 alias dfs="cd ~/.files"
 alias wifi="sudo wifi-menu"
 alias root="sudo -s"
-alias m="~/bin/support/polybar/mail show"
 alias pdf="evince 2>/dev/null"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
@@ -57,6 +61,7 @@ alias startx="startx >/tmp/startx.out 2>&1"
 alias mosh="mosh --experimental-remote-ip=remote"
 alias grep="grep --color='auto'"
 alias df="df -h"
+alias du="du -sh"
 alias diff="colordiff"
 alias xx="atool -x"
 alias json="python -m json.tool"
