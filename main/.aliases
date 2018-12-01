@@ -15,6 +15,7 @@ alias mk="make"
 alias r="ranger"
 alias s='sudo'
 alias m="~/bin/support/polybar/mail show"
+alias wl="wc -l"
 
 # Unmount
 alias um='sudo umount'

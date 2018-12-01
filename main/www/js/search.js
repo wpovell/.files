@@ -182,15 +182,19 @@ export function setupSearch() {
         return;
       }
 
+      let n = $suggestions.children().size();
       if (active == -1) {
-        active = 0;
+        if (e.shiftKey) {
+          active = n-1;
+        } else {
+          active = 0;
+        }
       } else {
         let d = 1;
         if (e.shiftKey) {
           d = -1;
         }
 
-        let n = $suggestions.children().size();
         active = (active + d + n) % n;
       }
       let activeColor = 'var(--foreground)';
