@@ -1,4 +1,9 @@
 export const urls = {
+  'lv': {
+    name: 'laundry view',
+    color: '#645e50',
+    query: 'www.laundryview.com/home/1921/1429242',
+  },
   'wa': {
      name: 'wolfram alpha',
      color: '#dd1100',

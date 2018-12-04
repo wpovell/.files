@@ -159,6 +159,10 @@ function inputHandler(e) {
       $xkcd.hide();
     }
 
+    if (start.match(/#[0-9a-f]{6}/)) {
+      $search.css('color', start);
+    }
+
     return;
   }
 
