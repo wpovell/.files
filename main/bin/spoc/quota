@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cmd="sudo ssh gpfsmaster /tstaff/bin/gpfs-fileset"
+dir="/gpfs/main/home/$1"
+case $# in
+1)
+  eval "$cmd show $dir" | grep quota
+  ;;
+2)
+  soft=$2"G"
+  hard=$(echo "$2 + 1" | bc)"G"
+  eval "$cmd modify $dir -s $soft -h $hard"
+  ;;
+esac
