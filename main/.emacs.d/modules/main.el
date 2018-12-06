@@ -26,9 +26,6 @@
 ;; Keep buffers consistent with disk
 (global-auto-revert-mode t)
 
-;; Org mode
-(setf org-agenda-files '("~/org"))
-
 ;; Fish some ansi-term newline issues
 (setq term-suppress-hard-newline t)
 

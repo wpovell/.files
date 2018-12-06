@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ -z $1 ]]; then
+   t=10
+else
+   t="$1"
+fi
+
+find . ! -name . -prune ! -type d -atime +$t

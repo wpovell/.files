@@ -17,6 +17,7 @@
   sp = stash pop
   sl = stash list
   ss = stash show -p
+  sd = stash drop
 
   ch = checkout
   m  = checkout master
@@ -32,6 +33,7 @@
 
   shallow = clone --depth 1
   amend = commit --amend
+  ammend = commit --amend
   uncommit = reset HEAD^
   ls = ls-files
 

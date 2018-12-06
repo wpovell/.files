@@ -17,5 +17,5 @@ bar &
 drp start -i &
 startlocker &
 spotify &
-
+xrandr --auto &
 i3-msg workspace "1: I"

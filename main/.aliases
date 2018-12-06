@@ -1,7 +1,33 @@
 # Emacs
 alias e="$EDITOR"
+alias re="restart-emacs"
 
+# Git
+alias git="hub"
+alias g="git"
+alias gs="git status"
+
+# Shortcuts
+alias rw="sudo restart-wifi"
+alias f="find . -name"
+alias t="tmux"
+alias mk="make"
+alias r="ranger"
+alias s='sudo'
+alias m="~/bin/support/polybar/mail show"
+alias wl="wc -l"
+
+# Unmount
+alias um='sudo umount'
+alias uml='sudo umount -l'
+
+# Info
 alias cpu="ps -eo pid,comm,%mem,%cpu --sort=-%cpu | head -n 10"
+alias fsys="df --output=pcent,target  --type=ext4"
+
+# Clipboard
+alias cpy="xclip -selection clipboard"
+alias pst="xclip -o -selection clipboard"
 
 # Browser
 alias browser="$BROWSER"
@@ -26,32 +52,18 @@ alias ,,="cd ../.."
 
 ## Misc ##
 alias less="less -R"
-alias play="mplayer -af scaletempo 2>&1 1>/dev/null &"
 alias dfs="cd ~/.files"
-alias rw="sudo restart-wifi"
-alias f="find . -name"
-alias re="restart-emacs"
-alias t="tmux"
 alias wifi="sudo wifi-menu"
 alias root="sudo -s"
-alias git="hub"
-alias g="git"
-alias r="ranger"
-alias m="~/bin/support/polybar/mail show"
 alias pdf="evince 2>/dev/null"
-alias cpy="xclip -selection clipboard"
-alias pst="xclip -o -selection clipboard"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
 alias startx="startx >/tmp/startx.out 2>&1"
 alias mosh="mosh --experimental-remote-ip=remote"
 alias grep="grep --color='auto'"
 alias df="df -h"
-alias fsys="df --output=pcent,target  --type=ext4"
+alias du="du -sh"
 alias diff="colordiff"
 alias xx="atool -x"
 alias json="python -m json.tool"
 alias ax="chmod a+x"
-
-# Quick todo edit
-alias etodo="$EDITOR files/linux_todo"

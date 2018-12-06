@@ -1,7 +1,14 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  python -m http.server
-else
-  python -m http.server --directory $1
+DIR=""
+if [[ ! -z "$1" ]]; then
+    DIR="--directory $1"
 fi
+
+PORT="8080"
+if [[ ! -z "$2" ]]; then
+    PORT="$2"
+fi
+
+
+python -m http.server $PORT $DIRECTORY

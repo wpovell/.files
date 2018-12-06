@@ -72,20 +72,22 @@ function submitHandler(alt, ctrl) {
 
   let res = urls[root];
 
-  // Go directly if url
   if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) && !query.trim().includes(' ')) {
+      // Go directly if url
     url = query;
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       url = 'http://' + url;
     }
   } else if (res) {
+    // Shortcut
     if (typeof res.query === 'string') {
       url = res.query;
     } else {
       url = res.query(shortQuery);
     }
-    url = 'https://' + url;
+    url = 'http://' + url;
   } else {
+    // Search
     url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
     // Feelin' lucky
     if (ctrl) {
@@ -145,7 +147,6 @@ function inputHandler(e) {
     }
 
     // Show hackernews
-    console.log(start);
     if (start == 'h') {
       $hn.show();
     } else {
@@ -156,6 +157,10 @@ function inputHandler(e) {
       $xkcd.show();
     } else {
       $xkcd.hide();
+    }
+
+    if (start.match(/#[0-9a-f]{6}/)) {
+      $search.css('color', start);
     }
 
     return;
@@ -181,10 +186,20 @@ export function setupSearch() {
         return;
       }
 
+      let n = $suggestions.children().size();
       if (active == -1) {
-        active = 0;
+        if (e.shiftKey) {
+          active = n-1;
+        } else {
+          active = 0;
+        }
       } else {
-        active = (active + 1) % $suggestions.children().size();
+        let d = 1;
+        if (e.shiftKey) {
+          d = -1;
+        }
+
+        active = (active + d + n) % n;
       }
       let activeColor = 'var(--foreground)';
 

@@ -153,8 +153,11 @@ set $workspace10 "99: "
 
 # Change workspace
 bindsym Control+$mod+Left workspace prev
-bindsym Control+$mod+Right workspace next
+bindsym Control+$mod+j workspace prev
 bindsym $mod+bracketleft workspace prev
+
+bindsym Control+$mod+Right workspace next
+bindsym Control+$mod+k workspace next
 bindsym $mod+bracketright workspace next
 
 # Switch to workspace

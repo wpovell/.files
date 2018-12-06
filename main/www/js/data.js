@@ -1,4 +1,9 @@
 export const urls = {
+  'lv': {
+    name: 'laundry view',
+    color: '#645e50',
+    query: 'www.laundryview.com/home/1921/1429242',
+  },
   'wa': {
      name: 'wolfram alpha',
      color: '#dd1100',
@@ -160,14 +165,18 @@ export const urls = {
       let u = 'github.com/';
       if (q == 'tcp') {
         u += 'brown-csci1680/ip-tcp-graphics-round-2';
-      } else if (q == 'dot') {
-        u += 'wpovell/dotfiles';
+      } else if (q == 'smu') {
+        u += 'signmeup/signmeup';
       } else if (q) {
-        u += q;
+        if (q.includes('/')) {
+          u += q;
+        } else {
+          u += 'wpovell/'+q;
+        }
       }
       return u;
     },
-    suggest: ['wpovell', 'tcp']
+      suggest: ['wpovell/', 'tcp', 'dotfiles', 'smu'],
   },
   'a': {
     name: 'amazon',
