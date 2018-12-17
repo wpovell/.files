@@ -1,8 +1,8 @@
-;; Package setup
+;;; Package setup
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -26,7 +26,7 @@
   :config
   (global-page-break-lines-mode))
 
-(defun isgui () "Returns t if in a GUI mode"
+(defun isgui () "Return t if in a GUI mode."
        (or
         (window-system)
         (string= (daemonp) "gui")))
@@ -76,15 +76,40 @@
 
 ;; Ivy ;;
 (use-package ivy
-  :bind (:map ivy-minibuffer-map
-              ("TAB" . ivy-alt-done))
+  ;;:bind (:map ivy-minibuffer-map
+  ;;            ("TAB" . ivy-alt-done))
  :config
  (ivy-mode t))
+
 (use-package counsel
   :config
-  (counsel-mode))
+  (counsel-mode)
+  (setq counsel-find-file-at-point t)
+  :bind (("C-x C-f" . counsel-find-file)))
+
 (use-package swiper
   :bind ("C-s" . swiper))
+
+;; LSP ;;
+(use-package lsp-mode
+  :config
+  (add-hook 'programming-mode-hook 'lsp))
+(use-package lsp-ui)
+
+(use-package flycheck
+  :config
+  (global-flycheck-mode))
+
+(use-package company
+  :init
+  (setq company-idle-delay 0.1)
+  :config
+  (global-company-mode))
+
+(use-package company-lsp
+  :after company lsp-mode
+  :init
+  (push 'company-lsp company-backends))
 
 ;; Neotree ;;
 (use-package all-the-icons)
@@ -111,6 +136,7 @@
             (lambda ()
               (flyspell-mode))))
 (use-package yaml-mode)
+(use-package rust-mode)
 
 ;; Theme ;;
 (if (isgui)

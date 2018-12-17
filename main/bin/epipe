@@ -1,0 +1,10 @@
+#!/bin/bash
+
+tty="/dev/$(ps -o tty= -p $$)"
+
+temp_file=$(mktemp)
+
+[ ! -t 0 ] && cat > $temp_file
+emacsclient -c -t -s term $temp_file <$tty >$tty && cat $temp_file
+
+rm $temp_file

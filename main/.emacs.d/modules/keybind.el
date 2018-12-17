@@ -4,9 +4,6 @@
 (global-set-key (kbd "M-k") 'windmove-up)
 (global-set-key (kbd "M-j") 'windmove-down)
 
-;; Easier ffap
-(global-set-key (kbd "C-x C-f") 'find-file-at-point)
-
 ;; Kill buffer unless modified
 (defun volatile-kill-buffer ()
    (interactive)

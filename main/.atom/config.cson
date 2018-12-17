@@ -11,6 +11,7 @@
     fontFamily: "Fira Code"
     showIndentGuide: true
     showInvisibles: true
+    softWrap: true
   "exception-reporting":
     userId: "7bac6570-8d2d-4e31-9986-57ba90443e66"
   minimap:

@@ -1,0 +1,2 @@
+#!/bin/bash
+curl https://orders.olkb.com/ 2>/dev/null | grep '\<li\>' | grep -n 100005378 | cut -d':' -f1
