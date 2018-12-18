@@ -21,7 +21,7 @@
   (global-hl-line-mode))
 
 ;; Set scratch text
-(setq initial-scratch-message ";; SCRATCH ;;")
+(setq initial-scratch-message nil)
 
 ;; Keep buffers consistent with disk
 (global-auto-revert-mode t)

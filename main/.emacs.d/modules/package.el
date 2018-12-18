@@ -1,5 +1,6 @@
 ;;; Package setup
 (require 'package)
+
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
@@ -52,8 +53,7 @@
       (setq dashboard-startup-banner 4)
       (setq dashboard-banner-logo-title "Emacs")
       (setq dashboard-items '((recents  . 5)
-                              (projects . 5)
-                              (agenda   . 5)))
+                              (projects . 5)))
 
       :config
       (dashboard-setup-startup-hook)
@@ -140,6 +140,11 @@
               (flyspell-mode))))
 (use-package yaml-mode)
 (use-package rust-mode)
+(use-package lsp-rust
+  :init
+  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  (add-hook 'rust-mode-hook #'lsp-rust-enable)
+  (add-hook 'rust-mode-hook #'flycheck-mode))
 
 ;; Theme ;;
 (if (isgui)

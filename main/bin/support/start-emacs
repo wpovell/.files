@@ -1,3 +1,10 @@
 #!/bin/bash
-emacs --daemon=gui
-emacs --daemon=term
+{
+    emacs --daemon=gui 2>/dev/null
+    echo "Restarted GUI"
+}&
+
+{
+    emacs --daemon=term 2>/dev/null
+    echo "Restarted NW"
+}&
