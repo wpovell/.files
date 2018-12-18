@@ -31,7 +31,7 @@
   :custom
   (recentf-max-menu-items 100)
   (recentf-max-saved-items 100)
-  :init
+  :config
   (add-to-list 'recentf-exclude (format "%s/\\.emacs\\.d/elpa/.*" (getenv "HOME")))
   (recentf-mode))
 
@@ -95,20 +95,7 @@
   :bind ("C-s" . swiper))
 
 ;; LSP ;;
-(use-package lsp-mode
-  :config
-  ;; imenu
-  (require 'lsp-imenu)
-  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
-
-  ;; PYTHON ;;
-  (lsp-define-stdio-client lsp-python "python"
-                           #'projectile-project-root
-                           '("pyls"))
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (lsp-python-enable))))
-
+(use-package lsp-mode)
 (use-package lsp-ui
   :after lsp-mode
   :config

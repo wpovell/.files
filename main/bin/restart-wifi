@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
+   echo "This script must be run as root"
    exit 1
 fi
 
@@ -10,8 +10,12 @@ if [[ -n $1 ]]; then
   network=$1
 fi
 
-echo "Restarting $network"
+if [[ ! -e "/etc/netctl/$network" ]]; then
+    echo "$network does not exist"
+else
+    echo "Restarting $network"
 
-netctl stop-all
-ip link set wlp4s0 down
-netctl start $network
+    netctl stop-all
+    ip link set wlp4s0 down
+    netctl start $network
+fi
