@@ -1,0 +1,21 @@
+root = true
+
+# Unix-style newlines with newline at EOF
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+
+# Python
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Make
+[Makefile]
+indent_style = tab
+
+# JavaScript
+[*.js]
+indent_style = space
+indent_size = 2

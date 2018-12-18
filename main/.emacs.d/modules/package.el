@@ -1,3 +1,4 @@
+
 ;;; Package setup
 (require 'package)
 
@@ -101,9 +102,22 @@
 ;; LSP ;;
 (use-package lsp-mode
   :config
-  (add-hook 'programming-mode-hook 'lsp))
+  ;; imenu
+  (require 'lsp-imenu)
+  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
+
+  ;; PYTHON ;;
+  (lsp-define-stdio-client lsp-python "python"
+                           #'projectile-project-root
+                           '("pyls"))
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (lsp-python-enable))))
+
 (use-package lsp-ui
+  :after lsp-mode
   :config
+  (setq lsp-ui-sideline-ignore-duplicate t)
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package flycheck
@@ -135,11 +149,11 @@
               (flyspell-mode))))
 (use-package yaml-mode)
 (use-package rust-mode)
-(use-package lsp-rust
-  :init
-  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-  (add-hook 'rust-mode-hook #'lsp-rust-enable)
-  (add-hook 'rust-mode-hook #'flycheck-mode))
+
+;; Editor Config ;;
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 ;; Theme ;;
 (if (isgui)
