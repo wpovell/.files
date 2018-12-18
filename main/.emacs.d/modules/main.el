@@ -4,6 +4,10 @@
 ;; Type y rather than yes
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; Human readable dired numbers
+(setq dired-listing-switches "-alh"
+      dired-k-human-readable t)
+
 ;; Enable mouse in term emacs
 (xterm-mouse-mode t)
 (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))

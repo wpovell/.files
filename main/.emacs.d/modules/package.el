@@ -21,12 +21,6 @@
   :config (auto-compile-on-load-mode))
 ;;;;;;
 
-;; Guru mode ;;
-;; Prevent from using traditional navigation keys
-(use-package guru-mode
-  :config
-  (guru-global-mode +1))
-
 (defun isgui () "Return t if in a GUI mode."
        (or
         (window-system)
