@@ -27,9 +27,9 @@
   (guru-global-mode +1))
 
 ;; Page break lines ;;
-(use-package page-break-lines
-  :config
-  (global-page-break-lines-mode))
+;; (use-package page-break-lines
+;;   :config
+;;   (global-page-break-lines-mode))
 
 (defun isgui () "Return t if in a GUI mode."
        (or
