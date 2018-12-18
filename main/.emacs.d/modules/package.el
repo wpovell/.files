@@ -13,6 +13,10 @@
   (require 'use-package))
 
 (setq use-package-always-ensure t)
+(setq load-prefer-newer t)
+(use-package auto-compile
+  :defer nil
+  :config (auto-compile-on-load-mode))
 ;;;;;;
 
 ;; Guru mode ;;
@@ -31,6 +35,14 @@
         (window-system)
         (string= (daemonp) "gui")))
 
+;; Recentf
+(use-package recentf
+  :custom
+  (recentf-max-menu-items 100)
+  (recentf-max-saved-items 100)
+  :init
+  (recentf-mode))
+
 ;; Dashboard ;;
 (if
     (and (isgui) (> emacs-major-version 25))
@@ -48,7 +60,7 @@
       ;; Disable linenum and modeline for dash
       (add-hook 'dashboard-mode-hook
                 (lambda ()
-	          (display-line-numbers-mode -1)))))
+	                (display-line-numbers-mode -1)))))
 
 ;; git-gutter ;;
 (use-package git-gutter

@@ -32,3 +32,6 @@
 
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
+
+;; Goto line
+(global-set-key (kbd "M-g") 'goto-line)
