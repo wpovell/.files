@@ -49,7 +49,7 @@
     (use-package dashboard
       :init
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-      (setq dashboard-startup-banner 1)
+      (setq dashboard-startup-banner 4)
       (setq dashboard-banner-logo-title "Emacs")
       (setq dashboard-items '((recents  . 5)
                               (projects . 5)
@@ -107,7 +107,9 @@
 (use-package lsp-mode
   :config
   (add-hook 'programming-mode-hook 'lsp))
-(use-package lsp-ui)
+(use-package lsp-ui
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package flycheck
   :config

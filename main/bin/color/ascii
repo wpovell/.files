@@ -122,7 +122,10 @@ key = sys.argv[1].lower()
 if key == '-h' or key == '--help':
   help()
 
-if key not in art:
+if key == 'all':
+  for v in art.values():
+    print(v.format(**colors) + colors['r'])
+elif key not in art:
   print(f'"{key}" not found. Choose from the following:')
   print(' '.join(art.keys()))
 else:
