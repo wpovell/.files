@@ -32,6 +32,7 @@
   (recentf-max-menu-items 100)
   (recentf-max-saved-items 100)
   :init
+  (add-to-list 'recentf-exclude (format "%s/\\.emacs\\.d/elpa/.*" (getenv "HOME")))
   (recentf-mode))
 
 ;; Dashboard ;;
