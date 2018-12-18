@@ -81,6 +81,7 @@
        :bind (("C-c m s" . magit-status)))
      ;; Projectile ;;
      (use-package projectile
+       :bind (("C-c p" . projectile-command-map))
        :init
        (setq projectile-enable-caching t)
        (setq projectile-completion-system 'ivy))
