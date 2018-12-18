@@ -76,10 +76,10 @@
 
 ;; Ivy ;;
 (use-package ivy
-  ;;:bind (:map ivy-minibuffer-map
-  ;;            ("TAB" . ivy-alt-done))
  :config
- (ivy-mode t))
+ (ivy-mode t)
+ (setq ivy-use-virtual-buffers t)
+ :bind (("C-x C-b" . ivy-switch-buffer)))
 
 (use-package counsel
   :config
@@ -112,20 +112,8 @@
   (push 'company-lsp company-backends))
 
 ;; Neotree ;;
-(use-package all-the-icons)
-(use-package neotree
-  :bind (("C-\\" . neotree-toggle))
-  :init
-  (setq neo-theme (if (isgui) 'icons 'arrow))
-  (setq neo-smart-open t)
-  :config
-  (add-hook 'neo-after-create-hook
-               #'(lambda (_)
-       (with-current-buffer (get-buffer neo-buffer-name)
-         (setq display-line-numbers nil)
-         (setq mode-line-format '((" Neotree")))
-         (text-scale-adjust 0)
-         (text-scale-decrease 1))))
+(use-package treemacs
+  :bind (("C-\\" . treemacs))
 )
 
 ;; Modes ;;

@@ -6,6 +6,7 @@ alias re="restart-emacs"
 alias git="hub"
 alias g="git"
 alias gs="git status"
+alias gd="git diff"
 
 # Shortcuts
 alias rw="sudo restart-wifi"

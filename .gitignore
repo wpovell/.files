@@ -28,3 +28,4 @@ main/.atom/*
 /main/.emacs.d/recentf~
 main/.emacs.d/url/
 main/.emacs.d/bookmarks
+main/.emacs.d/.cache

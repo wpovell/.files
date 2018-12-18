@@ -3,8 +3,13 @@
 # nil if no open frame
 frame=`emacsclient -s gui -e "(member \"$DISPLAY\" (mapcar 'terminal-name (frames-on-display-list)))" 2>/dev/null`
 
-# If there is no frame open create one
-[[ "$frame" == "nil" ]] && opts='-c'
-opts="$opts -s gui -n"
+opts='-s gui'
 
-exec emacsclient $opts "$@"
+# If there is no frame open create one
+[[ "$frame" == "nil" ]] && opts="$opts -c -n"
+
+if [ -z $1 ]; then
+    opts="$opts -e (raise-frame)"
+fi
+
+exec emacsclient $opts "$@" 2>/dev/null >&1

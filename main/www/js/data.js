@@ -131,6 +131,8 @@ export const urls = {
       switch (q) {
         case 'cab':
           return 'cab.brown.edu';
+        case 'ss':
+          return 'selfservice.brown.edu';
         case 'canvas':
           return 'canvas.brown.edu';
         case 'cs33':
@@ -148,7 +150,7 @@ export const urls = {
 
       return 'cs.brown.edu/courses/' + cc;
     },
-    suggest: ['net', 'algos','cs33', 'cab', 'canvas']
+    suggest: ['cab', 'canvas', 'ss']
   },
   'cab': {
     color: '#A10311',
