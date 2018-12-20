@@ -1,0 +1,72 @@
+#!/bin/bash -e
+
+usage() {
+    prog=$(basename "$0")
+    echo "Usage: $prog [-nh] file...
+    -n Create new window for file
+    -g Open in GUI emacs
+    -h Display help
+    "
+}
+
+# Create new window?
+new_win=false
+# Open in gui emacs
+gui=false
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        -g)
+            gui=true
+            shift
+            ;;
+        -n)
+            new_win=true
+            shift
+            ;;
+        -h)
+            usage
+            exit 0
+            ;;
+        *)
+            POSITIONAL+=("$1")
+            shift
+            ;;
+    esac
+done
+set -- "${POSITIONAL[@]}"
+
+opts=()
+
+# Pick client type
+if [[ $gui = true ]]; then
+    # -n = Don't wait to return
+    opts+=(-n)
+    opts+=(-s gui)
+else
+    opts+=(-t)
+    opts+=(-s term)
+fi
+
+# nil if no open window
+cmd="(member \"$DISPLAY\" (mapcar 'terminal-name (frames-on-display-list)))"
+frame=$(emacsclient -s gui -e "$cmd" 2>/dev/null)
+
+# New window
+if [[ $new_win = true || $frame = nil || $gui = false ]]; then
+    opts+=(-c)
+fi
+
+# Force focus if no file opened
+if [[ -z $1 && $gui = true ]]; then
+    opts+=(-e "(raise-frame)")
+fi
+
+if [[ $gui = true ]]; then
+    exec emacsclient "${opts[@]}" "$@" 2>/dev/null >&2
+else
+    exec emacsclient "${opts[@]}" "$@"
+fi

@@ -1,5 +1,6 @@
 # Emacs
-alias e="$EDITOR"
+alias e="em"
+alias E="em -g"
 alias re="restart-emacs"
 
 # Git

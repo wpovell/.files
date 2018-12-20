@@ -3,9 +3,9 @@
 import sys
 
 colors = {
-    'c2': '\033[37m',
-    'c1': '\033[31m',
-    'r':  '\033[0m',
+  'c2': '\033[37m',
+  'c1': '\033[31m',
+  'r':  '\033[0m',
 }
 
 moose = r'''
@@ -121,8 +121,7 @@ if len(sys.argv) < 2:
 key = sys.argv[1].lower()
 if key == '-h' or key == '--help':
   help()
-
-if key == 'all':
+elif key == 'all':
   for v in art.values():
     print(v.format(**colors) + colors['r'])
 elif key not in art:

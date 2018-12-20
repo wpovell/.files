@@ -6,7 +6,7 @@
  '(git-gutter:update-interval 2)
  '(package-selected-packages
    (quote
-    (evil evil-mode editorconfig lsp-python yaml-mode use-package treemacs projectile multiple-cursors magit lsp-ui lsp-rust guru-mode git-gutter flycheck fish-mode dashboard counsel company-lsp auto-compile atom-one-dark-theme))))
+    (evil evil-mode editorconfig lsp-python yaml-mode use-package treemacs projectile multiple-cursors magit lsp-ui lsp-rust guru-mode git-gutter flycheck fish-mode counsel company-lsp auto-compile atom-one-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

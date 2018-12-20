@@ -19,7 +19,8 @@ bindsym $mod+s workspace $SpotifyWS
 no_focus [class="Spotify"]
 
 # Emacs
-bindsym $mod+i exec --no-startup-id E
+bindsym $mod+i exec --no-startup-id em -g
+bindsym $mod+Shift+i exec --no-startup-id em -g -n
 # Mail
 bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
 

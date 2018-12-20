@@ -39,6 +39,7 @@
 (if
     (and (isgui) (> emacs-major-version 25))
     (use-package dashboard
+      ;;:load-path "/home/wpovell/proj/emacs-dashboard"
       :init
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
       (setq dashboard-startup-banner 4)
@@ -72,7 +73,8 @@
        :bind (("C-c m s" . magit-status)))
      ;; Projectile ;;
      (use-package projectile
-       :bind (("C-c p" . projectile-command-map))
+       :bind (("C-c p" . projectile-command-map)
+              ("C-x p" . projectile-find-file))
        :init
        (setq projectile-enable-caching t)
        (setq projectile-completion-system 'ivy))
@@ -120,7 +122,10 @@
 ;; Neotree ;;
 (use-package treemacs
   :bind (("C-\\" . treemacs))
-)
+  :init
+  (add-hook 'treemacs-mode-hook
+                (lambda ()
+	                (display-line-numbers-mode -1))))
 
 ;; Modes ;;
 (use-package fish-mode)

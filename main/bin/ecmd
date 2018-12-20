@@ -8,7 +8,6 @@ usage() {
 
     Opens the script passed in emacs. Script must be under ~/bin to be found.
     "
-    exit
 }
 
 case $1 in
