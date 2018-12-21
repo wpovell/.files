@@ -88,7 +88,7 @@ bindsym ctrl+alt+f1 gksudo chvt 1
 bindsym ctrl+alt+f2 gksudo chvt 2
 
 # Start Term
-bindsym $mod+Return exec --no-startup-id ~/bin/support/term
+bindsym $mod+Return exec --no-startup-id term
 
 # Kill focused window
 bindsym $mod+q kill

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+if exists alacritty; then
+    exec alacritty "$@"
+elif exists kitty; then
+    exec kitty "$@"
+elif exists urxvt; then
+    exec urxvt "$@"
+elif exists i3-sensible-terminal; then
+    exec i3-sensible-terminal "$@"
+else
+    echo "No terminal available"
+fi

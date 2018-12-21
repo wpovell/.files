@@ -10,7 +10,7 @@ fi
 retheme startup # Blocks
 
 restart-emacs
-kitty --class=dropdown /bin/bash &
+term --class dropdown -e /bin/bash &
 dunst >/tmp/dunst.log 2>&1 &
 redshift &
 bar &

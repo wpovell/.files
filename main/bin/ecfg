@@ -18,6 +18,8 @@ switch $argv[1]
         set F ~/.tmux.conf
     case kitty
         set F ~/.config/kitty/kitty.conf
+    case alacritty
+        set F ~/.config/alacritty/alacritty.yml
     case zathura
         set F ~/.config/zathura/zathurarc
     case env
