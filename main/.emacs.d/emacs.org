@@ -127,6 +127,8 @@
       (xterm-mouse-mode t)
       (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
       (global-set-key (kbd "<mouse-4>") '(lambda () (interactive) (scroll-down 1)))
+
+      (setq scroll-preserve-screen-position 'always)
     #+END_SRC
 
 *** Editor
@@ -340,7 +342,7 @@
       (bind-key "C-x k" 'volatile-kill-buffer)
 
       (bind-key "C-+" 'text-scale-increase)
-      (bind-key "C--" 'text-scale-decrease)
+      (bind-key "C-_" 'text-scale-decrease)
 
       ;; Goto line
       (bind-key "M-g" 'goto-line)
@@ -401,10 +403,8 @@
 
 ** Packages
 *** Ivy
-    #+BEGIN_SRC emacs-lisp
-      ;; Used for M-x suggestions
-      (use-package smex)
 
+    #+BEGIN_SRC emacs-lisp
       (use-package ivy
         :demand t
         :config
@@ -469,6 +469,8 @@
     #+BEGIN_SRC emacs-lisp
       (use-package treemacs
         :bind (("C-\\" . treemacs))
+        :config
+        (setq treemacs-width 20)
         :init
         (custom-set-faces
          '(treemacs-root-face ((t (:inherit font-lock-constant-face
@@ -498,7 +500,9 @@
     #+BEGIN_SRC emacs-lisp
       (use-package company
         :disabled
-        :init
+        :bind (:map company-active-map
+                    ("TAB" . company-complete-selection))
+        :inti
         (setq company-idle-delay 0.1)
         :config
         (global-company-mode))
@@ -548,6 +552,12 @@
         (add-hook 'prog-mode-hook 'rainbow-mode))
     #+END_SRC
 
+*** Expand Region
+    #+BEGIN_SRC emacs-lisp
+      (use-package expand-region
+        :bind (("C-=" . er/expand-region)
+               ("C--" . er/contract-region)))
+    #+END_SRC
 *** Modes
     #+BEGIN_SRC emacs-lisp
       (setq-default js-indent-level 2)
