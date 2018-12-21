@@ -156,6 +156,14 @@ Initialize package management
 
   ;; Faster keystroke echo
   (setq echo-keystrokes 0.1)
+
+  ;; Final newline
+  (setq require-final-newline t
+        apropos-do-all t)
+
+  ;; IDO
+  (ido-mode t)
+  (setq ido-enable-flex-matching t)
 #+END_SRC
 
 *** Highlight
@@ -356,7 +364,18 @@ Initialize package management
   ;; Goto line
   (bind-key "M-g" 'goto-line)
 
+  ;; Prevent suspending terminal
   (bind-key "C-z" nil)
+
+  ;; Use shell-like backspace C-h, rebind help to F1
+  (define-key key-translation-map [?\C-h] [?\C-?])
+  (bind-key "M-h" 'backward-kill-word)
+
+  ;; Move more quickly
+  (bind-key "C-S-n" '(lambda () (interactive) (ignore-errors (next-line 5))))
+  (bind-key "C-S-p" '(lambda () (interactive) (ignore-errors (previous-line 5))))
+  (bind-key "C-S-f" '(lambda () (interactive) (ignore-errors (forward-char 5))))
+  (bind-key "C-S-b" '(lambda () (interactive) (ignore-errors (backward-char 5))))
 #+END_SRC
 
 *** Smart Begining of Line
@@ -399,17 +418,18 @@ Initialize package management
   (bind-key "M-j" 'windmove-down)
 
   (bind-key "M-o" 'other-window)
+  (bind-key "C-x C-d" 'delete-window)
 
   ;; Switch focus on split
-  (bind-key "C-x /" (lambda ()
-                      (interactive)
-                      (split-window-vertically)
-                      (other-window 1)))
+  (bind-key "C-x C-/" (lambda ()
+                        (interactive)
+                        (split-window-vertically)
+                        (other-window 1)))
 
-  (bind-key "C-x \\" (lambda ()
-                       (interactive)
-                       (split-window-horizontally)
-                       (other-window 1)))
+  (bind-key "C-x C-\\" (lambda ()
+                         (interactive)
+                         (split-window-horizontally)
+                         (other-window 1)))
 #+END_SRC
 
 ** Packages
@@ -446,7 +466,8 @@ Initialize package management
   ;; Multi cursor ;;
   (use-package multiple-cursors
     :bind (("C->" . mc/mark-next-like-this)
-           ("C-c C->" . mc/mark-all-like-this)))
+           ("C-c C->" . mc/mark-all-like-this)
+           ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 #+END_SRC
 
 *** Magit
