@@ -69,11 +69,10 @@ Initialize package management
 ** Main
 *** Funcs
 #+BEGIN_SRC emacs-lisp
-  (defun isgui ()
-    "Return t if in a GUI mode."
-    (or
-     (window-system)
-     (string= (daemonp) "gui")))
+  (setq isgui
+        (or
+         (window-system)
+         (string= (daemonp) "gui")))
 #+END_SRC
 
 *** Initial
@@ -170,7 +169,7 @@ Initialize package management
   (add-hook 'prog-mode-hook 'whitespace-mode)
 
   ;; Highlight current line in GUI
-  (if (isgui)
+  (if isgui
       (global-hl-line-mode))
 
   ;; Hightlight marked region
@@ -247,7 +246,7 @@ Initialize package management
       (when (not (memq major-mode
                        (list 'magit-status-mode)))
         (fira-code-mode))))
-  (if (isgui)
+  (if isgui
       (progn
         (global-fira-code-mode 1)
         (set-face-attribute 'default nil
@@ -260,7 +259,7 @@ Initialize package management
 *** Modeline
 #+BEGIN_SRC emacs-lisp
   ;; TODO: Play around with this
-  (if (not (isgui))
+  (if (not isgui)
       (set-face-background 'mode-line "Blue"))
 
   ;; Show column in modeline
@@ -497,7 +496,7 @@ Initialize package management
 *** Theme
 #+BEGIN_SRC emacs-lisp
   ;; Theme ;;
-  (if (isgui)
+  (if isgui
       (use-package atom-one-dark-theme))
 #+END_SRC
 
@@ -531,7 +530,8 @@ Initialize package management
 
 *** Dashboard
 #+BEGIN_SRC emacs-lisp
-  (if (version< "25" emacs-version)
+  (if (and (version< "25" emacs-version)
+           isgui)
       (use-package dashboard
         :init
         (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
