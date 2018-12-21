@@ -20,9 +20,7 @@ POS=()
 sound=true
 msg=""
 while [[ $# -gt 0 ]]; do
-    key="$1"
-
-    case $key in
+    case $1 in
         -h|--help)
             usage
             shift

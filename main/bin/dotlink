@@ -1,0 +1,125 @@
+#!/bin/bash -e
+
+usage() {
+    prog=$(basename "$0")
+    echo "$prog [-hd] all | TARGETS...
+    Set up symlinks for dotfiles.
+    Note: Some targets may require root
+
+Args:
+    all        Link all targets
+    list       List of potential targets
+    TARGETS... Targets to link
+
+Flags:
+    -h Display this help message
+    -d Only do a dry-run
+    "
+    exit
+}
+
+contains() {
+    local list="$1"
+    local item="$2"
+    if [[ $list =~ (^|[[:space:]])"$item"($|[[:space:]]) ]] ; then
+        # list include item
+        result=0
+    else
+        result=1
+    fi
+    return $result
+}
+
+targets=(const gen root)
+POS=()
+root=false
+dry=false
+all=false
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -h|--help) usage ;;
+        -d)
+            dry=true
+            shift
+            ;;
+        all)
+            all=true
+            root=true
+            shift ;;
+        list)
+            echo "${targets[@]}"
+            exit
+            ;;
+        *)
+            if [[ $1 = root ]]; then
+                root=true
+            fi
+
+            l="${targets[*]}"
+            if ! contains "$l" "$1"; then
+                echo "Unknown target '$1'"
+                exit 1
+            fi
+
+            POS+=("$1")
+            shift
+            ;;
+    esac
+done
+
+if [[ $all = true ]]; then
+    POS=("${targets[@]}")
+fi
+
+if [[ ${#POS[@]} -eq 0 ]]; then
+    usage
+fi
+
+if [[ $root = true && $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+if [[ -n $SUDO_USER ]]; then
+    USR=$SUDO_USER
+else
+    USR=$USER
+fi
+
+if [[ $dry = false ]]; then
+    echo "This is not a dry run, sym-links will be created."
+    while true; do
+        read -rp "Do you wish to proceed? " yn
+        case $yn in
+            [Yy]* ) break;;
+            [Nn]* ) exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+else
+    echo "This is a dry run, no links will be created."
+fi
+
+echo
+
+LINK_HOME="/home/$USR"
+for target in "${POS[@]}"; do (
+    SRC_ROOT="$LINK_HOME/.files/$target"
+    cd "$SRC_ROOT"
+    echo "== $target =="
+    if [[ $target = root ]]; then
+        DST_ROOT=""
+    else
+        DST_ROOT="$LINK_HOME"
+    fi
+    find . -type f | while read -r file; do
+        src="$SRC_ROOT/$target/${file:2}"
+        dst="$DST_ROOT/${file:2}"
+        echo "$target/${file:2} =->= $dst"
+
+        if [[ $dry = false ]]; then
+            ln -sf "$src" "$dst"
+        fi
+    done | column -t -s'='
+)
+done
