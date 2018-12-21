@@ -19,6 +19,16 @@ alias r="ranger"
 alias s='sudo'
 alias m="~/bin/support/polybar/mail show"
 alias wl="wc -l"
+alias ax="chmod a+x"
+alias xx="atool -x"
+
+alias dfs="cd ~/.files"
+alias wifi="sudo wifi-menu"
+alias root="sudo -s"
+alias open="xdg-open"
+alias xup="xrdb -I$HOME ~/.Xresources"
+alias diff="colordiff"
+alias json="python -m json.tool"
 
 # Unmount
 alias um='sudo umount ~/mnt'
@@ -54,19 +64,11 @@ alias weather-all="curl wttr.in 2>/dev/null | tail -n 33 | head -n 30"
 alias ,="cd .."
 alias ,,="cd ../.."
 
-## Misc ##
+# Better Defaults
+alias pgrep="pgrep -l"
 alias less="less -R"
-alias dfs="cd ~/.files"
-alias wifi="sudo wifi-menu"
-alias root="sudo -s"
-alias open="xdg-open"
-alias xup="xrdb -I$HOME ~/.Xresources"
-alias startx="startx >/tmp/startx.out 2>&1"
 alias mosh="mosh --experimental-remote-ip=remote"
 alias grep="grep --color='auto'"
 alias df="df -h"
 alias du="du -sh"
-alias diff="colordiff"
-alias xx="atool -x"
-alias json="python -m json.tool"
-alias ax="chmod a+x"
+alias startx="startx >/tmp/startx.out 2>&1"
