@@ -1,0 +1,571 @@
+#+PROPERTY: header-args :tangle yes
+
+* Init
+** Early
+   Set personal info.
+   #+BEGIN_SRC emacs-lisp
+     (setq user-full-name "Will Povell"
+           user-mail-address "me@wpovell.net")
+   #+END_SRC
+
+   Set GC values to be high during load, to be lowered after.
+   #+BEGIN_SRC emacs-lisp
+     (eval-and-compile
+       (setq gc-cons-threshold 402653184
+             gc-cons-percentage 0.6))
+   #+END_SRC
+
+** Package Setup
+   Set load path ourselves to improve performance.
+   #+BEGIN_SRC emacs-lisp
+     (eval-and-compile
+       (setq load-prefer-newer t
+             package-user-dir "~/.emacs.d/elpa"
+             package--init-file-ensured t
+             package-enable-at-startup nil)
+
+       (unless (file-directory-p package-user-dir)
+         (make-directory package-user-dir t)))
+   #+END_SRC
+
+   Setup use-package defaults
+   #+BEGIN_SRC emacs-lisp
+     (setq use-package-always-defer t
+           use-package-verbose t
+           use-package-always-ensure t)
+   #+END_SRC
+
+   Initialize package management
+   #+BEGIN_SRC emacs-lisp
+     (eval-and-compile
+       (setq load-path (append load-path (directory-files package-user-dir t "^[^.]" t))))
+
+     (require 'package)
+
+     ;; Package archives
+     (eval-and-compile
+       (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                                ("melpa" . "https://melpa.org/packages/"))))
+
+     (package-initialize)
+
+     ;; Install use-package if not already
+     (unless (package-installed-p 'use-package)
+       (package-refresh-contents)
+       (package-install 'use-package))
+
+     (eval-when-compile
+       (require 'use-package))
+
+     (use-package diminish)
+     (use-package bind-key)
+   #+END_SRC
+
+** Main
+*** Funcs
+    #+BEGIN_SRC emacs-lisp
+      (defun isgui ()
+        "Return t if in a GUI mode."
+        (or
+         (window-system)
+         (string= (daemonp) "gui")))
+    #+END_SRC
+
+*** Initial
+    #+BEGIN_SRC emacs-lisp
+      ;; Set scratch text
+      (setq initial-scratch-message nil)
+
+      ;; Hide the startup message
+      (setq inhibit-startup-message t
+            inhibit-startup-screen t)
+    #+END_SRC
+*** Customizations
+    #+BEGIN_SRC emacs-lisp
+      ;; Make custom changes session-local
+      (setq custom-file (make-temp-file "emacs-custom"))
+    #+END_SRC
+
+*** Backup / Temp Files
+    #+BEGIN_SRC emacs-lisp
+      ;; Delete backup versions
+      (setq delete-old-versions t
+            backup-by-copying t)
+
+      ;; Don't put tmp files everywhere
+      (unless (file-exists-p temporary-file-directory)
+        (make-directory temporary-file-directory))
+
+      (setq backup-directory-alist
+            `((".*" . ,temporary-file-directory)))
+      (setq auto-save-file-name-transforms
+            `((".*" ,temporary-file-directory t)))
+    #+END_SRC
+
+*** Misc
+    #+BEGIN_SRC emacs-lisp
+      ;; Type y rather than yes
+      (defalias 'yes-or-no-p 'y-or-n-p)
+
+      ;; Follow symlinks without asking
+      (setq vc-follow-symlinks t)
+
+      ;; Faster keystroke echo
+      (setq echo-keystrokes 0.1)
+    #+END_SRC
+
+*** Dired
+    #+BEGIN_SRC emacs-lisp
+      ;; Human readable dired numbers
+      (setq dired-listing-switches "-alh"
+            dired-k-human-readable t)
+    #+END_SRC
+
+*** Mouse
+    #+BEGIN_SRC emacs-lisp
+      ;; Enable mouse in term emacs
+      (xterm-mouse-mode t)
+      (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
+      (global-set-key (kbd "<mouse-4>") '(lambda () (interactive) (scroll-down 1)))
+    #+END_SRC
+
+*** Editor
+    #+BEGIN_SRC emacs-lisp
+      ;; Use 2 spaces for indentation
+      (setq-default indent-tabs-mode nil)
+      (setq-default tab-width 2)
+
+      ;; Delete trailing whitespace on save
+      (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+      ;; Line numbers
+      (if (> emacs-major-version 25)
+          (global-display-line-numbers-mode)
+        (global-linum-mode 1))
+
+      ;; Flyspell
+      (setq flyspell-issue-welcome-flag nil)
+      (setq-default ispell-program-name "/sbin/aspell")
+    #+END_SRC
+
+*** Highlight
+    #+BEGIN_SRC emacs-lisp
+      ;; 80 Char Col ;;
+      (setq-default
+       whitespace-line-column 80
+       whitespace-style       '(face lines-tail))
+
+      ;; Enable whitespace highlighting when programming
+      (add-hook 'prog-mode-hook 'whitespace-mode)
+
+      ;; Highlight current line in GUI
+      (if (isgui)
+          (global-hl-line-mode))
+
+      ;; Hightlight marked region
+      (transient-mark-mode t)
+
+      ;; Highlight parens
+      (show-paren-mode t)
+    #+END_SRC
+
+*** Font
+    #+BEGIN_SRC emacs-lisp
+      (defun fira-code-mode--make-alist (list)
+        "Generate prettify-symbols alist from LIST."
+        (let ((idx -1))
+          (mapcar
+           (lambda (s)
+             (setq idx (1+ idx))
+             (let* ((code (+ #Xe100 idx))
+                    (width (string-width s))
+                    (prefix ())
+                    (suffix '(?\s (Br . Br)))
+                    (n 1))
+               (while (< n width)
+                 (setq prefix (append prefix '(?\s (Br . Bl))))
+                 (setq n (1+ n)))
+               (cons s (append prefix suffix (list (decode-char 'ucs code))))))
+           list)))
+
+      (defconst fira-code-mode--ligatures
+        '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\"
+          "{-" "[]" "::" ":::" ":=" "!!" "!=" "!==" "-}"
+          "--" "---" "-->" "->" "->>" "-<" "-<<" "-~"
+          "#{" "#[" "##" "###" "####" "#(" "#?" "#_" "#_("
+          ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*"
+          "/**" "/=" "/==" "/>" "//" "///" "&&" "||" "||="
+          "|=" "|>" "^=" "$>" "++" "+++" "+>" "=:=" "=="
+          "===" "==>" "=>" "=>>" "<=" "=<<" "=/=" ">-" ">="
+          ">=>" ">>" ">>-" ">>=" ">>>" "<*" "<*>" "<|" "<|>"
+          "<$" "<$>" "<!--" "<-" "<--" "<->" "<+" "<+>" "<="
+          "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<" "<~"
+          "<~~" "</" "</>" "~@" "~-" "~=" "~>" "~~" "~~>" "%%"
+          "x" ":" "+" "+" "*"))
+
+      (defvar fira-code-mode--old-prettify-alist)
+
+      (defun fira-code-mode--enable ()
+        "Enable Fira Code ligatures in current buffer."
+        (setq-local fira-code-mode--old-prettify-alist prettify-symbols-alist)
+        (setq-local prettify-symbols-alist (append (fira-code-mode--make-alist fira-code-mode--ligatures) fira-code-mode--old-prettify-alist))
+        (prettify-symbols-mode t))
+
+      (defun fira-code-mode--disable ()
+        "Disable Fira Code ligatures in current buffer."
+        (setq-local prettify-symbols-alist fira-code-mode--old-prettify-alist)
+        (prettify-symbols-mode -1))
+
+      (define-minor-mode fira-code-mode
+        "Fira Code ligatures minor mode"
+        :lighter " Fira Code"
+        (setq-local prettify-symbols-unprettify-at-point 'right-edge)
+        (if fira-code-mode
+            (fira-code-mode--enable)
+          (fira-code-mode--disable)))
+
+      (defun fira-code-mode--setup ()
+        "Setup Fira Code Symbols."
+        (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))
+    #+END_SRC
+
+    #+BEGIN_SRC emacs-lisp
+      (define-globalized-minor-mode global-fira-code-mode fira-code-mode
+        ;; Disable in magit as it breaks its highlighting
+        (lambda ()
+          (when (not (memq major-mode
+                           (list 'magit-status-mode)))
+            (fira-code-mode))))
+      (if (isgui)
+          (progn
+            (global-fira-code-mode 1)
+            (set-face-attribute 'default nil
+                                :family "Fira Code"
+                                :height 140
+                                :weight 'normal
+                                :width 'normal)))
+    #+END_SRC
+
+*** Modeline
+    #+BEGIN_SRC emacs-lisp
+      ;; TODO: Play around with this
+      (if (not (isgui))
+          (set-face-background 'mode-line "Blue"))
+
+      ;; Show column in modeline
+      (setq column-number-mode t)
+    #+END_SRC
+
+    #+BEGIN_SRC emacs-lisp
+      (defun simple-mode-line-render (left right)
+        "Return a string of `window-width' length containing LEFT, and RIGHT
+       aligned respectively."
+        (let* ((available-width (- (window-width) (length left) 2)))
+          (format (format " %%s %%%ds " available-width) left right)))
+
+
+      (setq-default mode-line-format
+                    '((:eval (simple-mode-line-render
+                              (format-mode-line
+                               '((:eval (if (projectile-project-p)
+                                            (concat
+                                             (projectile-project-name)
+                                             " | ")))
+                                 "%b"
+                                 (:eval (if (and (buffer-modified-p) (not buffer-read-only)) "*" ""))
+                                 (:eval (if buffer-read-only " " " (%l:%C)"))))
+                              (format-mode-line
+                               '((vc-mode (
+                                           " ["
+                                           (:eval
+                                            (replace-regexp-in-string
+                                             (format "^ %s."
+                                                     (vc-backend buffer-file-name))
+                                             "" vc-mode))
+                                           "] "))
+                                 mode-name))))))
+
+      ;; Flash modeline for ding
+      (setq ring-bell-function
+            (lambda ()
+              (let ((orig-fg (face-foreground 'mode-line)))
+                (set-face-foreground 'mode-line "#F2804F")
+                (run-with-idle-timer 0.1 nil
+                                     (lambda (fg) (set-face-foreground 'mode-line fg))
+                                     orig-fg))))
+    #+END_SRC
+
+*** Appearance
+    #+BEGIN_SRC emacs-lisp
+      ;; Hide GUI frills
+      (menu-bar-mode -1)
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)
+
+      ;; Make divider prettier
+      ;; TODO: Play around with this
+      (set-face-background 'vertical-border "gray")
+      (set-face-foreground 'vertical-border (face-background 'vertical-border))
+    #+END_SRC
+
+*** Term
+    #+BEGIN_SRC emacs-lisp
+      ;; Term
+      (global-set-key (kbd "<C-return>")
+                      '(lambda () (interactive) (ansi-term "/bin/bash")))
+
+      ;; Fish some ansi-term newline issues
+      ;; TODO: Figure out what exactly this does
+      (setq term-suppress-hard-newline t)
+
+      ;; Close term buffer on exit
+      (defadvice term-handle-exit
+          (after term-kill-buffer-on-exit activate)
+        (kill-buffer))
+    #+END_SRC
+
+*** Org
+    #+BEGIN_SRC emacs-lisp
+      (setq org-src-tab-acts-natively t)
+    #+END_SRC
+
+** Keybind
+*** Misc
+    #+BEGIN_SRC emacs-lisp
+      ;; Kill buffer unless modified
+      (defun volatile-kill-buffer ()
+        (interactive)
+        (let ((buffer-modified-p nil))
+          (kill-buffer (current-buffer))))
+      (bind-key "C-x k" 'volatile-kill-buffer)
+
+      (bind-key "C-+" 'text-scale-increase)
+      (bind-key "C--" 'text-scale-decrease)
+
+      ;; Goto line
+      (bind-key "M-g" 'goto-line)
+    #+END_SRC
+
+    #+BEGIN_SRC emacs-lisp
+      (defun smarter-move-beginning-of-line (arg)
+        "Move point back to indentation of beginning of line.
+
+      Move point to the first non-whitespace character on this line.
+      If point is already there, move to the beginning of the line.
+      Effectively toggle between the first non-whitespace character and
+      the beginning of the line.
+
+      If ARG is not nil or 1, move forward ARG - 1 lines first.  If
+      point reaches the beginning or end of the buffer, stop there."
+        (interactive "^p")
+        (setq arg (or arg 1))
+
+        ;; Move lines first
+        (when (/= arg 1)
+          (let ((line-move-visual nil))
+            (forward-line (1- arg))))
+
+        (let ((orig-point (point)))
+          (back-to-indentation)
+          (when (= orig-point (point))
+            (move-beginning-of-line 1))))
+
+      ;; remap C-a to `smarter-move-beginning-of-line'
+      (bind-key [remap move-beginning-of-line]
+                'smarter-move-beginning-of-line)
+    #+END_SRC
+
+*** Windows
+    #+BEGIN_SRC emacs-lisp
+      ;; Window management
+      ;; TODO: Consider removing these
+      (bind-key "M-l" 'windmove-right)
+      (bind-key "M-h" 'windmove-left)
+      (bind-key "M-k" 'windmove-up)
+      (bind-key "M-j" 'windmove-down)
+
+      (bind-key "M-o" 'other-window)
+
+      ;; Switch focus on split
+      ;; TODO: See if can change to C-t (or tmux to C-x)
+      (bind-key "C-x /" (lambda ()
+                          (interactive)
+                          (split-window-vertically)
+                          (other-window 1)))
+
+      (bind-key "C-x \\" (lambda ()
+                           (interactive)
+                           (split-window-horizontally)
+                           (other-window 1)))
+    #+END_SRC
+
+** Packages
+*** Ivy
+    #+BEGIN_SRC emacs-lisp
+      ;; Used for M-x suggestions
+      (use-package smex)
+
+      (use-package ivy
+        :demand t
+        :config
+        (setq ivy-initial-inputs-alist nil)
+        (ivy-mode t)
+        (setq ivy-use-virtual-buffers t)
+        :bind (("C-x C-b" . ivy-switch-buffer)))
+
+      (use-package counsel
+        :demand t
+        :config
+        (counsel-mode t)
+        (setq counsel-find-file-at-point t)
+        :bind (("C-x C-f" . counsel-find-file)
+               ("M-x" . counsel-M-x)))
+
+      (use-package swiper
+        :commands (swiper)
+        :bind ("C-s" . swiper))
+
+      (use-package ivy-xref
+        :init
+        (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+    #+END_SRC
+
+*** Multiple Cursors
+    #+BEGIN_SRC emacs-lisp
+      ;; Multi cursor ;;
+      (use-package multiple-cursors
+        :bind (("C->" . mc/mark-next-like-this)
+               ("C-c C->" . mc/mark-all-like-this)))
+    #+END_SRC
+
+*** Magit
+    #+BEGIN_SRC emacs-lisp
+      (if (version< "25" emacs-version)
+          (use-package magit))
+    #+END_SRC
+
+*** Projectile
+    #+BEGIN_SRC emacs-lisp
+      (if (version< "25" emacs-version)
+          (use-package projectile
+            :demand t
+            :bind (("C-c p" . projectile-command-map)
+                   ("C-x p" . projectile-find-file))
+            :init
+            (setq projectile-enable-caching t)
+            (setq projectile-completion-system 'ivy)))
+    #+END_SRC
+
+*** Git-Gutter
+    #+BEGIN_SRC emacs-lisp
+      (use-package git-gutter
+        :config
+        (global-git-gutter-mode)
+        (custom-set-variables
+         '(git-gutter:update-interval 2)))
+    #+END_SRC
+
+*** Treemacs
+    #+BEGIN_SRC emacs-lisp
+      (use-package treemacs
+        :bind (("C-\\" . treemacs))
+        :init
+        (custom-set-faces
+         '(treemacs-root-face ((t (:inherit font-lock-constant-face
+                                            :weight bold
+                                            :height 1.2)))))
+        ;; Don't display line numbers in treemacs
+        (add-hook 'treemacs-mode-hook
+                  (lambda ()
+                    (display-line-numbers-mode -1))))
+    #+END_SRC
+
+*** Theme
+    #+BEGIN_SRC emacs-lisp
+      ;; Theme ;;
+      (if (isgui)
+          (use-package atom-one-dark-theme))
+    #+END_SRC
+
+*** Flycheck
+    #+BEGIN_SRC emacs-lisp
+      (use-package flycheck
+        :config
+        (global-flycheck-mode))
+    #+END_SRC
+
+*** Company
+    #+BEGIN_SRC emacs-lisp
+      (use-package company
+        :disabled
+        :init
+        (setq company-idle-delay 0.1)
+        :config
+        (global-company-mode))
+    #+END_SRC
+
+*** Recentf
+    #+BEGIN_SRC emacs-lisp
+      (use-package recentf
+        :config
+        (add-to-list 'recentf-exclude
+                     (format "%s/\\.emacs\\.d/elpa/.*" (getenv "HOME")))
+        (recentf-mode))
+    #+END_SRC
+
+*** Dashboard
+    #+BEGIN_SRC emacs-lisp
+      (if (version< "25" emacs-version)
+          (use-package dashboard
+            :init
+            (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+            (setq dashboard-startup-banner 4)
+            (setq dashboard-banner-logo-title "Emacs")
+            (setq dashboard-items '((recents  . 5)
+                                    (projects . 5)))
+
+            :config
+            (dashboard-setup-startup-hook)
+
+            ;; Disable linenum and modeline for dash
+            (add-hook 'dashboard-mode-hook
+                      (lambda ()
+                        (display-line-numbers-mode -1)))))
+    #+END_SRC
+
+*** Rainbow Delim
+    #+BEGIN_SRC emacs-lisp
+      (use-package rainbow-delimiters
+        :config
+        (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+    #+END_SRC
+
+*** Color Highlight
+    #+BEGIN_SRC emacs-lisp
+      (use-package rainbow-mode
+        :config
+        (setq rainbow-x-colors nil)
+        (add-hook 'prog-mode-hook 'rainbow-mode))
+    #+END_SRC
+
+*** Modes
+    #+BEGIN_SRC emacs-lisp
+      (setq-default js-indent-level 2)
+
+      (use-package fish-mode)
+
+      (use-package markdown-mode
+        :config
+        (add-hook 'markdown-mode-hook
+                  (lambda ()
+                    (flyspell-mode))))
+
+      (use-package yaml-mode)
+
+      (use-package rust-mode)
+    #+END_SRC
+** Finish
+   #+BEGIN_SRC emacs-lisp
+     (setq gc-cons-threshold 16777216
+           gc-cons-percentage 0.1)
+   #+END_SRC

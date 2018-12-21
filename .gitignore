@@ -1,31 +1,34 @@
+# Secrets
+api.js
+pass.json
+
+## SSH
 id_rsa*
 known_hosts
 authorized_keys
-pulse
-dconf
-chromium
-Atom
-projectile-bookmarks.eld
-ido.last
-recentf
-backups
-eshell
-projectile.cache
-pass.json
-main/.config/ranger/bookmarks
-main/.emacs.d/elpa
-main/.config/ranger/history
-main/.emacs.d/auto-save-list/
-api.js
-.git.bfg-report
-*.target.wants
+
+# File Types
+*.cache
+*.elc
+
+# Emacs
+elpa
 .mc-lists.el
-gen/
-colors.css
+emacs.el
+auto-save-list
+projectile-*
+recentf
+
+# Atom
 main/.atom/*
 !main/.atom/config.cson
 !main/.atom/keymap.cson
-/main/.emacs.d/recentf~
-main/.emacs.d/url/
-main/.emacs.d/bookmarks
-main/.emacs.d/.cache
+
+# Meta
+gen/
+colors.css
+backups
+
+# Misc
+bookmarks
+history

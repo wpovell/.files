@@ -1,18 +1,41 @@
-;; Custom set variables
-(setq custom-file "~/.emacs.d/custom.el")
-(if (file-exists-p custom-file)
-    (load custom-file))
+;;; init.el --- Starting point for my emacs config
 
-(defun isgui () "Return t if in a GUI mode."
-       (or
-        (window-system)
-        (string= (daemonp) "gui")))
+;;; Commentary:
+;;
 
-(if (isgui)
-    (load-file "~/.emacs.d/modules/font.el"))
+;;; Code:
 
-(load-file "~/.emacs.d/modules/package.el")
-(load-file "~/.emacs.d/modules/main.el")
-(load-file "~/.emacs.d/modules/keybind.el")
-(load-file "~/.emacs.d/modules/modeline.el")
-(load-file "~/.emacs.d/modules/org.el")
+;; Ignore byte-compile warnings
+(setq byte-compile-warnings '(not nresolved
+                                  free-vars
+                                  callargs
+                                  redefine
+                                  obsolete
+                                  noruntime
+                                  cl-functions
+                                  interactive-only
+                                  ))
+
+(setq compiled-config (expand-file-name "emacs.elc" user-emacs-directory)
+      org-config (expand-file-name "emacs.org" user-emacs-directory))
+
+(defun last-mod (file)
+  "Last modification time for FILE."
+  (nth 5 (file-attributes file)))
+
+(defun use-compiled()
+  "Whether to use compiled or org version of config."
+  (and (file-exists-p compiled-config)
+       (time-less-p (last-mod org-config) (last-mod compiled-config))))
+
+(let ((file-name-handler-alist nil))
+  (if (use-compiled)
+      (progn
+        (defun display-startup-echo-area-message ()
+          (message "Used compiled config"))
+        (load-file compiled-config))
+    (defun display-startup-echo-area-message () (message "Used org config"))
+    (require 'org)
+    (org-babel-load-file org-config t)))
+
+;;; init.el ends here
