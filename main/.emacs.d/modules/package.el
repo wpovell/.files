@@ -21,11 +21,6 @@
   :config (auto-compile-on-load-mode))
 ;;;;;;
 
-(defun isgui () "Return t if in a GUI mode."
-       (or
-        (window-system)
-        (string= (daemonp) "gui")))
-
 ;; Recentf
 (use-package recentf
   :custom
@@ -39,7 +34,6 @@
 (if
     (and (isgui) (> emacs-major-version 25))
     (use-package dashboard
-      ;;:load-path "/home/wpovell/proj/emacs-dashboard"
       :init
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
       (setq dashboard-startup-banner 4)

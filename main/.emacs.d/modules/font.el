@@ -56,7 +56,10 @@
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))
 
 (define-globalized-minor-mode global-fira-code-mode fira-code-mode
-  (lambda () (fira-code-mode)))
+  (lambda ()
+     (when (not (memq major-mode
+                  (list 'magit-status-mode)))
+       (fira-code-mode))))
 
 (global-fira-code-mode 1)
 (set-face-attribute 'default nil
