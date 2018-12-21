@@ -15,7 +15,9 @@ if [[ ! -e "/etc/netctl/$network" ]]; then
 else
     echo "Restarting $network"
 
-    netctl stop-all
-    ip link set wlp4s0 down
-    netctl start "$network"
+    {
+        netctl stop-all && \
+            ip link set wlp4s0 down && \
+            netctl start "$network"
+    } &
 fi

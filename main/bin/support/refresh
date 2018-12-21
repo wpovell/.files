@@ -31,11 +31,9 @@ def term_string(colors):
             to_write += fmt('4;'+n, hexc)
     return to_write
 
-def refresh_terminals(bad_pids, colors):
+def refresh_terminals(colors):
     to_write = term_string(colors)
     for term in Path('/dev/pts/').glob('[0-9]*'):
-        if term.name in bad_pids:
-            continue
         with open(term, "w") as file:
             file.write(to_write)
 
@@ -70,19 +68,14 @@ def generate_kitty_conf(colors):
             to_write += f'cursor {v}'
         else:
             to_write += f'color{c[1:]} {v}'
-        to_write += '\n'  
+        to_write += '\n'
     with open(path, 'w') as f:
         f.write(to_write)
-        
+
 if __name__ == '__main__':
     from sys import argv
-
-    # Pids of pts inside of tmux
-    bad_pids = []
-    if len(argv) > 1:
-        bad_pids = argv[1].split()
 
     colors = get_colors()
     generate_css(colors)
     generate_kitty_conf(colors)
-    refresh_terminals(bad_pids, colors)
+    refresh_terminals(colors)

@@ -1,12 +1,9 @@
-#!/bin/bash
-
-# Retheme / changes current theme
+#!/bin/bash -e
 
 usage() {
-    echo "$(tput bold)retheme$(tput sgr0)
-    retheme [COMMAND]
-
-    Custome themer script. No command refreshes i3 / bars
+    prog=$(basename "$0")
+    echo "$prog [COMMAND]
+    Custome themer script. No command refreshes i3 / bars.
 
 Commands:
     list    Lists possible themes
@@ -15,15 +12,15 @@ Commands:
 }
 
 contains() {
-  local list="$1"
-  local item="$2"
-  if [[ $list =~ (^|[[:space:]])"$item"($|[[:space:]]) ]] ; then
-    # list include item
-    result=0
-  else
-    result=1
-  fi
-  return $result
+    local list="$1"
+    local item="$2"
+    if [[ $list =~ (^|[[:space:]])"$item"($|[[:space:]]) ]] ; then
+        # list include item
+        result=0
+    else
+        result=1
+    fi
+    return $result
 }
 
 
@@ -31,19 +28,19 @@ list=$(find ~/.files/*.theme -prune -printf "%f\n" | \
            awk '{ gsub(".theme", "",$1); print $1 }')
 
 list() {
-  echo "$list"
-  exit
+    echo "$list"
+    exit
 }
 
 case $1 in
-  -h|--help) usage ;;
-  list) list ;;
+    -h|--help) usage ;;
+    list) list ;;
 esac
 
 # If a theme is invalid and is not blank or the startup command
-if (! `contains "$list" "$1"`) && [[ -n "$1" && "$1" != "startup" ]]; then
-  echo -en "No such theme '$1'\n\nPossible themes include:\n    "
-  list
+if (! contains "$list" "$1") && [[ -n "$1" && "$1" != "startup" ]]; then
+    echo -en "No such theme '$1'\n\nPossible themes include:\n    "
+    list
 fi
 
 cd ~/.files || exit
@@ -52,7 +49,7 @@ cd ~/.files || exit
 if [[ -n "$1" && "$1" != "startup" ]];
 then
     CUR_THEME="$(head -n1 ~/.theme 2>/dev/null).theme"
-    CUR_THEME="${CUR_THEME:1}"
+    CUR_THEME="${CUR_THEME:2}"
     stow -D "$CUR_THEME" 2>/dev/null
     stow "$1"".theme"
 fi
@@ -67,27 +64,27 @@ fi
 polybar-msg cmd restart 2>/dev/null
 i3-msg reload 1>/dev/null
 
-# Interesting reason behind this
-# We don't want to send color updates to terminals inside of tmux, just tmux itself
-# This gets a list of all pts of these "bad" pseudo terminals
-bad_pts=$(ps -ef | grep "\-bash" | grep -v "tty1\|grep" | perl -lne 'print $1 if /pts\/([0-9]+)/')
-~/bin/support/refresh "$bad_pts"
+~/bin/support/refresh
 
-ln -f ~/.files/gen/colors.css ~/.files/main/www/css/colors.css
+ln -f ~/.files/gen/colors.css ~/.files/www/css/colors.css
 ln -f ~/.files/gen/colors.css ~/.files/main/.mozilla/firefox/*/chrome/colors.css
 ln -f ~/.files/gen/colors.conf ~/.config/kitty/colors.conf
 
 killall dunst
 dunst &
 
+# Retheme spotify.
+# Currently not happy enough with this to enable it.
 #if [[ -n $1 ]]; then
 #  ~/bin/support/theme-spotify >/dev/null &
 #fi
 
 {
-# Not sure why this is needed, I guess bc polybar takes some time to restart
-sleep 1
-csvpn polybar
-caffinate polybar
-notif-snooze polybar
+    # Not sure why this is needed
+    # I guess polybar takes some time to restart
+    sleep 1
+
+    csvpn polybar
+    caffinate polybar
+    notif-snooze polybar
 } &

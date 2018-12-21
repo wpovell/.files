@@ -5,7 +5,8 @@
 # Copying to the clipboard requires xclip
 
 usage() {
-    echo "    $(tput bold)menu calc$(tput sgr0)
+    prog=$(basename "$0")
+    echo "$prog
     A calculator for use with Rofi or dmenu(2)
     Basic usage:
     = 4+2
@@ -35,14 +36,18 @@ else
     exit
 fi
 
-answer=$(echo "$@" | bc -l ~/.files/misc/bc_consts | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
+answer=$(echo "$@" |
+             bc -l ~/.files/misc/bc_consts |
+             sed '/\./ s/\.\{0,1\}0\{1,\}$//')
 
 action=$(echo -e "Copy to clipboard\nClear\nClose" |
-$menu -p "= $answer")
+             $menu -p "= $answer")
 
 case $action in
-    "Clear") $0 ;;
-    "Copy to clipboard") echo -n "$answer" | xclip -selection clipboard ;;
+    "Clear")
+        $0 ;;
+    "Copy to clipboard")
+        echo -n "$answer" | xclip -selection clipboard ;;
     "Close") ;;
     "") ;;
     *) $0 "$answer $action" ;;

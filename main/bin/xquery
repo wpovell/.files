@@ -1,9 +1,42 @@
 #!/bin/bash
 
-# Greps for arg in current Xresource settings
+usage() {
+    prog=$(basename "$0")
+    echo "$prog [-hq] QUERY
+    Reports current Xresource value. Returns all that match query.
 
-if [[ "-q" = "$1" ]]; then
-    echo -n '"'$(xrdb -query | grep $2: | cut -f2)'"'
+Flags:
+    -q Quote the result and return with no newline.
+       Used by dunst.
+    -a List all variables
+    -h Show this message
+    "
+    exit
+}
+
+quote=false
+case $1 in
+    -h|--help)
+        usage
+        ;;
+    -q)
+        quote=true
+        shift
+        ;;
+    -a)
+        xrdb -query
+        exit
+        ;;
+esac
+
+if [[ -z $1 ]]; then
+   usage
+fi
+
+RES=$(xrdb -query | grep "$1:" | cut -f2)
+
+if [[ $quote = true ]]; then
+    echo -n "\"$RES\""
 else
-    xrdb -query | grep $1: | cut -f2
+    echo $RES
 fi

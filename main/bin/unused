@@ -1,9 +1,20 @@
 #!/bin/bash
 
+usage() {
+    prog=$(basename "$0")
+    echo "$prog [time]
+    Find files in the current working directory that
+    haven't been access in more than 'time' days.
+
+Args:
+    time Number of days since last access. Defaults to 10.
+    "
+}
+
 if [[ -z $1 ]]; then
    t=10
 else
    t="$1"
 fi
 
-find . ! -name . -prune ! -type d -atime +$t
+find . ! -name . -prune ! -type d -atime "+$t"

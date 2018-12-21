@@ -1,14 +1,13 @@
 #!/bin/bash
 
 DIR=""
-if [[ ! -z "$1" ]]; then
+if [[ -n "$1" ]]; then
     DIR="--directory $1"
 fi
 
 PORT="8080"
-if [[ ! -z "$2" ]]; then
+if [[ -n "$2" ]]; then
     PORT="$2"
 fi
 
-
-python -m http.server $PORT $DIRECTORY
+python -m http.server "$PORT" "$DIR"

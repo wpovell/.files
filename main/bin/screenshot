@@ -3,11 +3,12 @@
 # Takes screenshot of user selected area
 
 usage() {
-    echo "$(tput bold)screenshot$(tput sgr0)
-    screenshot [-s]
+    prog=$(basename "$0")
+    echo "$prog [-s]
+    Takes screenshot.
 
-    Takes screenshot. If -s is provided, only a selection
-    will be captured.
+Args:
+    -s Only screenshot a selection
     "
     exit
 }
@@ -15,31 +16,31 @@ usage() {
 fn="$HOME/desktop/$(date +%s).png"
 
 case $1 in
-  -h|--help) usage ;;
+    -h|--help) usage ;;
 esac
 
 if [[ $1 == "-s" ]]; then
-    maim -s > $fn
+    maim -s > "$fn"
 else
-    maim > $fn
+    maim > "$fn"
 fi
 
 {
-res=$(dunstify \
-          --action='open,Open' \
-          --action='delete,Delete' \
-          --action='copy,Copy' "Screenshot" "~$fn"\
-          --appname="Screenshot" \
-          --raw_icon="$fn"
-)
+    res=$(dunstify \
+              --action='open,Open' \
+              --action='delete,Delete' \
+              --action='copy,Copy' "Screenshot" "~$fn"\
+              --appname="Screenshot" \
+              --raw_icon="$fn"
+       )
 
-case $res in
-    open)
-        feh $fn ;;
-    delete)
-        rm $fn ;;
-    copy)
-        cat $fn | xclip -selection clipboard -t image/png
-        rm $fn
-esac
+    case $res in
+        open)
+            feh "$fn" ;;
+        delete)
+            rm "$fn" ;;
+        copy)
+            xclip -selection clipboard -t image/png < "$fn"
+            rm "$fn"
+    esac
 } &
