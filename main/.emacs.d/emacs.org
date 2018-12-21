@@ -408,6 +408,16 @@ Initialize package management
             'smarter-move-beginning-of-line)
 #+END_SRC
 
+*** Reformat Buffer
+#+BEGIN_SRC emacs-lisp
+  (defun iwb ()
+    "indent whole buffer"
+    (interactive)
+    (delete-trailing-whitespace)
+    (indent-region (point-min) (point-max) nil)
+    (untabify (point-min) (point-max)))
+  (bind-key "C-|" 'iwb)
+#+END_SRC
 *** Windows
 #+BEGIN_SRC emacs-lisp
   ;; Window management
