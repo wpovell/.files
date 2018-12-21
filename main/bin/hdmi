@@ -1,25 +1,63 @@
 #!/bin/bash
 
-# This needs to be rerun to get external keyboards to map Caps Lock -> Ctrl
-xmodmap ~/.config/Xmodmap
+usage() {
+    prog=$(basename $0)
+    echo "$prog [mirror | left | right | off | sound]
+    Utility to auto-configure HDMI.
+
+    When given no command, 'xrandr --auto' is run.
+
+Commands:
+    mirror Make secondary monitor mirror first
+    left   Make secondary monitor be left of primary
+    right  Make secondary monitor be right of primary
+    off    Turn off HDMI
+    sound  Toggle sound between HDMI and primary speakers
+    "
+    exit
+}
+
+toggle_sound() {
+    pacmd info | grep "Default sink" | grep hdmi >/dev/null
+    if [[ ! $? ]]; then
+        echo "Setting output to HDMI"
+        OUTPUT=hdmi-stereo
+    else
+        echo "Setting output to laptop"
+        OUTPUT=analog-stereo
+    fi
+
+    pactl set-card-profile 0 output:$OUTPUT
+}
 
 ARGS=(--output HDMI1 --mode 2560x1440 --auto)
 case $1 in
-"mirror")
-  xrandr --output HDMI1 "${ARGS[@]}"
-  ;;
-"left")
-  xrandr --output eDP1 --right-of HDMI1 "${ARGS[@]}"
-  ;;
-"right")
-  xrandr --output eDP1 --left-of HDMI1 "${ARGS[@]}"
-  ;;
-"off")
-  xrandr --output HDMI1 --off
-  ;;
-*)
-  xrandr --auto
-  ;;
+    -h|--help)
+        usage
+        ;;
+    "mirror")
+        xrandr --output HDMI1 "${ARGS[@]}"
+        ;;
+    "left")
+        xrandr --output eDP1 --right-of HDMI1 "${ARGS[@]}"
+        ;;
+    "right")
+        xrandr --output eDP1 --left-of HDMI1 "${ARGS[@]}"
+        ;;
+    "off")
+        xrandr --output HDMI1 --off
+        ;;
+    "sound")
+        toggle_sound
+        exit
+        ;;
+    *)
+        xrandr --auto
+        ;;
 esac
 
+# This needs to be rerun to get external keyboards to map Caps Lock -> Ctrl
+xmodmap ~/.config/Xmodmap
+
+# Restart bar to fix for new screen
 bar &

@@ -1,10 +1,10 @@
 #!/bin/bash
 
 usage() {
-    echo "$(tput bold)notif-snooze$(tput sgr0)
-    notif-snooze [polybar]
-
+    prog=$(basename "$0")
+    echo "$prog [polybar]
     Toggles whether notifications are snoozed.
+
     The polybar option is used after resets to send the appropriate ipc calls.
     "
     exit
@@ -13,25 +13,29 @@ usage() {
 FN=/tmp/notif_snooze
 
 polybar() {
-  if [[ -e $FN ]]; then
-    polybar-msg hook notif 2 2>/dev/null
-  fi
-  exit
+    if [[ -e $FN ]]; then
+        polybar-msg hook notif 2 2>/dev/null
+    fi
+    exit
 }
 
 case $1 in
-  -h|--help) usage ;;
-  polybar) polybar ;;
+    -h|--help)
+        usage
+        ;;
+    polybar)
+        polybar
+        ;;
 esac
 
 if [[ "$1" = "on" || -f $FN ]]; then
-   echo "Resuming notifications"
-   rm $FN
-   notify-send "DUNST_COMMAND_RESUME"
-   polybar-msg hook notif 1 2>/dev/null
+    echo "Resuming notifications"
+    rm $FN
+    notify-send "DUNST_COMMAND_RESUME"
+    polybar-msg hook notif 1 2>/dev/null
 else
-   echo "Snoozing notifications"
-   touch $FN
-   notify-send "DUNST_COMMAND_PAUSE"
-   polybar-msg hook notif 2 2>/dev/null
+    echo "Snoozing notifications"
+    touch $FN
+    notify-send "DUNST_COMMAND_PAUSE"
+    polybar-msg hook notif 2 2>/dev/null
 fi

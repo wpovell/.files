@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Wrapper around xdotool so it can be run over SSH easily
+
+export DISPLAY=:0.0 && xdotool

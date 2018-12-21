@@ -2,11 +2,19 @@
 
 usage() {
     prog=$(basename "$0")
-    echo "Usage: $prog [-nh] file...
-    -n Create new window for file
+    echo "$prog [-nh] FILE...
+    Wrapper around emacsclient
+
+Flags:
     -g Open in GUI emacs
-    -h Display help
+    -n Create new window for file
+       This is ignored if -g not present
+    -h Display this help message
+
+Args:
+    FILE... Files to open
     "
+    exit
 }
 
 # Create new window?
@@ -14,7 +22,7 @@ new_win=false
 # Open in gui emacs
 gui=false
 
-POSITIONAL=()
+POS=()
 while [[ $# -gt 0 ]]; do
     key="$1"
 
@@ -27,17 +35,17 @@ while [[ $# -gt 0 ]]; do
             new_win=true
             shift
             ;;
-        -h)
+        -h|--help)
             usage
-            exit 0
+            shift
             ;;
         *)
-            POSITIONAL+=("$1")
+            POS+=("$1")
             shift
             ;;
     esac
 done
-set -- "${POSITIONAL[@]}"
+set -- "${POS[@]}"
 
 opts=()
 

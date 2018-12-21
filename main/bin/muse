@@ -1,41 +1,9 @@
 #!/bin/bash
 
-# Script used to query/change music using playerctl
-
-print_music() {
-  player_status=$(playerctl status 2> /dev/null)
-  if [[ $? -eq 0 ]]; then
-      metadata="$(playerctl metadata artist) - $(playerctl metadata title)"
-  fi
-
-  # Foreground color formatting tags are optional
-  main=$(xquery color12)
-  foreground=$(xquery foreground)
-  icon="     "
-  if [[ $player_status = "Playing" ]]; then
-      out="%{F$main}$icon\t \t $metadata"       # Orange when playing
-  elif [[ $player_status = "Paused" ]]; then
-      out="%{F$foreground}$icon\t \t $metadata"       # Greyed out info when paused
-  else
-      out="%{F$foreground}$icon"                 # Greyed out icon when stopped
-  fi
-
-  echo -e $out
-}
-
-toggle_mute() {
-  if [[ $CURRENT_STATE == '[on]' ]]; then
-      amixer scontrols | grep -oE "'.*'" | awk -F\'  '{print "amixer set \""$2"\" mute"}' | sh
-  else
-        amixer scontrols | grep -oE "'.*'" | awk -F\'  '{print "amixer set \""$2"\" unmute"}' | sh
-  fi
-}
-
 usage() {
-    echo "$(tput bold)muse$(tput sgr0)
-    muse COMMAND
-
-    Simple command line client for controling music via volume dbus / amixer.
+    prog=$(basename "$0")
+    echo "$prog COMMAND
+    Command line client for controling music via volume dbus / amixer.
 
 Commands:
     toggle    Toggles play/pause
@@ -49,29 +17,83 @@ Commands:
     exit
 }
 
-CURRENT_STATE=`amixer get Master | egrep 'Playback.*?\[o' | egrep -o '\[o.+\]' | head -n 1`
+# Print music and artist with polybar formatting
+print_music() {
+    player_status=$(playerctl status 2> /dev/null)
+    if [[ $? ]]; then
+        metadata="$(playerctl metadata artist) - $(playerctl metadata title)"
+    fi
+
+    # Foreground color formatting tags are optional
+    main=$(xquery color12)
+    foreground=$(xquery foreground)
+
+    icon="  "
+    if [[ $player_status = "Playing" ]]; then
+        # Orange when playing
+        out="%{F$main} $icon $metadata"
+    elif [[ $player_status = "Paused" ]]; then
+        # Greyed out info when paused
+        out="%{F$foreground} $icon $metadata"
+    else
+        # Greyed out icon when stopped
+        out="%{F$foreground} $icon"
+    fi
+
+    echo -e "$out"
+}
+
+toggle_mute() {
+    if [[ $CURRENT_STATE == '[on]' ]]; then
+        amixer scontrols | \
+            grep -oE "'.*'" | \
+            awk -F\'  '{print "amixer set \""$2"\" mute"}' | \
+            sh
+    else
+        amixer scontrols | \
+            grep -oE "'.*'" | \
+            awk -F\'  '{print "amixer set \""$2"\" unmute"}' | \
+            sh
+    fi
+}
+
+dbus_cmd() {
+    dbus-send --print-reply \
+              --dest=org.mpris.MediaPlayer2.spotify \
+              /org/mpris/MediaPlayer2 \
+              "org.mpris.MediaPlayer2.Player.$1"
+}
+
+CURRENT_STATE=$(amixer get Master | \
+                    grep -E 'Playback.*?\[o' | \
+                    grep -Eo '\[o.+\]' | \
+                    head -n 1)
 
 case $1 in
-  -h|--help) usage ;;
-  toggle) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-  ;;
-  next) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-  ;;
-  prev) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-  ;;
-  up)
-  	if [[ $CURRENT_STATE == '[off]' ]]; then
-  	    toggle_mute
-  	fi
-  	amixer -q sset Master 3%+
-  ;;
-  down)
-  	if [[ $CURRENT_STATE == '[off]' ]]; then
-  	    toggle_mute
-  	fi
-  	amixer -q sset Master 3%-
-  ;;
-  mute) toggle_mute ;;
-  bar) print_music ;;
-  *) usage ;;
+    -h|--help)
+        usage ;;
+    toggle)
+        PlayPause ;;
+    next)
+        dbus_cmd Next ;;
+    prev)
+        dbus_cmd Previous ;;
+    up)
+  	    if [[ $CURRENT_STATE == '[off]' ]]; then
+  	        toggle_mute
+  	    fi
+  	    amixer -q sset Master 3%+
+        ;;
+    down)
+  	    if [[ $CURRENT_STATE == '[off]' ]]; then
+  	        toggle_mute
+  	    fi
+  	    amixer -q sset Master 3%-
+        ;;
+    mute)
+        toggle_mute ;;
+    bar)
+        print_music ;;
+    *)
+        usage ;;
 esac

@@ -1,10 +1,22 @@
 #!/bin/bash
 
+usage() {
+    prog=$(basename "$0")
+    echo "$prog
+    Put STDIN into an emacs buffer, printing the result to STDOUT.
+    "
+    exit
+}
+
+if [[ -n $1 ]]; then
+    usage
+fi
+
 tty="/dev/$(ps -o tty= -p $$)"
 
 temp_file=$(mktemp)
 
-[ ! -t 0 ] && cat > $temp_file
-emacsclient -c -t -s term $temp_file <$tty >$tty && cat $temp_file
+[ ! -t 0 ] && cat > "$temp_file"
+emacsclient -c -t -s term "$temp_file" <"$tty" >"$tty" && cat "$temp_file"
 
-rm $temp_file
+rm "$temp_file"

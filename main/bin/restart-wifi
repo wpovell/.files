@@ -17,5 +17,5 @@ else
 
     netctl stop-all
     ip link set wlp4s0 down
-    netctl start $network
+    netctl start "$network"
 fi

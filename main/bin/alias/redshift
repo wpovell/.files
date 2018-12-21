@@ -1,4 +1,5 @@
 #!/bin/bash
 
+# Start up geoclue so redshift can locate itself
 /usr/lib/geoclue-2.0/demos/agent &
 /usr/bin/redshift

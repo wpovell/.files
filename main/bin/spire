@@ -2,5 +2,5 @@
 
 # Starts Slay the Spire, without having to launch Steam
 
-export LD_LIBRARY_PATH=~/.steam/bin32/ ~/.steam/bin32/steam-runtime/run.sh
-.steam/steam/steamapps/common/SlayTheSpire/SlayTheSpire
+export LD_LIBRARY_PATH=~/.steam/bin32/
+~/.steam/bin32/steam-runtime/run.sh .steam/steam/steamapps/common/SlayTheSpire/SlayTheSpire

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+usage() {
+    prog=$(basename "$0")
+    echo "$prog
+    Wrapper around keypass that opens default db.
+    "
+    exit
+}
+
+if [[ -n $1 ]]; then
+    usage
+fi
+
+keepassxc ~/files/pass.kdbx >/dev/null 2>&1 &

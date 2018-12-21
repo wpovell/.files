@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# Wrapper around dropbox so it doesn't create files in my home directory
+
 export HOME=/home/wpovell/.dropbox
 if command -v dropbox-cli >/dev/null 2>&1; then
-  dropbox-cli $@
+  dropbox-cli "$@"
 else
-  dropbox $@
+  dropbox "$@"
 fi

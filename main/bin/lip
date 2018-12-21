@@ -3,7 +3,8 @@
 # Outputs current local ip
 
 usage() {
-    echo "$(tput bold)lip$(tput sgr0)
+    prog=$(basename "$0")
+    echo "$prog
     Prints current local ip
     "
     exit

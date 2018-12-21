@@ -1,0 +1,15 @@
+#!/bin/bash
+
+usage() {
+    prog=$(basename "$0")
+    echo "$prog
+    Get external IP.
+    "
+    exit
+}
+
+if [[ -z $1 ]]; then
+   curl -s checkip.dyndns.org | sed 's/[^0-9.]//g'
+else
+    usage
+fi

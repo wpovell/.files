@@ -3,12 +3,15 @@
 # Command run by alarm
 # Makes alarm sound + spawns dunst notif
 
+if [[ $1 = true ]]; then
+    mpg123 /home/wpovell/.files/misc/alarm.mp3 &
+fi
 
-mpg123 /home/wpovell/.files/misc/alarm.mp3 &
 # Send pushbullet to phone
-pb -d 0 "ALARM: $1"
+pb -d 0 "ALARM: $2"
+
 pid=$!
-result=$(dunstify -A kill,Stop "ALARM" "$1")
+result=$(dunstify -A kill,Stop "ALARM" "$2")
 if [ "$result" == "kill" ]
 then
     kill $pid

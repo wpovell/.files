@@ -40,7 +40,6 @@ for_window [class="feh"] floating enable
 bindsym $mod+$alt+s sticky toggle
 
 # Default to floating
-for_window [class="MPlayer"] floating enable
 for_window [class="keepassxc"] floating enable
 for_window [title="QEMU"] floating enable
 

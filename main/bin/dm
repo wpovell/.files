@@ -1,7 +1,0 @@
-#!/bin/bash
-export PATH="${PATH//\/home\/wpovell\/bin\/alias:}"
-if command -v rofi >/dev/null 2>&1; then
-  rofi -show run
-else
-  dmenu_run
-fi

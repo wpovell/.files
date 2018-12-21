@@ -1,19 +1,16 @@
 #!/bin/bash
 
-# Connects to browncs vpn
-
 usage() {
-    echo "$(tput bold)csvpn$(tput sgr0)
-    csvpn [kill | status]
-
+    prog=$(basename "$0")
+    echo "$prog [kill | status]
     Script to connect to Brown CS vpn.
 
     If no command passed, will toggle the vpn.
 
-    Commands:
-        kill      Will stop the vpn, regardless of its current state.
-        status    Prints the status of vpn.
-        polybar   Sends appropriate ipc to polybar (used when polybar is restart)
+Commands:
+    kill      Will stop the vpn, regardless of its current state.
+    status    Prints the status of vpn.
+    polybar   Sends appropriate ipc to polybar (used when polybar is restart)
     "
     exit
 }

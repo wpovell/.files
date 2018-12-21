@@ -1,14 +1,30 @@
 #!/bin/bash
 
-cur=$(xbacklight -get)
-if [[ -z $1 ]]; then
-  echo $cur
-  exit
+usage() {
+    prog=$(basename "$0")
+    echo "$prog [+|-]
+    Adjusts screen brightness
+
+Commands:
+    - Reduce brightness by a step
+    + Increase brightness by a step
+    "
+    exit
+}
+
+cmp() {
+    [ "$(bc <<< "$1")" == "1" ]
+}
+
+if [[ "$1" = "-h" ]]; then
+    usage
 fi
 
-function cmp {
- [ $(bc <<< $1) == "1" ]
-}
+cur=$(xbacklight -get)
+if [[ -z $1 ]]; then
+  echo "$cur"
+  exit
+fi
 
 if [[ $1 == "-" ]]; then
    if cmp "$cur > 10"; then

@@ -1,3 +1,5 @@
 #!/bin/bash
 
+# Wrapper around whatever locker I'm using
+
 physlock -m

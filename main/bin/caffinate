@@ -1,11 +1,8 @@
 #!/bin/bash
 
-# Script to prevent sleep/lock while fullscreen
-
 usage() {
-    echo "$(tput bold)caffinate$(tput sgr0)
-    caffinate [COMMAND]
-
+    prog=$(basename "$0")
+    echo "$prog [COMMAND]
     Script used to prevent me having to unlock my screen while watching youtube vids.
 
     If no command is passed, will disable autolocker if currently in fullscreen.
@@ -35,7 +32,7 @@ esac
 
 systemctl --user import-environment DISPLAY XAUTHORITY
 
-if which dbus-update-activation-environment >/dev/null 2>&1; then
+if command -v dbus-update-activation-environment >/dev/null 2>&1; then
         dbus-update-activation-environment DISPLAY XAUTHORITY
 fi
 

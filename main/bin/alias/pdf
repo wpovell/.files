@@ -1,3 +1,5 @@
 #!/bin/bash
-zathura $@ 2>&1 >/dev/null &
-disown
+
+# Wrapper around my default pdf viewer
+
+zathura "$@" >/dev/null 2>&1 &

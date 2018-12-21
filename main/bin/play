@@ -1,3 +1,48 @@
 #!/bin/bash
 
-mplayer "$@" -af scaletempo 2>&1 1>/dev/null &
+usage() {
+    prog=$(basename "$0")
+    echo "$prog [-h] [-b BOOST] [VIDEO]
+    Wrapper around mplayer.
+
+Flags:
+    -h       Show this message
+    -b BOOST Boost video sound by given dB
+
+Args:
+    VIDEO Video to play
+          If no video given, reads from STDIN
+    "
+    exit
+}
+
+# Always scale tempo bc I like speeding up videos
+opts=(-af-add scaletempo)
+
+POS=()
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        -h|--help)
+            usage
+            shift
+            ;;
+        -b)
+            shift
+            opts+=(-af-add "volume=$1")
+            shift
+            ;;
+        *)
+            POS+=("$1")
+            shift
+            ;;
+    esac
+done
+set -- "${POS[@]}"
+
+if [[ -n $1 ]]; then
+    exec mplayer "$1" "${opts[@]}" 1>/dev/null 2>&1 &
+else
+    exec mplayer "${opts[@]}" -cache 8192 -
+fi

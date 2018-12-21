@@ -1,6 +1,19 @@
 #!/bin/bash
-# Preprocess for LESS, makes it highlight syntax
-# Requires Pygments
+
+usage() {
+    prog=$(basename "$0")
+    echo "$prog FILE
+    Syntax highlights file using pygments. Falls back to cat.
+
+Args:
+    FILE File to highlight
+    "
+    exit
+}
+
+if [[ $1 = "-h" ]]; then
+    usage
+fi
 
 pygmentize "$1" 2>/dev/null
 if [[ $? -eq 1 ]]; then

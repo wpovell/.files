@@ -1,6 +1,16 @@
 #!/bin/bash
 
-PKG_PATH=~/.packages
+usage() {
+    prog=$(basename "$0")
+    echo "$prog PKG
+    Installs package and makes a record of it.
+
+Args:
+    PKG Package to install
+    "
+}
+
+PKG_PATH=~/.files/packages/$HOSTNAME
 
 set -e
 
@@ -11,9 +21,9 @@ fi
 
 
 if hash yay 2>/dev/null; then
-  yay -S $1
+  yay -S "$1"
 else
-  pacman -S $1
+  pacman -S "$1"
 fi
 
-grep -q -F "$1" $PKG_PATH 2>/dev/null || echo "$1" >> $PKG_PATH
+grep -q -F "$1" "$PKG_PATH" 2>/dev/null || echo "$1" >> "$PKG_PATH"

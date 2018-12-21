@@ -3,9 +3,7 @@
 # Edits given command arg
 
 usage() {
-    echo "$(tput bold)editcmd$(tput sgr0)
-    editcmd SCRIPT
-
+    echo "ecmd SCRIPT
     Opens the script passed in emacs. Script must be under ~/bin to be found.
     "
 }
@@ -19,17 +17,17 @@ if [[ -z $1 ]]; then
   exit
 fi
 
-FILE=$(find -L ~/bin/ -name `basename $1`)
+FILE=$(find -L ~/bin/ -name "$(basename "$1")")
 if [[ -e $FILE ]]; then
-  emacs -nw $FILE
+  emacs -nw "$FILE"
 else
   echo "ERROR: No such script '$1'"
   echo -n "Create script? [y/n] "
-  read ans
+  read -r ans
   if [[ "$ans" = "y" ]]; then
     FILE="$HOME/bin/$1"
-    touch $FILE
-    chmod +x $FILE
-    emacs -nw $FILE
+    touch "$FILE"
+    chmod +x "$FILE"
+    emacs -nw "$FILE"
   fi
 fi

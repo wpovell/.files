@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+
+import argparse
+
+ART = {
+    'moose': r'''
+          _       _
+         ) \     /_(
+          )_`-)-_(_
+           `,' `__,)
+          _/   ((
+ ______,-'    )
+(            ,
+ \  )    (   |
+/| /`_____` /|
+\ \        / |
+|\|\      /| |\
+''',
+
+  'whale': r'''
+     .-'
+ '--./ /     _.---.
+ '-,  (__..-'       \
+    \          {c1}.{r}     |
+     ',.__.   ,__.--/
+       '._/_.'___.-'
+''',
+
+  'mouse': r'''
+ /\_/\
+/     \
+\ {c1}x{r} {c1}x{r} /
+>>   <<
+  \ /
+''',
+
+  'lambda': r'''
+  _ __
+ /_/_ \
+   \_\ \
+   / /  \
+  / / /\ \
+ / / /\ \ \_
+/_/_/  \_\_/
+''',
+
+  'tux': r'''{c1}
+    ---
+   ({r}.•{c1} |
+   ({c2}<>{c1} |
+  / {r}__{c1}  \
+ ( {r}/  \{c1} /|
+{c2}_{c1}/\ {r}--){c1}/{c2}_{c1})
+{c2}\/{c1}-____{c2}\/
+''',
+
+  'parrot': '''{c1}
+     _
+    /{r}•{c2}>{c1}
+   /)\\|
+  // /
+ /'{c2}" "{c1}
+/`
+''',
+
+  'rose': r'''
+    {c1}.--.---.
+   ( \'--'/ )
+  ( '..-...' )
+   '.'-._.'.'
+    {c2}<'-.,.->
+       `\(   _
+        < \ / \
+       __ \\|_/
+      /  \ \\
+       '--'.\ >
+             \\
+''',
+
+  'willow': '''{c1}
+           &&
+          &&&&&
+        &&&{c2}\/{c1}& &&&
+       &&{c2}|,/  |/{c1}& &&
+        &&{c2}/   /  /_{c1}&  &&{c2}
+          \  {{  |_____/_{c1}&{c2}
+          {{  / /          {c1}&&&{c2}
+          `, \{{___________/_{c1}&&{c2}
+           }} }}{{       \\
+           }}{{{{         \\____{c1}&{c2}
+          {{}}{{           `{c1}&{c2}\{c1}&&{c2}
+          {{{{}}             {c1}&&{c2}
+    , -=-~{{ .-^- _
+          `}}
+           {{
+''',
+
+    'cross': r'''
+/_/\/\
+\_\  /
+/_/  \
+\_\/\ \
+   \_\/
+'''
+}
+
+COLORS = {
+    'c2': '\033[37m',
+    'c1': '\033[31m',
+    'r':  '\033[0m',
+}
+
+def print_art(name, color):
+    '''Print out particular ascii art'''
+    if name not in ART:
+        print(f'"{name}" not found. Choose from the following:')
+        print(' '.join(ART.keys()))
+        return
+
+    art = ART[name]
+    if color:
+        print(art.format(**COLORS) + COLORS['r'])
+    else:
+        print(art.format(**{k: '' for k in COLORS}))
+
+parser = argparse.ArgumentParser(description="ascii art printer")
+parser.add_argument("-n", action='store_false', help="don't add color")
+parser.add_argument("name", help="name of ascii art to print")
+
+args = parser.parse_args()
+
+if args.name == 'all':
+    for v in ART.values():
+        print_art(v, args.n)
+elif args.name == 'list':
+    print('\n'.join(ART.keys()))
+else:
+    print_art(args.name, args.n)

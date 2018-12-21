@@ -1,5 +1,16 @@
 #!/bin/bash
 
-git branch -r | grep -v '\->' | while read remote; do
+usage() {
+    echo "git-get
+    Pull all branches from remote.
+    "
+    exit
+}
+
+if [[ $1 = -h ]]; then
+    usage
+fi
+
+git branch -r | grep -v '\->' | while read -r remote; do
     git branch --track "${remote#origin/}" "$remote" 2>/dev/null
 done

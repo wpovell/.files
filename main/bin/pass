@@ -1,130 +1,162 @@
 #!/bin/bash
 
-if [[ "$(ps -o comm= $PPID)" == "systemd" && -z $1 ]]; then
-  set -- rofi
-fi
-
 DATABASE=~/files/pass.kdbx
 TIMEOUT=15
 CACHE=~/.cache/passwords.cache
 
 usage() {
-    echo "$(tput bold)pass$(tput sgr0)
-    pass [rofi] ENTRY
-
+    prog=$(basename "$0")
+    echo "$prog [rofi] ENTRY
     Wrapper around xkeepassxc-cli.
 
-    Commands:
-        rofi    Produces rofi prompt rather than cli
+Commands:
+    rofi    Produces rofi prompt rather than cli
     "
     exit
 }
 
 copy_pass() {
-    echo $password | keepassxc-cli clip $DATABASE "$1" $TIMEOUT >/dev/null &
+    echo "$password" | \
+        keepassxc-cli clip $DATABASE "$1" $TIMEOUT >/dev/null &
 }
 
 ls_all() {
     local RES subgroups
-    RES=$(echo $password | keepassxc-cli ls $DATABASE $1)
-    subgroups=$(echo "$RES" | grep "/$" | grep -v "Recycle Bin")
-    RES=$(echo "$RES" | grep -v "/$" | tail -n +2)
+    RES=$(echo "$password" | \
+              keepassxc-cli ls $DATABASE "$1")
+
+    subgroups=$(echo "$RES" | \
+                    grep "/$" | \
+                    grep -v "Recycle Bin")
+
+    RES=$(echo "$RES" | \
+              grep -v "/$" | \
+              tail -n +2)
 
     if [[ -n $subgroups && -z $1 ]]; then
-      while read i; do
-        ls_all "$i"
-      done <<< "$subgroups"
+        while read -r i; do
+            ls_all "$i"
+        done <<< "$subgroups"
     fi
 
-    echo "$RES"
+    while read -r i; do
+        echo "$1$i"
+    done <<< "$RES"
 }
 
 # Suppress all stderr
 exec 2<&-
 
 if [[ -z $1 || "$1" = "-h" || "$1" = "--help" ]]; then
-  usage
-  exit
+    usage
+    exit
 fi
+
 
 if [[ "$1" = "rofi" ]]; then
-  password=$(rofi -dmenu -password -p pass -l 0)
-  # Exit on escape  
-  if [[ $? -ne 0 ]]; then
-    exit
-  fi
+    # Get password with rofi
+    password=$(rofi -dmenu -password -p pass -l 0)
+
+    # Exit on escape
+    if [[ ! $? ]]; then
+        exit
+    fi
 else
-  echo -n "Password: "
-  read -s password
-  echo
+    # Read password from term
+    echo -n "Password: "
+    read -rs password
+    echo
 fi
 
-RESULTS=$(echo $password | keepassxc-cli locate $DATABASE $1)
-if [[ $? -ne 0 ]]; then
-  echo "Bad password"
-  if [[ "$1" = "rofi" ]]; then
-    rofi -e "Bad password"
-  fi
-  exit
+# Check password
+echo "$password" | keepassxc-cli ls $DATABASE >/dev/null
+if [[ $? = 1 ]]; then
+    echo "Bad password"
+    if [[ "$1" = "rofi" ]]; then
+        rofi -e "Bad password"
+    fi
+    exit
 fi
 
 if [[ "$1" == "rofi" ]]; then
-  if [[ -f $CACHE ]]; then
-    RESULTS=$(cat $CACHE | rofi -dmenu -i -p pass)
-  else
-    RESULTS=$(ls_all | rofi -dmenu -i -p pass)
-  fi
-  if [[ $? -ne 0 ]]; then
-    exit
-  fi
-  
-  RESULTS=$(echo $password | keepassxc-cli locate $DATABASE $RESULTS)  
-fi
+    # Display options to user
+    if [[ -f $CACHE ]]; then
+        RESULTS=$(rofi -dmenu -i -p pass < $CACHE)
 
-RESULTS=$(echo "$RESULTS" | tail -n +2 | grep -v "Recycle Bin\|No results for that search term")
-
-N=$(echo "$RESULTS" | wc -l)
-
-if [[ -z $RESULTS ]]; then
-  echo "No password found"
-  if [[ "$1" = "rofi" ]]; then
-    rofi -e "No password found"
-  fi
-  exit
-elif [[ $N -eq 1 ]]; then
-  copy_pass "$RESULTS"
-else
-  echo "Multiple matches"
-
-  if [[ "$1" = "rofi" ]]; then
-    RESULTS=$(echo "$RESULTS" | rofi -dmenu -p pass -no-custom)
-    if [[ $? -ne 0 ]]; then
-      exit
+        # Async refresh cache in case something has changed
+        ls_all | \
+            sort | \
+            uniq > $CACHE &
+    else
+        RESULTS=$(ls_all | rofi -dmenu -i -p pass)
     fi
-  else  
-    c=0
-    while read i; do
-      ((c++))
-      echo "$c) $i"
-    done <<< "$RESULTS"
-    echo -n "Choice: "
-    read choice
-    RESULTS=$(sed -n ${choice}p <<< "$RESULTS")
-  fi
 
-  copy_pass "$RESULTS"
-fi
+    # Exit if something went wrong
+    if [[ ! $? ]]; then
+        exit
+    fi
 
-if [[ $? -eq 0 ]]; then
-  echo "Copied password for \"$RESULTS\""
-  if [[ "$1" = "rofi" ]]; then
-    notify-send "pass" "Password for \"$RESULTS\" copied."
-  fi
+    # Try to copy as is rather than fuzzy search
+    done=false
+    echo "$password" | keepassxc-cli clip $DATABASE "$RESULTS" >/dev/null
+    if [[ $? ]]; then
+        done=true
+    else
+        # Get password to return
+        RESULTS=$(echo "$password" | \
+                      keepassxc-cli locate $DATABASE "$RESULTS")
+    fi
 else
-  echo "Faield to copy password for \"$RESULTS\""
-  if [[ "$1" = "rofi" ]]; then
-    rofi -e "Faield to copy password for \"$RESULTS\""
-  fi
+    # List options for cmdline arg
+    RESULTS=$(echo "$password" | keepassxc-cli locate $DATABASE "$1")
 fi
 
-ls_all | sort | uniq > $CACHE &
+# Skip if we've already successfully copied a password
+if [[ $done = false ]]; then
+    RESULTS=$(echo "$RESULTS" | \
+                  tail -n +2 | \
+                  grep -v "Recycle Bin\|No results for that search term")
+    N=$(echo "$RESULTS" | wc -l)
+
+    if [[ -z $RESULTS ]]; then
+        echo "No password found"
+        if [[ "$1" = "rofi" ]]; then
+            rofi -e "No password found"
+        fi
+        exit
+    elif [[ $N -eq 1 ]]; then
+        copy_pass "$RESULTS"
+    else
+        echo "Multiple matches"
+
+        if [[ "$1" = "rofi" ]]; then
+            RESULTS=$(echo "$RESULTS" | rofi -dmenu -p pass -no-custom)
+            if [[ ! $? ]]; then
+                exit
+            fi
+        else
+            c=0
+            while read -r i; do
+                ((c++))
+                echo "$c) $i"
+            done <<< "$RESULTS"
+            echo -n "Choice: "
+            read -r choice
+            RESULTS=$(sed -n "${choice}p" <<< "$RESULTS")
+        fi
+
+        copy_pass "$RESULTS"
+    pfi
+fi
+
+if [[ $? ]]; then
+    echo "Copied password for \"$RESULTS\""
+    if [[ "$1" = "rofi" ]]; then
+        notify-send "pass" "Password for \"$RESULTS\" copied."
+    fi
+else
+    echo "Faild to copy password for \"$RESULTS\""
+    if [[ "$1" = "rofi" ]]; then
+        rofi -e "Faield to copy password for \"$RESULTS\""
+    fi
+fi

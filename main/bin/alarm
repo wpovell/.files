@@ -1,21 +1,57 @@
 #!/bin/bash
 
-# Script to play alarm sound + show notif at given time
-
 usage() {
-    echo "$(tput bold)alarm$(tput sgr0)
-    alarm <MESSAGE> <TIME_INFO...>
+    prog=$(basename "$0")
+    echo "$prog [-nl] [-m MSG] TIME_INFO
+    Plays alarm sound and shows notif with at given time.
 
-    Plays alarm sound and shows dunst notif with given message at given time.
-    TIME_INFO param should be in some format at accepts.
+Flags:
+    -n     Don't play alarm
+    -l     List current alarms
+    -m MSG Message to display in notification
+
+Args:
+    TIME_INFO Timespec at accepts
     "
     exit
 }
 
-case $1 in
-    -h|--help) usage ;;
-esac
+POS=()
+sound=true
+msg=""
+while [[ $# -gt 0 ]]; do
+    key="$1"
 
+    case $key in
+        -h|--help)
+            usage
+            shift
+            ;;
+        -n)
+            sound=false
+            shift
+            ;;
+        -l)
+            at -l
+            exit
+            ;;
+        -m)
+            shift
+            msg=$1
+            shift
+            ;;
+        *)
+            POS+=("$1")
+            shift
+            ;;
+    esac
+done
+set -- "${POS[@]}"
 
+# Start atd if not already started
 sudo atd
-echo "$HOME/bin/support/_alarm $2" | at "now + $1"
+
+# Schedule
+echo "$HOME/bin/support/_alarm $sound $msg" | \
+    at "$@" 2>&1 | \
+    grep -v warning

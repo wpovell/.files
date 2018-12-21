@@ -1,4 +1,25 @@
 #!/bin/bash
 
+usage() {
+    prog=$(basename "$0")
+    echo "$prog
+    Script to restart emacs gui and terminal daemons.
+    "
+    exit
+}
+
+if [[ -n $1 ]]; then
+    usage
+fi
+
 killall -9 -q emacs
-~/bin/support/start-emacs &
+
+{
+    emacs --daemon=gui 2>/dev/null
+    echo "Restarted GUI"
+}&
+
+{
+    emacs --daemon=term 2>/dev/null
+    echo "Restarted NW"
+}&

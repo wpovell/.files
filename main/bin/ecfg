@@ -1,8 +1,7 @@
 #!/sbin/fish
 
 function usage
-    echo "editcfg [program]
-
+    echo "ecfg [-h] [list | <program>]
     Opens the given program's config for editing.
     "
     exit
@@ -51,6 +50,13 @@ switch $argv[1]
         set F ~/.Xresources.d/urxvt
     case rofi
         set F ~/.Xresources.d/rofi
+    case list
+        cat ~/bin/ecfg | \
+        grep case | \
+        tr -s ' ' | \
+        cut -d' ' -f3 | \
+        grep -v '\-h\|"'
+        exit
     case "*"
         echo "No such config file '$argv[1]'"
         exit 1
