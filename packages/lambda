@@ -124,3 +124,5 @@ rustup
 traceroute
 perf
 xorg-server-xephyr
+notmuch
+alacritty
