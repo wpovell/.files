@@ -14,12 +14,8 @@ fi
 
 killall -9 -q emacs
 
-{
-    emacs --daemon=gui 2>/dev/null
-    echo "Restarted GUI"
-}&
+emacs --daemon=term 2>/dev/null
+echo "Restarted NW"
 
-{
-    emacs --daemon=term 2>/dev/null
-    echo "Restarted NW"
-}&
+emacs --daemon=gui 2>/dev/null
+echo "Restarted GUI"
