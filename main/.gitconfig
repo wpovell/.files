@@ -20,6 +20,7 @@
   sd = stash drop
 
   ch = checkout
+  nb = checkout -b
   m  = checkout master
   mg = merge
   b  = branch
