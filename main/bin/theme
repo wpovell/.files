@@ -3,6 +3,7 @@ from pathlib import Path
 import yaml
 import pystache
 import sys
+from subprocess import call
 
 def load_theme(fn):
     with open(fn) as f:
@@ -28,20 +29,23 @@ def render(fn, theme):
     return pystache.render(template, theme)
 
 def generate(theme):
-    template_root = Path("~/.files/template").expanduser()
-    dest_root = Path("~/.files/gen").expanduser()
-    for fn in filter(Path.is_file, template_root.glob("**/*")):
+    for fn in filter(Path.is_file, template_root.glob('**/*')):
         dest = Path(str(fn)
                     .replace(str(template_root),
                              str(dest_root), 1))
         dest.parent.mkdir(parents=True, exist_ok=True)
         with open(dest, 'w') as f:
             f.write(render(fn, theme))
+def set_bg(theme):
+    call(f'xsetroot -solid #{theme["base00-hex"]}'.split())
 
-theme_root = Path("~/.files/themes")
+template_root = Path('~/.files/template').expanduser()
+dest_root = Path('~/.files/gen').expanduser()
+theme_root = Path('~/.files/themes')
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("Please provide a theme name")
+        print('Please provide a theme name')
         sys.exit(1)
 
     arg = sys.argv[1]
@@ -51,8 +55,9 @@ if __name__ == '__main__':
     theme_fn = (theme_root / arg).expanduser()
     if not theme_fn.exists():
         print(theme_fn)
-        print("Theme does not exist")
+        print('Theme does not exist')
         sys.exit(1)
 
     theme = load_theme(theme_fn)
     generate(theme)
+    set_bg(theme)
