@@ -1,8 +1,8 @@
-#!/bin/bash -e
+#!/bin/bash
 
 usage() {
     prog=$(basename "$0")
-    echo "$prog [-hd] all | TARGETS...
+    echo "$prog [-hdpf] list | all | TARGETS...
     Set up symlinks for dotfiles.
     Note: Some targets may require root
 
@@ -14,10 +14,14 @@ Args:
 Flags:
     -h Display this help message
     -d Only do a dry-run
+    -p Prune broken sym-links from home directory
+       This flag may be used without a target
+    -f Unlink files before linking
     "
     exit
 }
 
+# Check if item is in list
 contains() {
     local list="$1"
     local item="$2"
@@ -30,16 +34,48 @@ contains() {
     return $result
 }
 
-targets=(const gen root)
-POS=()
+# Prune broken sym-links from home directory
+prune_broken() {
+    if [[ $dry = true ]]; then
+        echo "This is a dry run. Would prune the following links:"
+        nlinks=$(find ~ -xtype l 2>/dev/null | tee /dev/stderr | wc -l)
+        if [[ $nlinks = 0 ]]; then
+            echo "( No links would be pruned )"
+        fi
+    else
+        deleted=$(find ~ -xtype l -exec echo {} \; -delete 2>/dev/null | wc -l)
+        if [[ -z $deleted ]]; then
+            echo "Pruned 0 dead links"
+        else
+            echo "Pruned $deleted dead links"
+        fi
+    fi
+    echo
+}
+
+targets=(main gen root)
+
+# Flags
 root=false
 dry=false
 all=false
+prune=false
+force=false
+
+POS=()
 while [[ $# -gt 0 ]]; do
     case $1 in
         -h|--help) usage ;;
         -d)
             dry=true
+            shift
+            ;;
+        -p)
+            prune=true
+            shift
+            ;;
+        -f)
+            force=true
             shift
             ;;
         all)
@@ -67,27 +103,42 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# ALL
 if [[ $all = true ]]; then
     POS=("${targets[@]}")
 fi
 
+# Zero targets
 if [[ ${#POS[@]} -eq 0 ]]; then
-    usage
+    if [[ $prune = true ]]; then
+        prune_broken
+        exit
+    else
+        usage
+    fi
 fi
 
+# Root target must be run as root
 if [[ $root = true && $EUID -ne 0 ]]; then
     echo "This script must be run as root"
     exit 1
 fi
 
+# Prune
+if [[ $prune = true ]]; then
+    prune_broken
+fi
+
+# Store correct user, regardless of sudo
 if [[ -n $SUDO_USER ]]; then
     USR=$SUDO_USER
 else
     USR=$USER
 fi
 
+# Prompt if not a dry run
 if [[ $dry = false ]]; then
-    echo "This is not a dry run, sym-links will be created."
+    echo -e "This is not a dry run, sym-links will be created/deleted.\n"
     while true; do
         read -rp "Do you wish to proceed? " yn
         case $yn in
@@ -97,29 +148,63 @@ if [[ $dry = false ]]; then
         esac
     done
 else
-    echo "This is a dry run, no links will be created."
+    echo -e "This is a dry run, no links will be created.\n"
 fi
 
-echo
-
 LINK_HOME="/home/$USR"
-for target in "${POS[@]}"; do (
+
+# Loop over targets
+for target in "${POS[@]}"; do
+    # cd to target
     SRC_ROOT="$LINK_HOME/.files/$target"
-    cd "$SRC_ROOT"
+    cd "$SRC_ROOT" || exit
+
     echo "== $target =="
+
+    # Set root of target
     if [[ $target = root ]]; then
         DST_ROOT=""
     else
         DST_ROOT="$LINK_HOME"
     fi
-    find . -type f | while read -r file; do
-        src="$SRC_ROOT/$target/${file:2}"
-        dst="$DST_ROOT/${file:2}"
-        echo "$target/${file:2} =->= $dst"
 
-        if [[ $dry = false ]]; then
-            ln -sf "$src" "$dst"
-        fi
-    done | column -t -s'='
-)
+    # Loop over all files in target
+    find . -type f |
+        while read -r file; do
+            src="$SRC_ROOT/${file:2}"
+            dst="$DST_ROOT/${file:2}"
+
+            # Skip if already linked to dst
+            cur=$(readlink "$dst")
+            if [[ $cur = "$src" ]]; then
+                continue
+            fi
+
+            # Pretty print new link we're creating
+            psrc=${src/"$LINK_HOME"/'~'}
+            pdst=${dst/"$LINK_HOME"/'~'}
+            echo "$psrc &->& $pdst"
+
+            if [[ $dry = false ]]; then
+                # Only link over a existing file if force
+                if [[ -e $dst ]]; then
+                    if [[ $force = true ]]; then
+                        unlink "$dst"
+                    else
+                        echo "File exists, skipping $dst"
+                    fi
+                fi
+
+                # Make necessary directories and link
+                mkdir -p "$(dirname "$dst")"
+                ln -sf "$src" "$dst"
+            fi
+        done |
+        column -t -s'&' | # Format nicely into columns
+        tee /dev/stderr | # Output table to stderr
+        wc -l |           # Talley up how many links we made
+        tr -d '\n'        # Remove the newline
+    echo -e " files linked\n"
 done
+
+echo "All done!"
