@@ -6,8 +6,19 @@ from pathlib import Path
 import yaml
 import pystache
 
-def load_theme(fn):
-    '''Load theme from `fn`.'''
+def load_theme(theme_name):
+    '''Load theme from name.'''
+
+    if not theme_name.endswith('.yaml'):
+        theme_name += '.yaml'
+
+
+    fn = (theme_root / theme_name)
+    if not fn.exists():
+        print('Theme does not exist')
+        sys.exit(1)
+
+
     with open(fn) as f:
         data = yaml.load(f)
 
@@ -46,6 +57,12 @@ def generate(theme):
         with open(dest, 'w') as f:
             f.write(render(fn, theme))
 
+def refresh(theme):
+    home = os.environ['HOME']
+    call(f'{home}/bin/support/refresh {theme["base01-hex"]}'.split(),
+         stdout=DEVNULL,
+         stderr=STDOUT)
+
 template_root = Path('~/.files/template').expanduser()
 dest_root = Path('~/.files/gen').expanduser()
 theme_root = Path('~/.files/themes').expanduser()
@@ -62,25 +79,13 @@ if __name__ == '__main__':
         print(f'Current theme:    {cur_theme}')
         themes = ' '.join(map(lambda x: x.stem, theme_root.glob('*')))
         print('Available themes: {}'.format(themes))
-        sys.exit(1)
+        theme = load_theme(cur_theme)
+    else:
+        arg = sys.argv[1]
+        theme = load_theme(arg)
+        generate(theme)
 
-    arg = sys.argv[1]
-    if not arg.endswith('.yaml'):
-        arg += '.yaml'
+        with open(cur_fn, 'w') as f:
+            f.write(arg)
 
-    theme_fn = (theme_root / arg)
-    if not theme_fn.exists():
-        print(theme_fn)
-        print('Theme does not exist')
-        sys.exit(1)
-
-    theme = load_theme(theme_fn)
-    generate(theme)
-
-    home = os.environ['HOME']
-    call(f'{home}/bin/support/refresh {theme["base01-hex"]}'.split(),
-         stdout=DEVNULL,
-         stderr=STDOUT)
-
-    with open(cur_fn, 'w') as f:
-        f.write(arg.replace('.yaml', ''))
+    refresh(theme)
