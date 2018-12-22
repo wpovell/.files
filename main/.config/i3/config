@@ -100,7 +100,6 @@ set  $igap 10
 gaps inner $igap
 gaps outer 0
 
-smart_gaps    on
 smart_borders on
 
 # Drag floating windows

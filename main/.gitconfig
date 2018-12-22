@@ -12,6 +12,7 @@
   ca = commit -am
   cm = commit -m
   c  = commit
+  uc = reset HEAD^
 
   st = stash
   sp = stash pop
@@ -22,6 +23,7 @@
   ch = checkout
   nb = checkout -b
   m  = checkout master
+
   mg = merge
   b  = branch
   r  = reset
@@ -32,11 +34,12 @@
   pf = push -f
   pl = pull
 
-  shallow = clone --depth 1
-  amend = commit --amend
-  ammend = commit --amend
+  shallow  = clone --depth 1
   uncommit = reset HEAD^
-  ls = ls-files
+  ls       = ls-files
 
-  get = !~/bin/support/git-get
+  amend  = commit --amend
+  ammend = commit --amend
+
+  get  = !~/bin/support/git-get
   open = !em -g `~/bin/support/git-open`
