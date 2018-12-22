@@ -1,37 +1,39 @@
 # Custom Stuff
 set $mod Mod4
 set $alt Mod1
-set $HOME $HOME
+set $SUP $HOME/bin/support
+set $execns exec --no-startup-id
 
 # Split direction
 default_orientation horizontal
 
 # Link saver
-bindsym --release $mod+x exec --no-startup-id $HOME/bin/support/save-url
+bindsym --release $mod+x $execns $SUP/save-url
 
 # Startup
-exec_always --no-startup-id $HOME/bin/support/start -r
-exec --no-startup-id $HOME/bin/support/start
+exec_always --no-startup-id $SUP/start -r
+$execns $SUP/start
 
 # Spotify
 for_window [class="Spotify"] move container to workspace $SpotifyWS
-bindsym $mod+s workspace $SpotifyWS
-no_focus [class="Spotify"]
+no_focus   [class="Spotify"]
+bindsym    $mod+s workspace $SpotifyWS
 
 # Emacs
-bindsym $mod+i exec --no-startup-id em -g
-bindsym $mod+Shift+i exec --no-startup-id em -g -n
+bindsym $mod+i       $execns em -g
+bindsym $mod+Shift+i $execns em -g -n
+
 # Mail
-bindsym $mod+m exec --no-startup-id $HOME/bin/support/polybar/mail open
+bindsym $mod+m $execns $SUP/polybar/mail open
 
 # Lock
-bindsym $mod+Shift+l exec --no-startup-id lock
+bindsym $mod+Shift+l $execns lock
 
 # Pass
-bindsym $mod+p exec --no-startup-id pass rofi
+bindsym $mod+p $execns pass rofi
 
 # Calc
-bindsym $mod+equal exec --no-startup-id =
+bindsym $mod+equal $execns =
 
 # Feh
 for_window [class="feh"] floating enable
@@ -41,72 +43,90 @@ bindsym $mod+$alt+s sticky toggle
 
 # Default to floating
 for_window [class="keepassxc"] floating enable
-for_window [title="QEMU"] floating enable
+for_window [title="QEMU"]      floating enable
 
 # Dropdown term
 bindsym $mod+t [instance="dropdown"] scratchpad show
-bindsym $mod+e exec --no-startup-id $HOME/bin/rofi/emoji
-bindsym $mod+d exec --no-startup-id $HOME/bin/alias/dm
-bindsym --release F2 exec --no-startup-id $HOME/bin/support/shrugie
+
+# Rofi
+bindsym $mod+e $execns emoji
+bindsym $mod+d $execns dm
+
+# ¯\_(.-.)_/¯
+bindsym --release F2 $execns $SUP/shrugie
 
 # Screenshot
-bindsym Print exec --no-startup-id screenshot
-bindsym $mod+Shift+s exec --no-startup-id screenshot
-bindsym --release $mod+ctrl+s exec --no-startup-id screenshot -s
-bindsym $mod+c exec --no-startup-id $BROWSER
-for_window [class="Nightly"] split h
+bindsym Print                 $execns screenshot
+bindsym $mod+Shift+s          $execns screenshot
+bindsym --release $mod+ctrl+s $execns screenshot -s
 
-# Colors from Xresources
-set_from_resource $borderF color8
-set_from_resource $borderUF color0
-set_from_resource $blue color12
+# Browser
+bindsym $mod+c $execns $BROWSER
+
+# Colors
+set_from_resource $color00 color0
+set_from_resource $color01 color1
+set_from_resource $color02 color2
+set_from_resource $color03 color3
+set_from_resource $color04 color4
+set_from_resource $color05 color5
+set_from_resource $color06 color6
+set_from_resource $color07 color7
+set_from_resource $color08 color8
+set_from_resource $color09 color9
+set_from_resource $color10 color10
+set_from_resource $color11 color11
+set_from_resource $color12 color12
+set_from_resource $color13 color13
+set_from_resource $color14 color14
+set_from_resource $color15 color15
 
 # Jump to application when started
 focus_on_window_activation focus
 
-# Borders
-client.focused $borderF $borderF $borderF $blue
-client.focused_inactive $borderUF $borderUF $borderUF $borderUF
-client.unfocused $borderUF $borderUF $borderUF $borderF $borderUF
-client.urgent #000000 #000000 #000000
+# Property Name         Border   BG       Text     Indicator Child Border
+client.focused          $color07 $color04 $color00 $color04  $color04
+client.focused_inactive $color10 $color10 $color07 $color08  $color10
+client.unfocused        $color10 $color00 $color07 $color10  $color10
+client.urgent           $color10 $color10 $color00 $color01  $color01
+client.placeholder      $color00 $color00 $color07 $color00  $color00
+client.background $color15
 
-for_window [class="^.*"] border pixel 4
+for_window [class="^.*"]         border pixel 4
 for_window [instance="dropdown"] border pixel 0
 
 # Gaps
-gaps inner 10
+set  $igap 10
+gaps inner $igap
 gaps outer 0
 
-smart_gaps on
+smart_gaps    on
 smart_borders on
 
 # Drag floating windows
 floating_modifier $mod
 
-# Change window
-bindsym ctrl+alt+f1 gksudo chvt 1
-bindsym ctrl+alt+f2 gksudo chvt 2
-
 # Start Term
-bindsym $mod+Return exec --no-startup-id term
+bindsym $mod+Return $execns term
 
 # Kill focused window
 bindsym $mod+q kill
 
 # Change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+
+bindsym $mod+h     focus left
+bindsym $mod+j     focus down
+bindsym $mod+k     focus up
+bindsym $mod+l     focus right
 
 # Move focused window
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # Split horizontal
@@ -135,8 +155,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Toggle
-bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+Shift+Tab exec --no-startup-id rofi -show window
+bindsym $mod+Tab       workspace back_and_forth
+bindsym $mod+Shift+Tab $execns rofi -show window
 
 # Workspaces
 set $SpotifyWS "99: "
@@ -153,12 +173,12 @@ set $workspace10 "99: "
 
 # Change workspace
 bindsym Control+$mod+Left workspace prev
-bindsym Control+$mod+j workspace prev
-bindsym $mod+bracketleft workspace prev
+bindsym Control+$mod+j    workspace prev
+bindsym $mod+bracketleft  workspace prev
 
 bindsym Control+$mod+Right workspace next
-bindsym Control+$mod+k workspace next
-bindsym $mod+bracketright workspace next
+bindsym Control+$mod+k     workspace next
+bindsym $mod+bracketright  workspace next
 
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -173,16 +193,16 @@ bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # Swap
-bindsym Control+$mod+1 exec --no-startup-id $HOME/bin/support/switch $workspace1
-bindsym Control+$mod+2 exec --no-startup-id $HOME/bin/support/switch $workspace2
-bindsym Control+$mod+3 exec --no-startup-id $HOME/bin/support/switch $workspace3
-bindsym Control+$mod+4 exec --no-startup-id $HOME/bin/support/switch $workspace4
-bindsym Control+$mod+5 exec --no-startup-id $HOME/bin/support/switch $workspace5
-bindsym Control+$mod+6 exec --no-startup-id $HOME/bin/support/switch $workspace6
-bindsym Control+$mod+7 exec --no-startup-id $HOME/bin/support/switch $workspace7
-bindsym Control+$mod+8 exec --no-startup-id $HOME/bin/support/switch $workspace8
-bindsym Control+$mod+9 exec --no-startup-id $HOME/bin/support/switch $workspace9
-bindsym Control+$mod+0 exec --no-startup-id $HOME/bin/support/switch $workspace10
+bindsym Control+$mod+1 $execns $SUP/switch $workspace1
+bindsym Control+$mod+2 $execns $SUP/switch $workspace2
+bindsym Control+$mod+3 $execns $SUP/switch $workspace3
+bindsym Control+$mod+4 $execns $SUP/switch $workspace4
+bindsym Control+$mod+5 $execns $SUP/switch $workspace5
+bindsym Control+$mod+6 $execns $SUP/switch $workspace6
+bindsym Control+$mod+7 $execns $SUP/switch $workspace7
+bindsym Control+$mod+8 $execns $SUP/switch $workspace8
+bindsym Control+$mod+9 $execns $SUP/switch $workspace9
+bindsym Control+$mod+0 $execns $SUP/switch $workspace10
 
 
 # Move focused container to workspace
@@ -199,39 +219,41 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+
+# Restart i3 inplace
 bindsym $mod+Shift+r restart
 
-bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
-bindsym $mod+Escape exec --no-startup-id $HOME/bin/rofi/power
+# Exit
+bindsym $mod+Shift+e $execns i3-msg exit
+bindsym $mod+Escape  $execns power
 
-## Music
-bindsym XF86AudioPrev exec --no-startup-id muse prev
-bindsym F7 exec --no-startup-id muse prev
-bindsym $mod+$alt+Left exec --no-startup-id muse prev
+# Music
+bindsym XF86AudioPrev  $execns muse prev
+bindsym F7             $execns muse prev
+bindsym $mod+$alt+Left $execns muse prev
 
-bindsym XF86AudioPause exec --no-startup-id muse toggle
-bindsym F8 exec --no-startup-id muse toggle
-bindsym $mod+$alt+space exec --no-startup-id muse toggle
+bindsym XF86AudioPause  $execns muse toggle
+bindsym F8              $execns muse toggle
+bindsym $mod+$alt+space $execns muse toggle
 
-bindsym XF86AudioNext exec --no-startup-id muse next
-bindsym F9 exec --no-startup-id muse next
-bindsym $mod+$alt+Right exec --no-startup-id muse next
+bindsym XF86AudioNext   $execns muse next
+bindsym F9              $execns muse next
+bindsym $mod+$alt+Right $execns muse next
 
-bindsym XF86AudioMute exec --no-startup-id muse mute
-bindsym F10 exec --no-startup-id muse mute
+bindsym XF86AudioMute $execns muse mute
+bindsym F10           $execns muse mute
 
-bindsym XF86AudioLowerVolume exec --no-startup-id muse down
-bindsym F11 exec --no-startup-id muse down
-bindsym $mod+$alt+Down exec --no-startup-id muse down
+bindsym XF86AudioLowerVolume $execns muse down
+bindsym F11                  $execns muse down
+bindsym $mod+$alt+Down       $execns muse down
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id muse up
-bindsym F12 exec --no-startup-id muse up
-bindsym $mod+$alt+Up exec --no-startup-id muse up
+bindsym XF86AudioRaiseVolume $execns muse up
+bindsym F12                  $execns muse up
+bindsym $mod+$alt+Up         $execns muse up
 
 # Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id light +
-bindsym XF86MonBrightnessDown exec --no-startup-id light -
+bindsym XF86MonBrightnessUp   $execns light +
+bindsym XF86MonBrightnessDown $execns light -
 
 # Swipe (currently I don't have any machines that use this)
 bindsym --whole-window button11 workspace prev
@@ -241,17 +263,11 @@ bindsym --whole-window button10 workspace next
 mode "Resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Increase/Decrease
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize shrink height 10 px or 10 ppt
-        bindsym $up         resize grow height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
-
         # (Same with arrows)
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Left        resize shrink width  10 px or 10 ppt
+        bindsym Down        resize grow   height 10 px or 10 ppt
         bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
+        bindsym Right       resize grow   width  10 px or 10 ppt
 
         # Back to normal
         bindsym Return mode "default"
@@ -260,36 +276,30 @@ mode "Resize" {
 
 bindsym $mod+r mode "Resize"
 
-## i3bar
-
-set_from_resource $background color0
-set_from_resource $foreground foreground
-set_from_resource $barFocus color4
-set_from_resource $barUnfocus color8
-set_from_resource $barMode color1
-set_from_resource $bright color12
+# i3bar
 set $transparent #00000000
-
 set_from_resource $showBar showBar
 
 bar {
     position top
-    mode $showBar
-    modifier none
-    tray_output none
+    mode           $showBar
+    modifier       none
+    tray_output    none
     status_command i3status
-    font xft:Inconsolata Nerd Font Mono 12
+    font           xft:Inconsolata Nerd Font Mono 12
+
     strip_workspace_numbers yes
     colors {
-      statusline $foreground
-      background $background
-      separator $transparent
+      statusline $color12
+      background $color00
+      separator  $transparent
 
-      focused_workspace $background $background $barFocus
-      inactive_workspace $background $background $foreground
-      active_workspace $background $background $barUnfocus
-      urgent_workspace $background $background $foreground
-      binding_mode $barMode $barMode $background
+        # State             Border  BG      Text
+        focused_workspace   $color07 $color04 $color00
+        active_workspace    $color07 $color08 $color00
+        inactive_workspace  $color08 $color10 $color07
+        urgent_workspace    $color01 $color01 $color00
+        binding_mode        $color00 $color03 $color00
     }
 }
 
@@ -304,7 +314,3 @@ bar {
 #bindsym $mod+s layout stacking
 #bindsym $mod+w layout tabbed
 #bindsym $mod+e layout toggle split
-
-## Cycles avoiding dropdown
-# Unforunately this shows all / none of the scratchpad
-#bindsym $mod+minus [instance="^((?!dropdown).)*$"] scratchpad show

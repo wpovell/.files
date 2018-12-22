@@ -375,6 +375,9 @@ Initialize package management
   (define-key key-translation-map [?\C-h] [?\C-?])
   (bind-key "M-h" 'backward-kill-word)
 
+  ;; Replace
+  (bind-key "C-r" 'replace-regexp)
+
   ;; Move more quickly
   (bind-key "C-S-n" '(lambda () (interactive) (ignore-errors (next-line 5))))
   (bind-key "C-S-p" '(lambda () (interactive) (ignore-errors (previous-line 5))))
