@@ -1,9 +1,16 @@
 #+PROPERTY: header-args :tangle yes
 
 * Todos
-** TODO notmuch
-** TODO Get root working
-** TODO Improve term appearance
+*** Packages to try
+- notmuch
+- shackle
+- eyebrowse
+- fixme
+
+*** Misc
+**** TODO Get root working
+**** TODO Improve term appearance
+**** TODO Rainbow mode by default
 
 * Init
 ** Early
@@ -629,6 +636,9 @@ Initialize package management
   ;; Fish some ansi-term newline issues
   ;; TODO: Figure out what exactly this does
   (setq term-suppress-hard-newline t)
+
+  ;; Should make emacs "snappier"
+  (add-hook 'focus-out-hook #'garbage-collect)
 #+END_SRC
 ** Finish
 #+BEGIN_SRC emacs-lisp
