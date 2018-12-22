@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
+import sys
+from subprocess import call
 from pathlib import Path
 import yaml
 import pystache
-import sys
-from subprocess import call
 
 def load_theme(fn):
+    '''Load theme from `fn`.'''
     with open(fn) as f:
         data = yaml.load(f)
 
@@ -24,11 +25,13 @@ def load_theme(fn):
     return theme
 
 def render(fn, theme):
+    '''Render `fn` with `theme`.'''
     with open(fn) as f:
         template = f.read()
     return pystache.render(template, theme)
 
 def generate(theme):
+    '''Template files with theme.'''
     for fn in filter(Path.is_file, template_root.glob('**/*')):
         dest = Path(str(fn)
                     .replace(str(template_root),
@@ -36,8 +39,10 @@ def generate(theme):
         dest.parent.mkdir(parents=True, exist_ok=True)
         with open(dest, 'w') as f:
             f.write(render(fn, theme))
+
 def set_bg(theme):
-    call(f'xsetroot -solid #{theme["base00-hex"]}'.split())
+    '''Set desktop background from theme.'''
+    call(f'xsetroot -solid #{theme["base01-hex"]}'.split())
 
 template_root = Path('~/.files/template').expanduser()
 dest_root = Path('~/.files/gen').expanduser()
