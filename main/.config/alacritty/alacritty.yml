@@ -6,7 +6,7 @@ window:
 scrolling:
   history: 10000
 
-tabspaces: 4
+#tabspaces: 8
 
 font:
   normal:

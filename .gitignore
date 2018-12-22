@@ -2,33 +2,6 @@
 api.js
 pass.json
 
-## SSH
-id_rsa*
-known_hosts
-authorized_keys
-
-# File Types
-*.cache
-*.elc
-
-# Emacs
-elpa
-.mc-lists.el
-emacs.el
-auto-save-list
-projectile-*
-recentf
-
-# Atom
-main/.atom/*
-!main/.atom/config.cson
-!main/.atom/keymap.cson
-
 # Meta
 gen/
 colors.css
-backups
-
-# Misc
-bookmarks
-history
