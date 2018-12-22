@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
-from subprocess import call
+import os
+from subprocess import call, STDOUT, DEVNULL
 from pathlib import Path
 import yaml
 import pystache
@@ -12,6 +13,9 @@ def load_theme(fn):
 
     theme = dict()
     for name, color in data.items():
+        if not name.startswith('base'):
+            theme[name] = color
+            continue
         color = color.replace('#', '')
         theme[f'{name}-hex'] = color
 
@@ -40,10 +44,6 @@ def generate(theme):
         with open(dest, 'w') as f:
             f.write(render(fn, theme))
 
-def set_bg(theme):
-    '''Set desktop background from theme.'''
-    call(f'xsetroot -solid #{theme["base01-hex"]}'.split())
-
 template_root = Path('~/.files/template').expanduser()
 dest_root = Path('~/.files/gen').expanduser()
 theme_root = Path('~/.files/themes')
@@ -65,4 +65,8 @@ if __name__ == '__main__':
 
     theme = load_theme(theme_fn)
     generate(theme)
-    set_bg(theme)
+
+    home=os.environ['HOME']
+    call(f'{home}/bin/support/refresh {theme["base01-hex"]}'.split(),
+         stdout=DEVNULL,
+         stderr=STDOUT)
