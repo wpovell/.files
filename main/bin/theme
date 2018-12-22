@@ -36,10 +36,12 @@ def render(fn, theme):
 
 def generate(theme):
     '''Template files with theme.'''
+    dest_root.mkdir(exist_ok=True)
     for fn in filter(Path.is_file, template_root.glob('**/*')):
-        dest = Path(str(fn)
-                    .replace(str(template_root),
-                             str(dest_root), 1))
+        name = str(fn).replace(str(template_root), '', 1)[1:]
+        dest = dest_root / name
+        print(name)
+
         dest.parent.mkdir(parents=True, exist_ok=True)
         with open(dest, 'w') as f:
             f.write(render(fn, theme))

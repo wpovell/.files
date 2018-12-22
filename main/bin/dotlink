@@ -175,9 +175,11 @@ for target in "${POS[@]}"; do
             dst="$DST_ROOT/${file:2}"
 
             # Skip if already linked to dst or in gitignore
+            git check-ignore "$file" >/dev/null
+            ignored=$?
             cur=$(readlink "$dst")
-            if [[ $cur = "$src" ]] ||
-                   git check-ignore "$file" >/dev/null; then
+            if [[ $force = false ]] &&
+                   [[ $cur = "$src" || $ignored = 0 ]]; then
                 continue
             fi
 
