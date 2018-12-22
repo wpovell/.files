@@ -1,4 +1,4 @@
-rofi.terminal: urxvt
+rofi.terminal: alacritty
 rofi.lines: 5
 rofi.separator-style: solid
 
