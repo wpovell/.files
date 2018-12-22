@@ -1,0 +1,68 @@
+#!/bin/bash
+
+target="$1"
+dry="$2"
+force="$3"
+
+# Store correct user, regardless of sudo
+if [[ -n $SUDO_USER ]]; then
+    USR=$SUDO_USER
+else
+    USR=$USER
+fi
+
+LINK_HOME="/home/$USR"
+
+# cd to target
+SRC_ROOT="$LINK_HOME/.files/$target"
+cd "$SRC_ROOT" || exit
+
+echo "== $target =="
+
+# Set root of target
+if [[ $target = root ]]; then
+    DST_ROOT=""
+else
+    DST_ROOT="$LINK_HOME"
+fi
+
+# Loop over all files in target
+find . -type f |
+    while read -r file; do
+        src="$SRC_ROOT/${file:2}"
+        dst="$DST_ROOT/${file:2}"
+
+        # Skip if already linked to dst or in gitignore
+        git check-ignore "$file" >/dev/null
+        ignored=$?
+        cur=$(readlink "$dst")
+        if [[ $force = false ]] &&
+               [[ $cur = "$src" || $ignored = 0 ]]; then
+            continue
+        fi
+
+        # Pretty print new link we're creating
+        psrc=${src/"$LINK_HOME"/'~'}
+        pdst=${dst/"$LINK_HOME"/'~'}
+        echo "$psrc &->& $pdst"
+
+        if [[ $dry = false ]]; then
+            # Only link over a existing file if force
+            if [[ -e $dst ]]; then
+                if [[ $force = true ]]; then
+                    unlink "$dst"
+                else
+                    echo "File exists, skipping $dst"
+                fi
+            fi
+
+            # Make necessary directories and link
+            mkdir -p "$(dirname "$dst")"
+            ln -sf "$src" "$dst"
+        fi
+    done |
+    column -t -s'&' | # Format nicely into columns
+    tee /dev/stderr | # Output table to stderr
+    wc -l |           # Talley up how many links we made
+    tr -d '\n'        # Remove the newline
+echo -e " files linked\n"

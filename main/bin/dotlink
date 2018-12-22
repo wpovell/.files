@@ -53,7 +53,8 @@ prune_broken() {
     echo
 }
 
-targets=(main gen root)
+# Important that root is first, since we su
+targets=(root main gen)
 
 # Flags
 root=false
@@ -129,13 +130,6 @@ if [[ $prune = true ]]; then
     prune_broken
 fi
 
-# Store correct user, regardless of sudo
-if [[ -n $SUDO_USER ]]; then
-    USR=$SUDO_USER
-else
-    USR=$USER
-fi
-
 # Prompt if not a dry run
 if [[ $dry = false ]]; then
     echo -e "This is not a dry run, sym-links will be created/deleted.\n"
@@ -151,63 +145,22 @@ else
     echo -e "This is a dry run, no links will be created.\n"
 fi
 
-LINK_HOME="/home/$USR"
+# Store correct user, regardless of sudo
+if [[ -n $SUDO_USER ]]; then
+    USR=$SUDO_USER
+else
+    USR=$USER
+fi
 
 # Loop over targets
 for target in "${POS[@]}"; do
-    # cd to target
-    SRC_ROOT="$LINK_HOME/.files/$target"
-    cd "$SRC_ROOT" || exit
-
-    echo "== $target =="
-
-    # Set root of target
-    if [[ $target = root ]]; then
-        DST_ROOT=""
+    cmd="/home/$USR/bin/support/link_target $target $dry $force"
+    if [[ ($root = true && $target = root) || $root = false ]]; then
+        $cmd
     else
-        DST_ROOT="$LINK_HOME"
+        # We su to prevent linking as root when we don't need to
+        su "$USR" -c "$cmd"
     fi
-
-    # Loop over all files in target
-    find . -type f |
-        while read -r file; do
-            src="$SRC_ROOT/${file:2}"
-            dst="$DST_ROOT/${file:2}"
-
-            # Skip if already linked to dst or in gitignore
-            git check-ignore "$file" >/dev/null
-            ignored=$?
-            cur=$(readlink "$dst")
-            if [[ $force = false ]] &&
-                   [[ $cur = "$src" || $ignored = 0 ]]; then
-                continue
-            fi
-
-            # Pretty print new link we're creating
-            psrc=${src/"$LINK_HOME"/'~'}
-            pdst=${dst/"$LINK_HOME"/'~'}
-            echo "$psrc &->& $pdst"
-
-            if [[ $dry = false ]]; then
-                # Only link over a existing file if force
-                if [[ -e $dst ]]; then
-                    if [[ $force = true ]]; then
-                        unlink "$dst"
-                    else
-                        echo "File exists, skipping $dst"
-                    fi
-                fi
-
-                # Make necessary directories and link
-                mkdir -p "$(dirname "$dst")"
-                ln -sf "$src" "$dst"
-            fi
-        done |
-        column -t -s'&' | # Format nicely into columns
-        tee /dev/stderr | # Output table to stderr
-        wc -l |           # Talley up how many links we made
-        tr -d '\n'        # Remove the newline
-    echo -e " files linked\n"
 done
 
 echo "All done!"
