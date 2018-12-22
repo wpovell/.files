@@ -1,6 +1,5 @@
 #include "/home/wpovell/.Xresources.d/theme"
 #include "/home/wpovell/.Xresources.d/urxvt"
-#include "/home/wpovell/.Xresources.d/rofi"
 #include "/home/wpovell/.Xresources.d/emacs"
 #include "/home/wpovell/.Xresources.d/host"
 

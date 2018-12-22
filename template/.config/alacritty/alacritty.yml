@@ -52,7 +52,10 @@ colors:
     cyan:    '0x{{base0F-hex}}'
     white: '0x{{base07-hex}}'
 
-mouse_bindings: []
+mouse:
+  url:
+    launcher: xdg-open
+    modifiers: Control
 
 shell:
   program: /usr/bin/fish

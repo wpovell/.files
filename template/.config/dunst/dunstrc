@@ -16,9 +16,9 @@
     separator_height = 5
     padding = 8
     horizontal_padding = 8
-    separator_color = --color4
+    separator_color = "#{{base05-hex}}"
     frame_width = 3
-    frame_color = --color4
+    frame_color = "#{{base05-hex}}"
     timeout = 15
     browser = firefox-nightly
     dmenu = /usr/bin/rofi -dmenu
@@ -43,19 +43,18 @@
     context = ctrl+shift+period
     history = ctrl+grave
 
-[urgency_normal] 
-   timeout = 10
-   background = --color0
-   foreground = --foreground
-
-[urgency_critical] 
-   frame_color = "#f00000"
-   timeout = 15
-   background = --color0
-   foreground = --foreground
-
-[urgency_low] 
+[urgency_low]
    timeout = 3
-   background = --color0
-   foreground = --foreground
-   
+   background = "#{{base01-hex}}"
+   foreground = "#{{base03-hex}}"
+
+[urgency_normal]
+   timeout = 10
+   background = "#{{base02-hex}}"
+   foreground = "#{{base05-hex}}"
+
+[urgency_critical]
+   frame_color = "#e00000"
+   timeout = 15
+   background = "#{{base08-hex}}"
+   foreground = "#{{base06-hex}}"

@@ -2,5 +2,9 @@
 
 xsetroot -solid "#$1"
 xrdb -I"$HOME" ~/.Xresources
-polybar-msg cmd restart
+# This would ideally be better, but polybar often hangs
+# polybar-msg cmd restart
+killall -9 dunst
+dunst &
+bar &
 i3-msg reload
