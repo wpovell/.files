@@ -1,0 +1,18 @@
+! XResources theme template
+
+#define base00 #{{base00-hex}}
+#define base01 #{{base01-hex}}
+#define base02 #{{base02-hex}}
+#define base03 #{{base03-hex}}
+#define base04 #{{base04-hex}}
+#define base05 #{{base05-hex}}
+#define base06 #{{base06-hex}}
+#define base07 #{{base07-hex}}
+#define base08 #{{base08-hex}}
+#define base09 #{{base09-hex}}
+#define base0A #{{base0A-hex}}
+#define base0B #{{base0B-hex}}
+#define base0C #{{base0C-hex}}
+#define base0D #{{base0D-hex}}
+#define base0E #{{base0E-hex}}
+#define base0F #{{base0F-hex}}

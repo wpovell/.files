@@ -4,39 +4,24 @@
 #include "/home/wpovell/.Xresources.d/emacs"
 #include "/home/wpovell/.Xresources.d/host"
 
-! special
-*.foreground:   FC
-*.background:   BC
-*.cursorColor:  CC
+*foreground:   base05
+*background:   base00
+*cursorColor:  base05
 
-! black
-*.color0:       C0
-*.color8:       C8
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
 
-! red
-*.color1:       C1
-*.color9:       C9
-
-! green
-*.color2:       C2
-*.color10:      C10
-
-! yellow
-*.color3:       C3
-*.color11:      C11
-
-! blue
-*.color4:       C4
-*.color12:      C12
-
-! magenta
-*.color5:       C5
-*.color13:      C13
-
-! cyan
-*.color6:       C6
-*.color14:      C14
-
-! white
-*.color7:       C7
-*.color15:      C15
+*color8:       base03
+*color9:       base09
+*color10:      base01
+*color11:      base02
+*color12:      base04
+*color13:      base06
+*color14:      base0F
+*color15:      base07

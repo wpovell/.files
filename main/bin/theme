@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import yaml
+import pystache
+import sys
+
+def load_theme(fn):
+    with open(fn) as f:
+        data = yaml.load(f)
+
+    theme = dict()
+    for name, color in data.items():
+        color = color.replace('#', '')
+        theme[f'{name}-hex'] = color
+
+        for i, ch in enumerate('rgb'):
+            c = color[i*2:(i+1)*2]
+            n = int(c, 16)
+            theme[f'{name}-hex-{ch}'] = c
+            theme[f'{name}-rgb-{ch}'] = n
+            theme[f'{name}-dec-{ch}'] = n/255
+
+    return theme
+
+def render(fn, theme):
+    with open(fn) as f:
+        template = f.read()
+    return pystache.render(template, theme)
+
+def generate(theme):
+    template_root = Path("~/.files/template").expanduser()
+    dest_root = Path("~/.files/gen").expanduser()
+    for fn in filter(Path.is_file, template_root.glob("**/*")):
+        dest = Path(str(fn)
+                    .replace(str(template_root),
+                             str(dest_root), 1))
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        with open(dest, 'w') as f:
+            f.write(render(fn, theme))
+
+theme_root = Path("~/.files/themes")
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print("Please provide a theme name")
+        sys.exit(1)
+
+    arg = sys.argv[1]
+    if not arg.endswith('.yaml'):
+        arg += '.yaml'
+
+    theme_fn = (theme_root / arg).expanduser()
+    if not theme_fn.exists():
+        print(theme_fn)
+        print("Theme does not exist")
+        sys.exit(1)
+
+    theme = load_theme(theme_fn)
+    generate(theme)
