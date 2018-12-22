@@ -21,45 +21,48 @@ if test -z $argv[1]; or test $_flag_help
     usage
 end
 
+set df "$HOME/.files"
+set m "$df/main"
+set t "$df/template"
 switch $argv[1]
     case tmux
-        set F ~/.tmux.conf
+        set F "$m/.tmux.conf"
     case kitty
-        set F ~/.config/kitty/kitty.conf
+        set F "$m/.config/kitty/kitty.conf"
     case alacritty
-        set F ~/.config/alacritty/alacritty.yml
+        set F "$t/.config/alacritty/alacritty.yml"
     case zathura
-        set F ~/.config/zathura/zathurarc
+        set F "$m/.config/zathura/zathurarc"
     case env
-        set F ~/.env
+        set F "$m/.env"
     case fish
-        set F ~/.config/fish/config.fish
+        set F "$m/.config/fish/config.fish"
     case bash
-        set F ~/.bashrc
+        set F "$m/.bashrc"
     case alias
-        set F ~/.aliases
+        set F "$m/.aliases"
     case completion
-        set F ~/.bash_completion
+        set F "$m/.bash_completion"
     case zsh
-        set F ~/.zshrc
+        set F "$m/.zshrc"
     case i3
-        set F ~/.config/i3/config
+        set F "$m/.config/i3/config"
     case dunst
-        set F ~/.config/dunst/dunstrc
+        set F "$t/.config/dunst/dunstrc"
     case emacs
-        set F ~/.emacs.d/init.el
+        set F "$m/.emacs.d/init.el"
     case firefox
-        set F ~/.mozilla/firefox/*/chrome/userChrome.css
+        set F "$m/.mozilla/firefox/*/chrome/userChrome.css"
     case polybar
-        set F ~/.config/polybar/config
+        set F "$m/.config/polybar/config"
     case ssh
-        set F ~/.ssh/config
+        set F "$m/.ssh/config"
     case git
-        set F ~/.gitconfig
+        set F "$m/.gitconfig"
     case urxvt
-        set F ~/.Xresources.d/urxvt
+        set F "$m/.Xresources.d/urxvt"
     case rofi
-        set F ~/.Xresources.d/rofi
+        set F "$t/.config/rofi/config.rasi"
     case list
         cat ~/bin/ecfg | \
         grep case | \

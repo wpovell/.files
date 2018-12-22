@@ -49,7 +49,7 @@ if [[ -z $1 ]]; then
   exit
 fi
 
-FILE=$(find -L ~/bin/ -name "$(basename "$1")")
+FILE=$(find -L ~/.files/main/bin/ -name "$(basename "$1")")
 if [[ -e $FILE ]]; then
     open "$FILE"
 else
@@ -57,7 +57,7 @@ else
   echo -n "Create script? [y/n] "
   read -r ans
   if [[ "$ans" = "y" ]]; then
-    FILE="$HOME/bin/$1"
+    FILE="$HOME/.files/main/bin/$1"
     touch "$FILE"
     chmod +x "$FILE"
     open "$FILE"
