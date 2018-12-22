@@ -5,6 +5,12 @@
 
 ;;; Code:
 
+;; Always start from home directory
+(cd "~")
+
+;; Have this early since emacs stuff is behind a sym-link
+(setq vc-follow-symlinks t)
+
 ;; Ignore byte-compile warnings
 (setq byte-compile-warnings '(not nresolved
                                   free-vars

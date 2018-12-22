@@ -5,3 +5,6 @@ pass.json
 # Meta
 gen/
 colors.css
+
+# Emacs
+emacs.el*

@@ -158,9 +158,6 @@ Initialize package management
   ;; Type y rather than yes
   (defalias 'yes-or-no-p 'y-or-n-p)
 
-  ;; Follow symlinks without asking
-  (setq vc-follow-symlinks t)
-
   ;; Faster keystroke echo
   (setq echo-keystrokes 0.1)
 
@@ -508,7 +505,7 @@ Initialize package management
       (use-package projectile
         :demand t
         :bind (("C-c p" . projectile-command-map)
-               ("C-x p" . projectile-find-file))
+               ("C-x C-p" . projectile-find-file))
         :init
         (setq projectile-enable-caching t)
         (setq projectile-completion-system 'ivy)))
@@ -608,7 +605,8 @@ Initialize package management
   (use-package rainbow-mode
     :config
     (setq rainbow-x-colors nil)
-    (add-hook 'prog-mode-hook 'rainbow-mode))
+    (add-hook 'prog-mode-hook 'rainbow-mode)
+    (add-hook 'yaml-mode-hook 'rainbow-mode))
 #+END_SRC
 
 *** Expand Region
