@@ -29,7 +29,7 @@ def load_theme(fn):
     return theme
 
 def render(fn, theme):
-    '''Render `fn` with `theme`.'''
+    '''Render fn with theme.'''
     with open(fn) as f:
         template = f.read()
     return pystache.render(template, theme)
@@ -47,9 +47,9 @@ def generate(theme):
             f.write(render(fn, theme))
 
 template_root = Path('~/.files/template').expanduser()
-dest_root     = Path('~/.files/gen').expanduser()
-theme_root    = Path('~/.files/themes').expanduser()
-cur_fn        = Path('~/.theme').expanduser()
+dest_root = Path('~/.files/gen').expanduser()
+theme_root = Path('~/.files/themes').expanduser()
+cur_fn = Path('~/.theme').expanduser()
 if __name__ == '__main__':
     cur_theme = 'None'
     try:
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) < 2:
         print(f'Current theme:    {cur_theme}')
-        themes=' '.join(map(lambda x: x.stem, theme_root.glob('*')))
+        themes = ' '.join(map(lambda x: x.stem, theme_root.glob('*')))
         print('Available themes: {}'.format(themes))
         sys.exit(1)
 
@@ -77,10 +77,10 @@ if __name__ == '__main__':
     theme = load_theme(theme_fn)
     generate(theme)
 
-    home=os.environ['HOME']
+    home = os.environ['HOME']
     call(f'{home}/bin/support/refresh {theme["base01-hex"]}'.split(),
          stdout=DEVNULL,
          stderr=STDOUT)
 
     with open(cur_fn, 'w') as f:
-        f.write(arg.replace('.yaml',''))
+        f.write(arg.replace('.yaml', ''))

@@ -1,13 +1,59 @@
 #!/bin/bash
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root"
-   exit 1
-fi
+usage() {
+    prog=$(basename "$0")
+    echo "$prog [-h] rm NETWORK | list | NETWORK
+    Utility for restarting wifi
+
+Flags:
+    -h Display this help message
+
+Args:
+    rm NETWORK Remove network config
+    list       List all network configs
+    NETWORK    Connect to network.
+               If not passed defaults to $network
+    "
+    exit
+}
 
 network="brown"
+
+if [[ "$1" = list ]]; then
+    # List
+    find /etc/netctl/ -maxdepth 1 -type f -printf "%f\n"
+    exit
+elif [[ "$1" = "-h" ]]; then
+    # Help
+    usage
+fi
+
+# netctl dir is owned by root
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+
+# Remove
+if [[ "$1" = rm ]]; then
+    if [[ -z "$2" ]]; then
+        echo "Provide a network to delete."
+    else
+        fn="/etc/netctl/$1"
+        if [[ -e $fn ]]; then
+            rm "$fn"
+            echo "Deleted $1"
+        else
+            echo "$1 does not exist"
+        fi
+        exit
+    fi
+fi
+
+# Override default
 if [[ -n $1 ]]; then
-  network=$1
+    network=$1
 fi
 
 if [[ ! -e "/etc/netctl/$network" ]]; then
