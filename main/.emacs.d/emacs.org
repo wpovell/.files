@@ -382,14 +382,21 @@ Initialize package management
   (bind-key "C-S-b" '(lambda () (interactive) (ignore-errors (backward-char 5))))
 #+END_SRC
 
-*** Jump to Config
+*** Jump to File
 #+BEGIN_SRC emacs-lisp
   (defun find-config ()
     "Edit emacs.org"
     (interactive)
     (find-file "~/.files/main/.emacs.d/emacs.org"))
 
+  (defun to-scratch ()
+    "Jump to scratch"
+    (interactive)
+    (switch-to-buffer "*scratch*"))
+
   (bind-key "C-c c" 'find-config)
+  (bind-key "C-c s" 'to-scratch)
+
 #+END_SRC
 *** Smart Begining of Line
 #+BEGIN_SRC emacs-lisp
