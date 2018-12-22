@@ -1,221 +1,226 @@
 [colors]
-background		= ${xrdb:color0}
-foreground		= ${xrdb:*foreground}
-barFocus		  = ${xrdb:color4}
-barUnfocus		= ${xrdb:color8}
-barMode			  = ${xrdb:color1}
+background    = ${xrdb:color0}
+foreground    = ${xrdb:*foreground}
+barFocus      = ${xrdb:color4}
+barUnfocus    = ${xrdb:color8}
+barMode       = ${xrdb:color1}
 bright        = ${xrdb:color12}
 
 [bar/base]
-width                           = 100%
-enable-ipc                      = true
-border-size		        = 0
-fixed-center  	                = true
-height			        = 27
-background		        = ${colors.background}
-foreground		        = $(colors.foreground}
-radius                          = 0
-modules-center                  = date
-font-0 			        = FontAwesome:size=8;3
-font-1                          = Inconsolata:size=10;2
-monitor = ${env:MONITOR:}
-module-margin	              	= 3
+width          = 100%
+enable-ipc     = true
+border-size    = 0
+fixed-center   = true
+height         = 27
+background     = ${colors.background}
+foreground     = $(colors.foreground}
+radius         = 0
+modules-center = date
+font-0         = FontAwesome:size=8;3
+font-1         = Inconsolata:size=10;2
+monitor        = ${env:MONITOR:}
+module-margin  = 3
 
 [bar/blueno]
-inherit = bar/base
-modules-left                    = i3 scratch vpn notif
-modules-right 	                = music mail blueno volume_blueno
+inherit       = bar/base
+modules-left  = i3 scratch vpn notif
+modules-right = music mail blueno volume_blueno
 
 [bar/lambda]
-inherit = bar/base
-modules-left                    = i3 scratch vpn notif lock
-modules-right 	                = music mail lambda battery volume_lambda
+inherit        = bar/base
+modules-left   = i3 scratch vpn notif lock
+modules-right  = music mail lambda battery volume_lambda
 
 [module/lock]
-type = custom/ipc
+type              = custom/ipc
 
-hook-0 = echo ""
-hook-1 = echo '%{F'$(xquery foreground)'}'
-initial = 1
+hook-0            = echo ""
+hook-1            = echo '%{F'$(xquery foreground)'}'
+initial           = 1
 
 format-foreground = ${colors.bright}
-click-left = caffinate toggle
+click-left        = caffinate toggle
 
 [module/notif]
-type = custom/ipc
+type              = custom/ipc
 
-hook-0 = echo ""
-hook-1 = echo '%{F'$(xquery foreground)'}'
-initial = 1
+hook-0            = echo ""
+hook-1            = echo '%{F'$(xquery foreground)'}'
 
+initial           = 1
 format-foreground = ${colors.bright}
-click-left = notif-snooze
+click-left        = notif-snooze
 
 [module/vpn]
-type = custom/ipc
+type              = custom/ipc
 
-hook-0 = echo ""
-hook-1 = echo '%{F'$(xquery foreground)'}'
-initial = 2
-
+hook-0            = echo ""
+hook-1            = echo '%{F'$(xquery foreground)'}'
+initial           = 2
 format-foreground = ${colors.bright}
-
-click-right = csvpn kill
-click-left = csvpn
+click-right       = csvpn kill
+click-left        = csvpn
 
 [section/volume]
-type = internal/volume
+type                       = internal/volume
 
-format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage%%
+format-volume              = <ramp-volume> <label-volume>
+label-volume               = %percentage%%
 label-volume-padding-right = 5
-label-volume-foreground = ${colors.bright}
-label-volume-background = ${colors.background}
-label-muted = "                "
-label-muted-foreground = ${colors.foreground}
-label-muted-background = ${colors.background}
+label-volume-foreground    = ${colors.bright}
+label-volume-background    = ${colors.background}
 
-ramp-volume-0 = "  "
-ramp-volume-0-foreground = ${colors.bright}
-ramp-volume-0-background = ${colors.background}
-ramp-volume-1 = "  "
-ramp-volume-1-foreground = ${colors.bright}
-ramp-volume-1-background = ${colors.background}
-ramp-volume-2 = "  "
-ramp-volume-2-foreground = ${colors.bright}
-ramp-volume-2-background = ${colors.background}
-ramp-volume-3 = "  "
-ramp-volume-3-foreground = ${colors.bright}
-ramp-volume-3-background = ${colors.background}
+label-muted                = "                "
+label-muted-foreground     = ${colors.foreground}
+label-muted-background     = ${colors.background}
+
+ramp-volume-0              = "  "
+ramp-volume-0-foreground   = ${colors.bright}
+ramp-volume-0-background   = ${colors.background}
+
+ramp-volume-1              = "  "
+ramp-volume-1-foreground   = ${colors.bright}
+ramp-volume-1-background   = ${colors.background}
+
+ramp-volume-2              = "  "
+ramp-volume-2-foreground   = ${colors.bright}
+ramp-volume-2-background   = ${colors.background}
+
+ramp-volume-3              = "  "
+ramp-volume-3-foreground   = ${colors.bright}
+ramp-volume-3-background   = ${colors.background}
 
 [module/volume_blueno]
-inherit = section/volume
-speaker-mixer = Front
+inherit         = section/volume
+speaker-mixer   = Front
 headphone-mixer = Headphone
-headphone-id = 35
+headphone-id    = 35
 
 [module/volume_lambda]
 inherit = section/volume
 
 [module/i3]
-type			= internal/i3
-strip-wsnumbers		= true
-format			= <label-state><label-mode>
-pin-workspaces = true
+type                       = internal/i3
 
-label-focused-background = ${colors.barFocus}
-label-focused-foreground = ${colors.barUnfocus}
-label-focused-padding = 3
+strip-wsnumbers            = true
+format                     = <label-state><label-mode>
+pin-workspaces             = true
 
-label-visible-background = ${colors.barFocus}
-label-visible-foreground = ${colors.barUnfocus}
-label-visible-padding = 3
+label-focused-background   = ${colors.barFocus}
+label-focused-foreground   = ${colors.barUnfocus}
+label-focused-padding      = 3
 
-label-urgent-background = ${colors.barUnfocus}
-label-urgent-foreground = ${colors.foreground}
-label-urgent-padding = 3
+label-visible-background   = ${colors.barFocus}
+label-visible-foreground   = ${colors.barUnfocus}
+label-visible-padding      = 3
+
+label-urgent-background    = ${colors.barUnfocus}
+label-urgent-foreground    = ${colors.foreground}
+label-urgent-padding       = 3
 
 label-unfocused-background = ${colors.barUnfocus}
 label-unfocused-foreground = ${colors.foreground}
-label-unfocused-padding = 3
+label-unfocused-padding    = 3
 
-label-mode-background = ${colors.barMode}
-label-mode-foreground = ${colors.background}
-label-mode-padding = 3
+label-mode-background      = ${colors.barMode}
+label-mode-foreground      = ${colors.background}
+label-mode-padding         = 3
 
 [section/network]
-type = internal/network
-#label-connected =    %essid% | %local_ip% | %downspeed%
-label-connected =    %essid%
-label-connected-foreground = ${colors.bright}
-label-connected-background = ${colors.background}
-format-disconnected = <label-disconnected>
-label-disconnected = 
+type                          = internal/network
 
+label-connected               =    %essid%
+label-connected-foreground    = ${colors.bright}
+label-connected-background    = ${colors.background}
+
+format-disconnected           = <label-disconnected>
+label-disconnected            = 
 label-disconnected-foreground = ${colors.foreground}
 label-disconnected-background = ${colors.background}
 
 [module/blueno]
-inherit = section/network
-#interface = wlp17s0f3u3
+inherit   = section/network
 interface = wlp3s0f0u3
 
 [module/lambda]
-inherit = section/network
+inherit   = section/network
 interface = wlp4s0
 
-
 [module/battery]
-type=internal/battery
-format-charging = <animation-charging>  <label-charging>
-format-discharging = <ramp-capacity>  <label-discharging>
-poll-interval = 5
-full-at = 99
+type                          =  internal/battery
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+format-charging               =  <animation-charging>  <label-charging>
+format-discharging            =  <ramp-capacity>  <label-discharging>
+poll-interval                 =  5
+full-at                       =  99
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+ramp-capacity-0               =  
+ramp-capacity-1               =  
+ramp-capacity-2               =  
+ramp-capacity-3               =  
+ramp-capacity-4               =  
 
-format-full = <label-full>
-label-full =   100%
-ramp-capacity-0-foreground=#880000
-ramp-capacity-1-foreground=${colors.foreground}
-ramp-capacity-2-foreground=${colors.foreground}
-ramp-capacity-3-foreground=${colors.foreground}
-ramp-capacity-4-foreground=${colors.foreground}
-animation-charging-foreground=${colors.bright}
-animation-charging-framerate=240
-label-charging-foreground = ${colors.bright}
-label-discharging-foreground = ${colors.foreground}
-label-full-foreground = ${colors.bright}
+animation-charging-0          =  
+animation-charging-1          =  
+animation-charging-2          =  
+animation-charging-3          =  
+animation-charging-4          =  
+
+format-full                   =  <label-full>
+label-full                    =    100%
+
+ramp-capacity-0-foreground    = #880000
+ramp-capacity-1-foreground    = ${colors.foreground}
+ramp-capacity-2-foreground    = ${colors.foreground}
+ramp-capacity-3-foreground    = ${colors.foreground}
+ramp-capacity-4-foreground    = ${colors.foreground}
+
+animation-charging-foreground = ${colors.bright}
+animation-charging-framerate  = 240
+
+label-charging-foreground     =  ${colors.bright}
+label-discharging-foreground  =  ${colors.foreground}
+label-full-foreground         =  ${colors.bright}
 
 [module/date]
-type			= internal/date
-interval		= 10
-date			= %b %d
-time			= %I:%M %p
-label			= %date%    %time%
-label-foreground = ${colors.foreground}
+type               = internal/date
+interval           = 10
+date               = %b %d
+time               = %I:%M %p
+label              = %date%    %time%
+label-foreground   = ${colors.foreground}
 label-padding-left = 5
 
 [module/music]
-type = custom/script
-interval = 1
-label = %output:0:60:...%
+type             = custom/script
+interval         = 1
+label            = %output:0:60:...%
 label-background = ${colors.background}
 label-foreground = ${colors.foreground}
-exec = muse bar 2> /dev/null
-click-left = muse toggle
-click-middle = muse prev
-click-right = muse next
+exec             = muse bar 2> /dev/null
+click-left       = muse toggle
+click-middle     = muse prev
+click-right      = muse next
 
 [module/mail]
-type = custom/script
-interval = 60
-format = <label>
+type                     = custom/script
+interval                 = 60
+format                   = <label>
 format-prefix-foreground = ${colors.foreground}
-label-foreground = ${colors.foreground}
-exec = ~/bin/support/polybar/mail query $(xquery color12)
-click-left =  ~/bin/support/polybar/mail open
+label-foreground         = ${colors.foreground}
+exec                     = ~/bin/support/polybar/mail query $(xquery color12)
+click-left               =  ~/bin/support/polybar/mail open
 
 
 [module/scratch]
-type = custom/script
-interval = 5
-format = <label>
+type                     = custom/script
+interval                 = 5
+format                   = <label>
 format-prefix-foreground = ${colors.foreground}
-label-foreground = ${colors.foreground}
-exec =  ~/bin/support/polybar/scratch
-click-left = i3-msg scratchpad show
+label-foreground         = ${colors.foreground}
+exec                     = ~/bin/support/polybar/scratch
+click-left               = i3-msg scratchpad show
 
 [global/wm]
-margin-top		= 5
-margin-bottom		= 5
+margin-top    = 5
+margin-bottom = 5
