@@ -332,10 +332,6 @@ Initialize package management
   (global-set-key (kbd "<C-return>")
                   '(lambda () (interactive) (ansi-term "/bin/bash")))
 
-  ;; Fish some ansi-term newline issues
-  ;; TODO: Figure out what exactly this does
-  (setq term-suppress-hard-newline t)
-
   ;; Close term buffer on exit
   (defadvice term-handle-exit
       (after term-kill-buffer-on-exit activate)
@@ -618,6 +614,12 @@ Initialize package management
   (use-package rust-mode)
 #+END_SRC
 
+** Experimental
+#+BEGIN_SRC emacs-lisp
+  ;; Fish some ansi-term newline issues
+  ;; TODO: Figure out what exactly this does
+  (setq term-suppress-hard-newline t)
+#+END_SRC
 ** Finish
 #+BEGIN_SRC emacs-lisp
   (setq gc-cons-threshold 16777216
