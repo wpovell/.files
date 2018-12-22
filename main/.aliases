@@ -2,6 +2,8 @@
 alias e="em"
 alias E="em -g"
 alias re="restart-emacs"
+alias Ecfg="ecfg -g"
+alias Ecmd="ecmd -g"
 
 # Git
 alias git="hub"

@@ -3,14 +3,46 @@
 # Edits given command arg
 
 usage() {
-    echo "ecmd SCRIPT
+    echo "ecmd [-hg] SCRIPT
     Opens the script passed in emacs. Script must be under ~/bin to be found.
+
+Flags:
+  -h Show this help message
+  -g Open in gui
+
+Args:
+  SCRIPT Script to edit
     "
 }
 
-case $1 in
-    -h|--help) usage ;;
-esac
+open() {
+    if [[ $gui = false ]]; then
+        em "$1"
+    else
+        em -g "$1"
+    fi
+}
+
+POS=()
+gui=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -h|--help)
+            usage
+            shift
+            ;;
+        -g)
+            gui=true
+            shift
+            ;;
+        *)
+            POS+=("$1")
+            shift
+            ;;
+    esac
+done
+set -- "${POS[@]}"
 
 if [[ -z $1 ]]; then
   usage
@@ -19,7 +51,7 @@ fi
 
 FILE=$(find -L ~/bin/ -name "$(basename "$1")")
 if [[ -e $FILE ]]; then
-  emacs -nw "$FILE"
+    open "$FILE"
 else
   echo "ERROR: No such script '$1'"
   echo -n "Create script? [y/n] "
@@ -28,6 +60,6 @@ else
     FILE="$HOME/bin/$1"
     touch "$FILE"
     chmod +x "$FILE"
-    emacs -nw "$FILE"
+    open "$FILE"
   fi
 fi

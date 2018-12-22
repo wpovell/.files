@@ -1,19 +1,27 @@
 #!/sbin/fish
 
 function usage
-    echo "ecfg [-h] [list | <program>]
+    echo "ecfg [-hg] [list | CONFIG ]
     Opens the given program's config for editing.
+
+Flags:
+    -h Show this help message
+    -g Open using gui emacs
+
+Args:
+    list   Show all possible configs
+    CONFIG Config to edit
     "
     exit
 end
 
-if test -z $argv[1]
-   usage
+argparse --name=ecfg 'h/help' 'g/gui' -- $argv
+
+if test -z $argv[1]; or test $_flag_help
+    usage
 end
 
 switch $argv[1]
-    case -h --help
-        usage
     case tmux
         set F ~/.tmux.conf
     case kitty
@@ -64,4 +72,8 @@ switch $argv[1]
         exit 1
 end
 
-eval $EDITOR $F
+if test $_flag_gui
+    eval em -g $F
+else
+    eval em $F
+end
