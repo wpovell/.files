@@ -188,6 +188,7 @@ Initialize package management
 #+END_SRC
 
 *** Font
+
 #+BEGIN_SRC emacs-lisp
   (defun fira-code-mode--make-alist (list)
     "Generate prettify-symbols alist from LIST."
@@ -252,7 +253,7 @@ Initialize package management
     ;; Disable in magit as it breaks its highlighting
     (lambda ()
       (when (not (memq major-mode
-                       (list 'magit-status-mode)))
+                       (list 'magit-status-mode 'magit-diff-mode)))
         (fira-code-mode))))
   (if isgui
       (progn
