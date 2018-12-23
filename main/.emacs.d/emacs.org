@@ -1,17 +1,5 @@
 #+PROPERTY: header-args :tangle yes
 
-* Todos
-*** Packages to try
-- notmuch
-- shackle
-- eyebrowse
-- fixme
-
-*** Misc
-**** TODO Get root working
-**** TODO Improve term appearance
-**** TODO Rainbow mode by default
-
 * Init
 ** Early
 Set personal info.
@@ -345,13 +333,13 @@ Initialize package management
 
 *** Org
 #+BEGIN_SRC emacs-lisp
-    (setq org-src-tab-acts-natively t
-          org-adapt-indentation nil)
+  (setq org-src-tab-acts-natively t
+        org-adapt-indentation nil)
 
-    (setq org-todo-keywords
-          '((sequence "TODO" "PROGRESS" "DONE")
-            (sequence "TOREAD" "READ")
-            (sequence "PROJECT" "PROGRESS" "DONE")))
+  (setq org-todo-keywords
+        '((sequence "TODO" "PROGRESS" "DONE")
+          (sequence "TOREAD" "READ")
+          (sequence "PROJECT" "PROGRESS" "DONE")))
 #+END_SRC
 
 ** Keybind
