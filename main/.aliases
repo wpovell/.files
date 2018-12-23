@@ -29,7 +29,7 @@ alias wifi="sudo wifi-menu"
 alias root="sudo -s"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
-alias diff="colordiff"
+alias diff="diff-so-fancy"
 alias json="python -m json.tool"
 
 # Unmount
