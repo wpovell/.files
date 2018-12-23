@@ -345,8 +345,13 @@ Initialize package management
 
 *** Org
 #+BEGIN_SRC emacs-lisp
-  (setq org-src-tab-acts-natively t
-        org-adapt-indentation nil)
+    (setq org-src-tab-acts-natively t
+          org-adapt-indentation nil)
+
+    (setq org-todo-keywords
+          '((sequence "TODO" "PROGRESS" "DONE")
+            (sequence "TOREAD" "READ")
+            (sequence "PROJECT" "PROGRESS" "DONE")))
 #+END_SRC
 
 ** Keybind
@@ -374,6 +379,9 @@ Initialize package management
 
   ;; Replace
   (bind-key "C-r" 'replace-regexp)
+
+  ;; URL
+  (bind-key "C-c C-u" 'browse-url-at-point)
 
   ;; Move more quickly
   (bind-key "C-S-n" '(lambda () (interactive) (ignore-errors (next-line 5))))
