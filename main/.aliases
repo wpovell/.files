@@ -30,6 +30,7 @@ alias root="sudo -s"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
 alias diff="diff-so-fancy"
+alias cat="bat"
 alias json="python -m json.tool"
 
 # Unmount
