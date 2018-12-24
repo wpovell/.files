@@ -81,12 +81,18 @@ if __name__ == '__main__':
         print(f'Current theme:    {cur_theme}')
         themes = ' '.join(map(lambda x: x.stem, theme_root.glob('*')))
         print('Available themes: {}'.format(themes))
+        if cur_theme == 'None':
+            sys.exit(0)
+        theme = load_theme(cur_theme)
+    elif sys.argv[1] == 'refresh':
+        if cur_theme == 'None':
+            print('No current theme')
+            sys.exit(1)
         theme = load_theme(cur_theme)
     else:
         arg = sys.argv[1]
         theme = load_theme(arg)
         generate(theme)
-
         with open(cur_fn, 'w') as f:
             f.write(arg)
 

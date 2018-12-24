@@ -11,8 +11,7 @@ default_orientation horizontal
 bindsym --release $mod+x $execns $SUP/save-url
 
 # Startup
-exec_always --no-startup-id $SUP/start -r
-$execns $SUP/start
+exec_always --no-startup-id $SUP/start
 
 # Spotify
 for_window [class="Spotify"] move container to workspace $SpotifyWS

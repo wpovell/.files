@@ -2,18 +2,35 @@
 
 PATH=$PATH:~/bin/support
 
-theme
-if [[ "$1" = "-r" ]]; then
-  exit
+started() {
+    pgrep "$1" >/dev/null 2>&1
+}
+
+theme refresh
+
+if ! started emacs; then
+    restart-emacs
 fi
 
-restart-emacs
-term --class dropdown &
-dunst >/tmp/dunst.log 2>&1 &
-redshift &
-bar &
-drp start -i &
-startlocker &
-spotify &
+if ! started alacritty; then
+    term --class dropdown &
+fi
+
+if ! started redshift; then
+   redshift &
+fi
+
+if ! started dropbox; then
+    drp start -i &
+fi
+
+if ! started xautolock; then
+    startlocker &
+fi
+
+if ! started spotify; then
+    spotify &
+fi
+
 xrandr --auto &
 i3-msg workspace "1: I"
