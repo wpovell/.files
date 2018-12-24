@@ -21,9 +21,12 @@
                                   cl-functions
                                   interactive-only
                                   ))
-
+;; Set org-config to the dotfile version since
+;; otherwise the modification time will be that of the sym-link
+;; not the file itself
+(setq dotfile-dir "~/.files/main/.emacs.d/")
 (setq compiled-config (expand-file-name "emacs.elc" user-emacs-directory)
-      org-config (expand-file-name "emacs.org" user-emacs-directory))
+      org-config (expand-file-name "emacs.org" dotfile-dir))
 
 (defun last-mod (file)
   "Last modification time for FILE."
@@ -31,9 +34,9 @@
 
 (defun use-compiled()
   "Whether to use compiled or org version of config."
-  nil)
-  ;;(and (file-exists-p compiled-config)
-  ;;     (time-less-p (last-mod org-config) (last-mod compiled-config))))
+  (and (file-exists-p compiled-config)
+       (time-less-p (last-mod org-config) (last-mod compiled-config))))
+(time-less-p (last-mod org-config) (last-mod compiled-config))
 
 (let ((file-name-handler-alist nil))
   (if (use-compiled)

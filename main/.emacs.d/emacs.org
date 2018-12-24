@@ -20,7 +20,7 @@ Set load path ourselves to improve performance.
 #+BEGIN_SRC emacs-lisp
   (eval-and-compile
     (setq load-prefer-newer t
-          package-user-dir "~/.emacs.d/elpa"
+          package-user-dir (expand-file-name "elpa" user-emacs-directory)
           package--init-file-ensured t
           package-enable-at-startup nil)
 
@@ -387,7 +387,7 @@ Initialize package management
                        (find-file "~/org/main.org")))
   (bind-key "C-c c" '(lambda ()
                        (interactive)
-                       (find-file "~/.files/main/.emacs.d/emacs.org")))
+                       (find-file (expand-file-name "emacs.org" dotfile-dir))))
   (bind-key "C-c s" '(lambda ()
                        (interactive)
                        (switch-to-buffer "*scratch*")))
