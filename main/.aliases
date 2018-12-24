@@ -4,6 +4,7 @@ alias E="em -g"
 alias re="restart-emacs"
 alias Ecfg="ecfg -g"
 alias Ecmd="ecmd -g"
+alias Epipe="epipe -g"
 
 # Git
 alias git="hub"
@@ -30,7 +31,7 @@ alias root="sudo -s"
 alias open="xdg-open"
 alias xup="xrdb -I$HOME ~/.Xresources"
 alias diff="diff-so-fancy"
-alias cat="bat"
+alias ccat="bat"
 alias json="python -m json.tool"
 
 # Unmount

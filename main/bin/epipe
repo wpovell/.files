@@ -2,14 +2,25 @@
 
 usage() {
     prog=$(basename "$0")
-    echo "$prog
+    echo "$prog [-gh]
     Put STDIN into an emacs buffer, printing the result to STDOUT.
+
+Flags:
+    -h Display this help message
+    -g Pipe into GUI emacs
     "
     exit
 }
 
+
+
+gui=false
 if [[ -n $1 ]]; then
-    usage
+    if [[ $1 = -h ]]; then
+        usage
+    else
+        gui=true
+    fi
 fi
 
 tty="/dev/$(ps -o tty= -p $$)"
@@ -17,6 +28,12 @@ tty="/dev/$(ps -o tty= -p $$)"
 temp_file=$(mktemp)
 
 [ ! -t 0 ] && cat > "$temp_file"
-emacsclient -c -t -s term "$temp_file" <"$tty" >"$tty" && cat "$temp_file"
 
+if [[ $gui = false ]]; then
+    emacsclient -c -t -s term "$temp_file" <"$tty" >"$tty"
+else
+    emacsclient -c -s gui "$temp_file" >/dev/null 2>&1
+fi
+
+cat "$temp_file"
 rm "$temp_file"
