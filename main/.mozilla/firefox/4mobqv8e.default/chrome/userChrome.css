@@ -73,6 +73,7 @@ textbox.findbar-textbox {
 
 /* Border around omnibar and autocomplete results */
 textbox#urlbar, #PopupAutoCompleteRichResult {
+    box-shadow: none !important;
     border-color: var(--bg) !important;
 }
 
