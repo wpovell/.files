@@ -13,5 +13,7 @@ function setenv
     end
 end
 
+~/bin/support/dropdown
+
 source ~/.env
 source ~/.aliases

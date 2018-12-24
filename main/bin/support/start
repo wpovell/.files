@@ -2,15 +2,13 @@
 
 PATH=$PATH:~/bin/support
 
+theme
 if [[ "$1" = "-r" ]]; then
-  retheme
   exit
 fi
 
-retheme startup # Blocks
-
 restart-emacs
-term --class dropdown -e /bin/bash &
+term --class dropdown &
 dunst >/tmp/dunst.log 2>&1 &
 redshift &
 bar &
