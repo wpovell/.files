@@ -73,7 +73,7 @@ function submitHandler(alt, ctrl) {
   let res = urls[root];
 
   if (query.match(/[^\.\s]*\.?[^\.\s]\.[^\.\s]/i) && !query.trim().includes(' ')) {
-      // Go directly if url
+    // Go directly if url
     url = query;
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       url = 'http://' + url;
@@ -201,7 +201,7 @@ export function setupSearch() {
 
         active = (active + d + n) % n;
       }
-      let activeColor = 'var(--foreground)';
+      let activeColor = 'var(--base09)';
 
       const [short] = getSplit();
       const entry = urls[short];

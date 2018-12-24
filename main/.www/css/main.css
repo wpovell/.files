@@ -102,7 +102,7 @@ a, a:visited {
 }
 
 #autocomplete {
-    color: var(--fg);
+    color: var(--base01);
     z-index: 10;
 }
 
