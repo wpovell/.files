@@ -32,7 +32,7 @@
  */
 @binding-set gtk-emacs-text-entry
 {
-  bind "<alt>BackSpace" { "delete-from-cursor" (word-ends, -1) }
+  bind "<alt>BackSpace" { "delete-from-cursor" (word-ends, -1) };
   bind "<shift><ctrl>a" { "select-all" () };
   bind "<ctrl>b" { "move-cursor" (logical-positions, -1, 0) };
   bind "<shift><ctrl>b" { "move-cursor" (logical-positions, -1, 1) };
