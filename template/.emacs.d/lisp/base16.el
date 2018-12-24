@@ -585,8 +585,5 @@ Current modes, and their faces, impacted by this variable:
 ;; Automatically add this theme to the load path
 
 (provide-theme 'base16)
-
-;; Local Variables:
-;; no-byte-compile: t
-;; End:
-;;; base16-theme.el ends here
+(provide 'base16)
+;;; base16.el ends here

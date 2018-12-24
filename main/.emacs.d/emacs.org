@@ -43,25 +43,25 @@ Initialize package management
           (append load-path
                   (directory-files package-user-dir t "^[^.]" t))))
 
-    (require 'package)
+  (require 'package)
 
-    ;; Package archives
-    (eval-and-compile
-      (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                               ("melpa" . "https://melpa.org/packages/"))))
+  ;; Package archives
+  (eval-and-compile
+    (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                             ("melpa" . "https://melpa.org/packages/"))))
 
-    (package-initialize)
+  (package-initialize)
 
-    ;; Install use-package if not already
-    (unless (package-installed-p 'use-package)
-      (package-refresh-contents)
-      (package-install 'use-package))
+  ;; Install use-package if not already
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
 
-    (eval-when-compile
-      (require 'use-package))
+  (eval-when-compile
+    (require 'use-package))
 
-    (use-package diminish)
-    (use-package bind-key)
+  (use-package diminish)
+  (use-package bind-key)
 #+END_SRC
 
 ** Main
@@ -355,7 +355,7 @@ Initialize package management
   (bind-key "C-x k" 'volatile-kill-buffer)
 
   (bind-key "C-+" 'text-scale-increase)
-  (bind-key "C-_" 'text-scale-decrease)
+  (bind-key "C-M-+" 'text-scale-decrease)
 
   ;; Goto line
   (bind-key "M-g" 'goto-line)
@@ -492,6 +492,8 @@ Initialize package management
   ;; Multi cursor ;;
   (use-package multiple-cursors
     :bind (("C->" . mc/mark-next-like-this)
+           ;; Secondary bind is so as to use this in the terminal
+           ("C-q" . mc/mark-next-like-this)
            ("C-c C->" . mc/mark-all-like-this)
            ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 #+END_SRC
@@ -542,8 +544,16 @@ Initialize package management
 
 *** Theme
 #+BEGIN_SRC emacs-lisp
+
   (use-package base16
     :demand t)
+
+(defun on-frame-open (&optional frame)
+  "If the FRAME created in terminal don't load background color."
+  (unless (display-graphic-p frame)
+    (set-face-background 'default "unspecified-bg" frame)))
+
+(add-hook 'after-make-frame-functions 'on-frame-open)
 #+END_SRC
 
 *** Flycheck
