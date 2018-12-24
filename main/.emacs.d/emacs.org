@@ -38,27 +38,30 @@ Setup use-package defaults
 Initialize package management
 #+BEGIN_SRC emacs-lisp
   (eval-and-compile
-    (setq load-path (append load-path (directory-files package-user-dir t "^[^.]" t))))
+    (add-to-list 'load-path (locate-user-emacs-file "lisp/"))
+    (setq load-path
+          (append load-path
+                  (directory-files package-user-dir t "^[^.]" t))))
 
-  (require 'package)
+    (require 'package)
 
-  ;; Package archives
-  (eval-and-compile
-    (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                             ("melpa" . "https://melpa.org/packages/"))))
+    ;; Package archives
+    (eval-and-compile
+      (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                               ("melpa" . "https://melpa.org/packages/"))))
 
-  (package-initialize)
+    (package-initialize)
 
-  ;; Install use-package if not already
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
+    ;; Install use-package if not already
+    (unless (package-installed-p 'use-package)
+      (package-refresh-contents)
+      (package-install 'use-package))
 
-  (eval-when-compile
-    (require 'use-package))
+    (eval-when-compile
+      (require 'use-package))
 
-  (use-package diminish)
-  (use-package bind-key)
+    (use-package diminish)
+    (use-package bind-key)
 #+END_SRC
 
 ** Main
@@ -539,9 +542,8 @@ Initialize package management
 
 *** Theme
 #+BEGIN_SRC emacs-lisp
-  ;; Theme ;;
-  (if isgui
-      (use-package atom-one-dark-theme))
+  (use-package base16
+    :demand t)
 #+END_SRC
 
 *** Flycheck

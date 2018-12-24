@@ -31,8 +31,9 @@
 
 (defun use-compiled()
   "Whether to use compiled or org version of config."
-  (and (file-exists-p compiled-config)
-       (time-less-p (last-mod org-config) (last-mod compiled-config))))
+  nil)
+  ;;(and (file-exists-p compiled-config)
+  ;;     (time-less-p (last-mod org-config) (last-mod compiled-config))))
 
 (let ((file-name-handler-alist nil))
   (if (use-compiled)
