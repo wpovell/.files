@@ -337,9 +337,8 @@ Initialize package management
         org-adapt-indentation nil)
 
   (setq org-todo-keywords
-        '((sequence "TODO" "PROGRESS" "DONE")
-          (sequence "TOREAD" "READ")
-          (sequence "PROJECT" "PROGRESS" "DONE")))
+        '((sequence "TODO" "PROG" "DONE")
+          (sequence "PROJECT" "PROG" "DONE")))
 #+END_SRC
 
 ** Keybind
