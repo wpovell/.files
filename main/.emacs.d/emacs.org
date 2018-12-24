@@ -380,20 +380,17 @@ Initialize package management
 
 *** Jump to File
 #+BEGIN_SRC emacs-lisp
-  (defun find-config ()
-    "Edit emacs.org"
-    (interactive)
-    (find-file "~/.files/main/.emacs.d/emacs.org"))
-
-  (defun to-scratch ()
-    "Jump to scratch"
-    (interactive)
-    (switch-to-buffer "*scratch*"))
-
-  (bind-key "C-c c" 'find-config)
-  (bind-key "C-c s" 'to-scratch)
-
+  (bind-key "C-c m" '(lambda ()
+                       (interactive)
+                       (find-file "~/org/main.org")))
+  (bind-key "C-c c" '(lambda ()
+                       (interactive)
+                       (find-file "~/.files/main/.emacs.d/emacs.org")))
+  (bind-key "C-c s" '(lambda ()
+                       (interactive)
+                       (switch-to-buffer "*scratch*")))
 #+END_SRC
+
 *** Smart Begining of Line
 #+BEGIN_SRC emacs-lisp
   (defun smarter-move-beginning-of-line (arg)
@@ -434,6 +431,7 @@ Initialize package management
     (untabify (point-min) (point-max)))
   (bind-key "C-|" 'iwb)
 #+END_SRC
+
 *** Windows
 #+BEGIN_SRC emacs-lisp
   ;; Window management
