@@ -264,7 +264,7 @@ Initialize package management
 #+BEGIN_SRC emacs-lisp
   ;; TODO: Play around with this
   (if (not isgui)
-      (set-face-background 'mode-line "Blue"))
+      (set-face-background 'mode-line "#111"))
 
   ;; Show column in modeline
   (setq column-number-mode t)
@@ -447,15 +447,20 @@ Initialize package management
   (bind-key "C-x C-d" 'delete-window)
 
   ;; Switch focus on split
-  (bind-key "C-x C-/" (lambda ()
-                        (interactive)
-                        (split-window-vertically)
-                        (other-window 1)))
+  (defun split-horz ()
+    (interactive)
+    (split-window-horizontally)
+    (other-window 1))
 
-  (bind-key "C-x C-\\" (lambda ()
-                         (interactive)
-                         (split-window-horizontally)
-                         (other-window 1)))
+  (defun split-vert ()
+    (interactive)
+    (split-window-vertically)
+    (other-window 1))
+
+  (bind-key "C-x C-/" 'split-vert)
+  ;; Dupe for term
+  (bind-key "C-x C-_" 'split-vert)
+  (bind-key "C-x C-\\" 'split-horz)
 #+END_SRC
 
 ** Packages
@@ -548,12 +553,13 @@ Initialize package management
   (use-package base16
     :demand t)
 
-(defun on-frame-open (&optional frame)
-  "If the FRAME created in terminal don't load background color."
-  (unless (display-graphic-p frame)
-    (set-face-background 'default "unspecified-bg" frame)))
+  ;; Disable background for terminal
+  (defun on-frame-open (&optional frame)
+    "If the FRAME created in terminal don't load background color."
+    (unless (display-graphic-p frame)
+      (set-face-background 'default "unspecified-bg" frame)))
 
-(add-hook 'after-make-frame-functions 'on-frame-open)
+  (add-hook 'after-make-frame-functions 'on-frame-open)
 #+END_SRC
 
 *** Flycheck
