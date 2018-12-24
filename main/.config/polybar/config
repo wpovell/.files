@@ -1,10 +1,10 @@
 [colors]
 background    = ${xrdb:color0}
-foreground    = ${xrdb:*foreground}
+foreground    = ${xrdb:foreground}
 barFocus      = ${xrdb:color4}
 barUnfocus    = ${xrdb:color8}
 barMode       = ${xrdb:color1}
-bright        = ${xrdb:color12}
+bright        = ${xrdb:color4}
 
 [bar/base]
 width          = 100%

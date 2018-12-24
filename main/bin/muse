@@ -25,7 +25,7 @@ print_music() {
     fi
 
     # Foreground color formatting tags are optional
-    main=$(xquery color12)
+    main=$(xquery color4)
     foreground=$(xquery foreground)
 
     icon="  "
