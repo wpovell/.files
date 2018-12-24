@@ -5,26 +5,26 @@ export const urls = {
     query: 'www.laundryview.com/home/1921/1429242',
   },
   'wa': {
-     name: 'wolfram alpha',
-     color: '#dd1100',
-     query: (q) => {
-       let base = 'www.wolframalpha.com';
-       if (!q) {
-         return base;
-       }
+    name: 'wolfram alpha',
+    color: '#dd1100',
+    query: (q) => {
+      let base = 'www.wolframalpha.com';
+      if (!q) {
+        return base;
+      }
 
-       return base + '/input/?i=' + q;
-     }
-   },
+      return base + '/input/?i=' + q;
+    }
+  },
   'gs': {
-     name: 'gradescope',
-     color: '#1b807c',
-     query: 'www.gradescope.com',
-   },
+    name: 'gradescope',
+    color: '#1b807c',
+    query: 'www.gradescope.com',
+  },
   'ol': {
-     name: 'overleaf',
-     color: '#4f9c45',
-     query: 'v2.overleaf.com/project',
+    name: 'overleaf',
+    color: '#4f9c45',
+    query: 'v2.overleaf.com/project',
   },
   'zip': {
     name: 'zipcar',
@@ -129,23 +129,23 @@ export const urls = {
     query: (q) => {
       let cc;
       switch (q) {
-        case 'cab':
-          return 'cab.brown.edu';
-        case 'ss':
-          return 'selfservice.brown.edu';
-        case 'canvas':
-          return 'canvas.brown.edu';
-        case 'cs33':
-          cc = 'cs033';
-          break;
-        case 'algos':
-          cc = 'cs157';
-          break;
-        case 'net':
-          cc = 'csci1680/f18';
-          break;
-        default:
-          cc = q;
+      case 'cab':
+        return 'cab.brown.edu';
+      case 'ss':
+        return 'selfservice.brown.edu';
+      case 'canvas':
+        return 'canvas.brown.edu';
+      case 'cs33':
+        cc = 'cs033';
+        break;
+      case 'algos':
+        cc = 'cs157';
+        break;
+      case 'net':
+        cc = 'csci1680/f18';
+        break;
+      default:
+        cc = q;
       }
 
       return 'cs.brown.edu/courses/' + cc;
@@ -165,11 +165,7 @@ export const urls = {
     color: '#404448',
     query: (q) => {
       let u = 'github.com/';
-      if (q == 'tcp') {
-        u += 'brown-csci1680/ip-tcp-graphics-round-2';
-      } else if (q == 'smu') {
-        u += 'signmeup/signmeup';
-      } else if (q) {
+      if (q) {
         if (q.includes('/')) {
           u += q;
         } else {
@@ -178,7 +174,7 @@ export const urls = {
       }
       return u;
     },
-      suggest: ['wpovell/', 'tcp', 'dotfiles', 'smu'],
+    suggest: ['wpovell/', '.files'],
   },
   'a': {
     name: 'amazon',
