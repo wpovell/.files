@@ -1,5 +1,4 @@
 #!/bin/bash
 
 # Wrapper around my default pdf viewer
-
-zathura "$@" >/dev/null 2>&1 &
+zathura --fork "$@"
