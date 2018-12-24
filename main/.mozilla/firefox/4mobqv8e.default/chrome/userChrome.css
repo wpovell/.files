@@ -1,41 +1,25 @@
 @import '../../../../.www/css/colors.css';
 
-/* Hide things */
-#window-controls, .scrollbutton-up, .scrollbutton-down, #alltabs-button, #PersonalToolbar, .tab-close-button, .tabs---bgewtab-button, #back-button, #forward-button, #toolbar-menubar, #customizableui-special-spring2, #customizableui-special-spring1, #pageActionButton, #PanelUI-menu-button, .autocomplete-history-dropmarker, #PanelUI-button, #page-action-buttons, .urlbar-go-button, .urlbar-history-dropmarker {
+/** Hide things **/
+#PersonalToolbar,                /* Bookmark bar below omnibar */
+.tab-close-button,               /* Close button on tabs */
+.tabs-newtab-button,             /* New tab button */
+#back-button,                    /* Back button */
+#forward-button,                 /* Forward button */
+#customizableui-special-spring2, /* Area between omnibar and extensions */
+#customizableui-special-spring1,
+#PanelUI-button,                 /* Settings hamburger */
+#page-action-buttons,            /* ... and reader view */
+#window-controls,                /* Fullscreen controls */
+.urlbar-go-button,               /* -> on right of omnibar */
+.urlbar-history-dropmarker {     /* v  on right of omnibar */
     display: none !important;
 }
 
-/* Get rid of fullscreen animation */
-#navigator-toolbox[fullscreenShouldAnimate] {
-    transition: none !important;
-}
-
-/* Fix private browsing logo */
-.private-browsing-indicator {
-    background-position: top!important;
-    margin-top: 5px;
-}
-
-/* Set font */
-.tab-text, .urlbar-input-box, .autocomplete-richlistitem {
-    font-family: Fira Code!important;
-}
-
-/* Prevent insta-click on right click menu */
-#contentAreaContextMenu{ margin: 2px 0 0 2px }
-
 /* Center tab text */
 .tab-label {
-   -moz-box-flex: 1 !important;
-   text-align: center !important;
-}
-
-/* Make active tab wider */
-/* tab[selected="true"] { min-width: 200px !important; } */
-
-/* Remove white flash on tab load */
-.browserContainer {
-  background-color: var(--bg) !important;
+    -moz-box-flex: 1 !important;
+    text-align: center !important;
 }
 
 /* Hide search placeholder text */
@@ -48,23 +32,35 @@
     display: none !important;
 }
 
-/* Change text highlight in url */
-.autocomplete-textbox::-moz-selection {
-    color:  var(--base00) !important;
-    background-color:  var(--fg) !important;
-}
-
 /* Fixes small border when tabs fill top. */
 .arrowscrollbox-scrollbox {
     margin: -1px;
 }
 
-/* Make identity text same as icon */
-#identity-icon-labels {
-    color: rgb(18, 188, 0)!important;
+/* Set font */
+.tab-text, .urlbar-input-box, .autocomplete-richlistitem {
+    font-family: Fira Code!important;
 }
 
-/* Coloring */
+/** Coloring **/
+
+/* Remove white flash on tab load */
+.browserContainer {
+    background-color: var(--bg) !important;
+}
+
+/* Private Browsing */
+#navigator-toolbox {
+    background-color: var(--base00) !important;
+}
+
+/* Find textbox */
+textbox.findbar-textbox {
+    background-color: var(--bg) !important;
+    color: var(--fg);
+}
+
+/* Tab colors */
 .tab-content[selected=true] {
     background-color: var(--bg);
     color:  var(--base0D);
@@ -75,32 +71,30 @@
     color:  var(--fg);
 }
 
-tabs {
-    background-color:  var(--base00) !important;
+/* Border around omnibar and autocomplete results */
+textbox#urlbar, #PopupAutoCompleteRichResult {
+    border-color: var(--bg) !important;
 }
 
-toolbaritem {
-    color: var(--base0D) !important;
-    background-color: var(--bg) !important;
-}
-
-toolbarbutton, textbox#urlbar, #PopupAutoCompleteRichResult {
-    box-shadow: none !important;
-    background-color: var(--bg) !important;
+findbar,                       /* Findbar background */
+sidebarheader,                 /* History sidebar background */
+toolbarbutton,                 /* Extension button */
+toolbaritem,                   /* Border around omnibar */
+textbox#urlbar,                /* Omnibar */
+#sidebar,                      /* Sidebar */
+#sidebar-splitter,             /* Divider between sidebar and content */
+#bookmarks-view,               /* Bookmark items */
+#historyTree,                  /* History items */
+#viewButton,                   /* History view button */
+.panel-arrowcontent,           /* Sidebar switcher */
+#PopupAutoCompleteRichResult { /* Autocomplete Results */
     border-color: var(--bg) !important;
     color: var(--fg) !important;
-}
-
-findbar, sidebarheader, browser#sidebar, #bookmarksPanel, #history-panel, .panel-arrowcontent, .autocomplete-textbox, .urlbar-input-box {
-    color: var(--fg) !important;
     background-color: var(--bg) !important;
 }
 
+/* Selected autocomplete is brighter */
 .autocomplete-richlistitem[selected="true"] {
     background-color:  var(--fg) !important;
     color: var(--base00) !important;
-}
-
-.autocomplete-richlistitem:not([selected="true"]) {
-    color:  var(--fg) !important;
 }
