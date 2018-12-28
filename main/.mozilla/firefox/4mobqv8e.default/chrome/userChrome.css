@@ -11,6 +11,11 @@
 #PanelUI-button,                 /* Settings hamburger */
 #page-action-buttons,            /* ... and reader view */
 #window-controls,                /* Fullscreen controls */
+.scrollbutton-up,                /* Buttons appearing when tabbar is full */
+.scrollbutton-down,
+#alltabs-button,
+#new-tab-button,
+#menubar-items,                  /* Application menu shown on alt */
 .urlbar-go-button,               /* -> on right of omnibar */
 .urlbar-history-dropmarker {     /* v  on right of omnibar */
     display: none !important;
