@@ -6,18 +6,15 @@ window:
 scrolling:
   history: 10000
 
-#tabspaces: 8
-
 font:
   normal:
     family: Fira Code
-
   size: 8
 
 visual_bell:
   animation: EaseOutExpo
-  duration: 0
-  color: '0xffffff'
+  duration:  0
+  color:    '0xffffff'
 
 colors:
   # Default colors
@@ -27,7 +24,7 @@ colors:
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x{{base00-hex}}'
+    text:   '0x{{base00-hex}}'
     cursor: '0x{{base05-hex}}'
 
   # Normal colors
@@ -50,7 +47,7 @@ colors:
     blue:    '0x{{base04-hex}}'
     magenta: '0x{{base06-hex}}'
     cyan:    '0x{{base0F-hex}}'
-    white: '0x{{base07-hex}}'
+    white:   '0x{{base07-hex}}'
 
 mouse:
   url:
