@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Shared env vars between bash and fish
-function setenv() { export "$1=$2"; }
-
 # shellcheck source=/home/wpovell/.env
 . ~/.env
 # shellcheck source=/home/wpovell/.aliases
