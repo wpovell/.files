@@ -3,10 +3,4 @@
 # Starts autolocker, with flags as appropriate to the host
 
 rm /tmp/lock_disabled
-case $HOSTNAME in
-  lambda)
-    xautolock -locker lock -time 5 -killer "systemctl suspend" -killtime 10 ;;
-  blueno)
-    ;;
-  *) xautolock -locker lock -time 10 ;;
-esac
+xautolock -locker lock -time 5 -killer "systemctl suspend" -killtime 10

@@ -4,14 +4,15 @@ set $alt Mod1
 set $SUP $HOME/bin/support
 set $execns exec --no-startup-id
 
+# Startup
+$execns $SUP/start new
+exec_always --no-startup-id $SUP/start
+
 # Split direction
 default_orientation horizontal
 
 # Link saver
 bindsym --release $mod+x $execns $SUP/save-url
-
-# Startup
-exec_always --no-startup-id $SUP/start
 
 # Spotify
 for_window [class="Spotify"] move container to workspace $SpotifyWS

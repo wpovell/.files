@@ -6,31 +6,34 @@ started() {
     pgrep "$1" >/dev/null 2>&1
 }
 
-theme refresh
+if [[ "$1" != "new" ]]; then
+    if ! started emacs ; then
+        restart-emacs
+    fi
 
-if ! started emacs; then
-    restart-emacs
-fi
-
-if ! started alacritty; then
+    if ! started spotify; then
+        spotify &
+    fi
+else
     term --class dropdown &
+    restart-emacs
+    theme refresh
+
+    if ! started redshift; then
+        redshift &
+    fi
+
+    if ! started dropbox; then
+        drp start -i &
+    fi
+
+    if ! started startlocker; then
+        startlocker &
+    fi
+
+    killall spotify
+    spotify
 fi
 
-if ! started redshift; then
-   redshift &
-fi
-
-if ! started dropbox; then
-    drp start -i &
-fi
-
-if ! started xautolock; then
-    startlocker &
-fi
-
-if ! started spotify; then
-    spotify &
-fi
-
-xrandr --auto &
+xrandr --auto
 i3-msg workspace "1: I"
