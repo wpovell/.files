@@ -7,9 +7,21 @@
             display: none!important;
         }
     }
+
+    /** Redesign **/
+
+    /* Hide sidebar */
+    #SHORTCUT_FOCUSABLE_DIV > div > div > div > div:last-child > div:last-child > div:last-child {
+        display: none!important;
+    }
+
+    /* Expand default layout to fill */
+    #SHORTCUT_FOCUSABLE_DIV > div > div > div > div:last-child > div:last-child > div {
+        width: 100%!important;
+    }
 }
 
-/* Trying to remove live column, doesn't work */
+/* Remove live column */
 @-moz-document domain(www.instagram.com) {
     main > section > div:nth-child(3) {
         display: none!important;

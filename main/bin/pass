@@ -100,6 +100,7 @@ if [[ "$1" == "rofi" ]]; then
     done=false
     echo "$password" | keepassxc-cli clip $DATABASE "$RESULTS" >/dev/null
     if [[ $? ]]; then
+        notify-send "pass" "Password for \"$RESULTS\" copied."
         done=true
     else
         # Get password to return
@@ -146,17 +147,18 @@ if [[ $done = false ]]; then
         fi
 
         copy_pass "$RESULTS"
-    pfi
-fi
-
-if [[ $? ]]; then
-    echo "Copied password for \"$RESULTS\""
-    if [[ "$1" = "rofi" ]]; then
-        notify-send "pass" "Password for \"$RESULTS\" copied."
+        pfi
     fi
-else
-    echo "Faild to copy password for \"$RESULTS\""
-    if [[ "$1" = "rofi" ]]; then
-        rofi -e "Faield to copy password for \"$RESULTS\""
+
+    if [[ $? ]]; then
+        echo "Copied password for \"$RESULTS\""
+        if [[ "$1" = "rofi" ]]; then
+            notify-send "pass" "Password for \"$RESULTS\" copied."
+        fi
+    else
+        echo "Failed to copy password for \"$RESULTS\""
+        if [[ "$1" = "rofi" ]]; then
+            rofi -e "Failed to copy password for \"$RESULTS\""
+        fi
     fi
 fi
