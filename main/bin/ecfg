@@ -64,10 +64,10 @@ switch $argv[1]
     case rofi
         set F "$t/.config/rofi/config.rasi"
     case list
-        cat ~/bin/ecfg | \
-        grep case | \
-        tr -s ' ' | \
-        cut -d' ' -f3 | \
+        cat ~/bin/ecfg |
+        grep case |
+        tr -s ' ' |
+        cut -d' ' -f3 |
         grep -v '\-h\|"'
         exit
     case "*"

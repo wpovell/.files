@@ -16,21 +16,21 @@ Commands:
 }
 
 copy_pass() {
-    echo "$password" | \
+    echo "$password" |
         keepassxc-cli clip $DATABASE "$1" $TIMEOUT >/dev/null &
 }
 
 ls_all() {
     local RES subgroups
-    RES=$(echo "$password" | \
+    RES=$(echo "$password" |
               keepassxc-cli ls $DATABASE "$1")
 
-    subgroups=$(echo "$RES" | \
-                    grep "/$" | \
+    subgroups=$(echo "$RES" |
+                    grep "/$" |
                     grep -v "Recycle Bin")
 
-    RES=$(echo "$RES" | \
-              grep -v "/$" | \
+    RES=$(echo "$RES" |
+              grep -v "/$" |
               tail -n +2)
 
     if [[ -n $subgroups && -z $1 ]]; then
@@ -84,8 +84,8 @@ if [[ "$1" == "rofi" ]]; then
         RESULTS=$(rofi -dmenu -i -p pass < $CACHE)
 
         # Async refresh cache in case something has changed
-        ls_all | \
-            sort | \
+        ls_all |
+            sort |
             uniq > $CACHE &
     else
         RESULTS=$(ls_all | rofi -dmenu -i -p pass)
@@ -104,7 +104,7 @@ if [[ "$1" == "rofi" ]]; then
         done=true
     else
         # Get password to return
-        RESULTS=$(echo "$password" | \
+        RESULTS=$(echo "$password" |
                       keepassxc-cli locate $DATABASE "$RESULTS")
     fi
 else
@@ -114,8 +114,8 @@ fi
 
 # Skip if we've already successfully copied a password
 if [[ $done = false ]]; then
-    RESULTS=$(echo "$RESULTS" | \
-                  tail -n +2 | \
+    RESULTS=$(echo "$RESULTS" |
+                  tail -n +2 |
                   grep -v "Recycle Bin\|No results for that search term")
     N=$(echo "$RESULTS" | wc -l)
 

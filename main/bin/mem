@@ -14,7 +14,7 @@ fi
 
 {
     echo -ne "\xe2\x80\x8b"
-    free -h | \
-        tr -s ' ' | \
+    free -h |
+        tr -s ' ' |
         cut -d' ' -f1,3,2
 } | column -t

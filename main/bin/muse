@@ -45,14 +45,14 @@ print_music() {
 
 toggle_mute() {
     if [[ $CURRENT_STATE == '[on]' ]]; then
-        amixer scontrols | \
-            grep -oE "'.*'" | \
-            awk -F\'  '{print "amixer set \""$2"\" mute"}' | \
+        amixer scontrols |
+            grep -oE "'.*'" |
+            awk -F\'  '{print "amixer set \""$2"\" mute"}' |
             sh
     else
-        amixer scontrols | \
-            grep -oE "'.*'" | \
-            awk -F\'  '{print "amixer set \""$2"\" unmute"}' | \
+        amixer scontrols |
+            grep -oE "'.*'" |
+            awk -F\'  '{print "amixer set \""$2"\" unmute"}' |
             sh
     fi
 }
@@ -64,9 +64,9 @@ dbus_cmd() {
               "org.mpris.MediaPlayer2.Player.$1"
 }
 
-CURRENT_STATE=$(amixer get Master | \
-                    grep -E 'Playback.*?\[o' | \
-                    grep -Eo '\[o.+\]' | \
+CURRENT_STATE=$(amixer get Master |
+                    grep -E 'Playback.*?\[o' |
+                    grep -Eo '\[o.+\]' |
                     head -n 1)
 
 case $1 in

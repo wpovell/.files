@@ -50,6 +50,6 @@ set -- "${POS[@]}"
 sudo atd
 
 # Schedule
-echo "$HOME/bin/support/_alarm $sound $msg" | \
-    at "$@" 2>&1 | \
+echo "$HOME/bin/support/_alarm $sound $msg" |
+    at "$@" 2>&1 |
     grep -v warning
