@@ -156,6 +156,9 @@ Initialize package management
   (setq require-final-newline t
         apropos-do-all t)
 
+  ;; Autorefresh files
+  (global-auto-revert-mode t)
+
   ;; IDO
   (ido-mode t)
   (setq ido-enable-flex-matching t)
@@ -643,11 +646,14 @@ Initialize package management
     :config
     (add-hook 'markdown-mode-hook
               (lambda ()
-                (flyspell-mode))))
+                (flyspell-mode)))
+    :init
+    (setq markdown-command "pandoc"))
 
   (use-package yaml-mode)
 
   (use-package rust-mode)
+  (use-package haskell-mode)
 #+END_SRC
 
 ** Experimental
