@@ -4,6 +4,11 @@ export const urls = {
     color: '#645e50',
     query: 'www.laundryview.com/home/1921/1429242',
   },
+  'gr': {
+    name: 'goodreads',
+    color: '#372213',
+    query: 'www.goodreads.com',
+  },
   'wa': {
     name: 'wolfram alpha',
     color: '#dd1100',
