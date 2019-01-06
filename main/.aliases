@@ -24,6 +24,7 @@ alias m="~/bin/support/polybar/mail show"
 alias wl="wc -l"
 alias ax="chmod a+x"
 alias xx="atool -x"
+alias ds="drp status"
 
 alias dfs="cd ~/.files"
 alias wifi="sudo wifi-menu"

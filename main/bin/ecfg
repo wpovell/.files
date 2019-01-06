@@ -25,6 +25,8 @@ set df "$HOME/.files"
 set m "$df/main"
 set t "$df/template"
 switch $argv[1]
+    case start
+        set F "$m/.www/js/data.js"
     case tmux
         set F "$m/.tmux.conf"
     case kitty

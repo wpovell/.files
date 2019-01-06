@@ -1,4 +1,16 @@
 export const urls = {
+  'mp': {
+    name: 'maps',
+    color: '#4285f4',
+    query: (q) => {
+      let base = 'www.google.com/maps';
+      if (!q) {
+        return base;
+      }
+
+      return base + '/search/' + q;
+    },
+  },
   'lv': {
     name: 'laundry view',
     color: '#645e50',
