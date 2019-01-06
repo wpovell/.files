@@ -20,7 +20,7 @@ This repo holds my dotfiles & various other things for my laptop
 - `gen/`: Files generated from templates for a theme (not present in repo)
 - `main/`: Pretty much everything that gets linked, mostly self-explanatory
   - `.config/`: Where all my config files are
-  - `.www`: Root of start page served to `localhost`
+  - `.www/`: Root of start page served to `localhost`
   - `bin/`: Scripts I've made and found useful
     - `alias/`: Wrappers around other commands
     - `color/`: Color test scripts
