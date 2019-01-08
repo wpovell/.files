@@ -113,13 +113,31 @@ Initialize package management
 
 *** Mouse
 #+BEGIN_SRC emacs-lisp
+  ;; Set scroll speed
+  (setq mouse-wheel-scroll-amount '(2 ((shift) . 1) ((control))))
+
   ;; Enable mouse in term emacs
   (xterm-mouse-mode t)
-  (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
-  (global-set-key (kbd "<mouse-4>") '(lambda () (interactive) (scroll-down 1)))
+  (if isgui
+      (progn
+        ;; Force redraw on scroll
+        (global-set-key (kbd "<mouse-4>")
+                        (lambda ()
+                          (interactive)
+                          (scroll-down mouse-wheel-scroll-amount)
+                          (redisplay)))
+        (global-set-key (kbd "<mouse-5>")
+                        (lambda ()
+                          (interactive)
+                          (scroll-up mouse-wheel-scroll-amount)
+                          (redisplay))))
+    ;; Terminal scroll
+    (global-set-key (kbd "<mouse-5>") '(lambda () (interactive) (scroll-up 1)))
+    (global-set-key (kbd "<mouse-4>") '(lambda () (interactive) (scroll-down 1))))
 
   (setq scroll-preserve-screen-position 'always)
 
+  ;; Kill minibuffer on mouse exit
   (defun stop-using-minibuffer ()
     "kill the minibuffer"
     (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
@@ -375,6 +393,9 @@ Initialize package management
 
   ;; URL
   (bind-key "C-c C-u" 'browse-url-at-point)
+
+  (if isgui
+      (bind-key "C-S-v" 'yank))
 
   ;; Move more quickly
   (bind-key "C-S-n" '(lambda () (interactive) (ignore-errors (next-line 5))))
