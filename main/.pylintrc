@@ -1,6 +1,8 @@
 [MESSAGES CONTROL]
 
-# C0111: Missing %s docstring
-# W0621: Redefining name %r from outer scope (line %s)
-# C0103: Invalid %s name "%s"
-disable=C0103,W0621,C0111
+disable=
+  C0103, # Missing %s docstring
+  W0621, # Redefining name %r from outer scope (line %s)
+  C0111, # Invalid %s name "%s"
+  E305,  # Expected 2 blank lines after
+  E302

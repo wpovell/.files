@@ -1,7 +1,6 @@
 #+PROPERTY: header-args :tangle yes
 
-* Init
-** Early
+* Early
 Set personal info.
 #+BEGIN_SRC emacs-lisp
   (setq user-full-name "Will Povell"
@@ -15,7 +14,7 @@ Set GC values to be high during load, to be lowered after.
           gc-cons-percentage 0.6))
 #+END_SRC
 
-** Package Setup
+* Package Setup
 Set load path ourselves to improve performance.
 #+BEGIN_SRC emacs-lisp
   (eval-and-compile
@@ -64,8 +63,8 @@ Initialize package management
   (use-package bind-key)
 #+END_SRC
 
-** Main
-*** Funcs
+* Main
+** Funcs
 #+BEGIN_SRC emacs-lisp
   (setq isgui
         (or
@@ -73,7 +72,7 @@ Initialize package management
          (string= (daemonp) "gui")))
 #+END_SRC
 
-*** Initial
+** Initial
 #+BEGIN_SRC emacs-lisp
   ;; Set scratch text
   (setq initial-scratch-message nil)
@@ -82,13 +81,13 @@ Initialize package management
   (setq inhibit-startup-message t
         inhibit-startup-screen t)
 #+END_SRC
-*** Customizations
+** Customizations
 #+BEGIN_SRC emacs-lisp
   ;; Make custom changes session-local
   (setq custom-file (make-temp-file "emacs-custom"))
 #+END_SRC
 
-*** Backup / Temp Files
+** Backup / Temp Files
 #+BEGIN_SRC emacs-lisp
   ;; Delete backup versions
   (setq delete-old-versions t
@@ -104,14 +103,14 @@ Initialize package management
         `((".*" ,temporary-file-directory t)))
 #+END_SRC
 
-*** Dired
+** Dired
 #+BEGIN_SRC emacs-lisp
   ;; Human readable dired numbers
   (setq dired-listing-switches "-alh"
         dired-k-human-readable t)
 #+END_SRC
 
-*** Mouse
+** Mouse
 #+BEGIN_SRC emacs-lisp
   ;; Set scroll speed
   (setq mouse-wheel-scroll-amount '(2 ((shift) . 1) ((control))))
@@ -146,7 +145,7 @@ Initialize package management
   (add-hook 'mouse-leave-buffer-hook 'stop-using-minibuffer)
 #+END_SRC
 
-*** Editor
+** Editor
 #+BEGIN_SRC emacs-lisp
   ;; Use 2 spaces for indentation
   (setq-default indent-tabs-mode nil)
@@ -182,7 +181,7 @@ Initialize package management
   (setq ido-enable-flex-matching t)
 #+END_SRC
 
-*** Highlight
+** Highlight
 #+BEGIN_SRC emacs-lisp
   ;; 80 Char Col ;;
   (setq-default
@@ -203,7 +202,7 @@ Initialize package management
   (show-paren-mode t)
 #+END_SRC
 
-*** Font
+** Font
 
 #+BEGIN_SRC emacs-lisp
   (defun fira-code-mode--make-alist (list)
@@ -281,7 +280,7 @@ Initialize package management
                             :width 'normal)))
 #+END_SRC
 
-*** Modeline
+** Modeline
 #+BEGIN_SRC emacs-lisp
   ;; TODO: Play around with this
   (if (not isgui)
@@ -330,7 +329,7 @@ Initialize package management
                                  orig-fg))))
 #+END_SRC
 
-*** Appearance
+** Appearance
 #+BEGIN_SRC emacs-lisp
   ;; Hide GUI frills
   (menu-bar-mode -1)
@@ -343,7 +342,7 @@ Initialize package management
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 #+END_SRC
 
-*** Term
+** Term
 #+BEGIN_SRC emacs-lisp
   ;; Term
   (global-set-key (kbd "<C-return>")
@@ -355,7 +354,7 @@ Initialize package management
     (kill-buffer))
 #+END_SRC
 
-*** Org
+** Org
 #+BEGIN_SRC emacs-lisp
   (setq org-src-tab-acts-natively t
         org-adapt-indentation nil)
@@ -365,8 +364,8 @@ Initialize package management
           (sequence "PROJECT" "PROG" "DONE")))
 #+END_SRC
 
-** Keybind
-*** Misc
+* Keybind
+** Misc
 #+BEGIN_SRC emacs-lisp
   ;; Kill buffer unless modified
   (defun volatile-kill-buffer ()
@@ -375,6 +374,7 @@ Initialize package management
       (kill-buffer (current-buffer))))
   (bind-key "C-x k" 'volatile-kill-buffer)
 
+  ;; Font size
   (bind-key "C-+" 'text-scale-increase)
   (bind-key "C-M-+" 'text-scale-decrease)
 
@@ -394,6 +394,7 @@ Initialize package management
   ;; URL
   (bind-key "C-c C-u" 'browse-url-at-point)
 
+  ;; Add terminal paste to gui
   (if isgui
       (bind-key "C-S-v" 'yank))
 
@@ -404,7 +405,7 @@ Initialize package management
   (bind-key "C-S-b" '(lambda () (interactive) (ignore-errors (backward-char 5))))
 #+END_SRC
 
-*** Jump to File
+** Jump to File
 #+BEGIN_SRC emacs-lisp
   (bind-key "C-c m" '(lambda ()
                        (interactive)
@@ -417,7 +418,7 @@ Initialize package management
                        (switch-to-buffer "*scratch*")))
 #+END_SRC
 
-*** Smart Begining of Line
+** Smart Begining of Line
 #+BEGIN_SRC emacs-lisp
   (defun smarter-move-beginning-of-line (arg)
     "Move point back to indentation of beginning of line.
@@ -447,7 +448,7 @@ Initialize package management
             'smarter-move-beginning-of-line)
 #+END_SRC
 
-*** Reformat Buffer
+** Reformat Buffer
 #+BEGIN_SRC emacs-lisp
   (defun iwb ()
     "indent whole buffer"
@@ -458,7 +459,7 @@ Initialize package management
   (bind-key "C-|" 'iwb)
 #+END_SRC
 
-*** Windows
+** Windows
 #+BEGIN_SRC emacs-lisp
   ;; Window management
   ;; TODO: Consider removing these
@@ -481,14 +482,14 @@ Initialize package management
     (split-window-vertically)
     (other-window 1))
 
+  (bind-key "C-x C-\\" 'split-horz)
   (bind-key "C-x C-/" 'split-vert)
   ;; Dupe for term
   (bind-key "C-x C-_" 'split-vert)
-  (bind-key "C-x C-\\" 'split-horz)
 #+END_SRC
 
-** Packages
-*** Ivy
+* Packages
+** Ivy
 
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
@@ -516,7 +517,7 @@ Initialize package management
     (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 #+END_SRC
 
-*** Multiple Cursors
+** Multiple Cursors
 #+BEGIN_SRC emacs-lisp
   ;; Multi cursor ;;
   (use-package multiple-cursors
@@ -527,13 +528,13 @@ Initialize package management
            ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 #+END_SRC
 
-*** Magit
+** Magit
 #+BEGIN_SRC emacs-lisp
   (if (version< "25" emacs-version)
       (use-package magit))
 #+END_SRC
 
-*** Projectile
+** Projectile
 #+BEGIN_SRC emacs-lisp
   (if (version< "25" emacs-version)
       (use-package projectile
@@ -545,7 +546,7 @@ Initialize package management
         (setq projectile-completion-system 'ivy)))
 #+END_SRC
 
-*** Git-Gutter
+** Git-Gutter
 #+BEGIN_SRC emacs-lisp
   (use-package git-gutter
     :config
@@ -554,7 +555,7 @@ Initialize package management
      '(git-gutter:update-interval 2)))
 #+END_SRC
 
-*** Treemacs
+** Treemacs
 #+BEGIN_SRC emacs-lisp
   (use-package treemacs
     :bind (("C-\\" . treemacs))
@@ -571,7 +572,7 @@ Initialize package management
                 (display-line-numbers-mode -1))))
 #+END_SRC
 
-*** Theme
+** Theme
 #+BEGIN_SRC emacs-lisp
 
   (use-package base16
@@ -586,26 +587,7 @@ Initialize package management
   (add-hook 'after-make-frame-functions 'on-frame-open)
 #+END_SRC
 
-*** Flycheck
-#+BEGIN_SRC emacs-lisp
-  (use-package flycheck
-    :config
-    (global-flycheck-mode))
-#+END_SRC
-
-*** Company
-#+BEGIN_SRC emacs-lisp
-  (use-package company
-    :disabled
-    :bind (:map company-active-map
-                ("TAB" . company-complete-selection))
-    :inti
-    (setq company-idle-delay 0.1)
-    :config
-    (global-company-mode))
-#+END_SRC
-
-*** Recentf
+** Recentf
 #+BEGIN_SRC emacs-lisp
   (use-package recentf
     :config
@@ -614,7 +596,7 @@ Initialize package management
     (recentf-mode))
 #+END_SRC
 
-*** Dashboard
+** Dashboard
 #+BEGIN_SRC emacs-lisp
   (if (and (version< "25" emacs-version)
            isgui)
@@ -635,14 +617,14 @@ Initialize package management
                     (display-line-numbers-mode -1)))))
 #+END_SRC
 
-*** Rainbow Delim
+** Rainbow Delim
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
 
-*** Color Highlight
+** Color Highlight
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :config
@@ -651,13 +633,13 @@ Initialize package management
     (add-hook 'yaml-mode-hook 'rainbow-mode))
 #+END_SRC
 
-*** Expand Region
+** Expand Region
 #+BEGIN_SRC emacs-lisp
   (use-package expand-region
     :bind (("C-=" . er/expand-region)
            ("C--" . er/contract-region)))
 #+END_SRC
-*** Modes
+** Modes
 #+BEGIN_SRC emacs-lisp
   (setq-default js-indent-level 2)
 
@@ -677,16 +659,31 @@ Initialize package management
   (use-package haskell-mode)
 #+END_SRC
 
-** Experimental
+** IDE
+*** Flycheck
 #+BEGIN_SRC emacs-lisp
-  ;; Fish some ansi-term newline issues
-  ;; TODO: Figure out what exactly this does
-  (setq term-suppress-hard-newline t)
+  (use-package flycheck
+    :config
+    (global-flycheck-mode))
+#+END_SRC
 
+*** Company
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :bind (:map company-active-map
+                ("TAB" . company-complete-selection))
+    :init
+    (setq company-idle-delay 0.1)
+    :config
+    (global-company-mode))
+#+END_SRC
+
+* Experimental
+#+BEGIN_SRC emacs-lisp
   ;; Should make emacs "snappier"
   (add-hook 'focus-out-hook #'garbage-collect)
 #+END_SRC
-** Finish
+* Finish
 #+BEGIN_SRC emacs-lisp
   (setq gc-cons-threshold 16777216
         gc-cons-percentage 0.1)

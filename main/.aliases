@@ -12,6 +12,8 @@ alias g="git"
 alias gs="git status"
 alias gd="git diff"
 alias gp="git push"
+alias gpf="git push -f"
+alias gpl="git pull"
 
 # Shortcuts
 alias rw="sudo restart-wifi"
@@ -25,6 +27,7 @@ alias wl="wc -l"
 alias ax="chmod a+x"
 alias xx="atool -x"
 alias ds="drp status"
+alias rr="rm -rf"
 
 alias dfs="cd ~/.files"
 alias wifi="sudo wifi-menu"

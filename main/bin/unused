@@ -17,4 +17,4 @@ else
    t="$1"
 fi
 
-find . ! -name . -prune ! -type d -atime "+$t"
+find . ! -name . -prune -atime "+$t"
