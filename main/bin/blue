@@ -1,17 +1,18 @@
 #!/bin/bash
+
+pproc() {
+    echo "$1"
+    echo "$1" >&"${COPROC[1]}"
+}
+
 MAC="2C:41:A1:87:B5:34"
+
 coproc bluetoothctl
-echo "power on"
-echo "power on" >&${COPROC[1]}
-echo "scan on"
-echo "scan on" >&${COPROC[1]}
-echo "waiting for headphones..."
-while read read line <&${COPROC[0]} || [[ -n "$line" ]]; do
-  echo "$line"
-  if ! $(echo $line | grep $MAC); then
-    break;
-  fi
+pproc "power on"
+pproc "connect $MAC"
+
+while read -r line <&"${COPROC[0]}"; do
+    if echo "$line" | grep "LE-Bose QC35 II"; then
+        exit
+    fi
 done
-echo "connect $MAC" >&${COPROC[1]}
-echo "scan off" >&${COPROC[1]}
-read
