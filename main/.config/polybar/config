@@ -18,7 +18,7 @@ radius         = 0
 modules-center = date
 font-0         = FontAwesome:size=8;3
 font-1         = Inconsolata:size=10;2
-monitor        = ${env:MONITOR:}
+monitor        = ${env:MONITOR:eDP1}
 module-margin  = 3
 
 [bar/blueno]
@@ -62,7 +62,7 @@ click-right       = csvpn kill
 click-left        = csvpn
 
 [section/volume]
-type                       = internal/volume
+type                       = internal/pulseaudio
 
 format-volume              = <ramp-volume> <label-volume>
 label-volume               = %percentage%%
