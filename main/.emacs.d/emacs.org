@@ -81,6 +81,7 @@ Initialize package management
   (setq inhibit-startup-message t
         inhibit-startup-screen t)
 #+END_SRC
+
 ** Customizations
 #+BEGIN_SRC emacs-lisp
   ;; Make custom changes session-local
@@ -356,12 +357,36 @@ Initialize package management
 
 ** Org
 #+BEGIN_SRC emacs-lisp
-  (setq org-src-tab-acts-natively t
-        org-adapt-indentation nil)
+  (use-package org-bullets)
 
-  (setq org-todo-keywords
-        '((sequence "TODO" "PROG" "DONE")
-          (sequence "PROJECT" "PROG" "DONE")))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (setq line-spacing 0.1 ;; More line space
+                    left-margin-width 2 ;; Margins
+                    right-margin-width 2)
+
+              ;; Disable highlight
+              (setq-local global-hl-line-mode nil)
+              (display-line-numbers-mode -1)
+
+              ;; Update margin
+              (set-window-buffer nil (current-buffer))
+              (org-bullets-mode 1)))
+
+  (add-hook 'org-mode-hook 'visual-line-mode)
+
+  (setq org-startup-indented t           ;; Indent based on tree depth
+        org-src-tab-acts-natively t      ;; Tab in language buffer acts as expected
+        org-fontify-whole-heading-line t ;; Hide *s
+        org-bullets-bullet-list '(" ")   ;; No bullets
+        org-ellipsis "  ")              ;; Folding symbol
+
+  ;; Remove underline from org-ellipsis
+  (custom-set-faces
+   '(org-ellipsis ((t (:underline nil))))
+   '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
+   '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
+   '(org-level-3 ((t (:inherit outline-3 :height 1.1)))))
 #+END_SRC
 
 * Keybind
@@ -490,7 +515,6 @@ Initialize package management
 
 * Packages
 ** Ivy
-
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
     :demand t
@@ -574,7 +598,6 @@ Initialize package management
 
 ** Theme
 #+BEGIN_SRC emacs-lisp
-
   (use-package base16
     :demand t)
 
@@ -639,6 +662,7 @@ Initialize package management
     :bind (("C-=" . er/expand-region)
            ("C--" . er/contract-region)))
 #+END_SRC
+
 ** Modes
 #+BEGIN_SRC emacs-lisp
   (setq-default js-indent-level 2)
@@ -684,6 +708,7 @@ Initialize package management
   ;; Should make emacs "snappier"
   (add-hook 'focus-out-hook #'garbage-collect)
 #+END_SRC
+
 * Finish
 #+BEGIN_SRC emacs-lisp
   (setq gc-cons-threshold 16777216
