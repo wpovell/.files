@@ -57,6 +57,13 @@
     background-color: var(--base00) !important;
 }
 
+/* Captive Portal Notif */
+notification.animated {
+    background-color: var(--bg)!important;
+    color: var(--fg)!important;
+    border-color: var(--base00)!important;
+}
+
 /* Find textbox */
 textbox.findbar-textbox {
     background-color: var(--bg) !important;
