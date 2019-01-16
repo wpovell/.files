@@ -17,7 +17,7 @@ function fish_prompt
     # Git
     set branch (git branch 2>/dev/null | grep "*" | cut -f2 -d" ")
     if [ "$branch" != "" ]
-        git diff --no-ext-diff --quiet --exit-code
+        git diff --no-ext-diff --quiet --exit-code 2>/dev/null
         if [ $status != 0 ]
             set_color yellow
         end

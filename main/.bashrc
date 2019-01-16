@@ -33,7 +33,7 @@ prompt() {
             GITP="$GITP [$BRANCH]"
         fi
 
-        if git diff --no-ext-diff --quiet --exit-code; then
+        if git diff --no-ext-diff --quiet --exit-code 2>/dev/null; then
             GITP="$C4$GITP"
         else
             GITP="$C3$GITP"
