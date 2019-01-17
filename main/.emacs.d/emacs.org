@@ -345,7 +345,7 @@ Initialize package management
 ** Term
 #+BEGIN_SRC emacs-lisp
   ;; Term
-  (bind-key* "<C-return>" '(lambda ()
+  (bind-key "<C-M-return>" '(lambda ()
                              (interactive)
                              (ansi-term "/bin/bash")))
   (add-hook 'term-mode-hook (lambda ()
