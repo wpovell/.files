@@ -8,6 +8,7 @@ This repo holds my dotfiles & various other things for my laptop
 - Window Manager: `i3-gaps`
 - Shell: `fish`
 - Terminal: `alacritty`
+- Bar: `polybar`
 - Notifications: `dunst`
 - Launcher: `rofi`
 - Music: `spotify`
