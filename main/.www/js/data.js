@@ -274,7 +274,15 @@ export const urls = {
   'c': {
     name: 'calendar',
     color: '#DB4A38',
-    query: 'calendar.google.com'
+    query: (q) => {
+      let acct = 1;
+      if (q == "brown") {
+        acct = 1;
+      }
+      let url = `calendar.google.com/calendar/b/${acct}/r`;
+      return url;
+    },
+    suggest: ["brown", "personal"],
   },
   'e': {
     name: 'email',

@@ -14,16 +14,16 @@ fi
 
 if [[ "$1" -ne "-f" ]]; then
 	# Save open buffers
-	emacsclient -s gui -e "(save-some-buffers 'no-confirm)" >/dev/null 
+	emacsclient -s gui -e "(save-some-buffers 'no-confirm)" >/dev/null
 2>&1
-	emacsclient -s term -e "(save-some-buffers 'no-confirm)" >/dev/null 
+	emacsclient -s term -e "(save-some-buffers 'no-confirm)" >/dev/null
 2>&1
 fi
 
 killall -9 -q emacs
 
-emacs --daemon=term 2>/dev/null
-echo "Restarted NW"
-
 emacs --daemon=gui 2>/dev/null
 echo "Restarted GUI"
+
+emacs --daemon=term 2>/dev/null
+echo "Restarted NW"
