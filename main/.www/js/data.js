@@ -66,7 +66,7 @@ export const urls = {
   's': {
     name: 'slack',
     color: '#4D394B',
-    query: '2018cs033tas.slack.com',
+    query: 'cs167tas2019.slack.com',
   },
   'w': {
     name: 'weather',
@@ -88,12 +88,12 @@ export const urls = {
     color: '#F4B400',
     query: (q) => {
       let base = 'drive.google.com';
-      if (q == 'cs33') {
-        return base + '/drive/u/0/folders/1QWcj9eTvVAnS5nVnNRqaEqVuJz0mUKNs';
+      if (q == 'os') {
+        return base + '/drive/folders/1YLRnArLEhdaeQaHQ100XWDkmcCkCmEFv'
       }
       return base;
     },
-    suggest: ['cs33']
+    suggest: ['os']
   },
   'pb': {
     name: 'pushbullet',
@@ -140,34 +140,29 @@ export const urls = {
       return 'localhost:' + q;
     }
   },
-  'b': {
-    name: 'brown',
-    color: '#3A1E1A',
+  'cs': {
+    name: 'cs',
+    color: '#006a91',
     query: (q) => {
-      let cc;
-      switch (q) {
-      case 'cab':
-        return 'cab.brown.edu';
-      case 'ss':
-        return 'selfservice.brown.edu';
-      case 'canvas':
-        return 'canvas.brown.edu';
-      case 'cs33':
-        cc = 'cs033';
-        break;
-      case 'algos':
-        cc = 'cs157';
-        break;
-      case 'net':
-        cc = 'csci1680/f18';
-        break;
+      let base = 'cs.brown.edu/courses/';
+      switch(q) {
+      case 'os':
+        return base + 'csci1670';
+      case 'dist':
+        return base + 'cs138/s19';
       default:
-        cc = q;
+        return base + q;
       }
-
-      return 'cs.brown.edu/courses/' + cc;
     },
-    suggest: ['cab', 'canvas', 'ss']
+    suggest: ['os', 'dist'],
+  },
+  'can': {
+    color: '#A10311',
+    query: 'canvas.brown.edu',
+  },
+  'ss': {
+    color: '#A10311',
+    query: 'selfservice.brown.edu',
   },
   'cab': {
     color: '#A10311',
@@ -179,7 +174,7 @@ export const urls = {
   },
   'g': {
     name: 'github',
-    color: '#404448',
+    color: '#606468',
     query: (q) => {
       let u = 'github.com/';
       if (q) {

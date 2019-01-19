@@ -136,6 +136,12 @@ function inputHandler(e) {
   } else { // Character typed
     const start = e.target.value.split(':')[0];
     if (e.key == 'Backspace' || e.key.length == 1) {
+      // Reset search if empty
+      if (e.key == 'Backspace') {
+        if ($search.val() == '') {
+          hideSearch(e);
+        }
+      }
       active = -1;
       getSuggestions();
       let res = urls[start];
