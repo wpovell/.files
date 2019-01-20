@@ -409,6 +409,9 @@ Initialize package management
       (kill-buffer (current-buffer))))
   (bind-key "C-x k" 'volatile-kill-buffer)
 
+  ;; Jump back to before tag jump
+  (bind-key "M-*" 'pop-tag-mark)
+
   ;; Font size
   (bind-key "C-+" 'text-scale-increase)
   (bind-key "C-M-+" 'text-scale-decrease)
