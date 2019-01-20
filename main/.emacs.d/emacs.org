@@ -673,8 +673,12 @@ Initialize package management
   (use-package rainbow-mode
     :config
     (setq rainbow-x-colors nil)
-    (add-hook 'prog-mode-hook 'rainbow-mode)
-    (add-hook 'yaml-mode-hook 'rainbow-mode))
+    (define-globalized-minor-mode my-global-rainbow-mode rainbow-mode
+      (lambda ()
+        (when (and (derived-mode-p 'text-mode 'prog-mode)
+                   (not (derived-mode-p 'c-mode)))
+            (rainbow-mode 1))))
+    (my-global-rainbow-mode 1))
 #+END_SRC
 
 ** Expand Region
