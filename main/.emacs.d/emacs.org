@@ -575,8 +575,9 @@ Initialize package management
 
 ** Magit
 #+BEGIN_SRC emacs-lisp
-  (if (version< "25" emacs-version)
-      (use-package magit))
+    (if (version< "25" emacs-version)
+        (use-package magit
+          :bind (("C-x C-g" . magit-status))))
 #+END_SRC
 
 ** Projectile

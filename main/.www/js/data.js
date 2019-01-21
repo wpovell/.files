@@ -272,7 +272,7 @@ export const urls = {
     query: (q) => {
       let acct = 1;
       if (q == "brown") {
-        acct = 1;
+        acct = 0;
       }
       let url = `calendar.google.com/calendar/b/${acct}/r`;
       return url;

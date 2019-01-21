@@ -22,6 +22,8 @@
 
   ch = checkout
   nb = checkout -b
+  db = branch -d
+  Db = branch -D
   m  = checkout master
 
   mg = merge
@@ -29,6 +31,7 @@
   r  = reset
   d  = diff
   l  = log
+  cl = clone
 
   p  = push -u
   pf = push -f
