@@ -203,7 +203,6 @@ Initialize package management
 #+END_SRC
 
 ** Font
-
 #+BEGIN_SRC emacs-lisp
   (defun fira-code-mode--make-alist (list)
     "Generate prettify-symbols alist from LIST."

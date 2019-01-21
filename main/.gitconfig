@@ -40,6 +40,7 @@
   shallow  = clone --depth 1
   uncommit = reset HEAD^
   ls       = ls-files
+  staged   = diff HEAD
 
   amend  = commit --amend
   ammend = commit --amend

@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+
+import sys
+
+usage = f'''utf [HEX]...
+\tUtility to print UTF glyphs for hex codepoints
+'''
+
+if len(sys.argv) == 1:
+    print(usage)
+
+for code in sys.argv[1:]:
+    print(chr(int(code, 16)))
